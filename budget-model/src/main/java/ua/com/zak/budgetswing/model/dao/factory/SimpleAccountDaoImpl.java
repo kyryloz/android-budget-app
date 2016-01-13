@@ -3,14 +3,14 @@ package ua.com.zak.budgetswing.model.dao.factory;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.zak.budgetswing.model.dao.BudgetDao;
+import ua.com.zak.budgetswing.model.dao.AccountDao;
 import ua.com.zak.budgetswing.model.domen.Account;
 
-class BudgetDaoImpl implements BudgetDao {
+class SimpleAccountDaoImpl implements AccountDao {
 
     private final List<Account> mAccounts;
 
-    public BudgetDaoImpl() {
+    public SimpleAccountDaoImpl() {
         mAccounts = new ArrayList<>();
         Account accountCash = new Account();
         accountCash.setId(1);

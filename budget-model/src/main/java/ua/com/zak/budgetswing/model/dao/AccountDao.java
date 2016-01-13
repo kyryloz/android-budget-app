@@ -7,7 +7,7 @@ import ua.com.zak.budgetswing.model.domen.Account;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public interface BudgetDao {
+public interface AccountDao {
     List<Account> getAllAccounts();
     boolean addAccount(Account account);
     boolean removeAccount(long accountId);

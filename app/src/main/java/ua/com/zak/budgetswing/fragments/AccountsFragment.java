@@ -9,7 +9,7 @@ import android.view.View;
 import butterknife.Bind;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.adapters.AccountsAdapter;
-import ua.com.zak.budgetswing.model.dao.BudgetDao;
+import ua.com.zak.budgetswing.model.dao.AccountDao;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -19,14 +19,14 @@ public class AccountsFragment extends BaseFragment {
     @Bind(R.id.recycler_accounts)
     RecyclerView mRecyclerAccounts;
 
-    private BudgetDao mBudgetDao;
+    private AccountDao mAccountDao;
 
     private AccountsAdapter mAccountsAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBudgetDao = mApplicationModel.getDaoFactory().getBudgetDao();
+        mAccountDao = mApplicationModel.getDaoFactory().getAccountDao();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class AccountsFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        mAccountsAdapter.update(mBudgetDao.getAllAccounts());
+        mAccountsAdapter.update(mAccountDao.getAllAccounts());
     }
 
     private void initAccountsList() {
