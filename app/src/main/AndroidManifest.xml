@@ -29,8 +29,10 @@
         <activity
             android:name=".activity.MakeTransactionActivity"
             android:label="@string/make_transaction_label"
-            android:parentActivityName=".activity.MainActivity">
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/SlideBottomAnimTheme">
         </activity>
+
     </application>
 
 </manifest>

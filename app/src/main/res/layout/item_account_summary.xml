@@ -7,19 +7,19 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
-    <android.support.v7.widget.AppCompatTextView
+    <TextView
         android:id="@+id/text_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         tools:text="Bank Account"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"/>
 
-    <android.support.v7.widget.AppCompatTextView
+    <TextView
         android:id="@+id/text_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         tools:text="100 USD"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"/>
 </LinearLayout>

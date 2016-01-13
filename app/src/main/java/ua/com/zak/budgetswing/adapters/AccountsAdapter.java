@@ -1,11 +1,11 @@
 package ua.com.zak.budgetswing.adapters;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,10 +60,10 @@ public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.text_name)
-        AppCompatTextView mTextName;
+        TextView mTextName;
 
         @Bind(R.id.text_amount)
-        AppCompatTextView mTextAmount;
+        TextView mTextAmount;
 
         public ViewHolder(View itemView) {
             super(itemView);
