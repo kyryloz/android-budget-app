@@ -11,4 +11,5 @@ public interface AccountDao {
     List<Account> getAllAccounts();
     boolean addAccount(Account account);
     boolean removeAccount(long accountId);
+    boolean makeTransaction(long accountId, long amount);
 }

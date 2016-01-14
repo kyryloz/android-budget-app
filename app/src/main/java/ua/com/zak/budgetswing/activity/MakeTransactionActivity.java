@@ -1,15 +1,11 @@
 package ua.com.zak.budgetswing.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
 import ua.com.zak.budgetswing.R;
 
-public class MakeTransactionActivity extends AppCompatActivity {
+public class MakeTransactionActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_transaction);
+    protected int getLayoutId() {
+        return R.layout.activity_make_transaction;
     }
 }

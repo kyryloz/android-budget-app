@@ -43,6 +43,13 @@ class SimpleAccountDaoImpl implements AccountDao {
         return mAccounts.remove(findById(accountId));
     }
 
+    @Override
+    public boolean makeTransaction(long accountId, long amount) {
+        Account account = findById(accountId);
+        account.setAmount(account.getAmount() + amount);
+        return true;
+    }
+
     private Account findById(long accountId) {
         for (Account account : mAccounts) {
             if (account.getId() == accountId) {

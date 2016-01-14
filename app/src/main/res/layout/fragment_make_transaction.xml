@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:style="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.ButtonBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@android:style/Widget.Material.ButtonBar">
+
+        <Button
+            android:id="@+id/button_date_picker"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            tools:text="10 jan"/>
+
+        <Button
+            android:id="@+id/button_yesterday"
+            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/yesterday"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"/>
+
+    </android.support.v7.widget.ButtonBarLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:clickable="true">
+        <TextView
+            android:id="@+id/text_account_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            tools:text="Cash"/>
+        <TextView
+            android:id="@+id/text_account_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.Material.Small"
+            tools:text="100 USD"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_expense_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:clickable="true">
+        <TextView
+            android:id="@+id/text_expense_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            tools:text="Groceries"/>
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/edit_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="@string/amount"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.ButtonBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        style="@android:style/Widget.Material.ButtonBar">
+
+        <Button
+            android:id="@+id/button_cancel"
+            style="@android:style/Widget.Material.ButtonBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            android:text="@android:string/cancel"
+            tools:text="10 jan"/>
+
+        <Button
+            android:id="@+id/button_submit"
+            style="@android:style/Widget.Material.ButtonBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/submit"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"/>
+
+    </android.support.v7.widget.ButtonBarLayout>
+</LinearLayout>

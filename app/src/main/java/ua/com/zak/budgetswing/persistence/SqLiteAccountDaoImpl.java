@@ -24,4 +24,9 @@ public class SqLiteAccountDaoImpl implements AccountDao {
     public boolean removeAccount(long accountId) {
         return false;
     }
+
+    @Override
+    public boolean makeTransaction(long accountId, long amount) {
+        return false;
+    }
 }
