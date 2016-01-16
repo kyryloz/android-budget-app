@@ -1,36 +1,32 @@
 package ua.com.zak.budgetswing.fragments;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.format.DateFormat;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.Bind;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
+import ua.com.zak.budgetswing.dialogs.DatePickerDialogFragment;
 import ua.com.zak.budgetswing.model.dao.AccountDao;
 import ua.com.zak.budgetswing.model.domen.Account;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class MakeTransactionFragment extends BaseFragment {
+public class MakeTransactionFragment extends BaseFragment implements DatePickerDialogFragment.Listener {
 
-    @Bind(R.id.button_date_picker)
-    Button mButtonDatePicker;
-
-    @Bind(R.id.button_yesterday)
-    Button mButtonYesterday;
+    @Bind(R.id.radio_button_date_picker)
+    RadioButton mRadioDatePicker;
 
     @Bind(R.id.layout_account)
     View mLayoutAccount;
@@ -56,6 +52,11 @@ public class MakeTransactionFragment extends BaseFragment {
     @Bind(R.id.button_submit)
     Button mButtonSubmit;
     private AccountDao mAccountDao;
+    private java.text.DateFormat mDateFormat;
+
+    private Calendar mNowDate;
+    private Calendar mResultDate;
+    private boolean mYesterdayChose;
 
     @Override
     protected int getLayoutId() {
@@ -66,42 +67,43 @@ public class MakeTransactionFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAccountDao = mApplicationModel.getDaoFactory().getAccountDao();
+        mNowDate = Calendar.getInstance();
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initDatePicker();
+        initDatePickerButton();
         initAccount();
         initExpenseCategory();
         initSubmitButtons();
     }
 
-    private void initDatePicker() {
-        final SimpleDateFormat dateFormat = new SimpleDateFormat(DateUtils.MONTH_DAY_FORMAT, Locale.US);
-        mButtonDatePicker.setText(dateFormat.format(Calendar.getInstance().getTime()));
-        mButtonDatePicker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datePicker = new DatePickerDialog(getContext(),
-                        android.R.style.Theme_Material_Dialog, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(Calendar.YEAR, year);
-                        calendar.set(Calendar.MONTH, monthOfYear);
-                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        mButtonDatePicker.setText(dateFormat.format(calendar.getTime()));
-                    }
-                },
-                        Calendar.getInstance().get(Calendar.YEAR),
-                        Calendar.getInstance().get(Calendar.MONTH),
-                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-                datePicker.setCancelable(false);
-                datePicker.setTitle("Select the date");
-                datePicker.show();
-            }
-        });
+    @OnClick(R.id.radio_button_date_picker)
+    void onRadioDatePickerClicked() {
+        showDateChooserDialog();
+    }
+
+    @OnCheckedChanged(R.id.radio_button_yesterday)
+    void onRadioYesterdayCheckedChanged(boolean checked) {
+        mYesterdayChose = checked;
+    }
+
+    @Override
+    public void onDatePicked(Calendar calendar) {
+        mResultDate = calendar;
+        mRadioDatePicker.setText(mDateFormat.format(calendar.getTime()));
+    }
+
+    private void showDateChooserDialog() {
+        DatePickerDialogFragment datePicker = DatePickerDialogFragment.newInstance(mResultDate, this);
+        datePicker.show(getFragmentManager(), DatePickerDialogFragment.TAG);
+    }
+
+    private void initDatePickerButton() {
+        mDateFormat = DateFormat.getDateFormat(getContext());
+        String format = mDateFormat.format(Calendar.getInstance().getTime());
+        mRadioDatePicker.setText(format);
     }
 
     private void initAccount() {
@@ -122,6 +124,11 @@ public class MakeTransactionFragment extends BaseFragment {
         mButtonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mYesterdayChose) {
+                    mNowDate.add(Calendar.DAY_OF_YEAR, -1);
+                    mResultDate = mNowDate;
+                }
+
                 long amount = Long.valueOf(mEditAmount.getText().toString());
                 mAccountDao.makeTransaction(mAccountDao.getAllAccounts().get(0).getId(), -amount);
                 getActivity().finish();

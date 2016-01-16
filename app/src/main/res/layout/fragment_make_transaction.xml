@@ -5,34 +5,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
+    android:padding="20dp"
     android:orientation="vertical">
 
 
-    <android.support.v7.widget.ButtonBarLayout
+    <RadioGroup
+        android:id="@+id/radio_group_date_chooser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@android:style/Widget.Material.ButtonBar">
+        android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_date_picker"
-            style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
+        <RadioButton
+            android:id="@+id/radio_button_date_picker"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            android:textColor="@drawable/selector_date_radio_button_text"
+            android:gravity="center"
+            android:button="@null"
+            android:background="@drawable/selector_date_radio_button"
+            android:checked="true"
             tools:text="10 jan"/>
 
-        <Button
-            android:id="@+id/button_yesterday"
+        <RadioButton
+            android:id="@+id/radio_button_yesterday"
             style="@android:style/Widget.Material.Light.Button.Borderless.Colored"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:text="@string/yesterday"
-            android:textAppearance="@android:style/TextAppearance.Material.Subhead"/>
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            android:textColor="@drawable/selector_date_radio_button_text"
+            android:gravity="center"
+            android:button="@null"
+            android:background="@drawable/selector_date_radio_button"/>
 
-    </android.support.v7.widget.ButtonBarLayout>
+    </RadioGroup>
 
     <LinearLayout
         android:id="@+id/layout_account"
