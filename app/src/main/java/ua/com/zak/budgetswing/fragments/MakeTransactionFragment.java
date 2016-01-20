@@ -16,6 +16,7 @@ import butterknife.Bind;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
+import ua.com.zak.budgetswing.dialogs.AccountPickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.DatePickerDialogFragment;
 import ua.com.zak.budgetswing.model.dao.AccountDao;
 import ua.com.zak.budgetswing.model.domen.Account;
@@ -23,7 +24,8 @@ import ua.com.zak.budgetswing.model.domen.Account;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class MakeTransactionFragment extends BaseFragment implements DatePickerDialogFragment.Listener {
+public class MakeTransactionFragment extends BaseFragment
+        implements DatePickerDialogFragment.Listener, AccountPickerDialogFragment.Listener {
 
     @Bind(R.id.radio_button_date_picker)
     RadioButton mRadioDatePicker;
@@ -57,6 +59,7 @@ public class MakeTransactionFragment extends BaseFragment implements DatePickerD
     private Calendar mNowDate;
     private Calendar mResultDate;
     private boolean mYesterdayChose;
+    private Account mCurrentAccount;
 
     @Override
     protected int getLayoutId() {
@@ -74,7 +77,7 @@ public class MakeTransactionFragment extends BaseFragment implements DatePickerD
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initDatePickerButton();
-        initAccount();
+        initFirstAccount();
         initExpenseCategory();
         initSubmitButtons();
     }
@@ -89,10 +92,23 @@ public class MakeTransactionFragment extends BaseFragment implements DatePickerD
         mYesterdayChose = checked;
     }
 
+
+    @OnClick(R.id.layout_account)
+    void onAccountChangeClicked() {
+        AccountPickerDialogFragment dialog =
+                AccountPickerDialogFragment.newInstance(mAccountDao.getAllAccounts(), this);
+        dialog.show(getFragmentManager(), AccountPickerDialogFragment.TAG);
+    }
+
     @Override
     public void onDatePicked(Calendar calendar) {
         mResultDate = calendar;
         mRadioDatePicker.setText(mDateFormat.format(calendar.getTime()));
+    }
+
+    @Override
+    public void onAccountPicked(Account account) {
+        bindAccount(account);
     }
 
     private void showDateChooserDialog() {
@@ -106,14 +122,19 @@ public class MakeTransactionFragment extends BaseFragment implements DatePickerD
         mRadioDatePicker.setText(format);
     }
 
-    private void initAccount() {
+    private void initFirstAccount() {
         List<Account> allAccounts = mAccountDao.getAllAccounts();
         Account first = allAccounts.get(0);
-        mTextAccountName.setText(first.getName());
+        bindAccount(first);
+    }
+
+    private void bindAccount(Account account) {
+        mCurrentAccount = account;
+        mTextAccountName.setText(account.getName());
         mTextAccountAmount.setText(getString(
                 R.string.accounts_amount_format,
-                first.getAmount(),
-                first.getCurrencyCode()));
+                account.getAmount(),
+                account.getCurrencyCode()));
     }
 
     private void initExpenseCategory() {
@@ -130,7 +151,7 @@ public class MakeTransactionFragment extends BaseFragment implements DatePickerD
                 }
 
                 long amount = Long.valueOf(mEditAmount.getText().toString());
-                mAccountDao.makeTransaction(mAccountDao.getAllAccounts().get(0).getId(), -amount);
+                mAccountDao.makeTransaction(mCurrentAccount.getId(), -amount);
                 getActivity().finish();
             }
         });

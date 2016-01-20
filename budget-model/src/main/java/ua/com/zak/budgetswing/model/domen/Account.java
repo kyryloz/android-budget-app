@@ -1,9 +1,11 @@
 package ua.com.zak.budgetswing.model.domen;
 
+import java.io.Serializable;
+
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class Account {
+public class Account implements Serializable {
 
     private long mId;
     private String mName;
