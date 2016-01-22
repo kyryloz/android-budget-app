@@ -9,20 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ua.com.zak.budgetswing.R;
-import ua.com.zak.budgetswing.model.domen.Account;
+import ua.com.zak.budgetswing.model.domen.Category;
 import ua.com.zak.budgetswing.model.domen.Entity;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class AccountPickerDialogFragment<T extends Entity> extends PickerDialog<T> {
+public class CategoryPickerDialogFragment<T extends Entity> extends PickerDialog<T> {
 
-    public AccountPickerDialogFragment() { }
+    public CategoryPickerDialogFragment() { }
 
     public static  <T extends Fragment & Listener, S extends Entity> DialogFragment newInstance(
             List<S> items,
             T listener) {
-        DialogFragment fragment = new AccountPickerDialogFragment<>();
+        DialogFragment fragment = new CategoryPickerDialogFragment<>();
         fragment.setTargetFragment(listener, 0);
         Bundle args = new Bundle();
         args.putSerializable(BUNDLE_ITEMS, new ArrayList<>(items));
@@ -32,7 +32,7 @@ public class AccountPickerDialogFragment<T extends Entity> extends PickerDialog<
 
     @Override
     protected void bindDialog(AlertDialog.Builder builder) {
-        builder.setTitle(getContext().getString(R.string.make_transaction_select_account));
+        builder.setTitle(getContext().getString(R.string.make_transaction_select_category));
     }
 
     @Override
@@ -43,10 +43,10 @@ public class AccountPickerDialogFragment<T extends Entity> extends PickerDialog<
     @Override
     protected void onClick(T value) {
         Listener listener = (Listener) getTargetFragment();
-        listener.onPicked((Account) value);
+        listener.onPicked((Category) value);
     }
 
     public interface Listener {
-        void onPicked(Account account);
+        void onPicked(Category category);
     }
 }

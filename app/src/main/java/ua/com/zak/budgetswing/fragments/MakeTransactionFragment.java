@@ -2,6 +2,8 @@ package ua.com.zak.budgetswing.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
@@ -17,15 +19,20 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.dialogs.AccountPickerDialogFragment;
+import ua.com.zak.budgetswing.dialogs.CategoryPickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.DatePickerDialogFragment;
+import ua.com.zak.budgetswing.dialogs.PickerDialog;
 import ua.com.zak.budgetswing.model.dao.AccountDao;
+import ua.com.zak.budgetswing.model.dao.CategoryDao;
 import ua.com.zak.budgetswing.model.domen.Account;
+import ua.com.zak.budgetswing.model.domen.Category;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 public class MakeTransactionFragment extends BaseFragment
-        implements DatePickerDialogFragment.Listener, AccountPickerDialogFragment.Listener {
+        implements DatePickerDialogFragment.Listener,
+        AccountPickerDialogFragment.Listener, CategoryPickerDialogFragment.Listener {
 
     @Bind(R.id.radio_button_date_picker)
     RadioButton mRadioDatePicker;
@@ -53,13 +60,17 @@ public class MakeTransactionFragment extends BaseFragment
 
     @Bind(R.id.button_submit)
     Button mButtonSubmit;
+
     private AccountDao mAccountDao;
+    private CategoryDao mCategoryDao;
+
     private java.text.DateFormat mDateFormat;
 
     private Calendar mNowDate;
     private Calendar mResultDate;
     private boolean mYesterdayChose;
-    private Account mCurrentAccount;
+    private Account mResultAccount;
+    private Category mResultCategory;
 
     @Override
     protected int getLayoutId() {
@@ -70,6 +81,7 @@ public class MakeTransactionFragment extends BaseFragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAccountDao = mApplicationModel.getDaoFactory().getAccountDao();
+        mCategoryDao = mApplicationModel.getDaoFactory().getCategoryDao();
         mNowDate = Calendar.getInstance();
     }
 
@@ -77,8 +89,7 @@ public class MakeTransactionFragment extends BaseFragment
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initDatePickerButton();
-        initFirstAccount();
-        initExpenseCategory();
+        initFirstAccountAndCategory();
         initSubmitButtons();
     }
 
@@ -95,9 +106,20 @@ public class MakeTransactionFragment extends BaseFragment
 
     @OnClick(R.id.layout_account)
     void onAccountChangeClicked() {
-        AccountPickerDialogFragment dialog =
-                AccountPickerDialogFragment.newInstance(mAccountDao.getAllAccounts(), this);
-        dialog.show(getFragmentManager(), AccountPickerDialogFragment.TAG);
+        DialogFragment dialog =
+                AccountPickerDialogFragment.newInstance(
+                        mAccountDao.getAllAccounts(),
+                        this);
+        dialog.show(getFragmentManager(), PickerDialog.TAG);
+    }
+
+    @OnClick(R.id.layout_expense_category)
+    void onCategoryChangeClicked() {
+        DialogFragment dialog =
+                CategoryPickerDialogFragment.newInstance(
+                        mCategoryDao.getAllCategories(),
+                        this);
+        dialog.show(getFragmentManager(), PickerDialog.TAG);
     }
 
     @Override
@@ -107,8 +129,13 @@ public class MakeTransactionFragment extends BaseFragment
     }
 
     @Override
-    public void onAccountPicked(Account account) {
+    public void onPicked(Account account) {
         bindAccount(account);
+    }
+
+    @Override
+    public void onPicked(Category category) {
+        bindCategory(category);
     }
 
     private void showDateChooserDialog() {
@@ -122,14 +149,18 @@ public class MakeTransactionFragment extends BaseFragment
         mRadioDatePicker.setText(format);
     }
 
-    private void initFirstAccount() {
+    private void initFirstAccountAndCategory() {
         List<Account> allAccounts = mAccountDao.getAllAccounts();
         Account first = allAccounts.get(0);
         bindAccount(first);
+
+        List<Category> allCategories = mCategoryDao.getAllCategories();
+        Category firstCategory = allCategories.get(0);
+        bindCategory(firstCategory);
     }
 
     private void bindAccount(Account account) {
-        mCurrentAccount = account;
+        mResultAccount = account;
         mTextAccountName.setText(account.getName());
         mTextAccountAmount.setText(getString(
                 R.string.accounts_amount_format,
@@ -137,8 +168,9 @@ public class MakeTransactionFragment extends BaseFragment
                 account.getCurrencyCode()));
     }
 
-    private void initExpenseCategory() {
-        mTextExpenseCategory.setText("Groceries");
+    private void bindCategory(Category category) {
+        mResultCategory = category;
+        mTextExpenseCategory.setText(category.getName());
     }
 
     private void initSubmitButtons() {
@@ -151,7 +183,7 @@ public class MakeTransactionFragment extends BaseFragment
                 }
 
                 long amount = Long.valueOf(mEditAmount.getText().toString());
-                mAccountDao.makeTransaction(mCurrentAccount.getId(), -amount);
+                mAccountDao.makeTransaction(mResultAccount.getId(), -amount);
                 getActivity().finish();
             }
         });

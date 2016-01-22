@@ -5,12 +5,9 @@ import java.io.Serializable;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class Account implements Serializable, Entity {
-
+public class Category implements Serializable, Entity {
     private long mId;
     private String mName;
-    private long mAmount;
-    private String mCurrencyCode;
 
     @Override
     public long getId() {
@@ -28,21 +25,5 @@ public class Account implements Serializable, Entity {
 
     public void setName(String name) {
         mName = name;
-    }
-
-    public long getAmount() {
-        return mAmount;
-    }
-
-    public void setAmount(long amount) {
-        mAmount = amount;
-    }
-
-    public String getCurrencyCode() {
-        return mCurrencyCode;
-    }
-
-    public void setCurrencyCode(String currencyCode) {
-        mCurrencyCode = currencyCode;
     }
 }

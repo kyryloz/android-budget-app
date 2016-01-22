@@ -6,11 +6,11 @@ import java.util.List;
 import ua.com.zak.budgetswing.model.dao.AccountDao;
 import ua.com.zak.budgetswing.model.domen.Account;
 
-class SimpleAccountDaoImpl implements AccountDao {
+class SimpleAccountDao implements AccountDao {
 
     private final List<Account> mAccounts;
 
-    public SimpleAccountDaoImpl() {
+    public SimpleAccountDao() {
         mAccounts = new ArrayList<>();
         Account accountCash = new Account();
         accountCash.setId(1);
