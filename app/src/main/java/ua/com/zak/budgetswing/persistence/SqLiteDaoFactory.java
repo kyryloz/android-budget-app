@@ -1,8 +1,8 @@
 package ua.com.zak.budgetswing.persistence;
 
-import ua.com.zak.budgetswing.model.dao.AccountDao;
-import ua.com.zak.budgetswing.model.dao.CategoryDao;
-import ua.com.zak.budgetswing.model.dao.factory.DaoFactory;
+import ua.com.zak.budgetswing.core.dao.AccountDao;
+import ua.com.zak.budgetswing.core.dao.CategoryDao;
+import ua.com.zak.budgetswing.core.dao.factory.DaoFactory;
 
 /**
  * @author zak <zak@swingpulse.com>

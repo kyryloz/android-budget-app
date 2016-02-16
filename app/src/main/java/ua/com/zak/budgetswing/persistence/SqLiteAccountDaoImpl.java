@@ -2,9 +2,9 @@ package ua.com.zak.budgetswing.persistence;
 
 import java.util.List;
 
-import ua.com.zak.budgetswing.model.dao.AccountDao;
-import ua.com.zak.budgetswing.model.domen.Account;
-import ua.com.zak.budgetswing.model.domen.Transaction;
+import ua.com.zak.budgetswing.core.dao.AccountDao;
+import ua.com.zak.budgetswing.core.domen.Account;
+import ua.com.zak.budgetswing.core.domen.Transaction;
 
 /**
  * @author zak <zak@swingpulse.com>

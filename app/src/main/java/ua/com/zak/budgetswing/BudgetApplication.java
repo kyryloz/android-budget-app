@@ -2,8 +2,8 @@ package ua.com.zak.budgetswing;
 
 import android.app.Application;
 
-import ua.com.zak.budgetswing.model.ApplicationModel;
-import ua.com.zak.budgetswing.model.dao.factory.SimpleDaoFactory;
+import ua.com.zak.budgetswing.core.ApplicationModel;
+import ua.com.zak.budgetswing.core.dao.factory.SimpleDaoFactory;
 
 /**
  * @author zak <zak@swingpulse.com>

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ua.com.zak.budgetswing.R;
-import ua.com.zak.budgetswing.model.domen.Account;
-import ua.com.zak.budgetswing.model.domen.Entity;
+import ua.com.zak.budgetswing.core.domen.Account;
+import ua.com.zak.budgetswing.core.domen.Entity;
 
 /**
  * @author zak <zak@swingpulse.com>

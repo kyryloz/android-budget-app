@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import ua.com.zak.budgetswing.ApplicationModelProvider;
-import ua.com.zak.budgetswing.model.ApplicationModel;
+import ua.com.zak.budgetswing.core.ApplicationModel;
 
 /**
  * @author zak <zak@swingpulse.com>

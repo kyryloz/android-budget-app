@@ -1,8 +1,8 @@
-package ua.com.zak.budgetswing.model.dao;
+package ua.com.zak.budgetswing.core.dao;
 
 import java.util.List;
 
-import ua.com.zak.budgetswing.model.domen.Category;
+import ua.com.zak.budgetswing.core.domen.Category;
 
 /**
  * @author zak <zak@swingpulse.com>

@@ -9,7 +9,7 @@ import android.view.View;
 import butterknife.Bind;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.adapters.AccountsAdapter;
-import ua.com.zak.budgetswing.model.dao.AccountDao;
+import ua.com.zak.budgetswing.core.dao.AccountDao;
 
 /**
  * @author zak <zak@swingpulse.com>

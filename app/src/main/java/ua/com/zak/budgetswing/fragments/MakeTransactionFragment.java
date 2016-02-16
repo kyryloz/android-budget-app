@@ -22,11 +22,11 @@ import ua.com.zak.budgetswing.dialogs.AccountPickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.CategoryPickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.DatePickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.PickerDialog;
-import ua.com.zak.budgetswing.model.dao.AccountDao;
-import ua.com.zak.budgetswing.model.dao.CategoryDao;
-import ua.com.zak.budgetswing.model.domen.Account;
-import ua.com.zak.budgetswing.model.domen.Category;
-import ua.com.zak.budgetswing.model.domen.Transaction;
+import ua.com.zak.budgetswing.core.dao.AccountDao;
+import ua.com.zak.budgetswing.core.dao.CategoryDao;
+import ua.com.zak.budgetswing.core.domen.Account;
+import ua.com.zak.budgetswing.core.domen.Category;
+import ua.com.zak.budgetswing.core.domen.Transaction;
 
 /**
  * @author zak <zak@swingpulse.com>

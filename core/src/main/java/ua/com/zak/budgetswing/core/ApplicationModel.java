@@ -1,6 +1,6 @@
-package ua.com.zak.budgetswing.model;
+package ua.com.zak.budgetswing.core;
 
-import ua.com.zak.budgetswing.model.dao.factory.DaoFactory;
+import ua.com.zak.budgetswing.core.dao.factory.DaoFactory;
 
 /**
  * @author zak <zak@swingpulse.com>

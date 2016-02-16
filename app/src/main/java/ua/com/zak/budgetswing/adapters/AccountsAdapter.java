@@ -9,7 +9,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ua.com.zak.budgetswing.R;
-import ua.com.zak.budgetswing.model.domen.Account;
+import ua.com.zak.budgetswing.core.domen.Account;
 
 /**
  * @author zak <zak@swingpulse.com>

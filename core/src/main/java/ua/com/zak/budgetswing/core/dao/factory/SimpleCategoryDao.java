@@ -1,10 +1,10 @@
-package ua.com.zak.budgetswing.model.dao.factory;
+package ua.com.zak.budgetswing.core.dao.factory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.zak.budgetswing.model.dao.CategoryDao;
-import ua.com.zak.budgetswing.model.domen.Category;
+import ua.com.zak.budgetswing.core.dao.CategoryDao;
+import ua.com.zak.budgetswing.core.domen.Category;
 
 /**
  * @author zak <zak@swingpulse.com>

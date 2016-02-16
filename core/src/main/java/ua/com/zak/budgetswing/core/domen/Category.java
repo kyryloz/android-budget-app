@@ -1,4 +1,4 @@
-package ua.com.zak.budgetswing.model.domen;
+package ua.com.zak.budgetswing.core.domen;
 
 import java.io.Serializable;
 

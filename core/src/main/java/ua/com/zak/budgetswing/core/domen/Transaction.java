@@ -1,4 +1,4 @@
-package ua.com.zak.budgetswing.model.domen;
+package ua.com.zak.budgetswing.core.domen;
 
 /**
  * @author zak <zak@swingpulse.com>

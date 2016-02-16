@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import ua.com.zak.budgetswing.ApplicationModelProvider;
 import ua.com.zak.budgetswing.BudgetApplication;
-import ua.com.zak.budgetswing.model.ApplicationModel;
+import ua.com.zak.budgetswing.core.ApplicationModel;
 
 /**
  * @author zak <zak@swingpulse.com>
