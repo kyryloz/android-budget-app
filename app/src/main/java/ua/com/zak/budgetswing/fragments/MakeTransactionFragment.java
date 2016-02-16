@@ -3,7 +3,6 @@ package ua.com.zak.budgetswing.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
@@ -26,6 +26,7 @@ import ua.com.zak.budgetswing.model.dao.AccountDao;
 import ua.com.zak.budgetswing.model.dao.CategoryDao;
 import ua.com.zak.budgetswing.model.domen.Account;
 import ua.com.zak.budgetswing.model.domen.Category;
+import ua.com.zak.budgetswing.model.domen.Transaction;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -182,8 +183,13 @@ public class MakeTransactionFragment extends BaseFragment
                     mResultDate = mNowDate;
                 }
 
-                long amount = Long.valueOf(mEditAmount.getText().toString());
-                mAccountDao.makeTransaction(mResultAccount.getId(), -amount);
+                Transaction transaction = new Transaction.Builder()
+                        .setAccountId(mResultAccount.getId())
+                        .setAmount(Long.valueOf(mEditAmount.getText().toString()))
+                        .setDate(new Date().getTime())
+                        .setCategoryId(mResultCategory.getId())
+                        .build();
+                mAccountDao.makeTransaction(transaction);
                 getActivity().finish();
             }
         });

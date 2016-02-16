@@ -4,6 +4,7 @@ import java.util.List;
 
 import ua.com.zak.budgetswing.model.dao.AccountDao;
 import ua.com.zak.budgetswing.model.domen.Account;
+import ua.com.zak.budgetswing.model.domen.Transaction;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -26,7 +27,7 @@ public class SqLiteAccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public boolean makeTransaction(long accountId, long amount) {
+    public boolean makeTransaction(Transaction transaction) {
         return false;
     }
 }
