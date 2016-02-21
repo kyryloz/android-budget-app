@@ -185,7 +185,7 @@ public class MakeTransactionFragment extends BaseFragment
 
                 Transaction transaction = new Transaction.Builder()
                         .setAccountId(mResultAccount.getId())
-                        .setAmount(Long.valueOf(mEditAmount.getText().toString()))
+                        .setAmount(-Long.valueOf(mEditAmount.getText().toString()))
                         .setDate(new Date().getTime())
                         .setCategoryId(mResultCategory.getId())
                         .build();
