@@ -16,4 +16,8 @@ public class ApplicationModel {
     public DaoFactory getDaoFactory() {
         return mDaoFactory;
     }
+
+    public ApplicationComponent getApplicationComponent() {
+        return null;
+    }
 }
