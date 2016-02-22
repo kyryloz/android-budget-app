@@ -9,7 +9,7 @@ import ua.com.zak.mvpcore.presenter.Presenter;
 public class MainPresenter extends Presenter<MainView> {
 
     public MainPresenter(MainView view) {
-        super(view);
+        super(view, null);
     }
 
     @Override

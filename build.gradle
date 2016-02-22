@@ -1,9 +1,13 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.0.0-beta4'
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.5"
     }
 }
 

@@ -9,8 +9,10 @@ import android.view.View;
 import java.util.List;
 
 import butterknife.Bind;
+import ua.com.zak.budgetswing.BudgetApplication;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.adapters.AccountsAdapter;
+import ua.com.zak.budgetswing.core.ApplicationModel;
 import ua.com.zak.budgetswing.core.domen.Account;
 import ua.com.zak.budgetswing.core.mvp.presenter.AccountsPresenter;
 import ua.com.zak.budgetswing.core.mvp.view.AccountsView;
@@ -38,7 +40,8 @@ public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> i
 
     @Override
     protected AccountsPresenter createPresenter() {
-        return new AccountsPresenter(this);
+        ApplicationModel applicationModel = ((BudgetApplication) getActivity().getApplication()).getApplicationModel();
+        return new AccountsPresenter(this, applicationModel.getApplicationComponent());
     }
 
     @Override

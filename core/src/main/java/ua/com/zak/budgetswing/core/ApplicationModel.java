@@ -8,9 +8,11 @@ import ua.com.zak.budgetswing.core.dao.factory.DaoFactory;
 public class ApplicationModel {
 
     private final DaoFactory mDaoFactory;
+    private final ApplicationComponent mApplicationComponent;
 
     public ApplicationModel(DaoFactory daoFactory) {
         mDaoFactory = daoFactory;
+        mApplicationComponent = DaggerApplicationComponent.create();
     }
 
     public DaoFactory getDaoFactory() {
@@ -18,6 +20,6 @@ public class ApplicationModel {
     }
 
     public ApplicationComponent getApplicationComponent() {
-        return null;
+        return mApplicationComponent;
     }
 }

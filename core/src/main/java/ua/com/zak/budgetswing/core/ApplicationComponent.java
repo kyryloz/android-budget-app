@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import ua.com.zak.budgetswing.core.mvp.presenter.AccountsPresenter;
+import ua.com.zak.mvpcore.presenter.BaseApplicationComponent;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -12,6 +13,6 @@ import ua.com.zak.budgetswing.core.mvp.presenter.AccountsPresenter;
 @Component(
     modules = DaoModule.class
 )
-public interface ApplicationComponent {
+public interface ApplicationComponent extends BaseApplicationComponent {
     void inject(AccountsPresenter presenter);
 }
