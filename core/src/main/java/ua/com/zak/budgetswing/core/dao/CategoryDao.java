@@ -2,7 +2,7 @@ package ua.com.zak.budgetswing.core.dao;
 
 import java.util.List;
 
-import ua.com.zak.budgetswing.core.domen.Category;
+import ua.com.zak.budgetswing.core.domain.Category;
 
 /**
  * @author zak <zak@swingpulse.com>

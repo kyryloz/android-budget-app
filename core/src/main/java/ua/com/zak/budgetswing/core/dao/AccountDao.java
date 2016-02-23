@@ -2,8 +2,8 @@ package ua.com.zak.budgetswing.core.dao;
 
 import java.util.List;
 
-import ua.com.zak.budgetswing.core.domen.Account;
-import ua.com.zak.budgetswing.core.domen.Transaction;
+import ua.com.zak.budgetswing.core.domain.Account;
+import ua.com.zak.budgetswing.core.domain.Transaction;
 
 /**
  * @author zak <zak@swingpulse.com>

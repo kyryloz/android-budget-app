@@ -20,7 +20,8 @@ public class AccountsPresenter extends Presenter<AccountsView> {
     CategoryDao mCategoryDao;
 
     public AccountsPresenter(AccountsView view, ApplicationComponent applicationComponent) {
-        super(view, applicationComponent);
+        super(view);
+        applicationComponent.inject(this);
     }
 
     @Override

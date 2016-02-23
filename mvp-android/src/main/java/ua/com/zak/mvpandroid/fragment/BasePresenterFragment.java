@@ -16,7 +16,7 @@ import ua.com.zak.mvpcore.view.MvpView;
  */
 public abstract class BasePresenterFragment<P extends Presenter> extends Fragment implements MvpView {
 
-    private P mPresenter;
+    protected P mPresenter;
 
     @Nullable
     @Override

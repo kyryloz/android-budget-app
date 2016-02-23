@@ -10,9 +10,8 @@ public abstract class Presenter<V extends MvpView> {
 
     protected final V mView;
 
-    public Presenter(V view, BaseApplicationComponent component) {
+    public Presenter(V view) {
         mView = view;
-        component.inject(this);
     }
 
     public abstract void initView();

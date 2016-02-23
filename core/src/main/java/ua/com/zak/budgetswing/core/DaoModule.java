@@ -14,15 +14,21 @@ import ua.com.zak.budgetswing.core.dao.factory.DaoFactory;
 @Module
 public class DaoModule {
 
-    @Singleton
-    @Provides
-    public AccountDao provideAccountDao(DaoFactory daoFactory) {
-        return daoFactory.getAccountDao();
+    private final DaoFactory mDaoFactory;
+
+    public DaoModule(DaoFactory daoFactory) {
+        mDaoFactory = daoFactory;
     }
 
     @Singleton
     @Provides
-    public CategoryDao provideCategoryDao(DaoFactory daoFactory) {
-        return daoFactory.getCategoryDao();
+    public AccountDao provideAccountDao() {
+        return mDaoFactory.getAccountDao();
+    }
+
+    @Singleton
+    @Provides
+    public CategoryDao provideCategoryDao() {
+        return mDaoFactory.getCategoryDao();
     }
 }

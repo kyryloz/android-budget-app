@@ -13,7 +13,7 @@ public class ApplicationModel {
     public ApplicationModel(DaoFactory daoFactory) {
         mDaoFactory = daoFactory;
         mApplicationComponent = DaggerApplicationComponent.builder()
-                .daoFactoryModule(new DaoFactoryModule(daoFactory))
+                .daoModule(new DaoModule(daoFactory))
                 .build();
     }
 

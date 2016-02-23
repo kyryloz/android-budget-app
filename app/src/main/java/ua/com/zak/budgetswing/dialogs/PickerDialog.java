@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
-import ua.com.zak.budgetswing.core.domen.Entity;
+import ua.com.zak.budgetswing.core.domain.Entity;
 
 /**
  * @author zak <zak@swingpulse.com>
