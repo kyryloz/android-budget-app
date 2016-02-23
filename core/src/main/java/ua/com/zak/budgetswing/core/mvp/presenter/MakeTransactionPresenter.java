@@ -44,7 +44,7 @@ public class MakeTransactionPresenter extends Presenter<MakeTransactionView> {
     }
 
     @Override
-    public void initView() {
+    public void bindView() {
         mDateFormat = DateFormat.getDateInstance();
         String format = mDateFormat.format(Calendar.getInstance().getTime());
         mView.initDatePickerButton(format);

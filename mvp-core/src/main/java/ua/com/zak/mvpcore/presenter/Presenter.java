@@ -14,5 +14,5 @@ public abstract class Presenter<V extends MvpView> {
         mView = view;
     }
 
-    public abstract void initView();
+    public abstract void bindView();
 }

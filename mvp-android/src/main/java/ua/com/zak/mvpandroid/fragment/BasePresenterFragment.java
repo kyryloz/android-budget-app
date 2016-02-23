@@ -28,8 +28,9 @@ public abstract class BasePresenterFragment<P extends Presenter> extends Fragmen
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mPresenter.initView();
+    public void onResume() {
+        super.onResume();
+        mPresenter.bindView();
     }
 
     protected abstract int getLayoutId();

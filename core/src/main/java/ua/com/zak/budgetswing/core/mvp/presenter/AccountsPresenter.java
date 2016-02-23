@@ -25,7 +25,7 @@ public class AccountsPresenter extends Presenter<AccountsView> {
     }
 
     @Override
-    public void initView() {
+    public void bindView() {
         mView.displayAccount(mAccountDao.getAllAccounts());
         mView.displayCategory(mCategoryDao.getAllCategories());
     }
