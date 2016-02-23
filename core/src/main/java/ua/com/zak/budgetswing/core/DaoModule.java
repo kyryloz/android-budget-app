@@ -5,7 +5,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import ua.com.zak.budgetswing.core.dao.AccountDao;
-import ua.com.zak.budgetswing.core.dao.factory.SimpleDaoFactory;
+import ua.com.zak.budgetswing.core.dao.CategoryDao;
+import ua.com.zak.budgetswing.core.dao.factory.DaoFactory;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -15,7 +16,13 @@ public class DaoModule {
 
     @Singleton
     @Provides
-    public static AccountDao provideAccountDao() {
-        return new SimpleDaoFactory().getAccountDao();
+    public AccountDao provideAccountDao(DaoFactory daoFactory) {
+        return daoFactory.getAccountDao();
+    }
+
+    @Singleton
+    @Provides
+    public CategoryDao provideCategoryDao(DaoFactory daoFactory) {
+        return daoFactory.getCategoryDao();
     }
 }

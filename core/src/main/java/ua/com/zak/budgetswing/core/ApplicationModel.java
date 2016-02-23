@@ -12,7 +12,9 @@ public class ApplicationModel {
 
     public ApplicationModel(DaoFactory daoFactory) {
         mDaoFactory = daoFactory;
-        mApplicationComponent = DaggerApplicationComponent.create();
+        mApplicationComponent = DaggerApplicationComponent.builder()
+                .daoFactoryModule(new DaoFactoryModule(daoFactory))
+                .build();
     }
 
     public DaoFactory getDaoFactory() {

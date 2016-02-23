@@ -11,8 +11,8 @@ import ua.com.zak.mvpcore.presenter.BaseApplicationComponent;
  */
 @Singleton
 @Component(
-    modules = DaoModule.class
+    modules = { DaoModule.class, DaoFactoryModule.class }
 )
-public interface ApplicationComponent extends BaseApplicationComponent {
+public interface ApplicationComponent extends BaseApplicationComponent<AccountsPresenter> {
     void inject(AccountsPresenter presenter);
 }

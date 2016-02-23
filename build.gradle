@@ -6,7 +6,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0-beta4'
+        classpath 'com.android.tools.build:gradle:2.0.0-beta5'
         classpath "net.ltgt.gradle:gradle-apt-plugin:0.5"
     }
 }
