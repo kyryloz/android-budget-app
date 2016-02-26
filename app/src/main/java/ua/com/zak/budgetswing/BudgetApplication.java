@@ -2,23 +2,23 @@ package ua.com.zak.budgetswing;
 
 import android.app.Application;
 
-import ua.com.zak.budgetswing.core.ApplicationModel;
 import ua.com.zak.budgetswing.core.dao.factory.SimpleDaoFactory;
+import ua.com.zak.budgetswing.core.di.ApplicationGraph;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 public class BudgetApplication extends Application {
 
-    private ApplicationModel mApplicationModel;
+    private ApplicationGraph mApplicationGraph;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mApplicationModel = new ApplicationModel(new SimpleDaoFactory());
+        mApplicationGraph = new ApplicationGraph(new SimpleDaoFactory());
     }
 
-    public ApplicationModel getApplicationModel() {
-        return mApplicationModel;
+    public ApplicationGraph getApplicationGraph() {
+        return mApplicationGraph;
     }
 }

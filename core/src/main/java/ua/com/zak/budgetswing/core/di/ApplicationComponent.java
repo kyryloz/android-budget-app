@@ -1,4 +1,4 @@
-package ua.com.zak.budgetswing.core;
+package ua.com.zak.budgetswing.core.di;
 
 import javax.inject.Singleton;
 

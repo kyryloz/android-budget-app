@@ -1,4 +1,4 @@
-package ua.com.zak.mvpandroid.fragment;
+package ua.com.zak.budgetswing.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
-import ua.com.zak.mvpcore.presenter.Presenter;
-import ua.com.zak.mvpcore.view.MvpView;
+import ua.com.zak.budgetswing.BudgetApplication;
+import ua.com.zak.budgetswing.core.di.ApplicationGraph;
+import ua.com.zak.budgetswing.core.mvp.presenter.Presenter;
+import ua.com.zak.budgetswing.core.mvp.view.MvpView;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -24,6 +26,8 @@ public abstract class BasePresenterFragment<P extends Presenter> extends Fragmen
         View root = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, root);
         mPresenter = createPresenter();
+        ApplicationGraph applicationGraph = ((BudgetApplication) getActivity().getApplication()).getApplicationGraph();
+        mPresenter.injectComponent(applicationGraph.getApplicationComponent());
         return root;
     }
 

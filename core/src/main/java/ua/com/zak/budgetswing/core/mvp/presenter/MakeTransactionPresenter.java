@@ -7,14 +7,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import ua.com.zak.budgetswing.core.ApplicationComponent;
 import ua.com.zak.budgetswing.core.dao.AccountDao;
 import ua.com.zak.budgetswing.core.dao.CategoryDao;
+import ua.com.zak.budgetswing.core.di.ApplicationComponent;
 import ua.com.zak.budgetswing.core.domain.Account;
 import ua.com.zak.budgetswing.core.domain.Category;
 import ua.com.zak.budgetswing.core.domain.Transaction;
 import ua.com.zak.budgetswing.core.mvp.view.MakeTransactionView;
-import ua.com.zak.mvpcore.presenter.Presenter;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -36,9 +35,8 @@ public class MakeTransactionPresenter extends Presenter<MakeTransactionView> {
     private Account mResultAccount;
     private Category mResultCategory;
 
-    public MakeTransactionPresenter(MakeTransactionView view, ApplicationComponent component) {
+    public MakeTransactionPresenter(MakeTransactionView view) {
         super(view);
-        component.inject(this);
         mNowDate = Calendar.getInstance();
         mYesterdayChose = false;
     }
@@ -57,6 +55,11 @@ public class MakeTransactionPresenter extends Presenter<MakeTransactionView> {
         List<Category> allCategories = mCategoryDao.getAllCategories();
         mResultCategory = allCategories.get(0);
         mView.displayCategory(mResultCategory);
+    }
+
+    @Override
+    public void injectComponent(ApplicationComponent applicationComponent) {
+        applicationComponent.inject(this);
     }
 
     public void setYesterdayChose(boolean chose) {

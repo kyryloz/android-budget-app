@@ -5,7 +5,6 @@ import java.util.List;
 
 import ua.com.zak.budgetswing.core.domain.Account;
 import ua.com.zak.budgetswing.core.domain.Category;
-import ua.com.zak.mvpcore.view.MvpView;
 
 /**
  * @author zak <zak@swingpulse.com>

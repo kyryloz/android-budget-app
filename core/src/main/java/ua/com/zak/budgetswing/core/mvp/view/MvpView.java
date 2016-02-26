@@ -1,4 +1,4 @@
-package ua.com.zak.mvpcore.view;
+package ua.com.zak.budgetswing.core.mvp.view;
 
 /**
  * @author zak <zak@swingpulse.com>

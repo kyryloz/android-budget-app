@@ -13,9 +13,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
-import ua.com.zak.budgetswing.BudgetApplication;
 import ua.com.zak.budgetswing.R;
-import ua.com.zak.budgetswing.core.ApplicationModel;
 import ua.com.zak.budgetswing.core.domain.Account;
 import ua.com.zak.budgetswing.core.domain.Category;
 import ua.com.zak.budgetswing.core.mvp.presenter.MakeTransactionPresenter;
@@ -24,7 +22,6 @@ import ua.com.zak.budgetswing.dialogs.AccountPickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.CategoryPickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.DatePickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.PickerDialog;
-import ua.com.zak.mvpandroid.fragment.BasePresenterFragment;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -69,8 +66,7 @@ public class MakeTransactionFragment extends BasePresenterFragment<MakeTransacti
 
     @Override
     protected MakeTransactionPresenter createPresenter() {
-        ApplicationModel applicationModel = ((BudgetApplication) getActivity().getApplication()).getApplicationModel();
-        return new MakeTransactionPresenter(this, applicationModel.getApplicationComponent());
+        return new MakeTransactionPresenter(this);
     }
 
     @OnClick(R.id.radio_button_date_picker)
