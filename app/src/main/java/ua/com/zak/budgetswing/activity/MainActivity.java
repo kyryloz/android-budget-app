@@ -5,7 +5,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +12,6 @@ import android.view.MenuItem;
 import butterknife.Bind;
 import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
-import ua.com.zak.budgetswing.dialogs.MakeTransactionDialog;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,7 +40,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @OnClick(R.id.fab)
     void onFabAddTransactionClicked() {
-        openActivity(MakeTransactionActivity.class);
+        mInternalNavigator.openMakeTransactionScreen();
     }
 
     @Override
