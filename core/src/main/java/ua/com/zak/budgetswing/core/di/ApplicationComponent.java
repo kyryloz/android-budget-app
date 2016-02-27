@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import ua.com.zak.budgetswing.core.mvp.presenter.AccountsPresenter;
+import ua.com.zak.budgetswing.core.mvp.presenter.MainPresenter;
 import ua.com.zak.budgetswing.core.mvp.presenter.MakeTransactionPresenter;
 
 /**
@@ -15,5 +16,8 @@ import ua.com.zak.budgetswing.core.mvp.presenter.MakeTransactionPresenter;
 )
 public interface ApplicationComponent {
     void inject(AccountsPresenter presenter);
+
     void inject(MakeTransactionPresenter presenter);
+
+    void inject(MainPresenter mainPresenter);
 }

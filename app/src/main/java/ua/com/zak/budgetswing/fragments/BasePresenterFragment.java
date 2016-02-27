@@ -22,11 +22,15 @@ public abstract class BasePresenterFragment<P extends Presenter> extends Fragmen
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, root);
         mPresenter = createPresenter();
-        ApplicationGraph applicationGraph = ((BudgetApplication) getActivity().getApplication()).getApplicationGraph();
+        ApplicationGraph applicationGraph = ((BudgetApplication) getActivity()
+                .getApplication())
+                .getApplicationGraph();
         mPresenter.injectComponent(applicationGraph.getApplicationComponent());
         return root;
     }
