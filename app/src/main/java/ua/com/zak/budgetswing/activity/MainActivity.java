@@ -12,10 +12,11 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.core.mvp.presenter.MainPresenter;
-import ua.com.zak.budgetswing.core.mvp.presenter.Presenter;
 import ua.com.zak.budgetswing.core.mvp.view.MainView;
+import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
+import ua.com.zak.budgetswing.navigator.AndroidNavigationBundle;
 
-public class MainActivity extends BasePresenterActivity
+public class MainActivity extends BasePresenterActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, MainView {
 
     @Bind(R.id.toolbar)
@@ -33,7 +34,7 @@ public class MainActivity extends BasePresenterActivity
     }
 
     @Override
-    protected Presenter createPresenter() {
+    protected MainPresenter createPresenter() {
         return new MainPresenter(this);
     }
 
@@ -45,7 +46,8 @@ public class MainActivity extends BasePresenterActivity
 
     @OnClick(R.id.fab)
     void onFabAddTransactionClicked() {
-        mInternalNavigator.openMakeTransactionScreen();
+        NavigationBundle navigationBundle = new AndroidNavigationBundle(this);
+        mPresenter.openMakeTransactionScreen(navigationBundle);
     }
 
     @Override

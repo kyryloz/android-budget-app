@@ -12,7 +12,10 @@ import ua.com.zak.budgetswing.core.mvp.presenter.MakeTransactionPresenter;
  */
 @Singleton
 @Component(
-    modules = DaoModule.class
+    modules = {
+            DaoModule.class,
+            NavigationModule.class
+    }
 )
 public interface ApplicationComponent {
     void inject(AccountsPresenter presenter);
