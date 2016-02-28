@@ -1,6 +1,9 @@
 package ua.com.zak.budgetswing.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +17,11 @@ import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.core.mvp.presenter.MainPresenter;
 import ua.com.zak.budgetswing.core.mvp.view.MainView;
 import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
+import ua.com.zak.budgetswing.fragments.AboutFragment;
+import ua.com.zak.budgetswing.fragments.AccountsFragment;
+import ua.com.zak.budgetswing.fragments.CategoriesFragment;
+import ua.com.zak.budgetswing.fragments.HomeFragment;
+import ua.com.zak.budgetswing.fragments.TransactionsFragment;
 import ua.com.zak.budgetswing.navigator.AndroidNavigationBundle;
 
 public class MainActivity extends BasePresenterActivity<MainPresenter>
@@ -26,7 +34,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
     DrawerLayout mDrawer;
 
     @Bind(R.id.nav_view)
-    NavigationView navigationView;
+    NavigationView mNavigationView;
 
     @Override
     protected int getLayoutId() {
@@ -39,7 +47,15 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
     }
 
     @Override
-    public void initView() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.layout_fragment_container, HomeFragment.newInstance())
+                    .commit();
+        }
+
         setSupportActionBar(mToolbar);
         initDrawer();
     }
@@ -78,27 +94,41 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // TODO
-        // Handle navigation view item clicks here.
+        Fragment fragment;
+
         int id = item.getItemId();
-
-        if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_accounts) {
-
-        } else if (id == R.id.nav_categories) {
-
-        } else if (id == R.id.nav_transactions) {
-
-        } else if (id == R.id.nav_about) {
-
+        switch (id) {
+            case R.id.nav_home:
+                fragment = HomeFragment.newInstance();
+                break;
+            case R.id.nav_accounts:
+                fragment = AccountsFragment.newInstance();
+                break;
+            case R.id.nav_categories:
+                fragment = CategoriesFragment.newInstance();
+                break;
+            case R.id.nav_transactions:
+                fragment = TransactionsFragment.newInstance();
+                break;
+            case R.id.nav_about:
+                fragment = AboutFragment.newInstance();
+                break;
+            default:
+                throw new IllegalArgumentException("Unknown menu: " + id);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.layout_fragment_container, fragment)
+                .commit();
+
+        mDrawer.closeDrawer(GravityCompat.START);
+
+        setTitle(item.getTitle());
+
+        item.setChecked(true);
+
         return true;
     }
 
@@ -110,6 +140,6 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
         mDrawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(this);
+        mNavigationView.setNavigationItemSelectedListener(this);
     }
 }

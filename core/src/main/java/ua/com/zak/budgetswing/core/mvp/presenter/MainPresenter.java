@@ -21,7 +21,7 @@ public class MainPresenter extends Presenter<MainView> {
 
     @Override
     public void bindView() {
-        mView.initView();
+
     }
 
     @Override

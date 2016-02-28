@@ -9,11 +9,9 @@
     tools:context=".activity.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <fragment
-        android:id="@+id/fragment_accounts"
-        android:name="ua.com.zak.budgetswing.fragments.AccountsFragment"
+    <FrameLayout
+        android:id="@+id/layout_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout="@layout/fragment_accounts_summary"/>
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
