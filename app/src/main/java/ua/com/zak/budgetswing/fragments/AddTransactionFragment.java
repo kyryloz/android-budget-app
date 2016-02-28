@@ -16,8 +16,8 @@ import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.core.domain.Account;
 import ua.com.zak.budgetswing.core.domain.Category;
-import ua.com.zak.budgetswing.core.mvp.presenter.MakeTransactionPresenter;
-import ua.com.zak.budgetswing.core.mvp.view.MakeTransactionView;
+import ua.com.zak.budgetswing.core.mvp.presenter.AddTransactionPresenter;
+import ua.com.zak.budgetswing.core.mvp.view.AddTransactionView;
 import ua.com.zak.budgetswing.dialogs.AccountPickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.CategoryPickerDialogFragment;
 import ua.com.zak.budgetswing.dialogs.DatePickerDialogFragment;
@@ -26,8 +26,8 @@ import ua.com.zak.budgetswing.dialogs.PickerDialog;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class MakeTransactionFragment extends BasePresenterFragment<MakeTransactionPresenter>
-        implements MakeTransactionView,
+public class AddTransactionFragment extends BasePresenterFragment<AddTransactionPresenter>
+        implements AddTransactionView,
         DatePickerDialogFragment.Listener,
         AccountPickerDialogFragment.Listener,
         CategoryPickerDialogFragment.Listener {
@@ -61,12 +61,12 @@ public class MakeTransactionFragment extends BasePresenterFragment<MakeTransacti
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_make_transaction;
+        return R.layout.fragment_add_transaction;
     }
 
     @Override
-    protected MakeTransactionPresenter createPresenter() {
-        return new MakeTransactionPresenter(this);
+    protected AddTransactionPresenter createPresenter() {
+        return new AddTransactionPresenter(this);
     }
 
     @OnClick(R.id.radio_button_date_picker)

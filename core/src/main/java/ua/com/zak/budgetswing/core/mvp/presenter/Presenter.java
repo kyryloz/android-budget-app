@@ -2,12 +2,12 @@ package ua.com.zak.budgetswing.core.mvp.presenter;
 
 
 import ua.com.zak.budgetswing.core.di.ApplicationComponent;
-import ua.com.zak.budgetswing.core.mvp.view.MvpView;
+import ua.com.zak.budgetswing.core.mvp.view.View;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-public abstract class Presenter<V extends MvpView> {
+public abstract class Presenter<V extends View> {
 
     protected final V mView;
 

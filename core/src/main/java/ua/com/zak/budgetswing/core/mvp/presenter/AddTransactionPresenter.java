@@ -13,12 +13,12 @@ import ua.com.zak.budgetswing.core.di.ApplicationComponent;
 import ua.com.zak.budgetswing.core.domain.Account;
 import ua.com.zak.budgetswing.core.domain.Category;
 import ua.com.zak.budgetswing.core.domain.Transaction;
-import ua.com.zak.budgetswing.core.mvp.view.MakeTransactionView;
+import ua.com.zak.budgetswing.core.mvp.view.AddTransactionView;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class MakeTransactionPresenter extends Presenter<MakeTransactionView> {
+public class AddTransactionPresenter extends Presenter<AddTransactionView> {
 
     @Inject
     AccountDao mAccountDao;
@@ -35,7 +35,7 @@ public class MakeTransactionPresenter extends Presenter<MakeTransactionView> {
     private Account mResultAccount;
     private Category mResultCategory;
 
-    public MakeTransactionPresenter(MakeTransactionView view) {
+    public AddTransactionPresenter(AddTransactionView view) {
         super(view);
         mNowDate = Calendar.getInstance();
         mYesterdayChose = false;

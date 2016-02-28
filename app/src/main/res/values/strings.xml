@@ -12,4 +12,10 @@
     <string name="submit">Submit</string>
     <string name="make_transaction_select_account">Select account</string>
     <string name="make_transaction_select_category">Select category</string>
+    <string name="home">Home</string>
+    <string name="accounts">Accounts</string>
+    <string name="categories">Categories</string>
+    <string name="transactions">Transactions</string>
+    <string name="other">Other</string>
+    <string name="about">About</string>
 </resources>

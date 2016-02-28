@@ -4,7 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
-import ua.com.zak.budgetswing.activity.MakeTransactionActivity;
+import ua.com.zak.budgetswing.activity.AddTransactionActivity;
 import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
 import ua.com.zak.budgetswing.core.navigator.Navigator;
 
@@ -18,7 +18,7 @@ public class AndroidNavigator implements Navigator {
     public void openMakeTransactionScreen(NavigationBundle navigationBundle) {
         AndroidNavigationBundle androidNavigationBundle = ((AndroidNavigationBundle) navigationBundle);
         AppCompatActivity activity = androidNavigationBundle.getNavigationContext();
-        Intent intent = new Intent(activity, MakeTransactionActivity.class);
+        Intent intent = new Intent(activity, AddTransactionActivity.class);
         activity.startActivity(
                 intent,
                 ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());

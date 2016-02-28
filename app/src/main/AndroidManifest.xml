@@ -27,7 +27,7 @@
         </service>
 
         <activity
-            android:name=".activity.MakeTransactionActivity"
+            android:name=".activity.AddTransactionActivity"
             android:label="@string/make_transaction_label"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/SlideBottomAnimTheme">

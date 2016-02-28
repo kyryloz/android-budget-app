@@ -9,7 +9,7 @@ import ua.com.zak.budgetswing.core.domain.Category;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public interface MakeTransactionView extends MvpView {
+public interface AddTransactionView extends View {
     void initDatePickerButton(String date);
 
     void initSubmitButtons();

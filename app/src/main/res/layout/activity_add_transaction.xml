@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ua.com.zak.budgetswing.activity.MakeTransactionActivity">
+    tools:context=".activity.AddTransactionActivity">
     <fragment
         android:id="@+id/fragment_make_transaction"
-        android:name="ua.com.zak.budgetswing.fragments.MakeTransactionFragment"
+        android:name="ua.com.zak.budgetswing.fragments.AddTransactionFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </RelativeLayout>

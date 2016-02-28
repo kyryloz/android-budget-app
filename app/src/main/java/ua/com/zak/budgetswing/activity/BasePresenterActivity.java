@@ -8,13 +8,13 @@ import butterknife.ButterKnife;
 import ua.com.zak.budgetswing.BudgetApplication;
 import ua.com.zak.budgetswing.core.di.ApplicationGraph;
 import ua.com.zak.budgetswing.core.mvp.presenter.Presenter;
-import ua.com.zak.budgetswing.core.mvp.view.MvpView;
+import ua.com.zak.budgetswing.core.mvp.view.View;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 public abstract class BasePresenterActivity<P extends Presenter>
-        extends AppCompatActivity implements MvpView {
+        extends AppCompatActivity implements View {
 
     protected P mPresenter;
 
