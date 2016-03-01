@@ -6,29 +6,21 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.core.mvp.presenter.MainPresenter;
 import ua.com.zak.budgetswing.core.mvp.view.MainView;
-import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
 import ua.com.zak.budgetswing.fragments.AboutFragment;
 import ua.com.zak.budgetswing.fragments.AccountsFragment;
 import ua.com.zak.budgetswing.fragments.CategoriesFragment;
 import ua.com.zak.budgetswing.fragments.HomeFragment;
 import ua.com.zak.budgetswing.fragments.TransactionsFragment;
-import ua.com.zak.budgetswing.navigator.AndroidNavigationBundle;
 
 public class MainActivity extends BasePresenterActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, MainView {
-
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
 
     @Bind(R.id.drawer_layout)
     DrawerLayout mDrawer;
@@ -56,14 +48,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
                     .commit();
         }
 
-        setSupportActionBar(mToolbar);
-        initDrawer();
-    }
-
-    @OnClick(R.id.fab)
-    void onFabAddTransactionClicked() {
-        NavigationBundle navigationBundle = new AndroidNavigationBundle(this);
-        mPresenter.openMakeTransactionScreen(navigationBundle);
+        mNavigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -130,16 +115,5 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
         item.setChecked(true);
 
         return true;
-    }
-
-    private void initDrawer() {
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, mDrawer, mToolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
-        mDrawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        mNavigationView.setNavigationItemSelectedListener(this);
     }
 }

@@ -42,7 +42,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     }
 
     @Override
-    public void bindView() {
+    public void onViewReady() {
         mDateFormat = DateFormat.getDateInstance();
         String format = mDateFormat.format(Calendar.getInstance().getTime());
         mView.initDatePickerButton(format);

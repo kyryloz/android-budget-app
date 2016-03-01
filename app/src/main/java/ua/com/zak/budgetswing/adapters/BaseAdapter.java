@@ -27,9 +27,9 @@ public abstract class BaseAdapter<T, S extends RecyclerView.ViewHolder> extends 
         return mItems.size();
     }
 
-    public void update(List<T> accounts) {
+    public void update(List<T> items) {
         mItems.clear();
-        mItems.addAll(accounts);
+        mItems.addAll(items);
         notifyDataSetChanged();
     }
 }

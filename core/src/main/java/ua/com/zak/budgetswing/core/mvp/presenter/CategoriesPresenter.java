@@ -1,5 +1,8 @@
 package ua.com.zak.budgetswing.core.mvp.presenter;
 
+import javax.inject.Inject;
+
+import ua.com.zak.budgetswing.core.dao.CategoryDao;
 import ua.com.zak.budgetswing.core.di.ApplicationComponent;
 import ua.com.zak.budgetswing.core.mvp.view.CategoriesView;
 
@@ -8,17 +11,24 @@ import ua.com.zak.budgetswing.core.mvp.view.CategoriesView;
  */
 public class CategoriesPresenter extends Presenter<CategoriesView> {
 
+    @Inject
+    CategoryDao mCategoryDao;
+
     public CategoriesPresenter(CategoriesView view) {
         super(view);
     }
 
     @Override
-    public void bindView() {
-
+    public void injectComponent(ApplicationComponent applicationComponent) {
+        applicationComponent.inject(this);
     }
 
     @Override
-    public void injectComponent(ApplicationComponent applicationComponent) {
-        applicationComponent.inject(this);
+    public void onViewReady() {
+        mView.displayCategories(mCategoryDao.getAllCategories());
+    }
+
+    public void addNewCategory() {
+
     }
 }

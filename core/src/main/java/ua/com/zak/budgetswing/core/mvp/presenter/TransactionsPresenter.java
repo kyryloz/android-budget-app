@@ -13,7 +13,7 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
     }
 
     @Override
-    public void bindView() {
+    public void onViewReady() {
 
     }
 

@@ -20,7 +20,7 @@ public class MainPresenter extends Presenter<MainView> {
     }
 
     @Override
-    public void bindView() {
+    public void onViewReady() {
 
     }
 

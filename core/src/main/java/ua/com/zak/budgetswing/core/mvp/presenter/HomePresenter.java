@@ -13,7 +13,7 @@ public class HomePresenter extends Presenter<HomeView> {
     }
 
     @Override
-    public void bindView() {
+    public void onViewReady() {
 
     }
 

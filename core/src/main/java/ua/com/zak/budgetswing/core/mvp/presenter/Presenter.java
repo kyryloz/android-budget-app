@@ -15,7 +15,7 @@ public abstract class Presenter<V extends View> {
         mView = view;
     }
 
-    public abstract void bindView();
-
     public abstract void injectComponent(ApplicationComponent applicationComponent);
+
+    public abstract void onViewReady();
 }

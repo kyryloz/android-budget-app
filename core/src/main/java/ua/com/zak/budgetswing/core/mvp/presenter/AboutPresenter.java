@@ -13,7 +13,7 @@ public class AboutPresenter extends Presenter<AboutView> {
     }
 
     @Override
-    public void bindView() {
+    public void onViewReady() {
 
     }
 
