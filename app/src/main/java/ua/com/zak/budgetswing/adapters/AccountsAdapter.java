@@ -22,7 +22,7 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.item_account_summary, parent, false);
+        View itemView = mInflater.inflate(R.layout.item_account, parent, false);
         return new ViewHolder(itemView);
     }
 
