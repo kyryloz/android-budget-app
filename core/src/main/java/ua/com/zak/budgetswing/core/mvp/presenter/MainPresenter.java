@@ -30,6 +30,6 @@ public class MainPresenter extends Presenter<MainView> {
     }
 
     public void openMakeTransactionScreen(NavigationBundle navigationBundle) {
-        mNavigator.openMakeTransactionScreen(navigationBundle);
+        mNavigator.openAddTransactionScreen(navigationBundle);
     }
 }

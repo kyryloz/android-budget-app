@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddTransactionActivity">
     <fragment
-        android:id="@+id/fragment_add_transaction"
-        android:name="ua.com.zak.budgetswing.fragments.AddTransactionFragment"
+        android:id="@+id/fragment_add_category"
+        android:name="ua.com.zak.budgetswing.fragments.AddCategoryFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </RelativeLayout>

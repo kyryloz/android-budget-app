@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import ua.com.zak.budgetswing.core.dao.CategoryDao;
 import ua.com.zak.budgetswing.core.di.ApplicationComponent;
 import ua.com.zak.budgetswing.core.mvp.view.CategoriesView;
+import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
+import ua.com.zak.budgetswing.core.navigator.Navigator;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -13,6 +15,9 @@ public class CategoriesPresenter extends Presenter<CategoriesView> {
 
     @Inject
     CategoryDao mCategoryDao;
+
+    @Inject
+    Navigator mNavigator;
 
     public CategoriesPresenter(CategoriesView view) {
         super(view);
@@ -28,7 +33,7 @@ public class CategoriesPresenter extends Presenter<CategoriesView> {
         mView.displayCategories(mCategoryDao.getAllCategories());
     }
 
-    public void addNewCategory() {
-
+    public void addNewCategory(NavigationBundle navigationBundle) {
+        mNavigator.openAddCategoryScreen(navigationBundle);
     }
 }

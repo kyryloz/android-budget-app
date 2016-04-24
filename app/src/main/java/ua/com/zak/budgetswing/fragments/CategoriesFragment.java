@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,8 @@ import ua.com.zak.budgetswing.adapters.CategoriesAdapter;
 import ua.com.zak.budgetswing.core.domain.Category;
 import ua.com.zak.budgetswing.core.mvp.presenter.CategoriesPresenter;
 import ua.com.zak.budgetswing.core.mvp.view.CategoriesView;
+import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
+import ua.com.zak.budgetswing.navigator.AndroidNavigationBundle;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -55,7 +58,7 @@ public class CategoriesFragment extends BasePresenterFragment<CategoriesPresente
 
     @OnClick(R.id.fab)
     void onFabAddTransactionClicked() {
-        mPresenter.addNewCategory();
+        mPresenter.addNewCategory(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
     }
 
     @Override
