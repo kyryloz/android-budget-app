@@ -3,8 +3,10 @@ package ua.com.zak.budgetswing.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import java.util.List;
@@ -16,11 +18,15 @@ import ua.com.zak.budgetswing.adapters.AccountsAdapter;
 import ua.com.zak.budgetswing.core.domain.Account;
 import ua.com.zak.budgetswing.core.mvp.presenter.AccountsPresenter;
 import ua.com.zak.budgetswing.core.mvp.view.AccountsView;
+import ua.com.zak.budgetswing.navigator.AndroidNavigationBundle;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> implements AccountsView {
+
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
 
     @Bind(R.id.recycler_accounts)
     RecyclerView mRecyclerAccounts;
@@ -44,12 +50,13 @@ public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> i
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initToolbarToggle(mToolbar);
         initAccountsList();
     }
 
     @OnClick(R.id.fab)
-    void onFabAddTransactionClicked() {
-        mPresenter.addNewAccount();
+    void onFabAddClicked() {
+        mPresenter.addNewAccount(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
     }
 
     @Override

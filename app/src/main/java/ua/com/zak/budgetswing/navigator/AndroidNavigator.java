@@ -1,10 +1,10 @@
 package ua.com.zak.budgetswing.navigator;
 
 import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
+import ua.com.zak.budgetswing.activity.AddAccountActivity;
 import ua.com.zak.budgetswing.activity.AddCategoryActivity;
 import ua.com.zak.budgetswing.activity.AddTransactionActivity;
 import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
@@ -31,6 +31,17 @@ public class AndroidNavigator implements Navigator {
         AndroidNavigationBundle androidNavigationBundle = ((AndroidNavigationBundle) navigationBundle);
         AppCompatActivity activity = androidNavigationBundle.getNavigationContext();
         Intent intent = new Intent(activity, AddCategoryActivity.class);
+
+        activity.startActivity(
+                intent,
+                ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
+    }
+
+    @Override
+    public void openAddAccountScreen(NavigationBundle navigationBundle) {
+        AndroidNavigationBundle androidNavigationBundle = ((AndroidNavigationBundle) navigationBundle);
+        AppCompatActivity activity = androidNavigationBundle.getNavigationContext();
+        Intent intent = new Intent(activity, AddAccountActivity.class);
 
         activity.startActivity(
                 intent,

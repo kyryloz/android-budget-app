@@ -57,7 +57,7 @@ public class CategoriesFragment extends BasePresenterFragment<CategoriesPresente
     }
 
     @OnClick(R.id.fab)
-    void onFabAddTransactionClicked() {
+    void onFabAddClicked() {
         mPresenter.addNewCategory(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
     }
 

@@ -36,6 +36,11 @@
             android:label="@null">
         </activity>
 
+        <activity
+            android:name=".activity.AddAccountActivity"
+            android:label="@null">
+        </activity>
+
     </application>
 
 </manifest>

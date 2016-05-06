@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import ua.com.zak.budgetswing.core.dao.AccountDao;
 import ua.com.zak.budgetswing.core.di.ApplicationComponent;
 import ua.com.zak.budgetswing.core.mvp.view.AccountsView;
+import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
 import ua.com.zak.budgetswing.core.navigator.Navigator;
 
 /**
@@ -32,6 +33,7 @@ public class AccountsPresenter extends Presenter<AccountsView> {
         mView.displayAccounts(mAccountDao.getAllAccounts());
     }
 
-    public void addNewAccount() {
+    public void addNewAccount(NavigationBundle navigationBundle) {
+        mNavigator.openAddAccountScreen(navigationBundle);
     }
 }
