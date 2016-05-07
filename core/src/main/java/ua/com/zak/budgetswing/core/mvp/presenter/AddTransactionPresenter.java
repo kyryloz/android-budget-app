@@ -42,6 +42,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     public AddTransactionPresenter(AddTransactionView view) {
         super(view);
         mNowDate = Calendar.getInstance();
+        mResultDate = mNowDate;
         mYesterdayChose = false;
     }
 

@@ -75,14 +75,14 @@
                     android:id="@+id/text_account_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Material.Title"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
                     tools:text="Cash"/>
 
                 <TextView
                     android:id="@+id/text_account_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Material.Small"
+                    android:textAppearance="@android:style/TextAppearance.Material.Caption"
                     tools:text="100 USD"/>
             </LinearLayout>
         </LinearLayout>
@@ -116,7 +116,7 @@
                     android:id="@+id/text_expense_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Material.Title"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
                     tools:text="Groceries"/>
             </LinearLayout>
         </LinearLayout>
@@ -151,14 +151,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/yesterday"
-                    android:textAppearance="@android:style/TextAppearance.Material.Title"/>
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"/>
 
                 <TextView
                     android:id="@+id/text_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:textAppearance="@android:style/TextAppearance.Material.Title"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
                     tools:text="29 July"/>
             </LinearLayout>
 
