@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -36,8 +35,8 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
         AccountPickerDialogFragment.Listener,
         CategoryPickerDialogFragment.Listener {
 
-    @Bind(R.id.switch_yesterday)
-    Switch mSwitchYesterday;
+    @Bind(R.id.layout_text_date)
+    View mLayoutTextDate;
 
     @Bind(R.id.text_account_name)
     TextView mTextAccountName;
@@ -90,15 +89,15 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick(R.id.text_date)
-    void onRadioDatePickerClicked() {
+    @OnClick(R.id.layout_text_date)
+    void onDatePickerClicked() {
         mPresenter.changeDate();
     }
 
     @OnCheckedChanged(R.id.switch_yesterday)
-    void onRadioYesterdayCheckedChanged(boolean checked) {
+    void onYesterdayCheckedChanged(boolean checked) {
         mPresenter.setYesterdayChose(checked);
-        mTextDate.setVisibility(checked ? View.GONE : View.VISIBLE);
+        mLayoutTextDate.setVisibility(checked ? View.GONE : View.VISIBLE);
     }
 
     @OnClick(R.id.layout_account)

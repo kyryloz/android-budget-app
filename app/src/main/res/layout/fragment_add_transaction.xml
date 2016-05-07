@@ -53,10 +53,15 @@
         </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
+            android:id="@+id/layout_account"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
             <ImageView
                 android:layout_width="24dp"
@@ -65,7 +70,6 @@
                 tools:ignore="ContentDescription"/>
 
             <LinearLayout
-                android:id="@+id/layout_account"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -75,7 +79,7 @@
                     android:id="@+id/text_account_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body2"
                     tools:text="Cash"/>
 
                 <TextView
@@ -94,10 +98,15 @@
             android:background="@color/cardview_dark_background"/>
 
         <LinearLayout
+            android:id="@+id/layout_expense_category"
             android:layout_width="match_parent"
             android:layout_height="72dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
             <ImageView
                 android:layout_width="24dp"
@@ -106,7 +115,6 @@
                 tools:ignore="ContentDescription"/>
 
             <LinearLayout
-                android:id="@+id/layout_expense_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -116,7 +124,7 @@
                     android:id="@+id/text_expense_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
+                    android:textAppearance="@android:style/TextAppearance.Material.Body2"
                     tools:text="Groceries"/>
             </LinearLayout>
         </LinearLayout>
@@ -128,10 +136,15 @@
             android:background="@color/cardview_dark_background"/>
 
         <LinearLayout
+            android:id="@+id/layout_date"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:foreground="?attr/selectableItemBackground"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
             <ImageView
                 android:layout_width="24dp"
@@ -140,7 +153,6 @@
                 tools:ignore="ContentDescription"/>
 
             <LinearLayout
-                android:id="@+id/layout_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -153,14 +165,25 @@
                     android:text="@string/yesterday"
                     android:textAppearance="@android:style/TextAppearance.Material.Body1"/>
 
-                <TextView
-                    android:id="@+id/text_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textAppearance="@android:style/TextAppearance.Material.Body1"
-                    tools:text="29 July"/>
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_text_date"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:foreground="?attr/selectableItemBackground">
+
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="72dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Body1"
+                tools:text="29 July"/>
 
         </LinearLayout>
 
