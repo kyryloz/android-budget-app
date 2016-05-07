@@ -8,5 +8,5 @@ import ua.com.zak.budgetswing.core.domain.Transaction;
  * @author zak <zak@swingpulse.com>
  */
 public interface TransactionsView extends View {
-    void displayTransactions(List<Transaction> categories);
+    void displayTransactions(List<Transaction> transactions);
 }

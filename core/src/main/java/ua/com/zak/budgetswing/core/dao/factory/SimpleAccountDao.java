@@ -5,7 +5,6 @@ import java.util.List;
 
 import ua.com.zak.budgetswing.core.dao.AccountDao;
 import ua.com.zak.budgetswing.core.domain.Account;
-import ua.com.zak.budgetswing.core.domain.Transaction;
 
 class SimpleAccountDao implements AccountDao {
 
@@ -45,13 +44,7 @@ class SimpleAccountDao implements AccountDao {
     }
 
     @Override
-    public boolean makeTransaction(Transaction transaction) {
-        Account account = findById(transaction.getAccountId());
-        account.setAmount(account.getAmount() + transaction.getAmount());
-        return true;
-    }
-
-    private Account findById(long accountId) {
+    public Account findById(long accountId) {
         for (Account account : mAccounts) {
             if (account.getId() == accountId) {
                 return account;

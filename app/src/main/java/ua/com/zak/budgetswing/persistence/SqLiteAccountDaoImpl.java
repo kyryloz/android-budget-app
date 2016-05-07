@@ -27,7 +27,7 @@ public class SqLiteAccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public boolean makeTransaction(Transaction transaction) {
-        return false;
+    public Account findById(long accountId) {
+        return null;
     }
 }

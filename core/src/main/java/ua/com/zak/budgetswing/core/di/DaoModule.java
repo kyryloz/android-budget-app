@@ -6,6 +6,7 @@ import dagger.Module;
 import dagger.Provides;
 import ua.com.zak.budgetswing.core.dao.AccountDao;
 import ua.com.zak.budgetswing.core.dao.CategoryDao;
+import ua.com.zak.budgetswing.core.dao.TransactionDao;
 import ua.com.zak.budgetswing.core.dao.factory.DaoFactory;
 
 /**
@@ -30,5 +31,11 @@ public class DaoModule {
     @Provides
     public CategoryDao provideCategoryDao() {
         return mDaoFactory.getCategoryDao();
+    }
+
+    @Singleton
+    @Provides
+    public TransactionDao provideTransactionDao() {
+        return mDaoFactory.getTransactionDao();
     }
 }

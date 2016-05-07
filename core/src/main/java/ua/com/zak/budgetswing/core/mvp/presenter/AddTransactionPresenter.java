@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import ua.com.zak.budgetswing.core.dao.AccountDao;
 import ua.com.zak.budgetswing.core.dao.CategoryDao;
+import ua.com.zak.budgetswing.core.dao.TransactionDao;
 import ua.com.zak.budgetswing.core.di.ApplicationComponent;
 import ua.com.zak.budgetswing.core.domain.Account;
 import ua.com.zak.budgetswing.core.domain.Category;
@@ -26,9 +27,12 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     @Inject
     CategoryDao mCategoryDao;
 
+    @Inject
+    TransactionDao mTransactionDao;
+
     private Calendar mNowDate;
 
-    private java.text.DateFormat mDateFormat;
+    private DateFormat mDateFormat;
 
     private Calendar mResultDate;
     private boolean mYesterdayChose;
@@ -90,12 +94,13 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         }
 
         Transaction transaction = new Transaction.Builder()
-                .setAccountId(mResultAccount.getId())
+                .setAccount(mResultAccount)
                 .setAmount(-amount)
+                .setCurrency("UAH") // TODO hardcoded currency
                 .setDate(new Date().getTime())
-                .setCategoryId(mResultCategory.getId())
+                .setCategory(mResultCategory)
                 .build();
-        mAccountDao.makeTransaction(transaction);
+        mTransactionDao.addTransaction(transaction);
 
         mView.finish();
     }

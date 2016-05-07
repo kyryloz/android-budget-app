@@ -5,24 +5,26 @@ package ua.com.zak.budgetswing.core.domain;
  */
 public class Transaction {
 
-    private final long mAccountId;
-    private final long mCategoryId;
+    private final Account mAccount;
+    private final Category mCategory;
     private final long mAmount;
     private final long mDate;
+    private final String mCurrency;
 
-    private Transaction(long accountId, long categoryId, long amount, long date) {
-        mAccountId = accountId;
-        mCategoryId = categoryId;
+    private Transaction(Account account, Category category, long amount, String currency, long date) {
+        mAccount = account;
+        mCategory = category;
         mAmount = amount;
+        mCurrency = currency;
         mDate = date;
     }
 
-    public long getAccountId() {
-        return mAccountId;
+    public Account getAccount() {
+        return mAccount;
     }
 
-    public long getCategoryId() {
-        return mCategoryId;
+    public Category getCategory() {
+        return mCategory;
     }
 
     public long getAmount() {
@@ -33,24 +35,34 @@ public class Transaction {
         return mDate;
     }
 
+    public String getCurrency() {
+        return mCurrency;
+    }
+
     public static class Builder {
-        private long mAccountId;
-        private long mCategoryId;
+        private Account mAccount;
+        private Category mCategory;
         private long mAmount;
+        private String mCurrency;
         private long mDate;
 
-        public Builder setAccountId(long accountId) {
-            mAccountId = accountId;
+        public Builder setAccount(Account account) {
+            mAccount = account;
             return this;
         }
 
-        public Builder setCategoryId(long categoryId) {
-            mCategoryId = categoryId;
+        public Builder setCategory(Category category) {
+            mCategory = category;
             return this;
         }
 
         public Builder setAmount(long amount) {
             mAmount = amount;
+            return this;
+        }
+
+        public Builder setCurrency(String currency) {
+            mCurrency = currency;
             return this;
         }
 
@@ -60,7 +72,7 @@ public class Transaction {
         }
 
         public Transaction build() {
-            return new Transaction(mAccountId, mCategoryId, mAmount, mDate);
+            return new Transaction(mAccount, mCategory, mAmount, mCurrency, mDate);
         }
     }
 }

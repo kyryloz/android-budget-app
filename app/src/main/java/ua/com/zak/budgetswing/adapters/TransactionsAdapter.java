@@ -4,16 +4,14 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
+import java.text.DateFormat;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ua.com.zak.budgetswing.R;
-import ua.com.zak.budgetswing.core.domain.Category;
 import ua.com.zak.budgetswing.core.domain.Transaction;
 
 /**
@@ -21,38 +19,47 @@ import ua.com.zak.budgetswing.core.domain.Transaction;
  */
 public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAdapter.ViewHolder> {
 
-    private ColorGenerator mColorGenerator;
+    private final DateFormat mDateFormat;
 
     public TransactionsAdapter(Context context) {
         super(context);
-        mColorGenerator = ColorGenerator.MATERIAL;
+        mDateFormat = DateFormat.getDateInstance();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.item_category, parent, false);
+        View itemView = mInflater.inflate(R.layout.item_transaction, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Transaction transaction = mItems.get(position);
-        String name = String.valueOf(transaction.getAmount());
+        long amount = transaction.getAmount();
+        String currency = transaction.getCurrency();
+        String textFrom = transaction.getAccount().getName();
+        String textWhere = transaction.getCategory().getName();
+        String textDate = mDateFormat.format(new Date(transaction.getDate()));
 
-        holder.mTextName.setText(name);
-
-        int iconColor = mColorGenerator.getColor(name);
-        TextDrawable iconDrawable = TextDrawable.builder().buildRound(name.substring(0, 1), iconColor);
-        holder.mImageIcon.setImageDrawable(iconDrawable);
+        holder.mTextAmount.setText(String.valueOf(Math.abs(amount)) + " " + currency);
+        holder.mTextFrom.setText(textFrom);
+        holder.mTextWhere.setText(textWhere);
+        holder.mTextDate.setText(textDate);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.text_category_name)
-        TextView mTextName;
+        @Bind(R.id.text_amount)
+        TextView mTextAmount;
 
-        @Bind(R.id.image_icon)
-        ImageView mImageIcon;
+        @Bind(R.id.text_from)
+        TextView mTextFrom;
+
+        @Bind(R.id.text_where)
+        TextView mTextWhere;
+
+        @Bind(R.id.text_date)
+        TextView mTextDate;
 
         public ViewHolder(View itemView) {
             super(itemView);
