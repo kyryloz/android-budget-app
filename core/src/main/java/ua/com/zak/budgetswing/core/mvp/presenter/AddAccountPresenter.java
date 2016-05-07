@@ -29,9 +29,11 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
 
     }
 
-    public void addAccount(String accountName) {
+    public void addAccount(String accountName, String accountInitialAmount, String accountCurrency) {
         Account account = new Account();
         account.setName(accountName);
+        account.setAmount(Integer.valueOf(accountInitialAmount));
+        account.setCurrencyCode(accountCurrency);
         mAccountDao.addAccount(account);
     }
 }

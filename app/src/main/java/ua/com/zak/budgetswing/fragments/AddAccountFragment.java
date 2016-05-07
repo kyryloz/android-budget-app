@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import butterknife.Bind;
 import ua.com.zak.budgetswing.R;
@@ -20,6 +21,12 @@ public class AddAccountFragment extends BasePresenterFragment<AddAccountPresente
 
     @Bind(R.id.edit_account_name)
     EditText mEditAccountName;
+
+    @Bind(R.id.edit_account_initial_amount)
+    EditText mEditAccountInitialAmount;
+
+    @Bind(R.id.spinner_currency)
+    Spinner mSpinnerAccountCurrency;
 
     @Override
     protected int getLayoutId() {
@@ -50,7 +57,10 @@ public class AddAccountFragment extends BasePresenterFragment<AddAccountPresente
 
         switch (item.getItemId()) {
             case R.id.action_done:
-                mPresenter.addAccount(mEditAccountName.getText().toString());
+                String accountName = mEditAccountName.getText().toString();
+                String accountInitialAmount = mEditAccountInitialAmount.getText().toString();
+                String accountCurrency = mSpinnerAccountCurrency.getSelectedItem().toString();
+                mPresenter.addAccount(accountName, accountInitialAmount, accountCurrency);
                 getActivity().finish();
                 return true;
         }

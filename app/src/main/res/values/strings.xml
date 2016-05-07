@@ -22,4 +22,5 @@
     <string name="hint_category_name">Category name</string>
     <string name="done">Done</string>
     <string name="hint_account_name">Account name</string>
+    <string name="hint_account_initial_amount">Initial amount</string>
 </resources>

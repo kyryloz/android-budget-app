@@ -5,39 +5,74 @@
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true">
 
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentInsetStart="72dp"
-            app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
-            app:layout_collapseMode="none"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="64dp"
-                android:paddingBottom="16dp">
+                app:contentInsetStart="72dp"
+                app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
+                app:layout_collapseMode="none"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <android.support.design.widget.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="64dp"
+                    android:paddingBottom="16dp">
 
-                    <EditText
-                        android:id="@+id/edit_account_name"
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/edit_account_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="32sp"
+                            android:hint="@string/hint_account_name"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="32sp"
-                        android:hint="@string/hint_account_name"/>
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_marginTop="8dp">
 
-            </LinearLayout>
-        </android.support.v7.widget.Toolbar>
-    </android.support.design.widget.AppBarLayout>
+                        <EditText
+                            android:id="@+id/edit_account_initial_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:inputType="number"
+                            android:hint="@string/hint_account_initial_amount"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <Spinner
+                android:id="@+id/spinner_currency"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:drawSelectorOnTop="true"
+                android:entries="@array/currencies_array"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </android.support.design.widget.CoordinatorLayout>
