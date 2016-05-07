@@ -1,10 +1,14 @@
 package ua.com.zak.budgetswing.fragments;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -32,11 +36,8 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
         AccountPickerDialogFragment.Listener,
         CategoryPickerDialogFragment.Listener {
 
-    @Bind(R.id.radio_button_date_picker)
-    RadioButton mRadioDatePicker;
-
-    @Bind(R.id.layout_account)
-    View mLayoutAccount;
+    @Bind(R.id.switch_yesterday)
+    Switch mSwitchYesterday;
 
     @Bind(R.id.text_account_name)
     TextView mTextAccountName;
@@ -44,20 +45,14 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     @Bind(R.id.text_account_amount)
     TextView mTextAccountAmount;
 
-    @Bind(R.id.layout_expense_category)
-    View mLayoutExpenseCategory;
-
     @Bind(R.id.text_expense_category)
     TextView mTextExpenseCategory;
 
+    @Bind(R.id.text_date)
+    TextView mTextDate;
+
     @Bind(R.id.edit_amount)
     EditText mEditAmount;
-
-    @Bind(R.id.button_cancel)
-    Button mButtonCancel;
-
-    @Bind(R.id.button_submit)
-    Button mButtonSubmit;
 
     @Override
     protected int getLayoutId() {
@@ -69,16 +64,42 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
         return new AddTransactionPresenter(this);
     }
 
-    @OnClick(R.id.radio_button_date_picker)
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        inflater.inflate(R.menu.menu_done, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_done:
+                mPresenter.submit(Long.valueOf(mEditAmount.getText().toString()));
+                getActivity().finish();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @OnClick(R.id.text_date)
     void onRadioDatePickerClicked() {
         mPresenter.changeDate();
     }
 
-    @OnCheckedChanged(R.id.radio_button_yesterday)
+    @OnCheckedChanged(R.id.switch_yesterday)
     void onRadioYesterdayCheckedChanged(boolean checked) {
         mPresenter.setYesterdayChose(checked);
+        mTextDate.setVisibility(checked ? View.GONE : View.VISIBLE);
     }
-
 
     @OnClick(R.id.layout_account)
     void onAccountChangeClicked() {
@@ -107,23 +128,7 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
 
     @Override
     public void initDatePickerButton(String date) {
-        mRadioDatePicker.setText(date);
-    }
-
-    @Override
-    public void initSubmitButtons() {
-        mButtonSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mPresenter.submit(Long.valueOf(mEditAmount.getText().toString()));
-            }
-        });
-        mButtonCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        mTextDate.setText(date);
     }
 
     @Override
@@ -146,7 +151,7 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
 
     @Override
     public void showChosenDate(String date) {
-        mRadioDatePicker.setText(date);
+        mTextDate.setText(date);
     }
 
     @Override

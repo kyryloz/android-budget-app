@@ -12,8 +12,6 @@ import ua.com.zak.budgetswing.core.domain.Category;
 public interface AddTransactionView extends View {
     void initDatePickerButton(String date);
 
-    void initSubmitButtons();
-
     void showAccountsChooserDialog(List<Account> accounts);
 
     void showCategoryChooserDialog(List<Category> categories);

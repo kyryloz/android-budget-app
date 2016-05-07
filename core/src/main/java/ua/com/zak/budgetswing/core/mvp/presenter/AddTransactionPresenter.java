@@ -50,7 +50,6 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         mDateFormat = DateFormat.getDateInstance();
         String format = mDateFormat.format(Calendar.getInstance().getTime());
         mView.initDatePickerButton(format);
-        mView.initSubmitButtons();
 
         List<Account> allAccounts = mAccountDao.getAllAccounts();
         mResultAccount = allAccounts.get(0);
@@ -97,7 +96,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
                 .setAccount(mResultAccount)
                 .setAmount(-amount)
                 .setCurrency("UAH") // TODO hardcoded currency
-                .setDate(new Date().getTime())
+                .setDate(mResultDate.getTimeInMillis())
                 .setCategory(mResultCategory)
                 .build();
         mTransactionDao.addTransaction(transaction);
