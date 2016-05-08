@@ -2,6 +2,8 @@ package ua.com.zak.budgetswing.navigator;
 
 import android.support.v7.app.AppCompatActivity;
 
+import java.io.Serializable;
+
 import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
 
 /**
@@ -10,6 +12,7 @@ import ua.com.zak.budgetswing.core.navigator.NavigationBundle;
 public class AndroidNavigationBundle implements NavigationBundle<AppCompatActivity> {
 
     private AppCompatActivity mActivity;
+    private Serializable mSerializableExtra;
 
     public AndroidNavigationBundle(AppCompatActivity activity) {
         mActivity = activity;
@@ -18,5 +21,15 @@ public class AndroidNavigationBundle implements NavigationBundle<AppCompatActivi
     @Override
     public AppCompatActivity getNavigationContext() {
         return mActivity;
+    }
+
+    @Override
+    public Serializable getSerializableExtra() {
+        return mSerializableExtra;
+    }
+
+    @Override
+    public void setSerializableExtra(Serializable serializableExtra) {
+        mSerializableExtra = serializableExtra;
     }
 }

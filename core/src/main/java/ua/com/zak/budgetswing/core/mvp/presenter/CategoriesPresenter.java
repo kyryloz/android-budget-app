@@ -33,7 +33,7 @@ public class CategoriesPresenter extends Presenter<CategoriesView> {
         mView.displayCategories(mCategoryDao.getAllCategories());
     }
 
-    public void addNewCategory(NavigationBundle navigationBundle) {
+    public void addOrUpdateCategory(NavigationBundle navigationBundle) {
         mNavigator.openAddCategoryScreen(navigationBundle);
     }
 }

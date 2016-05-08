@@ -21,10 +21,12 @@ import ua.com.zak.budgetswing.core.domain.Category;
 public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.ViewHolder> {
 
     private ColorGenerator mColorGenerator;
+    private CategoryClickListener mListener;
 
-    public CategoriesAdapter(Context context) {
+    public CategoriesAdapter(Context context, CategoryClickListener listener) {
         super(context);
         mColorGenerator = ColorGenerator.MATERIAL;
+        mListener = listener;
     }
 
     @Override
@@ -34,7 +36,7 @@ public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.V
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         Category category = mItems.get(position);
         String name = category.getName();
 
@@ -43,6 +45,15 @@ public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.V
         int iconColor = mColorGenerator.getColor(name);
         TextDrawable iconDrawable = TextDrawable.builder().buildRound(name.substring(0, 1), iconColor);
         holder.mImageIcon.setImageDrawable(iconDrawable);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onCategoryClick(mItems.get(holder.getAdapterPosition()));
+                }
+            }
+        });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -57,5 +68,9 @@ public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.V
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface CategoryClickListener {
+        void onCategoryClick(Category category);
     }
 }

@@ -37,6 +37,12 @@ class SimpleCategoryDao implements CategoryDao {
     }
 
     @Override
+    public void updateCategory(Category category) {
+        Category edited = findById(category.getId());
+        edited.setName(category.getName());
+    }
+
+    @Override
     public boolean removeCategory(long id) {
         return mCategories.remove(findById(id));
     }

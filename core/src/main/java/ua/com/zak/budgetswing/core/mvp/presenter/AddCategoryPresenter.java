@@ -15,8 +15,13 @@ public class AddCategoryPresenter extends Presenter<AddCategoryView> {
     @Inject
     CategoryDao mCategoryDao;
 
-    public AddCategoryPresenter(AddCategoryView view) {
+    private final Category mCategory;
+    private final boolean mEditMode;
+
+    public AddCategoryPresenter(AddCategoryView view, Category category) {
         super(view);
+        mCategory = category;
+        mEditMode = mCategory != null;
     }
 
     @Override
@@ -26,12 +31,19 @@ public class AddCategoryPresenter extends Presenter<AddCategoryView> {
 
     @Override
     public void onViewReady() {
-
+        if (mEditMode) {
+            mView.initEditMode(mCategory);
+        }
     }
 
-    public void addCategory(String categoryName) {
-        Category category = new Category();
-        category.setName(categoryName);
-        mCategoryDao.addCategory(category);
+    public void addOrEditCategory(String categoryName) {
+        if (mEditMode) {
+            mCategory.setName(categoryName);
+            mCategoryDao.updateCategory(mCategory);
+        } else {
+            Category category = new Category();
+            category.setName(categoryName);
+            mCategoryDao.addCategory(category);
+        }
     }
 }
