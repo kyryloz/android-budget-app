@@ -39,6 +39,13 @@ class SimpleAccountDao implements AccountDao {
     }
 
     @Override
+    public void updateAccount(Account account) {
+        Account edited = findById(account.getId());
+        edited.setAmount(account.getAmount());
+        edited.setName(account.getName());
+    }
+
+    @Override
     public boolean removeAccount(long accountId) {
         return mAccounts.remove(findById(accountId));
     }

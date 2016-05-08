@@ -16,9 +16,7 @@ import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.adapters.AccountsAdapter;
 import ua.com.zak.budgetswing.core.domain.Account;
-import ua.com.zak.budgetswing.core.mvp.presenter.AccountsPresenter;
 import ua.com.zak.budgetswing.core.mvp.presenter.HomePresenter;
-import ua.com.zak.budgetswing.core.mvp.view.AccountsView;
 import ua.com.zak.budgetswing.core.mvp.view.HomeView;
 import ua.com.zak.budgetswing.navigator.AndroidNavigationBundle;
 
@@ -67,7 +65,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
     }
 
     private void initAccountsList() {
-        mAccountsAdapter = new AccountsAdapter(getContext());
+        mAccountsAdapter = new AccountsAdapter(getContext(), null);
         mRecyclerAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerAccounts.setHasFixedSize(true);
         mRecyclerAccounts.setAdapter(mAccountsAdapter);

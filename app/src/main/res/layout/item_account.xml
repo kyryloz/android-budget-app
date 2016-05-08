@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_height"
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackground"
     android:orientation="horizontal"
     android:padding="16dp">
 
@@ -12,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        tools:text="Bank Account" />
+        tools:text="Bank Account"/>
 
     <TextView
         android:id="@+id/text_amount"
@@ -20,5 +23,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        tools:text="100 USD" />
+        tools:text="100 USD"/>
 </LinearLayout>

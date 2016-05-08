@@ -10,6 +10,7 @@ import ua.com.zak.budgetswing.core.domain.Account;
 public interface AccountDao {
     List<Account> getAllAccounts();
     boolean addAccount(Account account);
+    void updateAccount(Account account);
     boolean removeAccount(long accountId);
     Account findById(long accountId);
 }

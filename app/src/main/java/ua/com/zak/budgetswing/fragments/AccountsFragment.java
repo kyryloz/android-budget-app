@@ -23,7 +23,7 @@ import ua.com.zak.budgetswing.navigator.AndroidNavigationBundle;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> implements AccountsView {
+public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> implements AccountsView, AccountsAdapter.AccountClickListener {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -56,7 +56,7 @@ public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> i
 
     @OnClick(R.id.fab)
     void onFabAddClicked() {
-        mPresenter.addNewAccount(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
+        mPresenter.addOrUpdateAccount(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
     }
 
     @Override
@@ -65,9 +65,16 @@ public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> i
     }
 
     private void initAccountsList() {
-        mAccountsAdapter = new AccountsAdapter(getContext());
+        mAccountsAdapter = new AccountsAdapter(getContext(), this);
         mRecyclerAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerAccounts.setHasFixedSize(true);
         mRecyclerAccounts.setAdapter(mAccountsAdapter);
+    }
+
+    @Override
+    public void onAccountClick(Account account) {
+        AndroidNavigationBundle navigationBundle = new AndroidNavigationBundle((AppCompatActivity) getActivity());
+        navigationBundle.setSerializableExtra(account);
+        mPresenter.addOrUpdateAccount(navigationBundle);
     }
 }

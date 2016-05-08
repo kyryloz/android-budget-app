@@ -8,34 +8,28 @@ import android.view.View;
 
 import butterknife.Bind;
 import ua.com.zak.budgetswing.R;
+import ua.com.zak.budgetswing.core.domain.Account;
+import ua.com.zak.budgetswing.core.domain.Category;
+import ua.com.zak.budgetswing.fragments.AddAccountFragment;
+import ua.com.zak.budgetswing.fragments.AddCategoryFragment;
+import ua.com.zak.budgetswing.util.Keys;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 public class AddAccountActivity extends BaseActivity {
 
-    @Bind(R.id.toolbar)
-    Toolbar mToolbar;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setSupportActionBar(mToolbar);
-
-        ActionBar supportActionBar = getSupportActionBar();
-
-        if (supportActionBar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(true);
-            supportActionBar.setDisplayShowHomeEnabled(true);
+        if (savedInstanceState == null) {
+            Bundle args = getIntent().getExtras();
+            Account account = (Account) args.getSerializable(Keys.ACCOUNT);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.frame_fragment, AddAccountFragment.newInstance(account))
+                    .commit();
         }
-
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     @Override

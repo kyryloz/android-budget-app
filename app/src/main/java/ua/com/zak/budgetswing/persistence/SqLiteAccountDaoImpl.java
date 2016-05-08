@@ -22,6 +22,11 @@ public class SqLiteAccountDaoImpl implements AccountDao {
     }
 
     @Override
+    public void updateAccount(Account account) {
+
+    }
+
+    @Override
     public boolean removeAccount(long accountId) {
         return false;
     }

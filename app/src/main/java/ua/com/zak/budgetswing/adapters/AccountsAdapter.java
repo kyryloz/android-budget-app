@@ -16,8 +16,11 @@ import ua.com.zak.budgetswing.core.domain.Account;
  */
 public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHolder> {
 
-    public AccountsAdapter(Context context) {
+    private final AccountClickListener mListener;
+
+    public AccountsAdapter(Context context, AccountClickListener listener) {
         super(context);
+        mListener = listener;
     }
 
     @Override
@@ -27,13 +30,22 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         Account account = mItems.get(position);
         holder.mTextName.setText(account.getName());
         String amountStr = mContext.getString(R.string.accounts_amount_format,
                 account.getAmount(),
                 account.getCurrencyCode());
         holder.mTextAmount.setText(amountStr);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onAccountClick(mItems.get(holder.getAdapterPosition()));
+                }
+            }
+        });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -48,5 +60,9 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface AccountClickListener {
+        void onAccountClick(Account account);
     }
 }

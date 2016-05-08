@@ -33,7 +33,7 @@ public class AccountsPresenter extends Presenter<AccountsView> {
         mView.displayAccounts(mAccountDao.getAllAccounts());
     }
 
-    public void addNewAccount(NavigationBundle navigationBundle) {
+    public void addOrUpdateAccount(NavigationBundle navigationBundle) {
         mNavigator.openAddAccountScreen(navigationBundle);
     }
 }
