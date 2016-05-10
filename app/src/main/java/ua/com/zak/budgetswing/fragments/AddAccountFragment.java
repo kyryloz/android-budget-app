@@ -3,14 +3,13 @@ package ua.com.zak.budgetswing.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.core.domain.Account;
 import ua.com.zak.budgetswing.core.mvp.presenter.AddAccountPresenter;
@@ -35,6 +34,9 @@ public class AddAccountFragment extends BasePresenterFragment<AddAccountPresente
     @Bind(R.id.spinner_currency)
     Spinner mSpinnerAccountCurrency;
 
+    @Bind(R.id.button_delete)
+    Button mButtonDelete;
+
     public static AddAccountFragment newInstance(Account account) {
         AddAccountFragment fragment = new AddAccountFragment();
         Bundle args = new Bundle();
@@ -55,38 +57,23 @@ public class AddAccountFragment extends BasePresenterFragment<AddAccountPresente
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initToolbarBack(mToolbar);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-
-        inflater.inflate(R.menu.menu_done, menu);
+    @OnClick(R.id.button_delete)
+    void onDeleteClick() {
+        mPresenter.deleteAccount();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.action_done:
-                String accountName = mEditAccountName.getText().toString();
-                String accountInitialAmount = mEditAccountInitialAmount.getText().toString();
-                String accountCurrency = mSpinnerAccountCurrency.getSelectedItem().toString();
-                mPresenter.addOrEditAccount(accountName, accountInitialAmount, accountCurrency);
-                getActivity().finish();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    @OnClick(R.id.button_done)
+    void onDoneClick() {
+        String accountName = mEditAccountName.getText().toString();
+        String accountInitialAmount = mEditAccountInitialAmount.getText().toString();
+        String accountCurrency = mSpinnerAccountCurrency.getSelectedItem().toString();
+        mPresenter.addOrEditAccount(accountName, accountInitialAmount, accountCurrency);
+        getActivity().finish();
     }
 
     @Override
@@ -97,6 +84,13 @@ public class AddAccountFragment extends BasePresenterFragment<AddAccountPresente
         mEditAccountInitialAmount.setText(String.valueOf(account.getAmount()));
         mEditAccountInitialAmount.setSelection(mEditAccountInitialAmount.length());
 
+        mButtonDelete.setVisibility(View.VISIBLE);
+
         // TODO set currency spinner position
+    }
+
+    @Override
+    public void closeView() {
+        getActivity().finish();
     }
 }

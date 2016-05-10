@@ -49,4 +49,9 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
             mAccountDao.addAccount(account);
         }
     }
+
+    public void deleteAccount() {
+        mAccountDao.removeAccount(mAccount.getId());
+        mView.closeView();
+    }
 }

@@ -2,15 +2,13 @@ package ua.com.zak.budgetswing.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 import ua.com.zak.budgetswing.R;
 import ua.com.zak.budgetswing.core.domain.Category;
 import ua.com.zak.budgetswing.core.mvp.presenter.AddCategoryPresenter;
@@ -28,6 +26,9 @@ public class AddCategoryFragment extends BasePresenterFragment<AddCategoryPresen
 
     @Bind(R.id.edit_category_name)
     EditText mEditCategoryName;
+
+    @Bind(R.id.button_delete)
+    Button mButtonDelete;
 
     public static AddCategoryFragment newInstance(Category category) {
         AddCategoryFragment fragment = new AddCategoryFragment();
@@ -49,40 +50,31 @@ public class AddCategoryFragment extends BasePresenterFragment<AddCategoryPresen
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initToolbarBack(mToolbar);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-
-        inflater.inflate(R.menu.menu_done, menu);
+    @OnClick(R.id.button_delete)
+    void onDeleteClick() {
+        mPresenter.deleteCategory();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.action_done:
-                mPresenter.addOrEditCategory(mEditCategoryName.getText().toString());
-                getActivity().finish();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    @OnClick(R.id.button_done)
+    void onDoneClick() {
+        mPresenter.addOrEditCategory(mEditCategoryName.getText().toString());
+        getActivity().finish();
     }
 
     @Override
     public void initEditMode(Category category) {
         mEditCategoryName.setText(category.getName());
         mEditCategoryName.setSelection(mEditCategoryName.getText().length());
+        mButtonDelete.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void closeView() {
+        getActivity().finish();
     }
 }

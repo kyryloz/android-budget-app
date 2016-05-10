@@ -7,4 +7,6 @@ import ua.com.zak.budgetswing.core.domain.Category;
  */
 public interface AddCategoryView extends View {
     void initEditMode(Category category);
+
+    void closeView();
 }

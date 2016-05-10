@@ -46,4 +46,9 @@ public class AddCategoryPresenter extends Presenter<AddCategoryView> {
             mCategoryDao.addCategory(category);
         }
     }
+
+    public void deleteCategory() {
+        mCategoryDao.removeCategory(mCategory.getId());
+        mView.closeView();
+    }
 }

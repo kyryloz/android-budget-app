@@ -7,4 +7,6 @@ import ua.com.zak.budgetswing.core.domain.Account;
  */
 public interface AddAccountView extends View {
     void initEditMode(Account account);
+
+    void closeView();
 }
