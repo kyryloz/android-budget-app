@@ -14,10 +14,10 @@ import com.robotnec.budget.core.navigator.Navigator;
 public class CategoriesPresenter extends Presenter<CategoriesView> {
 
     @Inject
-    CategoryDao mCategoryDao;
+    CategoryDao categoryDao;
 
     @Inject
-    Navigator mNavigator;
+    Navigator navigator;
 
     public CategoriesPresenter(CategoriesView view) {
         super(view);
@@ -30,10 +30,10 @@ public class CategoriesPresenter extends Presenter<CategoriesView> {
 
     @Override
     public void onViewReady() {
-        mView.displayCategories(mCategoryDao.getAllCategories());
+        mView.displayCategories(categoryDao.getAllCategories());
     }
 
     public void addOrUpdateCategory(NavigationBundle navigationBundle) {
-        mNavigator.openAddCategoryScreen(navigationBundle);
+        navigator.openAddCategoryScreen(navigationBundle);
     }
 }

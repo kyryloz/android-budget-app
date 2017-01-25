@@ -9,27 +9,27 @@ import com.robotnec.budget.core.dao.TransactionDao;
  */
 public class SimpleDaoFactory implements DaoFactory {
 
-    private final AccountDao mAccountDao;
-    private final CategoryDao mCategoryDao;
-    private final TransactionDao mTransactionDao;
+    private final AccountDao accountDao;
+    private final CategoryDao categoryDao;
+    private final TransactionDao transactionDao;
 
     public SimpleDaoFactory() {
-        mAccountDao = new SimpleAccountDao();
-        mCategoryDao = new SimpleCategoryDao();
-        mTransactionDao = new SimpleTransactionDao(mAccountDao, mCategoryDao);
+        accountDao = new SimpleAccountDao();
+        categoryDao = new SimpleCategoryDao();
+        transactionDao = new SimpleTransactionDao(accountDao, categoryDao);
     }
 
     public AccountDao getAccountDao() {
-        return mAccountDao;
+        return accountDao;
     }
 
     @Override
     public CategoryDao getCategoryDao() {
-        return mCategoryDao;
+        return categoryDao;
     }
 
     @Override
     public TransactionDao getTransactionDao() {
-        return mTransactionDao;
+        return transactionDao;
     }
 }

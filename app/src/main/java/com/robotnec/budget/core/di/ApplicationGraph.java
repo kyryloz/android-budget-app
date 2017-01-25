@@ -8,16 +8,16 @@ import com.robotnec.budget.core.navigator.Navigator;
  */
 public class ApplicationGraph {
 
-    private final ApplicationComponent mApplicationComponent;
+    private final ApplicationComponent applicationComponent;
 
     public ApplicationGraph(DaoFactory daoFactory, Navigator navigator) {
-        mApplicationComponent = DaggerApplicationComponent.builder()
+        applicationComponent = DaggerApplicationComponent.builder()
                 .daoModule(new DaoModule(daoFactory))
                 .navigationModule(new NavigationModule(navigator))
                 .build();
     }
 
     public ApplicationComponent getApplicationComponent() {
-        return mApplicationComponent;
+        return applicationComponent;
     }
 }

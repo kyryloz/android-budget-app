@@ -20,35 +20,35 @@ import com.robotnec.budget.core.domain.Category;
  */
 public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.ViewHolder> {
 
-    private ColorGenerator mColorGenerator;
-    private CategoryClickListener mListener;
+    private ColorGenerator colorGenerator;
+    private CategoryClickListener categoryClickListener;
 
     public CategoriesAdapter(Context context, CategoryClickListener listener) {
         super(context);
-        mColorGenerator = ColorGenerator.MATERIAL;
-        mListener = listener;
+        colorGenerator = ColorGenerator.MATERIAL;
+        categoryClickListener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.item_category, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.item_category, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Category category = mItems.get(position);
+        Category category = items.get(position);
         String name = category.getName();
 
         holder.mTextName.setText(name);
 
-        int iconColor = mColorGenerator.getColor(name);
+        int iconColor = colorGenerator.getColor(name);
         TextDrawable iconDrawable = TextDrawable.builder().buildRound(name.substring(0, 1), iconColor);
         holder.mImageIcon.setImageDrawable(iconDrawable);
 
         holder.itemView.setOnClickListener(v -> {
-            if (mListener != null) {
-                mListener.onCategoryClick(mItems.get(holder.getAdapterPosition()));
+            if (categoryClickListener != null) {
+                categoryClickListener.onCategoryClick(items.get(holder.getAdapterPosition()));
             }
         });
     }

@@ -14,10 +14,10 @@ import com.robotnec.budget.core.navigator.Navigator;
 public class AccountsPresenter extends Presenter<AccountsView> {
 
     @Inject
-    AccountDao mAccountDao;
+    AccountDao accountDao;
 
     @Inject
-    Navigator mNavigator;
+    Navigator navigator;
 
     public AccountsPresenter(AccountsView view) {
         super(view);
@@ -30,10 +30,10 @@ public class AccountsPresenter extends Presenter<AccountsView> {
 
     @Override
     public void onViewReady() {
-        mView.displayAccounts(mAccountDao.getAllAccounts());
+        mView.displayAccounts(accountDao.getAllAccounts());
     }
 
     public void addOrUpdateAccount(NavigationBundle navigationBundle) {
-        mNavigator.openAddAccountScreen(navigationBundle);
+        navigator.openAddAccountScreen(navigationBundle);
     }
 }

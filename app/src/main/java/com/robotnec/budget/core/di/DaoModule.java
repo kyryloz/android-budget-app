@@ -15,27 +15,27 @@ import com.robotnec.budget.core.dao.factory.DaoFactory;
 @Module
 public class DaoModule {
 
-    private final DaoFactory mDaoFactory;
+    private final DaoFactory daoFactory;
 
     public DaoModule(DaoFactory daoFactory) {
-        mDaoFactory = daoFactory;
+        this.daoFactory = daoFactory;
     }
 
     @Singleton
     @Provides
     public AccountDao provideAccountDao() {
-        return mDaoFactory.getAccountDao();
+        return daoFactory.getAccountDao();
     }
 
     @Singleton
     @Provides
     public CategoryDao provideCategoryDao() {
-        return mDaoFactory.getCategoryDao();
+        return daoFactory.getCategoryDao();
     }
 
     @Singleton
     @Provides
     public TransactionDao provideTransactionDao() {
-        return mDaoFactory.getTransactionDao();
+        return daoFactory.getTransactionDao();
     }
 }

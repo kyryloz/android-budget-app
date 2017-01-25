@@ -22,13 +22,13 @@ public class AddCategoryFragment extends BasePresenterFragment<AddCategoryPresen
         implements AddCategoryView {
 
     @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
 
     @Bind(R.id.edit_category_name)
-    EditText mEditCategoryName;
+    EditText editCategoryName;
 
     @Bind(R.id.button_delete)
-    Button mButtonDelete;
+    Button buttonDelete;
 
     public static AddCategoryFragment newInstance(Category category) {
         AddCategoryFragment fragment = new AddCategoryFragment();
@@ -52,25 +52,25 @@ public class AddCategoryFragment extends BasePresenterFragment<AddCategoryPresen
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initToolbarBack(mToolbar);
+        initToolbarBack(toolbar);
     }
 
     @OnClick(R.id.button_delete)
     void onDeleteClick() {
-        mPresenter.deleteCategory();
+        presenter.deleteCategory();
     }
 
     @OnClick(R.id.button_done)
     void onDoneClick() {
-        mPresenter.addOrEditCategory(mEditCategoryName.getText().toString());
+        presenter.addOrEditCategory(editCategoryName.getText().toString());
         getActivity().finish();
     }
 
     @Override
     public void initEditMode(Category category) {
-        mEditCategoryName.setText(category.getName());
-        mEditCategoryName.setSelection(mEditCategoryName.getText().length());
-        mButtonDelete.setVisibility(View.VISIBLE);
+        editCategoryName.setText(category.getName());
+        editCategoryName.setSelection(editCategoryName.getText().length());
+        buttonDelete.setVisibility(View.VISIBLE);
     }
 
     @Override

@@ -12,15 +12,15 @@ import com.robotnec.budget.core.navigator.Navigator;
 @Module
 public class NavigationModule {
 
-    private Navigator mNavigator;
+    private Navigator navigator;
 
     public NavigationModule(Navigator navigator) {
-        mNavigator = navigator;
+        this.navigator = navigator;
     }
 
     @Singleton
     @Provides
     public Navigator provideInternalNavigator() {
-        return mNavigator;
+        return navigator;
     }
 }

@@ -23,19 +23,19 @@ public class AddAccountFragment extends BasePresenterFragment<AddAccountPresente
         implements AddAccountView {
 
     @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
 
     @Bind(R.id.edit_account_name)
-    EditText mEditAccountName;
+    EditText editAccountName;
 
     @Bind(R.id.edit_account_initial_amount)
-    EditText mEditAccountInitialAmount;
+    EditText editAccountInitialAmount;
 
     @Bind(R.id.spinner_currency)
-    Spinner mSpinnerAccountCurrency;
+    Spinner spinnerAccountCurrency;
 
     @Bind(R.id.button_delete)
-    Button mButtonDelete;
+    Button buttonDelete;
 
     public static AddAccountFragment newInstance(Account account) {
         AddAccountFragment fragment = new AddAccountFragment();
@@ -59,32 +59,32 @@ public class AddAccountFragment extends BasePresenterFragment<AddAccountPresente
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initToolbarBack(mToolbar);
+        initToolbarBack(toolbar);
     }
 
     @OnClick(R.id.button_delete)
     void onDeleteClick() {
-        mPresenter.deleteAccount();
+        presenter.deleteAccount();
     }
 
     @OnClick(R.id.button_done)
     void onDoneClick() {
-        String accountName = mEditAccountName.getText().toString();
-        String accountInitialAmount = mEditAccountInitialAmount.getText().toString();
-        String accountCurrency = mSpinnerAccountCurrency.getSelectedItem().toString();
-        mPresenter.addOrEditAccount(accountName, accountInitialAmount, accountCurrency);
+        String accountName = editAccountName.getText().toString();
+        String accountInitialAmount = editAccountInitialAmount.getText().toString();
+        String accountCurrency = spinnerAccountCurrency.getSelectedItem().toString();
+        presenter.addOrEditAccount(accountName, accountInitialAmount, accountCurrency);
         getActivity().finish();
     }
 
     @Override
     public void initEditMode(Account account) {
-        mEditAccountName.setText(account.getName());
-        mEditAccountName.setSelection(mEditAccountName.length());
+        editAccountName.setText(account.getName());
+        editAccountName.setSelection(editAccountName.length());
 
-        mEditAccountInitialAmount.setText(String.valueOf(account.getAmount()));
-        mEditAccountInitialAmount.setSelection(mEditAccountInitialAmount.length());
+        editAccountInitialAmount.setText(String.valueOf(account.getAmount()));
+        editAccountInitialAmount.setSelection(editAccountInitialAmount.length());
 
-        mButtonDelete.setVisibility(View.VISIBLE);
+        buttonDelete.setVisibility(View.VISIBLE);
 
         // TODO set currency spinner position
     }

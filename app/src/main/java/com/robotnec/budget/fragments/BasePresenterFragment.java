@@ -23,7 +23,7 @@ import com.robotnec.budget.core.mvp.view.View;
  */
 public abstract class BasePresenterFragment<P extends Presenter> extends Fragment implements View {
 
-    protected P mPresenter;
+    protected P presenter;
 
     @Nullable
     @Override
@@ -32,18 +32,18 @@ public abstract class BasePresenterFragment<P extends Presenter> extends Fragmen
                                           @Nullable Bundle savedInstanceState) {
         android.view.View root = inflater.inflate(getLayoutId(), container, false);
         ButterKnife.bind(this, root);
-        mPresenter = createPresenter();
+        presenter = createPresenter();
         ApplicationGraph applicationGraph = ((BudgetApplication) getActivity()
                 .getApplication())
                 .getApplicationGraph();
-        mPresenter.injectComponent(applicationGraph.getApplicationComponent());
+        presenter.injectComponent(applicationGraph.getApplicationComponent());
         return root;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.onViewReady();
+        presenter.onViewReady();
     }
 
     protected void initToolbarToggle(Toolbar toolbar) {

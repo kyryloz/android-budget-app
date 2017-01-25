@@ -11,13 +11,13 @@ import com.robotnec.budget.R;
 public class AddTransactionActivity extends BaseActivity {
 
     @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
 
         ActionBar supportActionBar = getSupportActionBar();
 
@@ -26,7 +26,7 @@ public class AddTransactionActivity extends BaseActivity {
             supportActionBar.setDisplayShowHomeEnabled(true);
         }
 
-        mToolbar.setNavigationOnClickListener(v -> finish());
+        toolbar.setNavigationOnClickListener(v -> finish());
     }
 
     @Override

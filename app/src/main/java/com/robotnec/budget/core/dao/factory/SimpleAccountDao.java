@@ -8,10 +8,10 @@ import com.robotnec.budget.core.domain.Account;
 
 class SimpleAccountDao implements AccountDao {
 
-    private final List<Account> mAccounts;
+    private final List<Account> accounts;
 
     public SimpleAccountDao() {
-        mAccounts = new ArrayList<>();
+        accounts = new ArrayList<>();
         Account accountCash = new Account();
         accountCash.setId(1);
         accountCash.setAmount(2000);
@@ -24,18 +24,18 @@ class SimpleAccountDao implements AccountDao {
         accountBank.setCurrencyCode("USD");
         accountBank.setName("Bank");
 
-        mAccounts.add(accountCash);
-        mAccounts.add(accountBank);
+        accounts.add(accountCash);
+        accounts.add(accountBank);
     }
 
     @Override
     public List<Account> getAllAccounts() {
-        return mAccounts;
+        return accounts;
     }
 
     @Override
     public boolean addAccount(Account account) {
-        return mAccounts.add(account);
+        return accounts.add(account);
     }
 
     @Override
@@ -47,12 +47,12 @@ class SimpleAccountDao implements AccountDao {
 
     @Override
     public boolean removeAccount(long accountId) {
-        return mAccounts.remove(findById(accountId));
+        return accounts.remove(findById(accountId));
     }
 
     @Override
     public Account findById(long accountId) {
-        for (Account account : mAccounts) {
+        for (Account account : accounts) {
             if (account.getId() == accountId) {
                 return account;
             }

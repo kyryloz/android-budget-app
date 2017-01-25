@@ -23,10 +23,10 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, MainView {
 
     @Bind(R.id.drawer_layout)
-    DrawerLayout mDrawer;
+    DrawerLayout drawerLayout;
 
     @Bind(R.id.nav_view)
-    NavigationView mNavigationView;
+    NavigationView navigationView;
 
     @Override
     protected int getLayoutId() {
@@ -48,7 +48,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
                     .commit();
         }
 
-        mNavigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
                 .replace(R.id.layout_fragment_container, fragment)
                 .commit();
 
-        mDrawer.closeDrawer(GravityCompat.START);
+        drawerLayout.closeDrawer(GravityCompat.START);
 
         setTitle(item.getTitle());
 

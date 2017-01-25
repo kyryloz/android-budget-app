@@ -26,12 +26,12 @@ import com.robotnec.budget.navigator.AndroidNavigationBundle;
 public class HomeFragment extends BasePresenterFragment<HomePresenter> implements HomeView {
 
     @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
 
     @Bind(R.id.recycler_accounts)
-    RecyclerView mRecyclerAccounts;
+    RecyclerView recyclerAccounts;
 
-    private AccountsAdapter mAccountsAdapter;
+    private AccountsAdapter accountsAdapter;
 
     public static Fragment newInstance() {
         return new HomeFragment();
@@ -50,24 +50,24 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initToolbarToggle(mToolbar);
+        initToolbarToggle(toolbar);
         initAccountsList();
     }
 
     @OnClick(R.id.fab)
     void onFabAddClicked() {
-        mPresenter.addTransaction(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
+        presenter.addTransaction(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
     }
 
     @Override
     public void displayAccounts(List<Account> accounts) {
-        mAccountsAdapter.update(accounts);
+        accountsAdapter.update(accounts);
     }
 
     private void initAccountsList() {
-        mAccountsAdapter = new AccountsAdapter(getContext(), null);
-        mRecyclerAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerAccounts.setHasFixedSize(true);
-        mRecyclerAccounts.setAdapter(mAccountsAdapter);
+        accountsAdapter = new AccountsAdapter(getContext(), null);
+        recyclerAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerAccounts.setHasFixedSize(true);
+        recyclerAccounts.setAdapter(accountsAdapter);
     }
 }

@@ -9,7 +9,7 @@ import com.robotnec.budget.core.mvp.view.View;
  */
 public abstract class Presenter<V extends View> {
 
-    protected final V mView;
+    final V mView;
 
     public Presenter(V view) {
         mView = view;

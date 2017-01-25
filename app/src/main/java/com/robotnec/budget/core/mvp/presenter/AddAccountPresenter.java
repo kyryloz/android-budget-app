@@ -13,15 +13,15 @@ import com.robotnec.budget.core.mvp.view.AddAccountView;
 public class AddAccountPresenter extends Presenter<AddAccountView> {
 
     @Inject
-    AccountDao mAccountDao;
+    AccountDao accountDao;
 
-    private final Account mAccount;
-    private final boolean mEditMode;
+    private final Account account;
+    private final boolean editMode;
 
     public AddAccountPresenter(AddAccountView view, Account account) {
         super(view);
-        mAccount = account;
-        mEditMode = mAccount != null;
+        this.account = account;
+        editMode = this.account != null;
     }
 
     @Override
@@ -31,27 +31,27 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
 
     @Override
     public void onViewReady() {
-        if (mEditMode) {
-            mView.initEditMode(mAccount);
+        if (editMode) {
+            mView.initEditMode(account);
         }
     }
 
     public void addOrEditAccount(String accountName, String accountInitialAmount, String accountCurrency) {
-        if (mEditMode) {
-            mAccount.setName(accountName);
-            mAccount.setAmount(Integer.valueOf(accountInitialAmount));
-            mAccountDao.updateAccount(mAccount);
+        if (editMode) {
+            account.setName(accountName);
+            account.setAmount(Integer.valueOf(accountInitialAmount));
+            accountDao.updateAccount(account);
         } else {
             Account account = new Account();
             account.setName(accountName);
             account.setAmount(Integer.valueOf(accountInitialAmount));
             account.setCurrencyCode(accountCurrency);
-            mAccountDao.addAccount(account);
+            accountDao.addAccount(account);
         }
     }
 
     public void deleteAccount() {
-        mAccountDao.removeAccount(mAccount.getId());
+        accountDao.removeAccount(account.getId());
         mView.closeView();
     }
 }

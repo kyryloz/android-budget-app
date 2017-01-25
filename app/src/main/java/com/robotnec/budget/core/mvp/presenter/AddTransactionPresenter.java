@@ -21,43 +21,41 @@ import com.robotnec.budget.core.mvp.view.AddTransactionView;
 public class AddTransactionPresenter extends Presenter<AddTransactionView> {
 
     @Inject
-    AccountDao mAccountDao;
+    AccountDao accountDao;
 
     @Inject
-    CategoryDao mCategoryDao;
+    CategoryDao categoryDao;
 
     @Inject
-    TransactionDao mTransactionDao;
+    TransactionDao transactionDao;
 
-    private Calendar mNowDate;
-
-    private DateFormat mDateFormat;
-
-    private Calendar mResultDate;
-    private boolean mYesterdayChose;
-    private Account mResultAccount;
-    private Category mResultCategory;
+    private DateFormat dateFormat;
+    private Calendar nowDate;
+    private Calendar resultDate;
+    private boolean yesterdayChose;
+    private Account targetAccount;
+    private Category targetCategory;
 
     public AddTransactionPresenter(AddTransactionView view) {
         super(view);
-        mNowDate = Calendar.getInstance();
-        mResultDate = mNowDate;
-        mYesterdayChose = false;
+        nowDate = Calendar.getInstance();
+        resultDate = nowDate;
+        yesterdayChose = false;
     }
 
     @Override
     public void onViewReady() {
-        mDateFormat = DateFormat.getDateInstance();
-        String format = mDateFormat.format(Calendar.getInstance().getTime());
+        dateFormat = DateFormat.getDateInstance();
+        String format = dateFormat.format(Calendar.getInstance().getTime());
         mView.initDatePickerButton(format);
 
-        List<Account> allAccounts = mAccountDao.getAllAccounts();
-        mResultAccount = allAccounts.get(0);
-        mView.displayAccount(mResultAccount);
+        List<Account> allAccounts = accountDao.getAllAccounts();
+        targetAccount = allAccounts.get(0);
+        mView.displayAccount(targetAccount);
 
-        List<Category> allCategories = mCategoryDao.getAllCategories();
-        mResultCategory = allCategories.get(0);
-        mView.displayCategory(mResultCategory);
+        List<Category> allCategories = categoryDao.getAllCategories();
+        targetCategory = allCategories.get(0);
+        mView.displayCategory(targetCategory);
     }
 
     @Override
@@ -66,51 +64,51 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     }
 
     public void setYesterdayChose(boolean chose) {
-        mYesterdayChose = chose;
+        yesterdayChose = chose;
     }
 
     public void changeAccount() {
-        mView.showAccountsChooserDialog(mAccountDao.getAllAccounts());
+        mView.showAccountsChooserDialog(accountDao.getAllAccounts());
     }
 
     public void changeCategory() {
-        mView.showCategoryChooserDialog(mCategoryDao.getAllCategories());
+        mView.showCategoryChooserDialog(categoryDao.getAllCategories());
     }
 
     public void setChosenDate(Calendar calendar) {
-        mResultDate = calendar;
-        mView.showChosenDate(mDateFormat.format(calendar.getTime()));
+        resultDate = calendar;
+        mView.showChosenDate(dateFormat.format(calendar.getTime()));
     }
 
     public void changeDate() {
-        mView.showDateChooserDialog(mResultDate);
+        mView.showDateChooserDialog(resultDate);
     }
 
     public void submit(Long amount) {
-        if (mYesterdayChose) {
-            mNowDate.add(Calendar.DAY_OF_YEAR, -1);
-            mResultDate = mNowDate;
+        if (yesterdayChose) {
+            nowDate.add(Calendar.DAY_OF_YEAR, -1);
+            resultDate = nowDate;
         }
 
         Transaction transaction = new Transaction.Builder()
-                .setAccount(mResultAccount)
+                .setAccount(targetAccount)
                 .setAmount(-amount)
                 .setCurrency("UAH") // TODO hardcoded currency
-                .setDate(mResultDate.getTimeInMillis())
-                .setCategory(mResultCategory)
+                .setDate(resultDate.getTimeInMillis())
+                .setCategory(targetCategory)
                 .build();
-        mTransactionDao.addTransaction(transaction);
+        transactionDao.addTransaction(transaction);
 
         mView.finish();
     }
 
     public void pickAccount(Account account) {
-        mResultAccount = account;
-        mView.displayAccount(mResultAccount);
+        targetAccount = account;
+        mView.displayAccount(targetAccount);
     }
 
     public void pickCategory(Category category) {
-        mResultCategory = category;
+        targetCategory = category;
         mView.displayCategory(category);
     }
 }

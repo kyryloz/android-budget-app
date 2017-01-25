@@ -26,12 +26,12 @@ import com.robotnec.budget.navigator.AndroidNavigationBundle;
 public class TransactionsFragment extends BasePresenterFragment<TransactionsPresenter> implements TransactionsView {
 
     @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
 
     @Bind(R.id.recycler_transactions)
-    RecyclerView mRecyclerTransactions;
+    RecyclerView recyclerTransactions;
 
-    private TransactionsAdapter mTransactionsAdapter;
+    private TransactionsAdapter transactionsAdapter;
 
     public static Fragment newInstance() {
         return new TransactionsFragment();
@@ -50,24 +50,24 @@ public class TransactionsFragment extends BasePresenterFragment<TransactionsPres
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initToolbarToggle(mToolbar);
+        initToolbarToggle(toolbar);
         initRecyclerView();
     }
 
     @OnClick(R.id.fab)
     void onFabAddClicked() {
-        mPresenter.addNewTransaction(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
+        presenter.addNewTransaction(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
     }
 
     @Override
     public void displayTransactions(List<Transaction> transactions) {
-        mTransactionsAdapter.update(transactions);
+        transactionsAdapter.update(transactions);
     }
 
     private void initRecyclerView() {
-        mTransactionsAdapter = new TransactionsAdapter(getContext());
-        mRecyclerTransactions.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerTransactions.setHasFixedSize(true);
-        mRecyclerTransactions.setAdapter(mTransactionsAdapter);
+        transactionsAdapter = new TransactionsAdapter(getContext());
+        recyclerTransactions.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerTransactions.setHasFixedSize(true);
+        recyclerTransactions.setAdapter(transactionsAdapter);
     }
 }

@@ -27,12 +27,12 @@ public class CategoriesFragment extends BasePresenterFragment<CategoriesPresente
         implements CategoriesView, CategoriesAdapter.CategoryClickListener {
 
     @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
 
     @Bind(R.id.recycler_categories)
-    RecyclerView mRecyclerCategories;
+    RecyclerView recyclerCategories;
 
-    private CategoriesAdapter mCategoriesAdapter;
+    private CategoriesAdapter categoriesAdapter;
 
     public static Fragment newInstance() {
         return new CategoriesFragment();
@@ -51,31 +51,31 @@ public class CategoriesFragment extends BasePresenterFragment<CategoriesPresente
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initToolbarToggle(mToolbar);
+        initToolbarToggle(toolbar);
         initRecyclerView();
     }
 
     @OnClick(R.id.fab)
     void onFabAddClicked() {
-        mPresenter.addOrUpdateCategory(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
+        presenter.addOrUpdateCategory(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
     }
 
     @Override
     public void displayCategories(List<Category> categories) {
-        mCategoriesAdapter.update(categories);
+        categoriesAdapter.update(categories);
     }
 
     @Override
     public void onCategoryClick(Category category) {
         AndroidNavigationBundle navigationBundle = new AndroidNavigationBundle((AppCompatActivity) getActivity());
         navigationBundle.setSerializableExtra(category);
-        mPresenter.addOrUpdateCategory(navigationBundle);
+        presenter.addOrUpdateCategory(navigationBundle);
     }
 
     private void initRecyclerView() {
-        mCategoriesAdapter = new CategoriesAdapter(getContext(), this);
-        mRecyclerCategories.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerCategories.setHasFixedSize(true);
-        mRecyclerCategories.setAdapter(mCategoriesAdapter);
+        categoriesAdapter = new CategoriesAdapter(getContext(), this);
+        recyclerCategories.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerCategories.setHasFixedSize(true);
+        recyclerCategories.setAdapter(categoriesAdapter);
     }
 }

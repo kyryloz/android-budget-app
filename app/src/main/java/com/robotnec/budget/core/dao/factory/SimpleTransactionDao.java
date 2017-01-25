@@ -14,20 +14,20 @@ import com.robotnec.budget.core.domain.Transaction;
  */
 class SimpleTransactionDao implements TransactionDao {
 
-    private final AccountDao mAccountDao;
-    private final CategoryDao mCategoryDao;
+    private final AccountDao accountDao;
+    private final CategoryDao categoryDao;
 
-    private final List<Transaction> mTransactions;
+    private final List<Transaction> transactions;
 
     public SimpleTransactionDao(AccountDao accountDao, CategoryDao categoryDao) {
-        mAccountDao = accountDao;
-        mCategoryDao = categoryDao;
-        mTransactions = new ArrayList<>();
+        this.accountDao = accountDao;
+        this.categoryDao = categoryDao;
+        transactions = new ArrayList<>();
     }
 
     @Override
     public List<Transaction> getAllTransactions() {
-        return mTransactions;
+        return transactions;
     }
 
     @Override
@@ -35,7 +35,7 @@ class SimpleTransactionDao implements TransactionDao {
         Account account = transaction.getAccount();
         account.setAmount(account.getAmount() + transaction.getAmount());
 
-        mTransactions.add(transaction);
+        transactions.add(transaction);
 
         return true;
     }

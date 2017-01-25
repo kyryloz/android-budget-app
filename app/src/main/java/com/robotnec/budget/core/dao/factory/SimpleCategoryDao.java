@@ -11,10 +11,10 @@ import com.robotnec.budget.core.domain.Category;
  */
 class SimpleCategoryDao implements CategoryDao {
 
-    private final List<Category> mCategories;
+    private final List<Category> categories;
 
     public SimpleCategoryDao() {
-        mCategories = new ArrayList<>();
+        categories = new ArrayList<>();
         Category groceries = new Category();
         groceries.setId(1);
         groceries.setName("Groceries");
@@ -22,18 +22,18 @@ class SimpleCategoryDao implements CategoryDao {
         transport.setId(2);
         transport.setName("Transport");
 
-        mCategories.add(groceries);
-        mCategories.add(transport);
+        categories.add(groceries);
+        categories.add(transport);
     }
 
     @Override
     public List<Category> getAllCategories() {
-        return mCategories;
+        return categories;
     }
 
     @Override
     public boolean addCategory(Category category) {
-        return mCategories.add(category);
+        return categories.add(category);
     }
 
     @Override
@@ -44,11 +44,11 @@ class SimpleCategoryDao implements CategoryDao {
 
     @Override
     public boolean removeCategory(long id) {
-        return mCategories.remove(findById(id));
+        return categories.remove(findById(id));
     }
 
     private Category findById(long id) {
-        for (Category category : mCategories) {
+        for (Category category : categories) {
             if (category.getId() == id) {
                 return category;
             }

@@ -17,7 +17,7 @@ import com.robotnec.budget.core.mvp.view.AboutView;
 public class AboutFragment extends BasePresenterFragment<AboutPresenter> implements AboutView {
 
     @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
 
     public static Fragment newInstance() {
         return new AboutFragment();
@@ -36,6 +36,6 @@ public class AboutFragment extends BasePresenterFragment<AboutPresenter> impleme
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initToolbarToggle(mToolbar);
+        initToolbarToggle(toolbar);
     }
 }

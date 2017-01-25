@@ -19,27 +19,27 @@ import com.robotnec.budget.core.domain.Transaction;
  */
 public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAdapter.ViewHolder> {
 
-    private final DateFormat mDateFormat;
+    private final DateFormat dateFormat;
 
     public TransactionsAdapter(Context context) {
         super(context);
-        mDateFormat = DateFormat.getDateInstance();
+        dateFormat = DateFormat.getDateInstance();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.item_transaction, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.item_transaction, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Transaction transaction = mItems.get(position);
+        Transaction transaction = items.get(position);
         long amount = transaction.getAmount();
         String currency = transaction.getCurrency();
         String textFrom = transaction.getAccount().getName();
         String textWhere = transaction.getCategory().getName();
-        String textDate = mDateFormat.format(new Date(transaction.getDate()));
+        String textDate = dateFormat.format(new Date(transaction.getDate()));
 
         holder.mTextAmount.setText(String.valueOf(Math.abs(amount)) + " " + currency);
         holder.mTextFrom.setText(textFrom);

@@ -26,12 +26,12 @@ import com.robotnec.budget.navigator.AndroidNavigationBundle;
 public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> implements AccountsView, AccountsAdapter.AccountClickListener {
 
     @Bind(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
 
     @Bind(R.id.recycler_accounts)
-    RecyclerView mRecyclerAccounts;
+    RecyclerView recyclerAccounts;
 
-    private AccountsAdapter mAccountsAdapter;
+    private AccountsAdapter accountsAdapter;
 
     public static Fragment newInstance() {
         return new AccountsFragment();
@@ -50,31 +50,31 @@ public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> i
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initToolbarToggle(mToolbar);
+        initToolbarToggle(toolbar);
         initAccountsList();
     }
 
     @OnClick(R.id.fab)
     void onFabAddClicked() {
-        mPresenter.addOrUpdateAccount(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
+        presenter.addOrUpdateAccount(new AndroidNavigationBundle((AppCompatActivity) getActivity()));
     }
 
     @Override
     public void displayAccounts(List<Account> accounts) {
-        mAccountsAdapter.update(accounts);
+        accountsAdapter.update(accounts);
     }
 
     private void initAccountsList() {
-        mAccountsAdapter = new AccountsAdapter(getContext(), this);
-        mRecyclerAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerAccounts.setHasFixedSize(true);
-        mRecyclerAccounts.setAdapter(mAccountsAdapter);
+        accountsAdapter = new AccountsAdapter(getContext(), this);
+        recyclerAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerAccounts.setHasFixedSize(true);
+        recyclerAccounts.setAdapter(accountsAdapter);
     }
 
     @Override
     public void onAccountClick(Account account) {
         AndroidNavigationBundle navigationBundle = new AndroidNavigationBundle((AppCompatActivity) getActivity());
         navigationBundle.setSerializableExtra(account);
-        mPresenter.addOrUpdateAccount(navigationBundle);
+        presenter.addOrUpdateAccount(navigationBundle);
     }
 }

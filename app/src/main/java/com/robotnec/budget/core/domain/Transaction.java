@@ -5,38 +5,38 @@ package com.robotnec.budget.core.domain;
  */
 public class Transaction {
 
-    private final Account mAccount;
-    private final Category mCategory;
-    private final long mAmount;
-    private final long mDate;
-    private final String mCurrency;
+    private final Account account;
+    private final Category category;
+    private final long amount;
+    private final long date;
+    private final String currency;
 
     private Transaction(Account account, Category category, long amount, String currency, long date) {
-        mAccount = account;
-        mCategory = category;
-        mAmount = amount;
-        mCurrency = currency;
-        mDate = date;
+        this.account = account;
+        this.category = category;
+        this.amount = amount;
+        this.currency = currency;
+        this.date = date;
     }
 
     public Account getAccount() {
-        return mAccount;
+        return account;
     }
 
     public Category getCategory() {
-        return mCategory;
+        return category;
     }
 
     public long getAmount() {
-        return mAmount;
+        return amount;
     }
 
     public long getDate() {
-        return mDate;
+        return date;
     }
 
     public String getCurrency() {
-        return mCurrency;
+        return currency;
     }
 
     public static class Builder {

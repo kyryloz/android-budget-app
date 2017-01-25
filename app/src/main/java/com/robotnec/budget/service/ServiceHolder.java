@@ -11,30 +11,30 @@ import android.os.IBinder;
  */
 public class ServiceHolder<S, B extends LocalBinder<S>> {
 
-    private final Context mContext;
-    S mService;
-    private boolean mBound;
+    private final Context context;
+    S service;
+    private boolean bound;
 
     public ServiceHolder(Context context) {
-        mContext = context;
-        mBound = false;
+        this.context = context;
+        bound = false;
     }
 
     public void bindService(Class<S> serviceClass) {
-        Intent intent = new Intent(mContext, serviceClass);
-        mContext.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+        Intent intent = new Intent(context, serviceClass);
+        context.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     public void stop() {
-        if (mBound) {
-            mContext.unbindService(mConnection);
-            mBound = false;
+        if (bound) {
+            context.unbindService(mConnection);
+            bound = false;
         }
     }
 
     public S getService() {
-        if (mBound) {
-            return mService;
+        if (bound) {
+            return service;
         } else {
             throw new IllegalStateException("Service is not bound");
         }
@@ -46,13 +46,13 @@ public class ServiceHolder<S, B extends LocalBinder<S>> {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             B localBinder = (B) service;
-            mService = localBinder.getService();
-            mBound = true;
+            ServiceHolder.this.service = localBinder.getService();
+            bound = true;
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            mBound = false;
+            bound = false;
         }
     };
 }

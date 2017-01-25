@@ -12,24 +12,24 @@ import java.util.List;
  */
 public abstract class BaseAdapter<T, S extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<S> {
 
-    final Context mContext;
-    final List<T> mItems;
-    final LayoutInflater mInflater;
+    final Context context;
+    final List<T> items;
+    final LayoutInflater layoutInflater;
 
     BaseAdapter(Context context) {
-        mItems = new ArrayList<>();
-        mContext = context;
-        mInflater = LayoutInflater.from(context);
+        items = new ArrayList<>();
+        this.context = context;
+        layoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return items.size();
     }
 
     public void update(List<T> items) {
-        mItems.clear();
-        mItems.addAll(items);
+        this.items.clear();
+        this.items.addAll(items);
         notifyDataSetChanged();
     }
 }

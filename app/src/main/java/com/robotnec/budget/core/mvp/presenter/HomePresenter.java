@@ -17,10 +17,10 @@ import com.robotnec.budget.core.navigator.Navigator;
 public class HomePresenter extends Presenter<HomeView> {
 
     @Inject
-    AccountDao mAccountDao;
+    AccountDao accountDao;
 
     @Inject
-    Navigator mNavigator;
+    Navigator navigator;
 
     public HomePresenter(HomeView view) {
         super(view);
@@ -28,7 +28,7 @@ public class HomePresenter extends Presenter<HomeView> {
 
     @Override
     public void onViewReady() {
-        List<Account> accounts = mAccountDao.getAllAccounts();
+        List<Account> accounts = accountDao.getAllAccounts();
         mView.displayAccounts(accounts);
     }
 
@@ -38,6 +38,6 @@ public class HomePresenter extends Presenter<HomeView> {
     }
 
     public void addTransaction(NavigationBundle navigationBundle) {
-        mNavigator.openAddTransactionScreen(navigationBundle);
+        navigator.openAddTransactionScreen(navigationBundle);
     }
 }

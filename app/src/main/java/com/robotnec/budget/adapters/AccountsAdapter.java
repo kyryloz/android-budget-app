@@ -16,31 +16,31 @@ import com.robotnec.budget.core.domain.Account;
  */
 public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHolder> {
 
-    private final AccountClickListener mListener;
+    private final AccountClickListener accountClickListener;
 
     public AccountsAdapter(Context context, AccountClickListener listener) {
         super(context);
-        mListener = listener;
+        accountClickListener = listener;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.item_account, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.item_account, parent, false);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Account account = mItems.get(position);
+        Account account = items.get(position);
         holder.mTextName.setText(account.getName());
-        String amountStr = mContext.getString(R.string.accounts_amount_format,
+        String amountStr = context.getString(R.string.accounts_amount_format,
                 account.getAmount(),
                 account.getCurrencyCode());
         holder.mTextAmount.setText(amountStr);
 
         holder.itemView.setOnClickListener(v -> {
-            if (mListener != null) {
-                mListener.onAccountClick(mItems.get(holder.getAdapterPosition()));
+            if (accountClickListener != null) {
+                accountClickListener.onAccountClick(items.get(holder.getAdapterPosition()));
             }
         });
     }

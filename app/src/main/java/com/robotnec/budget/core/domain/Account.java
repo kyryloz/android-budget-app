@@ -7,42 +7,42 @@ import java.io.Serializable;
  */
 public class Account implements Serializable, Entity {
 
-    private long mId;
-    private String mName;
-    private long mAmount;
-    private String mCurrencyCode;
+    private long id;
+    private String name;
+    private long amount;
+    private String currencyCode;
 
     @Override
     public long getId() {
-        return mId;
+        return id;
     }
 
     public void setId(long id) {
-        mId = id;
+        this.id = id;
     }
 
     @Override
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public long getAmount() {
-        return mAmount;
+        return amount;
     }
 
     public void setAmount(long amount) {
-        mAmount = amount;
+        this.amount = amount;
     }
 
     public String getCurrencyCode() {
-        return mCurrencyCode;
+        return currencyCode;
     }
 
     public void setCurrencyCode(String currencyCode) {
-        mCurrencyCode = currencyCode;
+        this.currencyCode = currencyCode;
     }
 }

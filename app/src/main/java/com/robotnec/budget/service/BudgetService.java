@@ -6,14 +6,14 @@ import android.os.IBinder;
 
 public class BudgetService extends Service {
 
-    private final IBinder mLocalBinder;
+    private final IBinder localBinder;
 
     public BudgetService() {
-        mLocalBinder = new LocalBinder<>(this);
+        localBinder = new LocalBinder<>(this);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        return mLocalBinder;
+        return localBinder;
     }
 }

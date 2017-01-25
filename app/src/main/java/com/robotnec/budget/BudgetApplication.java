@@ -11,18 +11,18 @@ import com.robotnec.budget.navigator.AndroidNavigator;
  */
 public class BudgetApplication extends Application {
 
-    private ApplicationGraph mApplicationGraph;
+    private ApplicationGraph applicationGraph;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mApplicationGraph = new ApplicationGraph(
+        applicationGraph = new ApplicationGraph(
                 new SimpleDaoFactory(),
                 new AndroidNavigator()
         );
     }
 
     public ApplicationGraph getApplicationGraph() {
-        return mApplicationGraph;
+        return applicationGraph;
     }
 }

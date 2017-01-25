@@ -13,7 +13,7 @@ import com.robotnec.budget.core.navigator.Navigator;
 public class MainPresenter extends Presenter<MainView> {
 
     @Inject
-    Navigator mNavigator;
+    Navigator navigator;
 
     public MainPresenter(MainView view) {
         super(view);
@@ -30,6 +30,6 @@ public class MainPresenter extends Presenter<MainView> {
     }
 
     public void openMakeTransactionScreen(NavigationBundle navigationBundle) {
-        mNavigator.openAddTransactionScreen(navigationBundle);
+        navigator.openAddTransactionScreen(navigationBundle);
     }
 }

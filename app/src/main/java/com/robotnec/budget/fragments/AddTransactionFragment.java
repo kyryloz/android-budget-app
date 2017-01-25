@@ -36,22 +36,22 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
         CategoryPickerDialogFragment.Listener {
 
     @Bind(R.id.layout_text_date)
-    View mLayoutTextDate;
+    View layoutTextDate;
 
     @Bind(R.id.text_account_name)
-    TextView mTextAccountName;
+    TextView textAccountName;
 
     @Bind(R.id.text_account_amount)
-    TextView mTextAccountAmount;
+    TextView textAccountAmount;
 
     @Bind(R.id.text_expense_category)
-    TextView mTextExpenseCategory;
+    TextView textExpenseCategory;
 
     @Bind(R.id.text_date)
-    TextView mTextDate;
+    TextView textDate;
 
     @Bind(R.id.edit_amount)
-    EditText mEditAmount;
+    EditText editAmount;
 
     @Override
     protected int getLayoutId() {
@@ -81,7 +81,7 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_done:
-                mPresenter.submit(Long.valueOf(mEditAmount.getText().toString()));
+                presenter.submit(Long.valueOf(editAmount.getText().toString()));
                 getActivity().finish();
                 return true;
         }
@@ -91,43 +91,43 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
 
     @OnClick(R.id.layout_text_date)
     void onDatePickerClicked() {
-        mPresenter.changeDate();
+        presenter.changeDate();
     }
 
     @OnCheckedChanged(R.id.switch_yesterday)
     void onYesterdayCheckedChanged(boolean checked) {
-        mPresenter.setYesterdayChose(checked);
-        mLayoutTextDate.setVisibility(checked ? View.GONE : View.VISIBLE);
+        presenter.setYesterdayChose(checked);
+        layoutTextDate.setVisibility(checked ? View.GONE : View.VISIBLE);
     }
 
     @OnClick(R.id.layout_account)
     void onAccountChangeClicked() {
-        mPresenter.changeAccount();
+        presenter.changeAccount();
     }
 
     @OnClick(R.id.layout_expense_category)
     void onCategoryChangeClicked() {
-        mPresenter.changeCategory();
+        presenter.changeCategory();
     }
 
     @Override
     public void onDatePicked(Calendar calendar) {
-        mPresenter.setChosenDate(calendar);
+        presenter.setChosenDate(calendar);
     }
 
     @Override
     public void onPicked(Account account) {
-        mPresenter.pickAccount(account);
+        presenter.pickAccount(account);
     }
 
     @Override
     public void onPicked(Category category) {
-        mPresenter.pickCategory(category);
+        presenter.pickCategory(category);
     }
 
     @Override
     public void initDatePickerButton(String date) {
-        mTextDate.setText(date);
+        textDate.setText(date);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
 
     @Override
     public void showChosenDate(String date) {
-        mTextDate.setText(date);
+        textDate.setText(date);
     }
 
     @Override
@@ -161,8 +161,8 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
 
     @Override
     public void displayAccount(Account account) {
-        mTextAccountName.setText(account.getName());
-        mTextAccountAmount.setText(getString(
+        textAccountName.setText(account.getName());
+        textAccountAmount.setText(getString(
                 R.string.accounts_amount_format,
                 account.getAmount(),
                 account.getCurrencyCode()));
@@ -170,7 +170,7 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
 
     @Override
     public void displayCategory(Category category) {
-        mTextExpenseCategory.setText(category.getName());
+        textExpenseCategory.setText(category.getName());
     }
 
     @Override

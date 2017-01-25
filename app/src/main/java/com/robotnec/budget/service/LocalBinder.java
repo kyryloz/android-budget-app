@@ -7,13 +7,13 @@ import android.os.Binder;
  */
 public class LocalBinder<S> extends Binder {
 
-    private final S mServiceInstance;
+    private final S serviceInstance;
 
     public LocalBinder(S serviceInstance) {
-        mServiceInstance = serviceInstance;
+        this.serviceInstance = serviceInstance;
     }
 
     S getService() {
-        return mServiceInstance;
+        return serviceInstance;
     }
 }

@@ -13,15 +13,15 @@ import com.robotnec.budget.core.mvp.view.AddCategoryView;
 public class AddCategoryPresenter extends Presenter<AddCategoryView> {
 
     @Inject
-    CategoryDao mCategoryDao;
+    CategoryDao categoryDao;
 
-    private final Category mCategory;
-    private final boolean mEditMode;
+    private final Category category;
+    private final boolean editMode;
 
     public AddCategoryPresenter(AddCategoryView view, Category category) {
         super(view);
-        mCategory = category;
-        mEditMode = mCategory != null;
+        this.category = category;
+        editMode = this.category != null;
     }
 
     @Override
@@ -31,24 +31,24 @@ public class AddCategoryPresenter extends Presenter<AddCategoryView> {
 
     @Override
     public void onViewReady() {
-        if (mEditMode) {
-            mView.initEditMode(mCategory);
+        if (editMode) {
+            mView.initEditMode(category);
         }
     }
 
     public void addOrEditCategory(String categoryName) {
-        if (mEditMode) {
-            mCategory.setName(categoryName);
-            mCategoryDao.updateCategory(mCategory);
+        if (editMode) {
+            category.setName(categoryName);
+            categoryDao.updateCategory(category);
         } else {
             Category category = new Category();
             category.setName(categoryName);
-            mCategoryDao.addCategory(category);
+            categoryDao.addCategory(category);
         }
     }
 
     public void deleteCategory() {
-        mCategoryDao.removeCategory(mCategory.getId());
+        categoryDao.removeCategory(category.getId());
         mView.closeView();
     }
 }

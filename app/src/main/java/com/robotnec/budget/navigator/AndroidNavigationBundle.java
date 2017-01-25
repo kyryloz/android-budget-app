@@ -11,25 +11,25 @@ import com.robotnec.budget.core.navigator.NavigationBundle;
  */
 public class AndroidNavigationBundle implements NavigationBundle<AppCompatActivity> {
 
-    private AppCompatActivity mActivity;
-    private Serializable mSerializableExtra;
+    private AppCompatActivity activity;
+    private Serializable serializableExtra;
 
     public AndroidNavigationBundle(AppCompatActivity activity) {
-        mActivity = activity;
+        this.activity = activity;
     }
 
     @Override
     public AppCompatActivity getNavigationContext() {
-        return mActivity;
+        return activity;
     }
 
     @Override
     public Serializable getSerializableExtra() {
-        return mSerializableExtra;
+        return serializableExtra;
     }
 
     @Override
     public void setSerializableExtra(Serializable serializableExtra) {
-        mSerializableExtra = serializableExtra;
+        this.serializableExtra = serializableExtra;
     }
 }

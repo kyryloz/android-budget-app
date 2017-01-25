@@ -17,10 +17,10 @@ import com.robotnec.budget.core.navigator.Navigator;
 public class TransactionsPresenter extends Presenter<TransactionsView> {
 
     @Inject
-    Navigator mNavigator;
+    Navigator navigator;
 
     @Inject
-    TransactionDao mTransactionDao;
+    TransactionDao transactionDao;
 
     public TransactionsPresenter(TransactionsView view) {
         super(view);
@@ -28,7 +28,7 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
 
     @Override
     public void onViewReady() {
-        List<Transaction> transactions = mTransactionDao.getAllTransactions();
+        List<Transaction> transactions = transactionDao.getAllTransactions();
         mView.displayTransactions(transactions);
     }
 
@@ -38,6 +38,6 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
     }
 
     public void addNewTransaction(NavigationBundle navigationBundle) {
-        mNavigator.openAddTransactionScreen(navigationBundle);
+        navigator.openAddTransactionScreen(navigationBundle);
     }
 }
