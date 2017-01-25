@@ -9,5 +9,6 @@ import ua.com.zak.budgetswing.core.domain.Transaction;
  */
 public interface TransactionDao {
     List<Transaction> getAllTransactions();
+
     boolean addTransaction(Transaction transaction);
 }

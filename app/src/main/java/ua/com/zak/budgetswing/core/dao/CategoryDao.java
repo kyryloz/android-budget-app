@@ -9,7 +9,10 @@ import ua.com.zak.budgetswing.core.domain.Category;
  */
 public interface CategoryDao {
     List<Category> getAllCategories();
+
     boolean addCategory(Category category);
+
     void updateCategory(Category category);
+
     boolean removeCategory(long id);
 }

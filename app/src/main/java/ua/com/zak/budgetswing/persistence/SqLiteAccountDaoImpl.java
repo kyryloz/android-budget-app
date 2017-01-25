@@ -4,7 +4,6 @@ import java.util.List;
 
 import ua.com.zak.budgetswing.core.dao.AccountDao;
 import ua.com.zak.budgetswing.core.domain.Account;
-import ua.com.zak.budgetswing.core.domain.Transaction;
 
 /**
  * @author zak <zak@swingpulse.com>

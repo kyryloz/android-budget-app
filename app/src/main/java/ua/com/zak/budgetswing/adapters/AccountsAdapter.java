@@ -38,17 +38,14 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
                 account.getCurrencyCode());
         holder.mTextAmount.setText(amountStr);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mListener != null) {
-                    mListener.onAccountClick(mItems.get(holder.getAdapterPosition()));
-                }
+        holder.itemView.setOnClickListener(v -> {
+            if (mListener != null) {
+                mListener.onAccountClick(mItems.get(holder.getAdapterPosition()));
             }
         });
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.text_name)
         TextView mTextName;
@@ -56,7 +53,7 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
         @Bind(R.id.text_amount)
         TextView mTextAmount;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

@@ -17,9 +17,10 @@ import ua.com.zak.budgetswing.core.domain.Entity;
  */
 public class AccountPickerDialogFragment<T extends Entity> extends PickerDialog<T> {
 
-    public AccountPickerDialogFragment() { }
+    public AccountPickerDialogFragment() {
+    }
 
-    public static  <T extends Fragment & Listener, S extends Entity> DialogFragment newInstance(
+    public static <T extends Fragment & Listener, S extends Entity> DialogFragment newInstance(
             List<S> items,
             T listener) {
         DialogFragment fragment = new AccountPickerDialogFragment<>();

@@ -15,7 +15,7 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
     public static final String TAG = DatePickerDialogFragment.class.getSimpleName();
     private static final String BUNDLE_CALENDAR = "BundleCalendar";
 
-    public static  <T extends Fragment & Listener> DatePickerDialogFragment newInstance(
+    public static <T extends Fragment & Listener> DatePickerDialogFragment newInstance(
             Calendar currentDate, T listener) {
         DatePickerDialogFragment fragment = new DatePickerDialogFragment();
         fragment.setTargetFragment(listener, 0);
@@ -25,7 +25,8 @@ public class DatePickerDialogFragment extends DialogFragment implements DatePick
         return fragment;
     }
 
-    public DatePickerDialogFragment() { }
+    public DatePickerDialogFragment() {
+    }
 
     @NonNull
     @Override

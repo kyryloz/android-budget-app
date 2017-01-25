@@ -12,11 +12,11 @@ import java.util.List;
  */
 public abstract class BaseAdapter<T, S extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<S> {
 
-    protected final Context mContext;
-    protected final List<T> mItems;
-    protected final LayoutInflater mInflater;
+    final Context mContext;
+    final List<T> mItems;
+    final LayoutInflater mInflater;
 
-    public BaseAdapter(Context context) {
+    BaseAdapter(Context context) {
         mItems = new ArrayList<>();
         mContext = context;
         mInflater = LayoutInflater.from(context);

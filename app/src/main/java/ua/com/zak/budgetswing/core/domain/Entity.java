@@ -5,5 +5,6 @@ package ua.com.zak.budgetswing.core.domain;
  */
 public interface Entity {
     long getId();
+
     String getName();
 }

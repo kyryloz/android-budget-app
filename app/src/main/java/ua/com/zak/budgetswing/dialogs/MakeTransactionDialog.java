@@ -15,7 +15,7 @@ public class MakeTransactionDialog extends AppCompatDialogFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialog_make_transaction,container, false);
+        View view = inflater.inflate(R.layout.dialog_make_transaction, container, false);
 //        int title = getArguments().getInt("title");
         getDialog().setTitle("Make transaction");
         return view;

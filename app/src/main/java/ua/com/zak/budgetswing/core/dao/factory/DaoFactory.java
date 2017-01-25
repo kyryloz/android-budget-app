@@ -9,6 +9,8 @@ import ua.com.zak.budgetswing.core.dao.TransactionDao;
  */
 public interface DaoFactory {
     AccountDao getAccountDao();
+
     CategoryDao getCategoryDao();
+
     TransactionDao getTransactionDao();
 }

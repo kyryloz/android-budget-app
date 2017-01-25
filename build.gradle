@@ -1,16 +1,10 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        maven {
-            url 'http://dl.bintray.com/amulyakhare/maven'
-        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath "net.ltgt.gradle:gradle-apt-plugin:0.5"
+        classpath 'me.tatarka:gradle-retrolambda:3.5.0'
     }
 }
 

@@ -67,13 +67,7 @@ public abstract class BasePresenterFragment<P extends Presenter> extends Fragmen
             supportActionBar.setDisplayShowHomeEnabled(true);
         }
 
-        toolbar.setNavigationOnClickListener(new android.view.View.OnClickListener() {
-
-            @Override
-            public void onClick(android.view.View v) {
-                activity.finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(v -> activity.finish());
     }
 
     protected abstract int getLayoutId();

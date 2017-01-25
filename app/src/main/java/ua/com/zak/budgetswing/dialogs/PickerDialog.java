@@ -45,23 +45,11 @@ public abstract class PickerDialog<T extends Entity> extends DialogFragment {
 
         builderSingle.setNegativeButton(
                 android.R.string.cancel,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                (dialog, which) -> dialog.dismiss());
 
         builderSingle.setAdapter(
                 arrayAdapter,
-                new DialogInterface.OnClickListener() {
-
-                    @SuppressWarnings("unchecked")
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        PickerDialog.this.onClick(items.get(which));
-                    }
-                });
+                (dialog, which) -> PickerDialog.this.onClick(items.get(which)));
         return builderSingle.create();
     }
 

@@ -7,10 +7,10 @@ import ua.com.zak.budgetswing.core.mvp.presenter.AboutPresenter;
 import ua.com.zak.budgetswing.core.mvp.presenter.AccountsPresenter;
 import ua.com.zak.budgetswing.core.mvp.presenter.AddAccountPresenter;
 import ua.com.zak.budgetswing.core.mvp.presenter.AddCategoryPresenter;
+import ua.com.zak.budgetswing.core.mvp.presenter.AddTransactionPresenter;
 import ua.com.zak.budgetswing.core.mvp.presenter.CategoriesPresenter;
 import ua.com.zak.budgetswing.core.mvp.presenter.HomePresenter;
 import ua.com.zak.budgetswing.core.mvp.presenter.MainPresenter;
-import ua.com.zak.budgetswing.core.mvp.presenter.AddTransactionPresenter;
 import ua.com.zak.budgetswing.core.mvp.presenter.TransactionsPresenter;
 
 /**
@@ -18,10 +18,10 @@ import ua.com.zak.budgetswing.core.mvp.presenter.TransactionsPresenter;
  */
 @Singleton
 @Component(
-    modules = {
-            DaoModule.class,
-            NavigationModule.class
-    }
+        modules = {
+                DaoModule.class,
+                NavigationModule.class
+        }
 )
 public interface ApplicationComponent {
     void inject(AccountsPresenter presenter);

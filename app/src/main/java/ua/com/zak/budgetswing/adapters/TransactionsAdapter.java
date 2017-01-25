@@ -47,7 +47,7 @@ public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAd
         holder.mTextDate.setText(textDate);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.text_amount)
         TextView mTextAmount;
@@ -61,7 +61,7 @@ public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAd
         @Bind(R.id.text_date)
         TextView mTextDate;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

@@ -46,17 +46,14 @@ public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.V
         TextDrawable iconDrawable = TextDrawable.builder().buildRound(name.substring(0, 1), iconColor);
         holder.mImageIcon.setImageDrawable(iconDrawable);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mListener != null) {
-                    mListener.onCategoryClick(mItems.get(holder.getAdapterPosition()));
-                }
+        holder.itemView.setOnClickListener(v -> {
+            if (mListener != null) {
+                mListener.onCategoryClick(mItems.get(holder.getAdapterPosition()));
             }
         });
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         @Bind(R.id.text_category_name)
         TextView mTextName;
@@ -64,7 +61,7 @@ public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.V
         @Bind(R.id.image_icon)
         ImageView mImageIcon;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
