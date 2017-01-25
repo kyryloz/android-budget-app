@@ -13,7 +13,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import com.robotnec.budget.R;
@@ -35,22 +35,22 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
         AccountPickerDialogFragment.Listener,
         CategoryPickerDialogFragment.Listener {
 
-    @Bind(R.id.layout_text_date)
+    @BindView(R.id.layout_text_date)
     View layoutTextDate;
 
-    @Bind(R.id.text_account_name)
+    @BindView(R.id.text_account_name)
     TextView textAccountName;
 
-    @Bind(R.id.text_account_amount)
+    @BindView(R.id.text_account_amount)
     TextView textAccountAmount;
 
-    @Bind(R.id.text_expense_category)
+    @BindView(R.id.text_expense_category)
     TextView textExpenseCategory;
 
-    @Bind(R.id.text_date)
+    @BindView(R.id.text_date)
     TextView textDate;
 
-    @Bind(R.id.edit_amount)
+    @BindView(R.id.edit_amount)
     EditText editAmount;
 
     @Override

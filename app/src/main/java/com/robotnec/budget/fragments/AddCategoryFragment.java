@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import com.robotnec.budget.R;
 import com.robotnec.budget.core.domain.Category;
@@ -21,13 +21,13 @@ import com.robotnec.budget.util.Keys;
 public class AddCategoryFragment extends BasePresenterFragment<AddCategoryPresenter>
         implements AddCategoryView {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.edit_category_name)
+    @BindView(R.id.edit_category_name)
     EditText editCategoryName;
 
-    @Bind(R.id.button_delete)
+    @BindView(R.id.button_delete)
     Button buttonDelete;
 
     public static AddCategoryFragment newInstance(Category category) {

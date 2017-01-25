@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.robotnec.budget.R;
 import com.robotnec.budget.core.domain.Category;
@@ -55,10 +55,10 @@ public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.V
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.text_category_name)
+        @BindView(R.id.text_category_name)
         TextView mTextName;
 
-        @Bind(R.id.image_icon)
+        @BindView(R.id.image_icon)
         ImageView mImageIcon;
 
         ViewHolder(View itemView) {

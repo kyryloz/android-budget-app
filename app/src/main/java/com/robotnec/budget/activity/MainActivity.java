@@ -9,7 +9,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import com.robotnec.budget.R;
 import com.robotnec.budget.core.mvp.presenter.MainPresenter;
 import com.robotnec.budget.core.mvp.view.MainView;
@@ -22,10 +24,10 @@ import com.robotnec.budget.fragments.TransactionsFragment;
 public class MainActivity extends BasePresenterActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, MainView {
 
-    @Bind(R.id.drawer_layout)
+    @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
-    @Bind(R.id.nav_view)
+    @BindView(R.id.nav_view)
     NavigationView navigationView;
 
     @Override

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.robotnec.budget.R;
 import com.robotnec.budget.core.domain.Account;
@@ -47,10 +47,10 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.text_name)
+        @BindView(R.id.text_name)
         TextView mTextName;
 
-        @Bind(R.id.text_amount)
+        @BindView(R.id.text_amount)
         TextView mTextAmount;
 
         ViewHolder(View itemView) {

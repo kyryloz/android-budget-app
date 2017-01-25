@@ -11,7 +11,7 @@ import android.view.View;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import com.robotnec.budget.R;
 import com.robotnec.budget.adapters.AccountsAdapter;
@@ -25,10 +25,10 @@ import com.robotnec.budget.navigator.AndroidNavigationBundle;
  */
 public class HomeFragment extends BasePresenterFragment<HomePresenter> implements HomeView {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.recycler_accounts)
+    @BindView(R.id.recycler_accounts)
     RecyclerView recyclerAccounts;
 
     private AccountsAdapter accountsAdapter;

@@ -11,7 +11,7 @@ import android.view.View;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import com.robotnec.budget.R;
 import com.robotnec.budget.adapters.TransactionsAdapter;
@@ -25,10 +25,10 @@ import com.robotnec.budget.navigator.AndroidNavigationBundle;
  */
 public class TransactionsFragment extends BasePresenterFragment<TransactionsPresenter> implements TransactionsView {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.recycler_transactions)
+    @BindView(R.id.recycler_transactions)
     RecyclerView recyclerTransactions;
 
     private TransactionsAdapter transactionsAdapter;

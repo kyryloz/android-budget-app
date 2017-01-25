@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import com.robotnec.budget.R;
 import com.robotnec.budget.core.domain.Account;
@@ -22,19 +22,19 @@ import com.robotnec.budget.util.Keys;
 public class AddAccountFragment extends BasePresenterFragment<AddAccountPresenter>
         implements AddAccountView {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.edit_account_name)
+    @BindView(R.id.edit_account_name)
     EditText editAccountName;
 
-    @Bind(R.id.edit_account_initial_amount)
+    @BindView(R.id.edit_account_initial_amount)
     EditText editAccountInitialAmount;
 
-    @Bind(R.id.spinner_currency)
+    @BindView(R.id.spinner_currency)
     Spinner spinnerAccountCurrency;
 
-    @Bind(R.id.button_delete)
+    @BindView(R.id.button_delete)
     Button buttonDelete;
 
     public static AddAccountFragment newInstance(Account account) {

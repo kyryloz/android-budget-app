@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import com.robotnec.budget.R;
 import com.robotnec.budget.core.mvp.presenter.AboutPresenter;
 import com.robotnec.budget.core.mvp.view.AboutView;
@@ -16,7 +16,7 @@ import com.robotnec.budget.core.mvp.view.AboutView;
  */
 public class AboutFragment extends BasePresenterFragment<AboutPresenter> implements AboutView {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     public static Fragment newInstance() {

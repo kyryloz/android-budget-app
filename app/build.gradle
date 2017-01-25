@@ -27,20 +27,29 @@ android {
 }
 
 ext {
-    supportLibVersion = '25.1.0'
+    supportLibVersion = "25.1.0"
+    butterknifeVersion = "8.5.1"
+    daggerVersion = "2.8"
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    testCompile "junit:junit:4.12"
 
-    compile "com.android.support:appcompat-v7:${supportLibVersion}"
-    compile "com.android.support:design:${supportLibVersion}"
-    compile "com.android.support:cardview-v7:${supportLibVersion}"
-    compile "com.android.support:support-v4:${supportLibVersion}"
+    // android support
+    compile "com.android.support:appcompat-v7:$supportLibVersion"
+    compile "com.android.support:design:$supportLibVersion"
+    compile "com.android.support:cardview-v7:$supportLibVersion"
+    compile "com.android.support:support-v4:$supportLibVersion"
 
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.google.dagger:dagger:2.8'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
+    // injection
+    compile "com.jakewharton:butterknife:$butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+    compile "com.google.dagger:dagger:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
-    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+    // utils
+    compile "com.annimon:stream:1.1.4"
+
+    // views
+    compile "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"
 }

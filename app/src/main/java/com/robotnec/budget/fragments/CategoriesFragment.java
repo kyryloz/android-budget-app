@@ -11,7 +11,7 @@ import android.view.View;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import com.robotnec.budget.R;
 import com.robotnec.budget.adapters.CategoriesAdapter;
@@ -26,10 +26,10 @@ import com.robotnec.budget.navigator.AndroidNavigationBundle;
 public class CategoriesFragment extends BasePresenterFragment<CategoriesPresenter>
         implements CategoriesView, CategoriesAdapter.CategoryClickListener {
 
-    @Bind(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @Bind(R.id.recycler_categories)
+    @BindView(R.id.recycler_categories)
     RecyclerView recyclerCategories;
 
     private CategoriesAdapter categoriesAdapter;

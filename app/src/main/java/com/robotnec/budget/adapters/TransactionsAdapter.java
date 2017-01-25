@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.Date;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.robotnec.budget.R;
 import com.robotnec.budget.core.domain.Transaction;
@@ -49,16 +49,16 @@ public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAd
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.text_amount)
+        @BindView(R.id.text_amount)
         TextView mTextAmount;
 
-        @Bind(R.id.text_from)
+        @BindView(R.id.text_from)
         TextView mTextFrom;
 
-        @Bind(R.id.text_where)
+        @BindView(R.id.text_where)
         TextView mTextWhere;
 
-        @Bind(R.id.text_date)
+        @BindView(R.id.text_date)
         TextView mTextDate;
 
         ViewHolder(View itemView) {
