@@ -7,7 +7,7 @@
     tools:context=".activity.AddTransactionActivity">
     <fragment
         android:id="@+id/fragment_add_transaction"
-        android:name="ua.com.zak.budgetswing.fragments.AddTransactionFragment"
+        android:name="com.robotnec.budget.fragments.AddTransactionFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </RelativeLayout>

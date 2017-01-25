@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="ua.com.zak.budgetswing"
+<manifest package="com.robotnec.budget"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:name=".BudgetApplication"
+        android:name="com.robotnec.budget.BudgetApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="false"
         android:theme="@style/Theme.Base.Budget">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.robotnec.budget.activity.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -20,24 +20,24 @@
         </activity>
 
         <service
-            android:name=".service.BudgetService"
+            android:name="com.robotnec.budget.service.BudgetService"
             android:enabled="true"
             android:exported="false">
         </service>
 
         <activity
-            android:name=".activity.AddTransactionActivity"
+            android:name="com.robotnec.budget.activity.AddTransactionActivity"
             android:label="@string/add_transaction_label"
-            android:parentActivityName=".activity.MainActivity">
+            android:parentActivityName="com.robotnec.budget.activity.MainActivity">
         </activity>
 
         <activity
-            android:name=".activity.AddCategoryActivity"
+            android:name="com.robotnec.budget.activity.AddCategoryActivity"
             android:label="@null">
         </activity>
 
         <activity
-            android:name=".activity.AddAccountActivity"
+            android:name="com.robotnec.budget.activity.AddAccountActivity"
             android:label="@null">
         </activity>
 

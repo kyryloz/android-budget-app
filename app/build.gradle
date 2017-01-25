@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        applicationId "ua.com.zak.budgetswing"
+        applicationId "com.robotnec.budgetswing"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
