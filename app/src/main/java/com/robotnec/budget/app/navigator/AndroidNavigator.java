@@ -1,5 +1,6 @@
 package com.robotnec.budget.app.navigator;
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.robotnec.budget.app.activity.AddAccountActivity;
 import com.robotnec.budget.app.activity.AddCategoryActivity;
 import com.robotnec.budget.app.activity.AddTransactionActivity;
+import com.robotnec.budget.app.activity.CategoryActivity;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.navigator.NavigationBundle;
@@ -53,6 +55,16 @@ public class AndroidNavigator implements Navigator {
 
         Intent intent = new Intent(activity, AddAccountActivity.class);
         intent.putExtra(Keys.ACCOUNT, account);
+
+        activity.startActivity(
+                intent,
+                ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
+    }
+
+    @Override
+    public void openCategory(Activity activity, Category category) {
+        Intent intent = new Intent(activity, CategoryActivity.class);
+        intent.putExtra(Keys.CATEGORY, category);
 
         activity.startActivity(
                 intent,

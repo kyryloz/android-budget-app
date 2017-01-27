@@ -67,9 +67,10 @@ public class CategoriesFragment extends BasePresenterFragment<CategoriesPresente
 
     @Override
     public void onCategoryClick(Category category) {
-        AndroidNavigationBundle navigationBundle = new AndroidNavigationBundle((AppCompatActivity) getActivity());
-        navigationBundle.setSerializableExtra(category);
-        presenter.addOrUpdateCategory(navigationBundle);
+//        AndroidNavigationBundle navigationBundle = new AndroidNavigationBundle((AppCompatActivity) getActivity());
+//        navigationBundle.setSerializableExtra(category);
+//        presenter.addOrUpdateCategory(navigationBundle);
+        presenter.showCategory(getActivity(), category);
     }
 
     private void initRecyclerView() {
