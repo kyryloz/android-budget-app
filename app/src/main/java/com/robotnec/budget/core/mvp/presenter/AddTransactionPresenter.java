@@ -47,15 +47,15 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     public void onViewReady() {
         dateFormat = DateFormat.getDateInstance();
         String format = dateFormat.format(Calendar.getInstance().getTime());
-        mView.initDatePickerButton(format);
+        view.initDatePickerButton(format);
 
         List<Account> allAccounts = accountDao.getAllAccounts();
         targetAccount = allAccounts.get(0);
-        mView.displayAccount(targetAccount);
+        view.displayAccount(targetAccount);
 
         List<Category> allCategories = categoryDao.getAllCategories();
         targetCategory = allCategories.get(0);
-        mView.displayCategory(targetCategory);
+        view.displayCategory(targetCategory);
     }
 
     @Override
@@ -68,20 +68,20 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     }
 
     public void changeAccount() {
-        mView.showAccountsChooserDialog(accountDao.getAllAccounts());
+        view.showAccountsChooserDialog(accountDao.getAllAccounts());
     }
 
     public void changeCategory() {
-        mView.showCategoryChooserDialog(categoryDao.getAllCategories());
+        view.showCategoryChooserDialog(categoryDao.getAllCategories());
     }
 
     public void setChosenDate(Calendar calendar) {
         resultDate = calendar;
-        mView.showChosenDate(dateFormat.format(calendar.getTime()));
+        view.showChosenDate(dateFormat.format(calendar.getTime()));
     }
 
     public void changeDate() {
-        mView.showDateChooserDialog(resultDate);
+        view.showDateChooserDialog(resultDate);
     }
 
     public void submit(Long amount) {
@@ -99,16 +99,16 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
                 .build();
         transactionDao.addTransaction(transaction);
 
-        mView.finish();
+        view.finish();
     }
 
     public void pickAccount(Account account) {
         targetAccount = account;
-        mView.displayAccount(targetAccount);
+        view.displayAccount(targetAccount);
     }
 
     public void pickCategory(Category category) {
         targetCategory = category;
-        mView.displayCategory(category);
+        view.displayCategory(category);
     }
 }

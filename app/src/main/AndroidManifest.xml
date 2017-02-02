@@ -41,6 +41,11 @@
             android:label="@null">
         </activity>
 
+        <activity
+            android:name=".app.activity.CategoryOverviewActivity"
+            android:label="@null">
+        </activity>
+
     </application>
 
 </manifest>

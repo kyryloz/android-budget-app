@@ -9,10 +9,10 @@ import com.robotnec.budget.core.mvp.view.View;
  */
 public abstract class Presenter<V extends View> {
 
-    final V mView;
+    final V view;
 
     public Presenter(V view) {
-        mView = view;
+        this.view = view;
     }
 
     public abstract void injectComponent(ApplicationComponent applicationComponent);

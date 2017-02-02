@@ -9,6 +9,7 @@ import com.robotnec.budget.core.mvp.presenter.AddAccountPresenter;
 import com.robotnec.budget.core.mvp.presenter.AddCategoryPresenter;
 import com.robotnec.budget.core.mvp.presenter.AddTransactionPresenter;
 import com.robotnec.budget.core.mvp.presenter.CategoriesPresenter;
+import com.robotnec.budget.core.mvp.presenter.CategoryOverviewPresenter;
 import com.robotnec.budget.core.mvp.presenter.HomePresenter;
 import com.robotnec.budget.core.mvp.presenter.MainPresenter;
 import com.robotnec.budget.core.mvp.presenter.TransactionsPresenter;
@@ -41,4 +42,6 @@ public interface ApplicationComponent {
     void inject(AddCategoryPresenter addCategoryPresenter);
 
     void inject(AddAccountPresenter addAccountPresenter);
+
+    void inject(CategoryOverviewPresenter categoryOverviewPresenter);
 }

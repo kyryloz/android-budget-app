@@ -3,6 +3,8 @@ package com.robotnec.budget.core.dao.factory;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.dao.CategoryDao;
 import com.robotnec.budget.core.dao.TransactionDao;
@@ -38,5 +40,12 @@ class SimpleTransactionDao implements TransactionDao {
         transactions.add(transaction);
 
         return true;
+    }
+
+    @Override
+    public List<Transaction> getTransactionsForCategory(long categoryId) {
+        return Stream.of(transactions)
+                .filter(t -> t.getCategory().getId() == categoryId)
+                .collect(Collectors.toList());
     }
 }

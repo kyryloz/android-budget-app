@@ -29,7 +29,7 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
     @Override
     public void onViewReady() {
         List<Transaction> transactions = transactionDao.getAllTransactions();
-        mView.displayTransactions(transactions);
+        view.displayTransactions(transactions);
     }
 
     @Override

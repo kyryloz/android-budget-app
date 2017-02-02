@@ -11,4 +11,6 @@ public interface TransactionDao {
     List<Transaction> getAllTransactions();
 
     boolean addTransaction(Transaction transaction);
+
+    List<Transaction> getTransactionsForCategory(long categoryId);
 }

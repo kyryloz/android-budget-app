@@ -29,7 +29,7 @@ public class HomePresenter extends Presenter<HomeView> {
     @Override
     public void onViewReady() {
         List<Account> accounts = accountDao.getAllAccounts();
-        mView.displayAccounts(accounts);
+        view.displayAccounts(accounts);
     }
 
     @Override

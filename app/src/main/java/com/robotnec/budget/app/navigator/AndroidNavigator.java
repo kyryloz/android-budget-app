@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.robotnec.budget.app.activity.AddAccountActivity;
 import com.robotnec.budget.app.activity.AddCategoryActivity;
 import com.robotnec.budget.app.activity.AddTransactionActivity;
-import com.robotnec.budget.app.activity.CategoryActivity;
+import com.robotnec.budget.app.activity.CategoryOverviewActivity;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.navigator.NavigationBundle;
@@ -63,7 +63,7 @@ public class AndroidNavigator implements Navigator {
 
     @Override
     public void openCategory(Activity activity, Category category) {
-        Intent intent = new Intent(activity, CategoryActivity.class);
+        Intent intent = new Intent(activity, CategoryOverviewActivity.class);
         intent.putExtra(Keys.CATEGORY, category);
 
         activity.startActivity(
