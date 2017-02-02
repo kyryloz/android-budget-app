@@ -37,6 +37,7 @@ public class SimpleTransactionDao implements TransactionDao {
     public boolean addTransaction(Transaction transaction) {
         Account account = transaction.getAccount();
         account.setAmount(account.getAmount().add(new BigDecimal(transaction.getAmount())));
+        accountDao.updateAccount(account);
 
         transactions.add(transaction);
 

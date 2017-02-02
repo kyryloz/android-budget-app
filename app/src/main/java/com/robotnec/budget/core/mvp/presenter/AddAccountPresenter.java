@@ -38,15 +38,15 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
         }
     }
 
-    public void addOrEditAccount(String accountName, String accountInitialAmount, String accountCurrency) {
+    public void addOrEditAccount(String accountName, String accountAmount, String accountCurrency) {
         if (editMode) {
             account.setName(accountName);
-            account.setAmount(new BigDecimal(accountInitialAmount));
+            account.setAmount(new BigDecimal(accountAmount));
             accountDao.updateAccount(account);
         } else {
             Account account = new Account();
             account.setName(accountName);
-            account.setAmount(new BigDecimal(accountInitialAmount));
+            account.setAmount(new BigDecimal(accountAmount));
             account.setCurrencyId(1);
             accountDao.addAccount(account);
         }
