@@ -1,5 +1,6 @@
 package com.robotnec.budget.core.dao.factory;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import com.robotnec.budget.core.domain.Transaction;
 /**
  * @author zak <zak@swingpulse.com>
  */
-class SimpleTransactionDao implements TransactionDao {
+public class SimpleTransactionDao implements TransactionDao {
 
     private final AccountDao accountDao;
     private final CategoryDao categoryDao;
@@ -35,7 +36,7 @@ class SimpleTransactionDao implements TransactionDao {
     @Override
     public boolean addTransaction(Transaction transaction) {
         Account account = transaction.getAccount();
-        account.setAmount(account.getAmount() + transaction.getAmount());
+        account.setAmount(account.getAmount().add(new BigDecimal(transaction.getAmount())));
 
         transactions.add(transaction);
 

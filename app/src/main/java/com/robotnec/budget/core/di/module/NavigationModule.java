@@ -1,4 +1,4 @@
-package com.robotnec.budget.core.di;
+package com.robotnec.budget.core.di.module;
 
 import javax.inject.Singleton;
 

@@ -3,6 +3,10 @@ package com.robotnec.budget.core.di;
 import javax.inject.Singleton;
 
 import dagger.Component;
+
+import com.robotnec.budget.core.di.module.AndroidModule;
+import com.robotnec.budget.core.di.module.DaoModule;
+import com.robotnec.budget.core.di.module.NavigationModule;
 import com.robotnec.budget.core.mvp.presenter.AboutPresenter;
 import com.robotnec.budget.core.mvp.presenter.AccountsPresenter;
 import com.robotnec.budget.core.mvp.presenter.AddAccountPresenter;
@@ -21,7 +25,8 @@ import com.robotnec.budget.core.mvp.presenter.TransactionsPresenter;
 @Component(
         modules = {
                 DaoModule.class,
-                NavigationModule.class
+                NavigationModule.class,
+                AndroidModule.class
         }
 )
 public interface ApplicationComponent {

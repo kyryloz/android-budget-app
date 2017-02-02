@@ -1,6 +1,11 @@
 package com.robotnec.budget.core.di;
 
-import com.robotnec.budget.core.dao.factory.DaoFactory;
+import android.content.Context;
+
+import com.robotnec.budget.app.persistence.BudgetDatabase;
+import com.robotnec.budget.core.di.module.AndroidModule;
+import com.robotnec.budget.core.di.module.DaoModule;
+import com.robotnec.budget.core.di.module.NavigationModule;
 import com.robotnec.budget.core.navigator.Navigator;
 
 /**
@@ -10,10 +15,12 @@ public class ApplicationGraph {
 
     private final ApplicationComponent applicationComponent;
 
-    public ApplicationGraph(DaoFactory daoFactory, Navigator navigator) {
+    public ApplicationGraph(Navigator navigator,
+                            Context context) {
         applicationComponent = DaggerApplicationComponent.builder()
-                .daoModule(new DaoModule(daoFactory))
+                .daoModule(new DaoModule(new BudgetDatabase(context)))
                 .navigationModule(new NavigationModule(navigator))
+                .androidModule(new AndroidModule(context))
                 .build();
     }
 

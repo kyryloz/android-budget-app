@@ -173,7 +173,7 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
         textAccountAmount.setText(getString(
                 R.string.accounts_amount_format,
                 account.getAmount(),
-                account.getCurrencyCode()));
+                account.getCurrencyId() + "id"));
     }
 
     @Override

@@ -6,10 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import com.robotnec.budget.R;
 import com.robotnec.budget.core.domain.Account;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -34,8 +35,8 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
         Account account = items.get(position);
         holder.mTextName.setText(account.getName());
         String amountStr = context.getString(R.string.accounts_amount_format,
-                account.getAmount(),
-                account.getCurrencyCode());
+                account.getAmount().toPlainString(),
+                account.getCurrencyId() + "id");
         holder.mTextAmount.setText(amountStr);
 
         holder.itemView.setOnClickListener(v -> {

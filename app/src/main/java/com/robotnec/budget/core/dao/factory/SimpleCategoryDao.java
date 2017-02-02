@@ -9,7 +9,7 @@ import com.robotnec.budget.core.domain.Category;
 /**
  * @author zak <zak@swingpulse.com>
  */
-class SimpleCategoryDao implements CategoryDao {
+public class SimpleCategoryDao implements CategoryDao {
 
     private final List<Category> categories;
 

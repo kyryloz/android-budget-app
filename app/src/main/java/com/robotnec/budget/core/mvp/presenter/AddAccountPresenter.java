@@ -7,6 +7,8 @@ import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.mvp.view.AddAccountView;
 
+import java.math.BigDecimal;
+
 /**
  * @author zak <zak@swingpulse.com>
  */
@@ -39,13 +41,13 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
     public void addOrEditAccount(String accountName, String accountInitialAmount, String accountCurrency) {
         if (editMode) {
             account.setName(accountName);
-            account.setAmount(Integer.valueOf(accountInitialAmount));
+            account.setAmount(new BigDecimal(accountInitialAmount));
             accountDao.updateAccount(account);
         } else {
             Account account = new Account();
             account.setName(accountName);
-            account.setAmount(Integer.valueOf(accountInitialAmount));
-            account.setCurrencyCode(accountCurrency);
+            account.setAmount(new BigDecimal(accountInitialAmount));
+            account.setCurrencyId(1);
             accountDao.addAccount(account);
         }
     }

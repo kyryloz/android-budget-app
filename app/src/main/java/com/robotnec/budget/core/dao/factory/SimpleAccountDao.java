@@ -1,12 +1,13 @@
 package com.robotnec.budget.core.dao.factory;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.domain.Account;
 
-class SimpleAccountDao implements AccountDao {
+public class SimpleAccountDao implements AccountDao {
 
     private final List<Account> accounts;
 
@@ -14,14 +15,14 @@ class SimpleAccountDao implements AccountDao {
         accounts = new ArrayList<>();
         Account accountCash = new Account();
         accountCash.setId(1);
-        accountCash.setAmount(2000);
-        accountCash.setCurrencyCode("UAH");
+        accountCash.setAmount(new BigDecimal(20000));
+        accountCash.setCurrencyId(1);
         accountCash.setName("My Cash");
 
         Account accountBank = new Account();
         accountBank.setId(2);
-        accountBank.setAmount(12000);
-        accountBank.setCurrencyCode("USD");
+        accountBank.setAmount(new BigDecimal(10000));
+        accountBank.setCurrencyId(1);
         accountBank.setName("Bank");
 
         accounts.add(accountCash);
