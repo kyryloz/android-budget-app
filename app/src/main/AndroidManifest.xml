@@ -27,7 +27,8 @@
         <activity
             android:name=".app.activity.AddTransactionActivity"
             android:label="@string/add_transaction_label"
-            android:parentActivityName=".app.activity.MainActivity">
+            android:parentActivityName=".app.activity.MainActivity"
+            android:windowSoftInputMode="stateAlwaysVisible">
         </activity>
 
         <activity

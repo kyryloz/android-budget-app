@@ -1,12 +1,15 @@
 package com.robotnec.budget.app.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -81,9 +84,14 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_done:
-                presenter.submit(Long.valueOf(editAmount.getText().toString()));
-                getActivity().finish();
-                return true;
+                String value = editAmount.getText().toString();
+                if (!TextUtils.isEmpty(value)) {
+                    presenter.submit(Long.valueOf(value));
+                    getActivity().finish();
+                    return true;
+                } else {
+                    return false;
+                }
         }
 
         return super.onOptionsItemSelected(item);
