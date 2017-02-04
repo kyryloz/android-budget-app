@@ -1,14 +1,12 @@
 package com.robotnec.budget.app.persistence;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
 import com.robotnec.budget.app.persistence.schema.AccountRecord;
+import com.robotnec.budget.app.util.Mapper;
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.domain.Account;
 import com.yahoo.squidb.data.SquidCursor;
 import com.yahoo.squidb.sql.Query;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,16 +33,7 @@ public class SquidbAccountDao implements AccountDao {
                     record.readPropertiesFromCursor(cursor);
                     result.add(record);
                 } while (cursor.moveToNext());
-                return Stream.of(result)
-                        .map(r -> {
-                            Account account = new Account();
-                            account.setAmount(new BigDecimal(r.getAmount()));
-                            account.setCurrencyId(r.getCurrencyId());
-                            account.setName(r.getName());
-                            account.setId(r.getId());
-                            return account;
-                        })
-                        .collect(Collectors.toList());
+                return Mapper.fromRecords(result);
             }
         } finally {
             cursor.close();
@@ -54,11 +43,7 @@ public class SquidbAccountDao implements AccountDao {
 
     @Override
     public boolean addAccount(Account account) {
-        return database.persist(new AccountRecord()
-                .setAmount(account.getAmount().toPlainString())
-                .setCurrencyId(account.getCurrencyId())
-                .setName(account.getName())
-                .setId(account.getId()));
+        return database.persist(Mapper.toRecord(account));
     }
 
     @Override
@@ -74,11 +59,6 @@ public class SquidbAccountDao implements AccountDao {
     @Override
     public Account findById(long accountId) {
         AccountRecord r = database.fetchByCriterion(AccountRecord.class, AccountRecord.ID.eq(accountId));
-        Account account = new Account();
-        account.setAmount(new BigDecimal(r.getAmount()));
-        account.setCurrencyId(r.getCurrencyId());
-        account.setName(r.getName());
-        account.setId(r.getId());
-        return account;
+        return Mapper.fromRecord(r);
     }
 }
