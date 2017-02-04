@@ -33,7 +33,7 @@ public class SquidbAccountDao implements AccountDao {
                     record.readPropertiesFromCursor(cursor);
                     result.add(record);
                 } while (cursor.moveToNext());
-                return Mapper.fromRecords(result);
+                return Mapper.fromAccountRecords(result);
             }
         } finally {
             cursor.close();
