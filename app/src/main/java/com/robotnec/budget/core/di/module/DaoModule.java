@@ -2,11 +2,11 @@ package com.robotnec.budget.core.di.module;
 
 import com.robotnec.budget.app.persistence.BudgetDatabase;
 import com.robotnec.budget.app.persistence.SquidbAccountDao;
+import com.robotnec.budget.app.persistence.SquidbCategoryDao;
+import com.robotnec.budget.app.persistence.SquidbTransactionDao;
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.dao.CategoryDao;
 import com.robotnec.budget.core.dao.TransactionDao;
-import com.robotnec.budget.core.dao.factory.SimpleCategoryDao;
-import com.robotnec.budget.core.dao.factory.SimpleTransactionDao;
 
 import javax.inject.Singleton;
 
@@ -34,12 +34,12 @@ public class DaoModule {
     @Singleton
     @Provides
     public CategoryDao provideCategoryDao() {
-        return new SimpleCategoryDao();
+        return new SquidbCategoryDao(database);
     }
 
     @Singleton
     @Provides
     public TransactionDao provideTransactionDao(AccountDao accountDao, CategoryDao categoryDao) {
-        return new SimpleTransactionDao(accountDao, categoryDao);
+        return new SquidbTransactionDao(database, accountDao, categoryDao);
     }
 }

@@ -3,6 +3,8 @@ package com.robotnec.budget.app.persistence;
 import android.content.Context;
 
 import com.robotnec.budget.app.persistence.schema.AccountRecord;
+import com.robotnec.budget.app.persistence.schema.CategoryRecord;
+import com.robotnec.budget.app.persistence.schema.TransactionRecord;
 import com.yahoo.squidb.android.AndroidOpenHelper;
 import com.yahoo.squidb.data.ISQLiteDatabase;
 import com.yahoo.squidb.data.ISQLiteOpenHelper;
@@ -39,12 +41,20 @@ public class BudgetDatabase extends SquidDatabase {
     protected Table[] getTables() {
         return new Table[]{
                 AccountRecord.TABLE,
+                CategoryRecord.TABLE,
+                TransactionRecord.TABLE
         };
     }
 
     @Override
     protected boolean onUpgrade(ISQLiteDatabase db, int oldVersion, int newVersion) {
         return false;
+    }
+
+    @Override
+    protected void onConfigure(ISQLiteDatabase db) {
+        super.onConfigure(db);
+        db.setForeignKeyConstraintsEnabled(true);
     }
 
     @Override

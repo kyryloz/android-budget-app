@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -35,13 +36,13 @@ public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Transaction transaction = items.get(position);
-        long amount = transaction.getAmount();
-        String currency = transaction.getCurrency();
+        String amount = transaction.getAmount().abs().toPlainString();
+        String currency = transaction.getCurrency().getName();
         String textFrom = transaction.getAccount().getName();
         String textWhere = transaction.getCategory().getName();
         String textDate = dateFormat.format(new Date(transaction.getDate()));
 
-        holder.mTextAmount.setText(String.valueOf(Math.abs(amount)) + " " + currency);
+        holder.mTextAmount.setText(amount + " " + currency);
         holder.mTextFrom.setText(textFrom);
         holder.mTextWhere.setText(textWhere);
         holder.mTextDate.setText(textDate);

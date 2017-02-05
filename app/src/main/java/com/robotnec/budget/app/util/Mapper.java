@@ -2,10 +2,14 @@ package com.robotnec.budget.app.util;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.annimon.stream.function.Function;
 import com.robotnec.budget.app.persistence.schema.AccountRecord;
 import com.robotnec.budget.app.persistence.schema.CategoryRecord;
+import com.robotnec.budget.app.persistence.schema.TransactionRecord;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
+import com.robotnec.budget.core.domain.Currency;
+import com.robotnec.budget.core.domain.Transaction;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -56,5 +60,38 @@ public final class Mapper {
         return new CategoryRecord()
                 .setName(category.getName())
                 .setId(category.getId());
+    }
+
+    public static List<Transaction> fromTransactionRecords(List<TransactionRecord> records,
+                                                           Function<Long, Account> accountMapper,
+                                                           Function<Long, Category> categoryMapper,
+                                                           Function<Long, Currency> currencyMapper) {
+        return Stream.of(records)
+                .map((record) -> fromRecord(record, accountMapper, categoryMapper, currencyMapper))
+                .collect(Collectors.toList());
+    }
+
+    public static Transaction fromRecord(TransactionRecord record,
+                                         Function<Long, Account> accountMapper,
+                                         Function<Long, Category> categoryMapper,
+                                         Function<Long, Currency> currencyMapper) {
+        Transaction transaction = new Transaction();
+        transaction.setAmount(new BigDecimal(record.getAmount()));
+        transaction.setAccount(accountMapper.apply(record.getAccountId()));
+        transaction.setCategory(categoryMapper.apply(record.getCategoryId()));
+        transaction.setCurrency(currencyMapper.apply(record.getCurrencyId()));
+        transaction.setId(record.getId());
+        transaction.setDate(record.getDate());
+        return transaction;
+    }
+
+    public static TransactionRecord toRecord(Transaction transaction) {
+        return new TransactionRecord()
+                .setId(transaction.getId())
+                .setAccountId(transaction.getAccount().getId())
+                .setCategoryId(transaction.getCategory().getId())
+                .setAmount(transaction.getAmount().toPlainString())
+                .setCurrencyId(transaction.getCurrency().getId())
+                .setDate(transaction.getDate());
     }
 }

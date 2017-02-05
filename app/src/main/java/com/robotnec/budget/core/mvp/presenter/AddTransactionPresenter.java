@@ -1,19 +1,21 @@
 package com.robotnec.budget.core.mvp.presenter;
 
-import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.List;
-
-import javax.inject.Inject;
-
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.dao.CategoryDao;
 import com.robotnec.budget.core.dao.TransactionDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
+import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.Transaction;
 import com.robotnec.budget.core.mvp.view.AddTransactionView;
+
+import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -89,14 +91,12 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
             nowDate.add(Calendar.DAY_OF_YEAR, -1);
             resultDate = nowDate;
         }
-
-        Transaction transaction = new Transaction.Builder()
-                .setAccount(targetAccount)
-                .setAmount(-amount)
-                .setCurrency("UAH") // TODO hardcoded currency
-                .setDate(resultDate.getTimeInMillis())
-                .setCategory(targetCategory)
-                .build();
+        Transaction transaction = new Transaction();
+        transaction.setAccount(targetAccount);
+        transaction.setAmount(new BigDecimal(-amount));
+        transaction.setCurrency(new Currency("UAH"));
+        transaction.setDate(resultDate.getTimeInMillis());
+        transaction.setCategory(targetCategory);
         transactionDao.addTransaction(transaction);
 
         view.finish();

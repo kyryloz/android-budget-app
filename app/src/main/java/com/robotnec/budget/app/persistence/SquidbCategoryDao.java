@@ -24,6 +24,12 @@ public class SquidbCategoryDao implements CategoryDao {
     }
 
     @Override
+    public Category findById(long id) {
+        CategoryRecord record = database.fetchByQuery(CategoryRecord.class, Query.select());
+        return Mapper.fromRecord(record);
+    }
+
+    @Override
     public List<Category> getAllCategories() {
         SquidCursor<CategoryRecord> cursor = database.query(CategoryRecord.class, Query.select());
         try {
