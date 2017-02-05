@@ -55,7 +55,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         targetAccount = allAccounts.get(0);
         view.displayAccount(targetAccount);
 
-        List<Category> allCategories = categoryDao.getAllCategories();
+        List<Category> allCategories = categoryDao.getAll();
         targetCategory = allCategories.get(0);
         view.displayCategory(targetCategory);
     }
@@ -74,7 +74,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     }
 
     public void changeCategory() {
-        view.showCategoryChooserDialog(categoryDao.getAllCategories());
+        view.showCategoryChooserDialog(categoryDao.getAll());
     }
 
     public void setChosenDate(Calendar calendar) {
@@ -97,7 +97,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         transaction.setCurrency(new Currency("UAH"));
         transaction.setDate(resultDate.getTimeInMillis());
         transaction.setCategory(targetCategory);
-        transactionDao.addTransaction(transaction);
+        transactionDao.createOrUpdate(transaction);
 
         view.finish();
     }

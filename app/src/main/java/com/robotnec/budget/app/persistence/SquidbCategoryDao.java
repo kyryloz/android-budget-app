@@ -5,6 +5,7 @@ import com.robotnec.budget.app.util.Mapper;
 import com.robotnec.budget.core.dao.CategoryDao;
 import com.robotnec.budget.core.domain.Category;
 import com.yahoo.squidb.data.SquidCursor;
+import com.yahoo.squidb.sql.Property;
 import com.yahoo.squidb.sql.Query;
 
 import java.util.ArrayList;
@@ -15,12 +16,10 @@ import java.util.List;
  * @author zak <zak@swingpulse.com>
  */
 
-public class SquidbCategoryDao implements CategoryDao {
-
-    private final BudgetDatabase database;
+public class SquidbCategoryDao extends SquidbDaoTemplate<Category, CategoryRecord> implements CategoryDao {
 
     public SquidbCategoryDao(BudgetDatabase database) {
-        this.database = database;
+        super(database);
     }
 
     @Override
@@ -30,36 +29,34 @@ public class SquidbCategoryDao implements CategoryDao {
     }
 
     @Override
-    public List<Category> getAllCategories() {
-        SquidCursor<CategoryRecord> cursor = database.query(CategoryRecord.class, Query.select());
-        try {
-            if (cursor.moveToFirst()) {
-                List<CategoryRecord> result = new ArrayList<>();
-                do {
-                    CategoryRecord record = new CategoryRecord();
-                    record.readPropertiesFromCursor(cursor);
-                    result.add(record);
-                } while (cursor.moveToNext());
-                return Mapper.fromCategoryRecords(result);
-            }
-        } finally {
-            cursor.close();
-        }
-        return Collections.emptyList();
+    CategoryRecord fromCursor(SquidCursor<CategoryRecord> cursor) {
+        CategoryRecord record = new CategoryRecord();
+        record.readPropertiesFromCursor(cursor);
+        return record;
     }
 
     @Override
-    public boolean addCategory(Category category) {
-        return database.persist(Mapper.toRecord(category));
+    Class<CategoryRecord> getRecordClass() {
+        return CategoryRecord.class;
     }
 
     @Override
-    public void updateCategory(Category category) {
-        addCategory(category);
+    List<Category> map(List<CategoryRecord> tableModels) {
+        return Mapper.fromCategoryRecords(tableModels);
     }
 
     @Override
-    public boolean removeCategory(long id) {
-        return database.deleteWhere(CategoryRecord.class, CategoryRecord.ID.eq(id)) != 0;
+    CategoryRecord map(Category item) {
+        return Mapper.toRecord(item);
+    }
+
+    @Override
+    Category map(CategoryRecord record) {
+        return Mapper.fromRecord(record);
+    }
+
+    @Override
+    Property.LongProperty getIdProperty() {
+        return CategoryRecord.ID;
     }
 }

@@ -28,7 +28,7 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
 
     @Override
     public void onViewReady() {
-        List<Transaction> transactions = transactionDao.getAllTransactions();
+        List<Transaction> transactions = transactionDao.getAll();
         view.displayTransactions(transactions);
     }
 

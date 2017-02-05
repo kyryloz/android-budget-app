@@ -9,6 +9,7 @@ import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.Transaction;
 import com.yahoo.squidb.data.SquidCursor;
+import com.yahoo.squidb.sql.Property;
 import com.yahoo.squidb.sql.Query;
 
 import java.util.ArrayList;
@@ -19,27 +20,22 @@ import java.util.List;
  * @author zak <zak@swingpulse.com>
  */
 
-public class SquidbTransactionDao implements TransactionDao {
+public class SquidbTransactionDao extends SquidbDaoTemplate<Transaction, TransactionRecord>
+        implements TransactionDao {
 
-    private final BudgetDatabase database;
     private final AccountDao accountDao;
     private final CategoryDao categoryDao;
 
     public SquidbTransactionDao(BudgetDatabase database,
                                 AccountDao accountDao,
                                 CategoryDao categoryDao) {
-        this.database = database;
+        super(database);
         this.accountDao = accountDao;
         this.categoryDao = categoryDao;
     }
 
     @Override
-    public List<Transaction> getAllTransactions() {
-        return getTransactionsByQuery(Query.select());
-    }
-
-    @Override
-    public boolean addTransaction(Transaction transaction) {
+    public boolean createOrUpdate(Transaction transaction) {
         boolean success = false;
         database.beginTransaction();
         try {
@@ -58,27 +54,56 @@ public class SquidbTransactionDao implements TransactionDao {
     @Override
     public List<Transaction> getTransactionsForCategory(long categoryId) {
         Query query = Query.select().where(TransactionRecord.CATEGORY_ID.eq(categoryId));
-        return getTransactionsByQuery(query);
-    }
-
-    private List<Transaction> getTransactionsByQuery(Query query) {
         SquidCursor<TransactionRecord> cursor = database.query(TransactionRecord.class, query);
         try {
             if (cursor.moveToFirst()) {
                 List<TransactionRecord> result = new ArrayList<>();
                 do {
-                    TransactionRecord record = new TransactionRecord();
-                    record.readPropertiesFromCursor(cursor);
-                    result.add(record);
+                    result.add(fromCursor(cursor));
                 } while (cursor.moveToNext());
-                return Mapper.fromTransactionRecords(result,
-                        accountDao::findById,
-                        categoryDao::findById,
-                        id -> new Currency("UAH"));
+                return map(result);
             }
         } finally {
             cursor.close();
         }
         return Collections.emptyList();
+    }
+
+    @Override
+    TransactionRecord fromCursor(SquidCursor<TransactionRecord> cursor) {
+        TransactionRecord record = new TransactionRecord();
+        record.readPropertiesFromCursor(cursor);
+        return record;
+    }
+
+    @Override
+    Class<TransactionRecord> getRecordClass() {
+        return TransactionRecord.class;
+    }
+
+    @Override
+    List<Transaction> map(List<TransactionRecord> tableModels) {
+        return Mapper.fromTransactionRecords(tableModels,
+                accountDao::findById,
+                categoryDao::findById,
+                id -> new Currency("UAH"));
+    }
+
+    @Override
+    TransactionRecord map(Transaction item) {
+        return Mapper.toRecord(item);
+    }
+
+    @Override
+    Transaction map(TransactionRecord record) {
+        return Mapper.fromRecord(record,
+                accountDao::findById,
+                categoryDao::findById,
+                id -> new Currency("UAH"));
+    }
+
+    @Override
+    Property.LongProperty getIdProperty() {
+        return TransactionRecord.ID;
     }
 }

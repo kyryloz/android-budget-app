@@ -1,16 +1,12 @@
 package com.robotnec.budget.core.dao;
 
-import java.util.List;
-
 import com.robotnec.budget.core.domain.Transaction;
+
+import java.util.List;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-public interface TransactionDao {
-    List<Transaction> getAllTransactions();
-
-    boolean addTransaction(Transaction transaction);
-
+public interface TransactionDao extends BaseDao<Transaction> {
     List<Transaction> getTransactionsForCategory(long categoryId);
 }

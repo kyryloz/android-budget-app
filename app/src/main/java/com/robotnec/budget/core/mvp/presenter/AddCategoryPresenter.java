@@ -39,16 +39,16 @@ public class AddCategoryPresenter extends Presenter<AddCategoryView> {
     public void addOrEditCategory(String categoryName) {
         if (editMode) {
             category.setName(categoryName);
-            categoryDao.updateCategory(category);
+            categoryDao.createOrUpdate(category);
         } else {
             Category category = new Category();
             category.setName(categoryName);
-            categoryDao.addCategory(category);
+            categoryDao.createOrUpdate(category);
         }
     }
 
     public void deleteCategory() {
-        categoryDao.removeCategory(category.getId());
+        categoryDao.remove(category.getId());
         view.closeView();
     }
 }
