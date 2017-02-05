@@ -51,7 +51,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         String format = dateFormat.format(Calendar.getInstance().getTime());
         view.initDatePickerButton(format);
 
-        List<Account> allAccounts = accountDao.getAllAccounts();
+        List<Account> allAccounts = accountDao.getAll();
         targetAccount = allAccounts.get(0);
         view.displayAccount(targetAccount);
 
@@ -70,7 +70,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     }
 
     public void changeAccount() {
-        view.showAccountsChooserDialog(accountDao.getAllAccounts());
+        view.showAccountsChooserDialog(accountDao.getAll());
     }
 
     public void changeCategory() {

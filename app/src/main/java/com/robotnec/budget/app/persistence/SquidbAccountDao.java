@@ -5,60 +5,48 @@ import com.robotnec.budget.app.util.Mapper;
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.domain.Account;
 import com.yahoo.squidb.data.SquidCursor;
-import com.yahoo.squidb.sql.Query;
+import com.yahoo.squidb.sql.Property;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class SquidbAccountDao implements AccountDao {
-
-    private final BudgetDatabase database;
+public class SquidbAccountDao extends SquidbDaoTemplate<Account, AccountRecord> implements AccountDao {
 
     public SquidbAccountDao(BudgetDatabase database) {
-        this.database = database;
+        super(database);
     }
 
     @Override
-    public List<Account> getAllAccounts() {
-        SquidCursor<AccountRecord> cursor = database.query(AccountRecord.class, Query.select());
-        try {
-            if (cursor.moveToFirst()) {
-                List<AccountRecord> result = new ArrayList<>();
-                do {
-                    AccountRecord record = new AccountRecord();
-                    record.readPropertiesFromCursor(cursor);
-                    result.add(record);
-                } while (cursor.moveToNext());
-                return Mapper.fromAccountRecords(result);
-            }
-        } finally {
-            cursor.close();
-        }
-        return Collections.emptyList();
+    AccountRecord fromCursor(SquidCursor cursor) {
+        AccountRecord record = new AccountRecord();
+        record.readPropertiesFromCursor(cursor);
+        return record;
     }
 
     @Override
-    public boolean addAccount(Account account) {
-        return database.persist(Mapper.toRecord(account));
+    Class<AccountRecord> getRecordClass() {
+        return AccountRecord.class;
     }
 
     @Override
-    public void updateAccount(Account account) {
-        addAccount(account);
+    List<Account> map(List<AccountRecord> items) {
+        return Mapper.fromAccountRecords(items);
     }
 
     @Override
-    public boolean removeAccount(long accountId) {
-        return database.deleteWhere(AccountRecord.class, AccountRecord.ID.eq(accountId)) != 0;
+    AccountRecord map(Account item) {
+        return Mapper.toRecord(item);
     }
 
     @Override
-    public Account findById(long accountId) {
-        AccountRecord r = database.fetchByCriterion(AccountRecord.class, AccountRecord.ID.eq(accountId));
-        return Mapper.fromRecord(r);
+    Account map(AccountRecord record) {
+        return Mapper.fromRecord(record);
+    }
+
+    @Override
+    Property.LongProperty getIdProperty() {
+        return AccountRecord.ID;
     }
 }

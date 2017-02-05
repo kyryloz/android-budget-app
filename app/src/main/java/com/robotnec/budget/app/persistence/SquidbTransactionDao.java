@@ -45,7 +45,7 @@ public class SquidbTransactionDao implements TransactionDao {
         try {
             Account account = transaction.getAccount();
             account.setAmount(account.getAmount().add(transaction.getAmount()));
-            accountDao.updateAccount(account);
+            accountDao.createOrUpdate(account);
             TransactionRecord record = Mapper.toRecord(transaction);
             success = database.persist(record);
             database.setTransactionSuccessful();

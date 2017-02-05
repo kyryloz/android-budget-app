@@ -42,18 +42,18 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
         if (editMode) {
             account.setName(accountName);
             account.setAmount(new BigDecimal(accountAmount));
-            accountDao.updateAccount(account);
+            accountDao.createOrUpdate(account);
         } else {
             Account account = new Account();
             account.setName(accountName);
             account.setAmount(new BigDecimal(accountAmount));
             account.setCurrencyId(1);
-            accountDao.addAccount(account);
+            accountDao.createOrUpdate(account);
         }
     }
 
     public void deleteAccount() {
-        accountDao.removeAccount(account.getId());
+        accountDao.remove(account.getId());
         view.closeView();
     }
 }
