@@ -7,6 +7,7 @@ import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.Currency;
+import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.domain.Transaction;
 import com.robotnec.budget.core.mvp.view.AddTransactionView;
 
@@ -86,15 +87,15 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         view.showDateChooserDialog(resultDate);
     }
 
-    public void submit(Long amount) {
+    public void submit(Long amount, String currencyCode) {
         if (yesterdayChose) {
             nowDate.add(Calendar.DAY_OF_YEAR, -1);
             resultDate = nowDate;
         }
+        MoneyAmount moneyAmount = new MoneyAmount(new BigDecimal(-amount), Currency.fromCode(currencyCode));
         Transaction transaction = new Transaction();
         transaction.setAccount(targetAccount);
-        transaction.setAmount(new BigDecimal(-amount));
-        transaction.setCurrency(new Currency("UAH"));
+        transaction.setAmount(moneyAmount);
         transaction.setDate(resultDate.getTimeInMillis());
         transaction.setCategory(targetCategory);
         transactionDao.createOrUpdate(transaction);

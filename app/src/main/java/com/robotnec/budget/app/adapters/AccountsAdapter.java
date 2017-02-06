@@ -31,13 +31,10 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         Account account = items.get(position);
-        holder.mTextName.setText(account.getName());
-        String amountStr = context.getString(R.string.accounts_amount_format,
-                account.getAmount().toPlainString(),
-                account.getCurrencyId() + "id");
-        holder.mTextAmount.setText(amountStr);
+        holder.textName.setText(account.getName());
+        holder.textAmount.setText(account.getAmount().toDisplayableString(context));
 
         holder.itemView.setOnClickListener(v -> {
             if (accountClickListener != null) {
@@ -49,10 +46,10 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_name)
-        TextView mTextName;
+        TextView textName;
 
         @BindView(R.id.text_amount)
-        TextView mTextAmount;
+        TextView textAmount;
 
         ViewHolder(View itemView) {
             super(itemView);

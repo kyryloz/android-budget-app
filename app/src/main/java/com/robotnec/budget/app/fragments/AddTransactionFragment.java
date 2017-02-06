@@ -1,6 +1,5 @@
 package com.robotnec.budget.app.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -9,9 +8,21 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.robotnec.budget.R;
+import com.robotnec.budget.app.dialogs.AccountPickerDialogFragment;
+import com.robotnec.budget.app.dialogs.CategoryPickerDialogFragment;
+import com.robotnec.budget.app.dialogs.DatePickerDialogFragment;
+import com.robotnec.budget.app.dialogs.PickerDialog;
+import com.robotnec.budget.core.domain.Account;
+import com.robotnec.budget.core.domain.Category;
+import com.robotnec.budget.core.domain.Currency;
+import com.robotnec.budget.core.mvp.presenter.AddTransactionPresenter;
+import com.robotnec.budget.core.mvp.view.AddTransactionView;
 
 import java.util.Calendar;
 import java.util.List;
@@ -19,15 +30,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
-import com.robotnec.budget.R;
-import com.robotnec.budget.core.domain.Account;
-import com.robotnec.budget.core.domain.Category;
-import com.robotnec.budget.core.mvp.presenter.AddTransactionPresenter;
-import com.robotnec.budget.core.mvp.view.AddTransactionView;
-import com.robotnec.budget.app.dialogs.AccountPickerDialogFragment;
-import com.robotnec.budget.app.dialogs.CategoryPickerDialogFragment;
-import com.robotnec.budget.app.dialogs.DatePickerDialogFragment;
-import com.robotnec.budget.app.dialogs.PickerDialog;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -56,6 +58,9 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     @BindView(R.id.edit_amount)
     EditText editAmount;
 
+    @BindView(R.id.spinner_currency)
+    Spinner spinnerAccountCurrency;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_add_transaction;
@@ -67,16 +72,23 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                Currency.getAllCodes());
+        spinnerAccountCurrency.setAdapter(adapter);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setHasOptionsMenu(true);
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-
         inflater.inflate(R.menu.menu_done, menu);
     }
 
@@ -86,7 +98,8 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
             case R.id.action_done:
                 String value = editAmount.getText().toString();
                 if (!TextUtils.isEmpty(value)) {
-                    presenter.submit(Long.valueOf(value));
+                    String currency = spinnerAccountCurrency.getSelectedItem().toString();
+                    presenter.submit(Long.valueOf(value), currency);
                     getActivity().finish();
                     return true;
                 } else {
@@ -170,10 +183,7 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     @Override
     public void displayAccount(Account account) {
         textAccountName.setText(account.getName());
-        textAccountAmount.setText(getString(
-                R.string.accounts_amount_format,
-                account.getAmount(),
-                account.getCurrencyId() + "id"));
+        textAccountAmount.setText(account.getAmount().toDisplayableString(getContext()));
     }
 
     @Override

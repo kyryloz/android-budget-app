@@ -1,7 +1,6 @@
 package com.robotnec.budget.core.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import lombok.Data;
 
@@ -10,9 +9,7 @@ import lombok.Data;
  */
 @Data
 public class Account implements Serializable, Entity {
-
     private long id;
     private String name;
-    private BigDecimal amount;
-    private long currencyId;
+    private MoneyAmount amount;
 }

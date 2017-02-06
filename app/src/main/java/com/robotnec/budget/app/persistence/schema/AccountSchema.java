@@ -16,6 +16,4 @@ public class AccountSchema {
     private String name;
 
     private String amount;
-
-    private long currencyId;
 }

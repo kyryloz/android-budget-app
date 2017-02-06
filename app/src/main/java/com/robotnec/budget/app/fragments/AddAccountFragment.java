@@ -4,17 +4,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import butterknife.BindView;
-import butterknife.OnClick;
 import com.robotnec.budget.R;
+import com.robotnec.budget.app.util.Keys;
 import com.robotnec.budget.core.domain.Account;
+import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.mvp.presenter.AddAccountPresenter;
 import com.robotnec.budget.core.mvp.view.AddAccountView;
-import com.robotnec.budget.app.util.Keys;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -60,6 +63,10 @@ public class AddAccountFragment extends BasePresenterFragment<AddAccountPresente
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initToolbarBack(toolbar);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                Currency.getAllCodes());
+        spinnerAccountCurrency.setAdapter(adapter);
     }
 
     @OnClick(R.id.button_delete)

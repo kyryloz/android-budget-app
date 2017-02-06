@@ -4,9 +4,11 @@ import com.robotnec.budget.app.persistence.BudgetDatabase;
 import com.robotnec.budget.app.persistence.SquidbAccountDao;
 import com.robotnec.budget.app.persistence.SquidbCategoryDao;
 import com.robotnec.budget.app.persistence.SquidbTransactionDao;
+import com.robotnec.budget.app.service.SimpleCurrencyExchangeService;
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.dao.CategoryDao;
 import com.robotnec.budget.core.dao.TransactionDao;
+import com.robotnec.budget.core.service.CurrencyExchangeService;
 
 import javax.inject.Singleton;
 
@@ -39,7 +41,15 @@ public class DaoModule {
 
     @Singleton
     @Provides
-    public TransactionDao provideTransactionDao(AccountDao accountDao, CategoryDao categoryDao) {
-        return new SquidbTransactionDao(database, accountDao, categoryDao);
+    public CurrencyExchangeService provideCurrencyExchangeService() {
+        return new SimpleCurrencyExchangeService();
+    }
+
+    @Singleton
+    @Provides
+    public TransactionDao provideTransactionDao(AccountDao accountDao,
+                                                CategoryDao categoryDao,
+                                                CurrencyExchangeService exchangeService) {
+        return new SquidbTransactionDao(database, accountDao, categoryDao, exchangeService);
     }
 }

@@ -6,8 +6,8 @@ import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.dao.CategoryDao;
 import com.robotnec.budget.core.dao.TransactionDao;
 import com.robotnec.budget.core.domain.Account;
-import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.Transaction;
+import com.robotnec.budget.core.service.CurrencyExchangeService;
 import com.yahoo.squidb.data.SquidCursor;
 import com.yahoo.squidb.sql.Property;
 import com.yahoo.squidb.sql.Query;
@@ -19,19 +19,22 @@ import java.util.List;
 /**
  * @author zak <zak@swingpulse.com>
  */
-
+// TODO make transaction service
 public class SquidbTransactionDao extends SquidbDaoTemplate<Transaction, TransactionRecord>
         implements TransactionDao {
 
     private final AccountDao accountDao;
     private final CategoryDao categoryDao;
+    private final CurrencyExchangeService exchangeService;
 
     public SquidbTransactionDao(BudgetDatabase database,
                                 AccountDao accountDao,
-                                CategoryDao categoryDao) {
+                                CategoryDao categoryDao,
+                                CurrencyExchangeService exchangeService) {
         super(database);
         this.accountDao = accountDao;
         this.categoryDao = categoryDao;
+        this.exchangeService = exchangeService;
     }
 
     @Override
@@ -40,7 +43,7 @@ public class SquidbTransactionDao extends SquidbDaoTemplate<Transaction, Transac
         database.beginTransaction();
         try {
             Account account = transaction.getAccount();
-            account.setAmount(account.getAmount().add(transaction.getAmount()));
+            account.setAmount(account.getAmount().add(exchangeService, transaction.getAmount()));
             accountDao.createOrUpdate(account);
             TransactionRecord record = Mapper.toRecord(transaction);
             success = database.persist(record);
@@ -85,8 +88,7 @@ public class SquidbTransactionDao extends SquidbDaoTemplate<Transaction, Transac
     List<Transaction> map(List<TransactionRecord> tableModels) {
         return Mapper.fromTransactionRecords(tableModels,
                 accountDao::findById,
-                categoryDao::findById,
-                id -> new Currency("UAH"));
+                categoryDao::findById);
     }
 
     @Override
@@ -98,8 +100,7 @@ public class SquidbTransactionDao extends SquidbDaoTemplate<Transaction, Transac
     Transaction map(TransactionRecord record) {
         return Mapper.fromRecord(record,
                 accountDao::findById,
-                categoryDao::findById,
-                id -> new Currency("UAH"));
+                categoryDao::findById);
     }
 
     @Override

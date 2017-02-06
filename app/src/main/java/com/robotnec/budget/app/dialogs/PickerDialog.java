@@ -7,9 +7,9 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.widget.ArrayAdapter;
 
-import java.util.ArrayList;
-
 import com.robotnec.budget.core.domain.Entity;
+
+import java.util.ArrayList;
 
 /**
  * @author zak <zak@swingpulse.com>

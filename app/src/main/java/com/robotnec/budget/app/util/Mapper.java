@@ -8,10 +8,9 @@ import com.robotnec.budget.app.persistence.schema.CategoryRecord;
 import com.robotnec.budget.app.persistence.schema.TransactionRecord;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
-import com.robotnec.budget.core.domain.Currency;
+import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.domain.Transaction;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -22,8 +21,8 @@ public final class Mapper {
 
     public static Account fromRecord(AccountRecord record) {
         Account account = new Account();
-        account.setAmount(new BigDecimal(record.getAmount()));
-        account.setCurrencyId(record.getCurrencyId());
+        MoneyAmount amount = MoneyAmount.fromDbString(record.getAmount());
+        account.setAmount(amount);
         account.setName(record.getName());
         account.setId(record.getId());
         return account;
@@ -37,8 +36,7 @@ public final class Mapper {
 
     public static AccountRecord toRecord(Account account) {
         return new AccountRecord()
-                .setAmount(account.getAmount().toPlainString())
-                .setCurrencyId(account.getCurrencyId())
+                .setAmount(account.getAmount().toDbString())
                 .setName(account.getName())
                 .setId(account.getId());
     }
@@ -64,22 +62,19 @@ public final class Mapper {
 
     public static List<Transaction> fromTransactionRecords(List<TransactionRecord> records,
                                                            Function<Long, Account> accountMapper,
-                                                           Function<Long, Category> categoryMapper,
-                                                           Function<Long, Currency> currencyMapper) {
+                                                           Function<Long, Category> categoryMapper) {
         return Stream.of(records)
-                .map((record) -> fromRecord(record, accountMapper, categoryMapper, currencyMapper))
+                .map((record) -> fromRecord(record, accountMapper, categoryMapper))
                 .collect(Collectors.toList());
     }
 
     public static Transaction fromRecord(TransactionRecord record,
                                          Function<Long, Account> accountMapper,
-                                         Function<Long, Category> categoryMapper,
-                                         Function<Long, Currency> currencyMapper) {
+                                         Function<Long, Category> categoryMapper) {
         Transaction transaction = new Transaction();
-        transaction.setAmount(new BigDecimal(record.getAmount()));
+        transaction.setAmount(MoneyAmount.fromDbString(record.getAmount()));
         transaction.setAccount(accountMapper.apply(record.getAccountId()));
         transaction.setCategory(categoryMapper.apply(record.getCategoryId()));
-        transaction.setCurrency(currencyMapper.apply(record.getCurrencyId()));
         transaction.setId(record.getId());
         transaction.setDate(record.getDate());
         return transaction;
@@ -90,8 +85,7 @@ public final class Mapper {
                 .setId(transaction.getId())
                 .setAccountId(transaction.getAccount().getId())
                 .setCategoryId(transaction.getCategory().getId())
-                .setAmount(transaction.getAmount().toPlainString())
-                .setCurrencyId(transaction.getCurrency().getId())
+                .setAmount(transaction.getAmount().toDbString())
                 .setDate(transaction.getDate());
     }
 }

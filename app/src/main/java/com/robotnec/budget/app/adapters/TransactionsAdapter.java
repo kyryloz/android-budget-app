@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.Date;
 
@@ -36,31 +35,30 @@ public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Transaction transaction = items.get(position);
-        String amount = transaction.getAmount().abs().toPlainString();
-        String currency = transaction.getCurrency().getName();
+        String textAmount = transaction.getAmount().toDisplayableString(context);
         String textFrom = transaction.getAccount().getName();
         String textWhere = transaction.getCategory().getName();
         String textDate = dateFormat.format(new Date(transaction.getDate()));
 
-        holder.mTextAmount.setText(amount + " " + currency);
-        holder.mTextFrom.setText(textFrom);
-        holder.mTextWhere.setText(textWhere);
-        holder.mTextDate.setText(textDate);
+        holder.textAmount.setText(textAmount);
+        holder.textFrom.setText(textFrom);
+        holder.textWhere.setText(textWhere);
+        holder.textDate.setText(textDate);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_amount)
-        TextView mTextAmount;
+        TextView textAmount;
 
         @BindView(R.id.text_from)
-        TextView mTextFrom;
+        TextView textFrom;
 
         @BindView(R.id.text_where)
-        TextView mTextWhere;
+        TextView textWhere;
 
         @BindView(R.id.text_date)
-        TextView mTextDate;
+        TextView textDate;
 
         ViewHolder(View itemView) {
             super(itemView);

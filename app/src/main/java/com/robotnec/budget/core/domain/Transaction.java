@@ -1,8 +1,6 @@
 package com.robotnec.budget.core.domain;
 
 
-import java.math.BigDecimal;
-
 import lombok.Data;
 
 /**
@@ -10,11 +8,9 @@ import lombok.Data;
  */
 @Data
 public class Transaction {
-
     private long id;
     private Account account;
     private Category category;
-    private BigDecimal amount;
+    private MoneyAmount amount;
     private long date;
-    private Currency currency;
 }

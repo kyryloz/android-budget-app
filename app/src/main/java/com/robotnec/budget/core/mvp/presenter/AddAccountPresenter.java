@@ -1,13 +1,15 @@
 package com.robotnec.budget.core.mvp.presenter;
 
-import javax.inject.Inject;
-
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Account;
+import com.robotnec.budget.core.domain.Currency;
+import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.mvp.view.AddAccountView;
 
 import java.math.BigDecimal;
+
+import javax.inject.Inject;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -39,15 +41,15 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
     }
 
     public void addOrEditAccount(String accountName, String accountAmount, String accountCurrency) {
+        MoneyAmount amount = new MoneyAmount(new BigDecimal(accountAmount), Currency.fromCode(accountCurrency));
         if (editMode) {
             account.setName(accountName);
-            account.setAmount(new BigDecimal(accountAmount));
+            account.setAmount(amount);
             accountDao.createOrUpdate(account);
         } else {
             Account account = new Account();
             account.setName(accountName);
-            account.setAmount(new BigDecimal(accountAmount));
-            account.setCurrencyId(1);
+            account.setAmount(amount);
             accountDao.createOrUpdate(account);
         }
     }
