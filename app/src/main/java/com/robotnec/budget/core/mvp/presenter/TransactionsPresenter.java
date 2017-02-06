@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.robotnec.budget.core.dao.TransactionDao;
+import com.robotnec.budget.core.dao.MoneyOperationDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
-import com.robotnec.budget.core.domain.Transaction;
+import com.robotnec.budget.core.domain.money.MoneyOperation;
 import com.robotnec.budget.core.mvp.view.TransactionsView;
 import com.robotnec.budget.core.navigator.NavigationBundle;
 import com.robotnec.budget.core.navigator.Navigator;
@@ -20,7 +20,7 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
     Navigator navigator;
 
     @Inject
-    TransactionDao transactionDao;
+    MoneyOperationDao moneyOperationDao;
 
     public TransactionsPresenter(TransactionsView view) {
         super(view);
@@ -28,8 +28,8 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
 
     @Override
     public void onViewReady() {
-        List<Transaction> transactions = transactionDao.getAll();
-        view.displayTransactions(transactions);
+        List<MoneyOperation> moneyOperations = moneyOperationDao.getAll();
+        view.displayTransactions(moneyOperations);
     }
 
     @Override

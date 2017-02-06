@@ -1,6 +1,6 @@
 package com.robotnec.budget.core.mvp.view;
 
-import com.robotnec.budget.core.domain.Transaction;
+import com.robotnec.budget.core.domain.money.MoneyOperation;
 
 import java.util.List;
 
@@ -10,5 +10,5 @@ import java.util.List;
 public interface CategoryOverviewView extends View {
     void displayCategoryTitle(String title);
 
-    void displayCategoryTransactions(List<Transaction> accounts);
+    void displayCategoryTransactions(List<MoneyOperation> accounts);
 }

@@ -19,7 +19,7 @@
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="@dimen/list_item_height"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="@string/transactions"
+            app:title="@string/moneyOperations"
             app:toolbarId="@+id/toolbar">
 
             <android.support.v7.widget.Toolbar

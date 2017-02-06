@@ -7,12 +7,12 @@ import com.yahoo.squidb.annotations.TableModelSpec;
  * @author zak <zak@swingpulse.com>
  */
 @TableModelSpec(
-        className = "TransactionRecord",
-        tableName = "transactions",
+        className = "MoneyOperationRecord",
+        tableName = "moneyOperation",
         tableConstraint = "FOREIGN KEY (accountId) REFERENCES account(id)," +
                 "FOREIGN KEY (categoryId) REFERENCES category(id)"
 )
-public class TransactionSchema {
+public class MoneyOperationSchema {
 
     @PrimaryKey
     private long id;

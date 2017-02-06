@@ -2,14 +2,14 @@ package com.robotnec.budget.core.mvp.presenter;
 
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.dao.CategoryDao;
-import com.robotnec.budget.core.dao.TransactionDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.MoneyAmount;
-import com.robotnec.budget.core.domain.Transaction;
+import com.robotnec.budget.core.domain.money.Expense;
 import com.robotnec.budget.core.mvp.view.AddTransactionView;
+import com.robotnec.budget.core.service.MoneyOperationService;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -30,7 +30,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     CategoryDao categoryDao;
 
     @Inject
-    TransactionDao transactionDao;
+    MoneyOperationService moneyOperationService;
 
     private DateFormat dateFormat;
     private Calendar nowDate;
@@ -93,12 +93,12 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
             resultDate = nowDate;
         }
         MoneyAmount moneyAmount = new MoneyAmount(new BigDecimal(-amount), Currency.fromCode(currencyCode));
-        Transaction transaction = new Transaction();
-        transaction.setAccount(targetAccount);
-        transaction.setAmount(moneyAmount);
-        transaction.setDate(resultDate.getTimeInMillis());
-        transaction.setCategory(targetCategory);
-        transactionDao.createOrUpdate(transaction);
+        Expense expense = new Expense();
+        expense.setAccount(targetAccount);
+        expense.setAmount(moneyAmount);
+        expense.setDate(resultDate.getTimeInMillis());
+        expense.setCategory(targetCategory);
+        moneyOperationService.execute(expense);
 
         view.finish();
     }

@@ -36,6 +36,6 @@ public class SimpleCurrencyExchangeService implements CurrencyExchangeService {
             BigDecimal result = from.operations().divide(divisor, RoundingMode.CEILING);
             return new MoneyAmount(result, from.getCurrency());
         }
-        throw new UnsupportedOperationException("Can't exchange " + from + " to " + to);
+        throw new UnsupportedOperationException("Can't exchange " + from.getCurrency() + " to " + to);
     }
 }

@@ -18,12 +18,6 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".app.service.BudgetService"
-            android:enabled="true"
-            android:exported="false">
-        </service>
-
         <activity
             android:name=".app.activity.AddTransactionActivity"
             android:label="@string/add_transaction_label"

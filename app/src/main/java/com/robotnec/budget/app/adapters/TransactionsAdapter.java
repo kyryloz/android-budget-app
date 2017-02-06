@@ -12,12 +12,13 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.robotnec.budget.R;
-import com.robotnec.budget.core.domain.Transaction;
+import com.robotnec.budget.core.domain.money.Expense;
+import com.robotnec.budget.core.domain.money.MoneyOperation;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAdapter.ViewHolder> {
+public class TransactionsAdapter extends BaseAdapter<MoneyOperation, TransactionsAdapter.ViewHolder> {
 
     private final DateFormat dateFormat;
 
@@ -34,11 +35,11 @@ public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAd
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Transaction transaction = items.get(position);
-        String textAmount = transaction.getAmount().toDisplayableString();
-        String textFrom = transaction.getAccount().getName();
-        String textWhere = transaction.getCategory().getName();
-        String textDate = dateFormat.format(new Date(transaction.getDate()));
+        Expense moneyOperation = (Expense) items.get(position);
+        String textAmount = moneyOperation.getAmount().toDisplayableString();
+        String textFrom = moneyOperation.getAccount().getName();
+        String textWhere = moneyOperation.getCategory().getName();
+        String textDate = dateFormat.format(new Date(moneyOperation.getDate()));
 
         holder.textAmount.setText(textAmount);
         holder.textFrom.setText(textFrom);

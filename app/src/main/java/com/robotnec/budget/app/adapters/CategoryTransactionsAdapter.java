@@ -5,12 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.robotnec.budget.core.domain.Transaction;
+import com.robotnec.budget.core.domain.money.MoneyOperation;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class CategoryTransactionsAdapter extends BaseAdapter<Transaction, CategoryTransactionsAdapter.ViewHolder> {
+public class CategoryTransactionsAdapter extends BaseAdapter<MoneyOperation, CategoryTransactionsAdapter.ViewHolder> {
 
     CategoryTransactionsAdapter(Context context) {
         super(context);

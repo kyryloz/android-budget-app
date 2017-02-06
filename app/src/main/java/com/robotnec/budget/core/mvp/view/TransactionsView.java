@@ -1,12 +1,13 @@
 package com.robotnec.budget.core.mvp.view;
 
-import java.util.List;
 
-import com.robotnec.budget.core.domain.Transaction;
+import com.robotnec.budget.core.domain.money.MoneyOperation;
+
+import java.util.List;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 public interface TransactionsView extends View {
-    void displayTransactions(List<Transaction> transactions);
+    void displayTransactions(List<MoneyOperation> transactions);
 }

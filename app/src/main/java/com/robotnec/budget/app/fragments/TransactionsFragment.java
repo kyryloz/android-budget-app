@@ -15,7 +15,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import com.robotnec.budget.R;
 import com.robotnec.budget.app.adapters.TransactionsAdapter;
-import com.robotnec.budget.core.domain.Transaction;
+import com.robotnec.budget.core.domain.money.MoneyOperation;
 import com.robotnec.budget.core.mvp.presenter.TransactionsPresenter;
 import com.robotnec.budget.core.mvp.view.TransactionsView;
 import com.robotnec.budget.app.navigator.AndroidNavigationBundle;
@@ -60,7 +60,7 @@ public class TransactionsFragment extends BasePresenterFragment<TransactionsPres
     }
 
     @Override
-    public void displayTransactions(List<Transaction> transactions) {
+    public void displayTransactions(List<MoneyOperation> transactions) {
         transactionsAdapter.update(transactions);
     }
 
