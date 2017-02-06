@@ -183,7 +183,7 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     @Override
     public void displayAccount(Account account) {
         textAccountName.setText(account.getName());
-        textAccountAmount.setText(account.getAmount().toDisplayableString(getContext()));
+        textAccountAmount.setText(account.getAmount().toDisplayableString());
     }
 
     @Override

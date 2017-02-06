@@ -35,7 +35,7 @@ public class TransactionsAdapter extends BaseAdapter<Transaction, TransactionsAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Transaction transaction = items.get(position);
-        String textAmount = transaction.getAmount().toDisplayableString(context);
+        String textAmount = transaction.getAmount().toDisplayableString();
         String textFrom = transaction.getAccount().getName();
         String textWhere = transaction.getCategory().getName();
         String textDate = dateFormat.format(new Date(transaction.getDate()));

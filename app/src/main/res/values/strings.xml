@@ -6,7 +6,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="accounts_amount_format">%1$s %2$s</string>
     <string name="add_transaction_label">Add Transaction</string>
     <string name="add_category_label">Add Category</string>
     <string name="yesterday">Yesterday</string>

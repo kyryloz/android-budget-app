@@ -34,7 +34,7 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         Account account = items.get(position);
         holder.textName.setText(account.getName());
-        holder.textAmount.setText(account.getAmount().toDisplayableString(context));
+        holder.textAmount.setText(account.getAmount().toDisplayableString());
 
         holder.itemView.setOnClickListener(v -> {
             if (accountClickListener != null) {
