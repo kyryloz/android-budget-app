@@ -18,9 +18,9 @@ import com.robotnec.budget.core.service.CurrencyExchangeService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.robolectric.RuntimeEnvironment;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -28,8 +28,8 @@ import java.util.List;
  */
 public class OperationReceiverImplTest extends BaseRobolectricTest {
 
-    private OperationReceiver operationReceiver;
     private MoneyOperationDao moneyOperationDao;
+    private CurrencyExchangeService exchangeService;
     private Account testAccount;
     private Category testCategory;
     private AccountDao accountDao;
@@ -39,9 +39,8 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         BudgetDatabase database = new BudgetDatabase(RuntimeEnvironment.application);
         accountDao = new SquidbAccountDao(database);
         CategoryDao categoryDao = new SquidbCategoryDao(database);
-        CurrencyExchangeService exchangeService = new SimpleCurrencyExchangeService();
+        exchangeService = new SimpleCurrencyExchangeService();
         moneyOperationDao = new MoneyOperationDaoImpl(database, accountDao, categoryDao);
-        operationReceiver = new OperationReceiverImpl(moneyOperationDao, accountDao, exchangeService);
 
         testAccount = new Account();
         testAccount.setAmount(MoneyAmount.of(100, Currency.UAH));
@@ -55,6 +54,9 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
 
     @Test
     public void shouldPerformExpenseOperation() throws Exception {
+        OperationReceiver operationReceiver = new OperationReceiverImpl(moneyOperationDao,
+                accountDao,
+                exchangeService);
         Expense expense = new Expense();
         expense.setAccount(testAccount);
         expense.setCategory(testCategory);
@@ -64,8 +66,8 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         Assert.assertTrue(success);
 
         MoneyAmount actual = accountDao.findById(testAccount.getId()).getAmount();
-        MoneyAmount ninty = MoneyAmount.of(90, Currency.UAH);
-        Assert.assertEquals(ninty, actual);
+        MoneyAmount ninety = MoneyAmount.of(90, Currency.UAH);
+        Assert.assertEquals(ninety, actual);
 
         List<MoneyOperation> actualOperations = moneyOperationDao.getAll();
         Assert.assertEquals(1, actualOperations.size());
@@ -75,5 +77,29 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         MoneyAmount actualOperationAmount = actualOperation.getAmount();
         MoneyAmount ten = MoneyAmount.of(10, Currency.UAH);
         Assert.assertEquals(ten, actualOperationAmount);
+    }
+
+    @Test
+    public void shouldRollbackAccountChangeIfFail() throws Exception {
+        MoneyOperationDao mockMoneyOperationDao = Mockito.mock(MoneyOperationDao.class);
+        Mockito.when(mockMoneyOperationDao.createOrUpdate(Mockito.any())).thenReturn(false);
+        OperationReceiver operationReceiver = new OperationReceiverImpl(mockMoneyOperationDao,
+                accountDao,
+                exchangeService);
+
+        Expense expense = new Expense();
+        expense.setAccount(testAccount);
+        expense.setCategory(testCategory);
+        expense.setAmount(MoneyAmount.of(10, Currency.UAH));
+
+        boolean success = operationReceiver.receive(expense);
+        Assert.assertFalse(success);
+
+        MoneyAmount actual = accountDao.findById(testAccount.getId()).getAmount();
+        MoneyAmount ninety = MoneyAmount.of(90, Currency.UAH);
+        Assert.assertNotEquals(ninety, actual);
+
+        List<MoneyOperation> actualOperations = moneyOperationDao.getAll();
+        Assert.assertEquals(0, actualOperations.size());
     }
 }
