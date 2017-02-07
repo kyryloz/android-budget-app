@@ -12,7 +12,6 @@ import lombok.Data;
 @Data
 public class Expense implements Operation {
 
-    private long id;
     private MoneyAmount amount;
     private long date;
     private Account account;

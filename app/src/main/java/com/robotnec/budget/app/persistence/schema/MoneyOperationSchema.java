@@ -21,5 +21,4 @@ public class MoneyOperationSchema {
     private long categoryId;
     private String amount;
     private long date;
-    private long currencyId;
 }
