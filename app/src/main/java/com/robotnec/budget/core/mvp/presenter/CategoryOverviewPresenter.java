@@ -3,7 +3,7 @@ package com.robotnec.budget.core.mvp.presenter;
 import com.robotnec.budget.core.dao.MoneyOperationDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Category;
-import com.robotnec.budget.core.domain.money.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.MoneyOperation;
 import com.robotnec.budget.core.mvp.view.CategoryOverviewView;
 
 import java.util.List;

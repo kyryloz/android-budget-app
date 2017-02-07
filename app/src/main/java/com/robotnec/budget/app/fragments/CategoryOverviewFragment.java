@@ -12,7 +12,7 @@ import com.robotnec.budget.R;
 import com.robotnec.budget.app.adapters.TransactionsAdapter;
 import com.robotnec.budget.app.util.Keys;
 import com.robotnec.budget.core.domain.Category;
-import com.robotnec.budget.core.domain.money.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.MoneyOperation;
 import com.robotnec.budget.core.mvp.presenter.CategoryOverviewPresenter;
 import com.robotnec.budget.core.mvp.view.CategoryOverviewView;
 

@@ -6,14 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.robotnec.budget.R;
+import com.robotnec.budget.core.domain.operation.MoneyOperation;
+
 import java.text.DateFormat;
 import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.robotnec.budget.R;
-import com.robotnec.budget.core.domain.money.Expense;
-import com.robotnec.budget.core.domain.money.MoneyOperation;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -35,7 +35,7 @@ public class TransactionsAdapter extends BaseAdapter<MoneyOperation, Transaction
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Expense moneyOperation = (Expense) items.get(position);
+        MoneyOperation moneyOperation = items.get(position);
         String textAmount = moneyOperation.getAmount().toDisplayableString();
         String textFrom = moneyOperation.getAccount().getName();
         String textWhere = moneyOperation.getCategory().getName();

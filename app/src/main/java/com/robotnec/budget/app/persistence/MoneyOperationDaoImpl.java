@@ -5,7 +5,7 @@ import com.robotnec.budget.app.util.Mapper;
 import com.robotnec.budget.core.dao.AccountDao;
 import com.robotnec.budget.core.dao.CategoryDao;
 import com.robotnec.budget.core.dao.MoneyOperationDao;
-import com.robotnec.budget.core.domain.money.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.MoneyOperation;
 import com.yahoo.squidb.data.SquidCursor;
 import com.yahoo.squidb.sql.Property;
 import com.yahoo.squidb.sql.Query;

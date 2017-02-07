@@ -1,7 +1,7 @@
 package com.robotnec.budget.core.mvp.view;
 
 
-import com.robotnec.budget.core.domain.money.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.MoneyOperation;
 
 import java.util.List;
 

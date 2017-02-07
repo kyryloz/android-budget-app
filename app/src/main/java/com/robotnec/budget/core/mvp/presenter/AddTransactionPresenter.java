@@ -7,9 +7,9 @@ import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.MoneyAmount;
-import com.robotnec.budget.core.domain.money.Expense;
+import com.robotnec.budget.core.domain.operation.Expense;
 import com.robotnec.budget.core.mvp.view.AddTransactionView;
-import com.robotnec.budget.core.service.MoneyOperationService;
+import com.robotnec.budget.core.service.MoneyOperationBroker;
 
 import java.math.BigDecimal;
 import java.text.DateFormat;
@@ -30,7 +30,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     CategoryDao categoryDao;
 
     @Inject
-    MoneyOperationService moneyOperationService;
+    MoneyOperationBroker moneyOperationBroker;
 
     private DateFormat dateFormat;
     private Calendar nowDate;
@@ -92,13 +92,13 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
             nowDate.add(Calendar.DAY_OF_YEAR, -1);
             resultDate = nowDate;
         }
-        MoneyAmount moneyAmount = new MoneyAmount(new BigDecimal(-amount), Currency.fromCode(currencyCode));
+        MoneyAmount moneyAmount = new MoneyAmount(new BigDecimal(amount), Currency.fromCode(currencyCode));
         Expense expense = new Expense();
         expense.setAccount(targetAccount);
         expense.setAmount(moneyAmount);
         expense.setDate(resultDate.getTimeInMillis());
         expense.setCategory(targetCategory);
-        moneyOperationService.execute(expense);
+        moneyOperationBroker.execute(expense);
 
         view.finish();
     }

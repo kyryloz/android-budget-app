@@ -1,7 +1,5 @@
 package com.robotnec.budget.core.domain;
 
-import com.robotnec.budget.core.service.CurrencyExchangeService;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -52,9 +50,14 @@ public class MoneyAmount {
         return String.format("%s %s", currency.getSymbol(), numberFormat.format(amount));
     }
 
-    public MoneyAmount add(CurrencyExchangeService exchangeService, MoneyAmount other) {
-        MoneyAmount result = exchangeService.exchange(other, currency);
-        return new MoneyAmount(amount.add(result.amount), currency);
+    public MoneyAmount add(MoneyAmount other) {
+        checkCurrency(other);
+        return new MoneyAmount(amount.add(other.amount), currency);
+    }
+
+    public MoneyAmount substract(MoneyAmount other) {
+        checkCurrency(other);
+        return new MoneyAmount(amount.subtract(other.amount), currency);
     }
 
     public String toDbString() {
@@ -63,6 +66,12 @@ public class MoneyAmount {
 
     public Currency getCurrency() {
         return currency;
+    }
+
+    private void checkCurrency(MoneyAmount other) {
+        if (!currency.equals(other.currency)) {
+            throw new IllegalArgumentException("Currency must be the same");
+        }
     }
 
     public interface Operations {

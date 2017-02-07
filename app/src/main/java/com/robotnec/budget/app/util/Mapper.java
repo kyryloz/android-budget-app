@@ -9,8 +9,7 @@ import com.robotnec.budget.app.persistence.schema.MoneyOperationRecord;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.MoneyAmount;
-import com.robotnec.budget.core.domain.money.Expense;
-import com.robotnec.budget.core.domain.money.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.MoneyOperation;
 
 import java.util.List;
 
@@ -62,8 +61,8 @@ public final class Mapper {
     }
 
     public static List<MoneyOperation> fromTransactionRecords(List<MoneyOperationRecord> records,
-                                                              Function<Long, Account> accountMapper,
-                                                              Function<Long, Category> categoryMapper) {
+                                                             Function<Long, Account> accountMapper,
+                                                             Function<Long, Category> categoryMapper) {
         return Stream.of(records)
                 .map(record -> fromRecord(record, accountMapper, categoryMapper))
                 .collect(Collectors.toList());
@@ -72,7 +71,7 @@ public final class Mapper {
     public static MoneyOperation fromRecord(MoneyOperationRecord record,
                                             Function<Long, Account> accountMapper,
                                             Function<Long, Category> categoryMapper) {
-        Expense moneyOperation = new Expense();
+        MoneyOperation moneyOperation = new MoneyOperation();
         moneyOperation.setAmount(MoneyAmount.fromDbString(record.getAmount()));
         moneyOperation.setAccount(accountMapper.apply(record.getAccountId()));
         moneyOperation.setCategory(categoryMapper.apply(record.getCategoryId()));
@@ -81,7 +80,12 @@ public final class Mapper {
         return moneyOperation;
     }
 
-    public static MoneyOperationRecord toRecord(MoneyOperation moneyOperation) {
-        return moneyOperation.toRecord();
+    public static MoneyOperationRecord toRecord(MoneyOperation operation) {
+        return new MoneyOperationRecord()
+                .setId(operation.getId())
+                .setAccountId(operation.getAccount().getId())
+                .setCategoryId(operation.getCategory().getId())
+                .setAmount(operation.getAmount().toDbString())
+                .setDate(operation.getDate());
     }
 }

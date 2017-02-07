@@ -1,15 +1,15 @@
 package com.robotnec.budget.core.mvp.presenter;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
 import com.robotnec.budget.core.dao.MoneyOperationDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
-import com.robotnec.budget.core.domain.money.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.MoneyOperation;
 import com.robotnec.budget.core.mvp.view.TransactionsView;
 import com.robotnec.budget.core.navigator.NavigationBundle;
 import com.robotnec.budget.core.navigator.Navigator;
+
+import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * @author zak <zak@swingpulse.com>
