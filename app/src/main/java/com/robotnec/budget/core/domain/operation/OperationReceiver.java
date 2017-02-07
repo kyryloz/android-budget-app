@@ -5,4 +5,6 @@ package com.robotnec.budget.core.domain.operation;
  */
 public interface OperationReceiver {
     boolean receive(Expense expense);
+
+    boolean receive(Income income);
 }

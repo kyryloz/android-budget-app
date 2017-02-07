@@ -81,11 +81,14 @@ public final class Mapper {
     }
 
     public static MoneyOperationRecord toRecord(MoneyOperation operation) {
+        Account account = operation.getAccount();
+        Category category = operation.getCategory();
+        MoneyAmount amount = operation.getAmount();
         return new MoneyOperationRecord()
                 .setId(operation.getId())
-                .setAccountId(operation.getAccount().getId())
-                .setCategoryId(operation.getCategory().getId())
-                .setAmount(operation.getAmount().toDbString())
+                .setAccountId(account != null ? account.getId() : 1)
+                .setCategoryId(category != null ? category.getId() : 1)
+                .setAmount(amount != null ? amount.toDbString() : "-1 UAH")
                 .setDate(operation.getDate());
     }
 }
