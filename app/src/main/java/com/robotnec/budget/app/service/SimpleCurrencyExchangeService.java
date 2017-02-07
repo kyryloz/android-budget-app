@@ -27,14 +27,12 @@ public class SimpleCurrencyExchangeService implements CurrencyExchangeService {
             return from;
         }
         if (fromCurrency.equals(Currency.USD) && to.equals(Currency.UAH)) {
-            BigDecimal multiplier = BigDecimal.valueOf(exchangeRates.get(Currency.UAH));
-            BigDecimal result = from.operations().multiply(multiplier);
-            return new MoneyAmount(result, from.getCurrency());
+            MoneyAmount result = from.multiply(exchangeRates.get(Currency.UAH));
+            return MoneyAmount.of(result, to);
         }
         if (fromCurrency.equals(Currency.UAH) && to.equals(Currency.USD)) {
-            BigDecimal divisor = BigDecimal.valueOf(exchangeRates.get(Currency.UAH));
-            BigDecimal result = from.operations().divide(divisor, RoundingMode.CEILING);
-            return new MoneyAmount(result, from.getCurrency());
+            MoneyAmount result = from.divide(exchangeRates.get(Currency.UAH), RoundingMode.CEILING);
+            return MoneyAmount.of(result, to);
         }
         throw new UnsupportedOperationException("Can't exchange " + from.getCurrency() + " to " + to);
     }

@@ -18,10 +18,10 @@ import com.robotnec.budget.core.service.CurrencyExchangeService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.robolectric.Robolectric;
 import org.robolectric.RuntimeEnvironment;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -32,18 +32,19 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
     private MoneyOperationDao moneyOperationDao;
     private Account testAccount;
     private Category testCategory;
+    private AccountDao accountDao;
 
     @Before
-    public void before() {
+    public void before() throws Exception {
         BudgetDatabase database = new BudgetDatabase(RuntimeEnvironment.application);
-        AccountDao accountDao = new SquidbAccountDao(database);
+        accountDao = new SquidbAccountDao(database);
         CategoryDao categoryDao = new SquidbCategoryDao(database);
         CurrencyExchangeService exchangeService = new SimpleCurrencyExchangeService();
         moneyOperationDao = new MoneyOperationDaoImpl(database, accountDao, categoryDao);
         operationReceiver = new OperationReceiverImpl(moneyOperationDao, accountDao, exchangeService);
 
         testAccount = new Account();
-        testAccount.setAmount(new MoneyAmount(new BigDecimal(0), Currency.UAH));
+        testAccount.setAmount(MoneyAmount.of(100, Currency.UAH));
         testAccount.setName("account");
         accountDao.createOrUpdate(testAccount);
 
@@ -53,12 +54,26 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
     }
 
     @Test
-    public void textTest() {
+    public void shouldPerformExpenseOperation() throws Exception {
         Expense expense = new Expense();
         expense.setAccount(testAccount);
         expense.setCategory(testCategory);
-        expense.setAmount(new MoneyAmount(new BigDecimal(100), Currency.UAH));
+        expense.setAmount(MoneyAmount.of(10, Currency.UAH));
+
         boolean success = operationReceiver.receive(expense);
         Assert.assertTrue(success);
+
+        MoneyAmount actual = accountDao.findById(testAccount.getId()).getAmount();
+        MoneyAmount ninty = MoneyAmount.of(90, Currency.UAH);
+        Assert.assertEquals(ninty, actual);
+
+        List<MoneyOperation> actualOperations = moneyOperationDao.getAll();
+        Assert.assertEquals(1, actualOperations.size());
+
+        MoneyOperation actualOperation = actualOperations.get(0);
+
+        MoneyAmount actualOperationAmount = actualOperation.getAmount();
+        MoneyAmount ten = MoneyAmount.of(10, Currency.UAH);
+        Assert.assertEquals(ten, actualOperationAmount);
     }
 }

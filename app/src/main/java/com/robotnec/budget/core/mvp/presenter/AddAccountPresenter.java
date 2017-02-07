@@ -7,8 +7,6 @@ import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.mvp.view.AddAccountView;
 
-import java.math.BigDecimal;
-
 import javax.inject.Inject;
 
 /**
@@ -41,7 +39,8 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
     }
 
     public void addOrEditAccount(String accountName, String accountAmount, String accountCurrency) {
-        MoneyAmount amount = new MoneyAmount(new BigDecimal(accountAmount), Currency.fromCode(accountCurrency));
+        MoneyAmount amount = MoneyAmount.of(Double.parseDouble(accountAmount),
+                Currency.fromCode(accountCurrency));
         if (editMode) {
             account.setName(accountName);
             account.setAmount(amount);

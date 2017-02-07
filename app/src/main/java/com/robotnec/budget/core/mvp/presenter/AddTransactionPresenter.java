@@ -92,7 +92,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
             nowDate.add(Calendar.DAY_OF_YEAR, -1);
             resultDate = nowDate;
         }
-        MoneyAmount moneyAmount = new MoneyAmount(new BigDecimal(amount), Currency.fromCode(currencyCode));
+        MoneyAmount moneyAmount = MoneyAmount.of(amount, Currency.fromCode(currencyCode));
         Expense expense = new Expense();
         expense.setAccount(targetAccount);
         expense.setAmount(moneyAmount);

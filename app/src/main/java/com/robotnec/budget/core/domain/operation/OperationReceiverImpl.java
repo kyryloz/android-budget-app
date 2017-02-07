@@ -30,10 +30,10 @@ public class OperationReceiverImpl implements OperationReceiver {
     // TODO transaction
     public boolean receive(Expense expense) {
         MoneyAmount amount = expense.getAmount();
-        Account account = expense.getAccount();
-        MoneyAmount exchanged = exchangeService.exchange(amount, account.getAmount().getCurrency());
-        account.setAmount(account.getAmount().substract(exchanged));
-        accountDao.createOrUpdate(account);
+        Account targetAccount = expense.getAccount();
+        MoneyAmount exchanged = exchangeService.exchange(amount, targetAccount.getAmount().getCurrency());
+        targetAccount.setAmount(targetAccount.getAmount().subtract(exchanged));
+        accountDao.createOrUpdate(targetAccount);
         MoneyOperation entity = new MoneyOperation();
         entity.setCategory(expense.getCategory());
         entity.setDate(expense.getDate());
@@ -45,7 +45,7 @@ public class OperationReceiverImpl implements OperationReceiver {
     @Override
     public boolean receive(Income income) {
         Account account = income.getAccount();
-        MoneyAmount bonus = new MoneyAmount(new BigDecimal(1000), Currency.UAH);
+        MoneyAmount bonus = MoneyAmount.of(1000, Currency.UAH);
         account.setAmount(account.getAmount().add(bonus));
         accountDao.createOrUpdate(account);
         MoneyOperation entity = new MoneyOperation();

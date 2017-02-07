@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.Objects;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -22,32 +23,22 @@ public class MoneyAmount {
     private final BigDecimal amount;
     private final Currency currency;
 
+    public static MoneyAmount of(double sum, Currency currency) {
+        return new MoneyAmount(new BigDecimal(sum), Objects.requireNonNull(currency));
+    }
+
+    public static MoneyAmount of(MoneyAmount sum, Currency currency) {
+        return new MoneyAmount(sum.amount, Objects.requireNonNull(currency));
+    }
+
     public static MoneyAmount fromDbString(String dbString) {
         String[] split = dbString.split(" ");
         return new MoneyAmount(new BigDecimal(split[0]), Currency.fromCode(split[1]));
     }
 
-    public MoneyAmount(BigDecimal amount, Currency currency) {
+    private MoneyAmount(BigDecimal amount, Currency currency) {
         this.amount = amount;
         this.currency = currency;
-    }
-
-    public Operations operations() {
-        return new Operations() {
-            @Override
-            public BigDecimal divide(BigDecimal divider, RoundingMode roundingMode) {
-                return amount.divide(divider, 4, roundingMode);
-            }
-
-            @Override
-            public BigDecimal multiply(BigDecimal multiplier) {
-                return amount.multiply(multiplier);
-            }
-        };
-    }
-
-    public String toDisplayableString() {
-        return String.format("%s %s", currency.getSymbol(), numberFormat.format(amount));
     }
 
     public MoneyAmount add(MoneyAmount other) {
@@ -55,13 +46,25 @@ public class MoneyAmount {
         return new MoneyAmount(amount.add(other.amount), currency);
     }
 
-    public MoneyAmount substract(MoneyAmount other) {
+    public MoneyAmount subtract(MoneyAmount other) {
         checkCurrency(other);
         return new MoneyAmount(amount.subtract(other.amount), currency);
     }
 
+    public MoneyAmount multiply(double multiplier) {
+        return new MoneyAmount(amount.multiply(BigDecimal.valueOf(multiplier)), currency);
+    }
+
+    public MoneyAmount divide(double divider, RoundingMode roundingMode) {
+        return new MoneyAmount(amount.divide(BigDecimal.valueOf(divider), roundingMode), currency);
+    }
+
     public String toDbString() {
         return String.format("%s %s", amount.toPlainString(), currency.getCode());
+    }
+
+    public synchronized String toDisplayableString() {
+        return String.format("%s %s", currency.getSymbol(), numberFormat.format(amount));
     }
 
     public Currency getCurrency() {
@@ -74,9 +77,26 @@ public class MoneyAmount {
         }
     }
 
-    public interface Operations {
-        BigDecimal divide(BigDecimal divider, RoundingMode roundingMode);
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        BigDecimal multiply(BigDecimal multiplier);
+        MoneyAmount that = (MoneyAmount) o;
+
+        if (amount.compareTo(that.amount) != 0) return false;
+        return currency == that.currency;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = amount.hashCode();
+        result = 31 * result + currency.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("MoneyAmount{ %s %s }", amount, currency);
     }
 }
