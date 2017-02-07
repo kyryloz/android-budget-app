@@ -35,8 +35,6 @@ ext {
 }
 
 dependencies {
-    testCompile "junit:junit:4.12"
-
     // android support
     compile "com.android.support:appcompat-v7:$supportLibVersion"
     compile "com.android.support:design:$supportLibVersion"
@@ -63,4 +61,9 @@ dependencies {
     compile "com.yahoo.squidb:squidb-annotations:$squidbVersion"
     compile "com.yahoo.squidb:squidb-android:$squidbVersion"
     annotationProcessor "com.yahoo.squidb:squidb-processor:$squidbVersion"
+
+    // test
+    testCompile "junit:junit:4.12"
+    testCompile "org.robolectric:robolectric:3.1.4"
+    testCompile "org.mockito:mockito-core:2.2.22"
 }

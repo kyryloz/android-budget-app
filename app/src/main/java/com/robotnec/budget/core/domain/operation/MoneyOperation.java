@@ -2,6 +2,7 @@ package com.robotnec.budget.core.domain.operation;
 
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
+import com.robotnec.budget.core.domain.Identifiable;
 import com.robotnec.budget.core.domain.MoneyAmount;
 
 import lombok.Data;
@@ -10,7 +11,7 @@ import lombok.Data;
  * @author zak <zak@swingpulse.com>
  */
 @Data
-public class MoneyOperation {
+public class MoneyOperation implements Identifiable {
     long id;
     MoneyAmount amount;
     long date;

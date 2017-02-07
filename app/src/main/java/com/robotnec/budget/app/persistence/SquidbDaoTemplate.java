@@ -1,6 +1,7 @@
 package com.robotnec.budget.app.persistence;
 
 import com.robotnec.budget.core.dao.BaseDao;
+import com.robotnec.budget.core.domain.Identifiable;
 import com.yahoo.squidb.data.SquidCursor;
 import com.yahoo.squidb.data.TableModel;
 import com.yahoo.squidb.sql.Property;
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public abstract class SquidbDaoTemplate<R, T extends TableModel> implements BaseDao<R> {
+public abstract class SquidbDaoTemplate<R extends Identifiable, T extends TableModel> implements BaseDao<R> {
 
     BudgetDatabase database;
 
@@ -51,7 +52,12 @@ public abstract class SquidbDaoTemplate<R, T extends TableModel> implements Base
 
     @Override
     public boolean createOrUpdate(R entity) {
-        return database.persist(map(entity));
+        T record = map(entity);
+        boolean success = database.persist(record);
+        if (success) {
+            entity.setId(record.getRowId());
+        }
+        return success;
     }
 
     abstract T fromCursor(SquidCursor<T> cursor);
