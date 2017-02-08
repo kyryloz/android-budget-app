@@ -1,12 +1,14 @@
 package com.robotnec.budget.core.di.module;
 
-import com.robotnec.budget.app.persistence.BudgetDatabase;
-import com.robotnec.budget.app.persistence.SquidbAccountDao;
-import com.robotnec.budget.app.persistence.SquidbCategoryDao;
-import com.robotnec.budget.app.persistence.MoneyOperationDaoImpl;
-import com.robotnec.budget.core.dao.AccountDao;
-import com.robotnec.budget.core.dao.CategoryDao;
-import com.robotnec.budget.core.dao.MoneyOperationDao;
+import com.robotnec.budget.core.persistence.BudgetDatabase;
+import com.robotnec.budget.core.persistence.TransactionContext;
+import com.robotnec.budget.core.persistence.TransactionContextImpl;
+import com.robotnec.budget.core.persistence.dao.impl.AccountDaoImpl;
+import com.robotnec.budget.core.persistence.dao.impl.CategoryDaoImpl;
+import com.robotnec.budget.core.persistence.dao.impl.MoneyOperationDaoImpl;
+import com.robotnec.budget.core.persistence.dao.AccountDao;
+import com.robotnec.budget.core.persistence.dao.CategoryDao;
+import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
 
 import javax.inject.Singleton;
 
@@ -28,19 +30,25 @@ public class DaoModule {
     @Singleton
     @Provides
     public AccountDao provideAccountDao() {
-        return new SquidbAccountDao(database);
+        return new AccountDaoImpl(database);
     }
 
     @Singleton
     @Provides
     public CategoryDao provideCategoryDao() {
-        return new SquidbCategoryDao(database);
+        return new CategoryDaoImpl(database);
     }
 
     @Singleton
     @Provides
-    public MoneyOperationDao provideTransactionDao(AccountDao accountDao,
+    public MoneyOperationDao provideMoneyOperationDao(AccountDao accountDao,
                                                    CategoryDao categoryDao) {
         return new MoneyOperationDaoImpl(database, accountDao, categoryDao);
+    }
+
+    @Singleton
+    @Provides
+    public TransactionContext provideTransactionContext() {
+        return new TransactionContextImpl(database);
     }
 }

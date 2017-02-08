@@ -1,24 +1,23 @@
-package com.robotnec.budget.app.persistence;
+package com.robotnec.budget.core.persistence.dao.impl;
 
-import com.robotnec.budget.app.persistence.schema.CategoryRecord;
+import com.robotnec.budget.core.persistence.BudgetDatabase;
+import com.robotnec.budget.core.persistence.dao.CategoryDao;
+import com.robotnec.budget.core.persistence.schema.CategoryRecord;
 import com.robotnec.budget.app.util.Mapper;
-import com.robotnec.budget.core.dao.CategoryDao;
 import com.robotnec.budget.core.domain.Category;
 import com.yahoo.squidb.data.SquidCursor;
 import com.yahoo.squidb.sql.Property;
 import com.yahoo.squidb.sql.Query;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 
-public class SquidbCategoryDao extends SquidbDaoTemplate<Category, CategoryRecord> implements CategoryDao {
+public class CategoryDaoImpl extends SquidbDaoTemplate<Category, CategoryRecord> implements CategoryDao {
 
-    public SquidbCategoryDao(BudgetDatabase database) {
+    public CategoryDaoImpl(BudgetDatabase database) {
         super(database);
     }
 

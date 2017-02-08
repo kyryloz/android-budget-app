@@ -1,8 +1,9 @@
-package com.robotnec.budget.app.persistence;
+package com.robotnec.budget.core.persistence.dao.impl;
 
-import com.robotnec.budget.app.persistence.schema.AccountRecord;
+import com.robotnec.budget.core.persistence.BudgetDatabase;
+import com.robotnec.budget.core.persistence.schema.AccountRecord;
 import com.robotnec.budget.app.util.Mapper;
-import com.robotnec.budget.core.dao.AccountDao;
+import com.robotnec.budget.core.persistence.dao.AccountDao;
 import com.robotnec.budget.core.domain.Account;
 import com.yahoo.squidb.data.SquidCursor;
 import com.yahoo.squidb.sql.Property;
@@ -12,9 +13,9 @@ import java.util.List;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class SquidbAccountDao extends SquidbDaoTemplate<Account, AccountRecord> implements AccountDao {
+public class AccountDaoImpl extends SquidbDaoTemplate<Account, AccountRecord> implements AccountDao {
 
-    public SquidbAccountDao(BudgetDatabase database) {
+    public AccountDaoImpl(BudgetDatabase database) {
         super(database);
     }
 

@@ -1,45 +1,49 @@
 package com.robotnec.budget.core.domain.operation;
 
-import com.robotnec.budget.core.dao.AccountDao;
-import com.robotnec.budget.core.dao.MoneyOperationDao;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.MoneyAmount;
+import com.robotnec.budget.core.persistence.TransactionContext;
+import com.robotnec.budget.core.persistence.dao.AccountDao;
+import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
 import com.robotnec.budget.core.service.CurrencyExchangeService;
-
-import java.math.BigDecimal;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 public class OperationReceiverImpl implements OperationReceiver {
+
     private final MoneyOperationDao moneyOperationDao;
     private final AccountDao accountDao;
     private final CurrencyExchangeService exchangeService;
-
+    private final TransactionContext transactionContext;
 
     public OperationReceiverImpl(MoneyOperationDao moneyOperationDao,
                                  AccountDao accountDao,
-                                 CurrencyExchangeService exchangeService) {
+                                 CurrencyExchangeService exchangeService,
+                                 TransactionContext transactionContext) {
         this.moneyOperationDao = moneyOperationDao;
         this.accountDao = accountDao;
         this.exchangeService = exchangeService;
+        this.transactionContext = transactionContext;
     }
 
     @Override
-    // TODO transaction
     public boolean receive(Expense expense) {
-        MoneyAmount amount = expense.getAmount();
-        Account targetAccount = expense.getAccount();
-        MoneyAmount exchanged = exchangeService.exchange(amount, targetAccount.getAmount().getCurrency());
-        targetAccount.setAmount(targetAccount.getAmount().subtract(exchanged));
-        accountDao.createOrUpdate(targetAccount);
-        MoneyOperation entity = new MoneyOperation();
-        entity.setCategory(expense.getCategory());
-        entity.setDate(expense.getDate());
-        entity.setAccount(expense.getAccount());
-        entity.setAmount(expense.getAmount());
-        return moneyOperationDao.createOrUpdate(entity);
+        return transactionContext.doInTransaction(() -> {
+            MoneyAmount amount = expense.getAmount();
+            Account targetAccount = expense.getAccount();
+            MoneyAmount exchanged = exchangeService.exchange(amount, targetAccount.getAmount().getCurrency());
+            targetAccount.setAmount(targetAccount.getAmount().subtract(exchanged));
+            boolean accountUpdated = accountDao.createOrUpdate(targetAccount);
+            MoneyOperation entity = new MoneyOperation();
+            entity.setCategory(expense.getCategory());
+            entity.setDate(expense.getDate());
+            entity.setAccount(expense.getAccount());
+            entity.setAmount(expense.getAmount());
+            boolean moneyOperationUpdated = moneyOperationDao.createOrUpdate(entity);
+            return accountUpdated && moneyOperationUpdated;
+        });
     }
 
     @Override

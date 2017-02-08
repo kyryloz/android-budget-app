@@ -1,4 +1,4 @@
-package com.robotnec.budget.app.persistence.schema;
+package com.robotnec.budget.core.persistence.schema;
 
 import com.yahoo.squidb.annotations.PrimaryKey;
 import com.yahoo.squidb.annotations.TableModelSpec;

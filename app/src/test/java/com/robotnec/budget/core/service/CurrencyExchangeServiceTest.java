@@ -1,14 +1,12 @@
-package com.robotnec.budget.app.service;
+package com.robotnec.budget.core.service;
 
 import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.MoneyAmount;
-import com.robotnec.budget.core.service.CurrencyExchangeService;
+import com.robotnec.budget.core.service.impl.SimpleCurrencyExchangeService;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * @author zak <zak@swingpulse.com>

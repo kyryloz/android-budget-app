@@ -1,10 +1,9 @@
-package com.robotnec.budget.app.service;
+package com.robotnec.budget.core.service.impl;
 
 import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.service.CurrencyExchangeService;
 
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;

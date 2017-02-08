@@ -1,14 +1,16 @@
 package com.robotnec.budget.core.domain.operation;
 
 import com.robotnec.budget.BaseRobolectricTest;
-import com.robotnec.budget.app.persistence.BudgetDatabase;
-import com.robotnec.budget.app.persistence.MoneyOperationDaoImpl;
-import com.robotnec.budget.app.persistence.SquidbAccountDao;
-import com.robotnec.budget.app.persistence.SquidbCategoryDao;
-import com.robotnec.budget.app.service.SimpleCurrencyExchangeService;
-import com.robotnec.budget.core.dao.AccountDao;
-import com.robotnec.budget.core.dao.CategoryDao;
-import com.robotnec.budget.core.dao.MoneyOperationDao;
+import com.robotnec.budget.core.persistence.BudgetDatabase;
+import com.robotnec.budget.core.persistence.TransactionContext;
+import com.robotnec.budget.core.persistence.TransactionContextImpl;
+import com.robotnec.budget.core.persistence.dao.impl.MoneyOperationDaoImpl;
+import com.robotnec.budget.core.persistence.dao.impl.AccountDaoImpl;
+import com.robotnec.budget.core.persistence.dao.impl.CategoryDaoImpl;
+import com.robotnec.budget.core.service.impl.SimpleCurrencyExchangeService;
+import com.robotnec.budget.core.persistence.dao.AccountDao;
+import com.robotnec.budget.core.persistence.dao.CategoryDao;
+import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.Currency;
@@ -30,6 +32,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
 
     private MoneyOperationDao moneyOperationDao;
     private CurrencyExchangeService exchangeService;
+    private TransactionContext transactionContext;
     private Account testAccount;
     private Category testCategory;
     private AccountDao accountDao;
@@ -37,9 +40,10 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
     @Before
     public void before() throws Exception {
         BudgetDatabase database = new BudgetDatabase(RuntimeEnvironment.application);
-        accountDao = new SquidbAccountDao(database);
-        CategoryDao categoryDao = new SquidbCategoryDao(database);
+        accountDao = new AccountDaoImpl(database);
+        CategoryDao categoryDao = new CategoryDaoImpl(database);
         exchangeService = new SimpleCurrencyExchangeService();
+        transactionContext = new TransactionContextImpl(database);
         moneyOperationDao = new MoneyOperationDaoImpl(database, accountDao, categoryDao);
 
         testAccount = new Account();
@@ -56,7 +60,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
     public void shouldPerformExpenseOperation() throws Exception {
         OperationReceiver operationReceiver = new OperationReceiverImpl(moneyOperationDao,
                 accountDao,
-                exchangeService);
+                exchangeService, transactionContext);
         Expense expense = new Expense();
         expense.setAccount(testAccount);
         expense.setCategory(testCategory);
@@ -85,7 +89,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         Mockito.when(mockMoneyOperationDao.createOrUpdate(Mockito.any())).thenReturn(false);
         OperationReceiver operationReceiver = new OperationReceiverImpl(mockMoneyOperationDao,
                 accountDao,
-                exchangeService);
+                exchangeService, transactionContext);
 
         Expense expense = new Expense();
         expense.setAccount(testAccount);

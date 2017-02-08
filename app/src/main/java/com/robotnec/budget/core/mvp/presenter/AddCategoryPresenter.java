@@ -2,7 +2,7 @@ package com.robotnec.budget.core.mvp.presenter;
 
 import javax.inject.Inject;
 
-import com.robotnec.budget.core.dao.CategoryDao;
+import com.robotnec.budget.core.persistence.dao.CategoryDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.mvp.view.AddCategoryView;

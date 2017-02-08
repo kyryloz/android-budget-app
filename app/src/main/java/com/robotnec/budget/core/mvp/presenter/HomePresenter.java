@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.robotnec.budget.core.dao.AccountDao;
+import com.robotnec.budget.core.persistence.dao.AccountDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.mvp.view.HomeView;

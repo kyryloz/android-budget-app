@@ -1,7 +1,8 @@
-package com.robotnec.budget.app.persistence;
+package com.robotnec.budget.core.persistence.dao.impl;
 
-import com.robotnec.budget.core.dao.BaseDao;
+import com.robotnec.budget.core.persistence.BudgetDatabase;
 import com.robotnec.budget.core.domain.Identifiable;
+import com.robotnec.budget.core.persistence.dao.BaseDao;
 import com.yahoo.squidb.data.SquidCursor;
 import com.yahoo.squidb.data.TableModel;
 import com.yahoo.squidb.sql.Property;

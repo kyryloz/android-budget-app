@@ -1,4 +1,4 @@
-package com.robotnec.budget.core.dao;
+package com.robotnec.budget.core.persistence.dao;
 
 import java.util.List;
 

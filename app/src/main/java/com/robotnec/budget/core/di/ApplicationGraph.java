@@ -2,7 +2,7 @@ package com.robotnec.budget.core.di;
 
 import android.content.Context;
 
-import com.robotnec.budget.app.persistence.BudgetDatabase;
+import com.robotnec.budget.core.persistence.BudgetDatabase;
 import com.robotnec.budget.core.di.module.AndroidModule;
 import com.robotnec.budget.core.di.module.DaoModule;
 import com.robotnec.budget.core.di.module.NavigationModule;

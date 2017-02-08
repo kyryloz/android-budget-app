@@ -1,6 +1,6 @@
 package com.robotnec.budget.core.mvp.presenter;
 
-import com.robotnec.budget.core.dao.MoneyOperationDao;
+import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.operation.MoneyOperation;

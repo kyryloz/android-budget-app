@@ -1,7 +1,7 @@
 package com.robotnec.budget.core.mvp.presenter;
 
-import com.robotnec.budget.core.dao.AccountDao;
-import com.robotnec.budget.core.dao.CategoryDao;
+import com.robotnec.budget.core.persistence.dao.AccountDao;
+import com.robotnec.budget.core.persistence.dao.CategoryDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
@@ -11,7 +11,6 @@ import com.robotnec.budget.core.domain.operation.Expense;
 import com.robotnec.budget.core.mvp.view.AddTransactionView;
 import com.robotnec.budget.core.service.MoneyOperationBroker;
 
-import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;

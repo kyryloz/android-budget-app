@@ -1,10 +1,11 @@
-package com.robotnec.budget.app.persistence;
+package com.robotnec.budget.core.persistence.dao.impl;
 
-import com.robotnec.budget.app.persistence.schema.MoneyOperationRecord;
+import com.robotnec.budget.core.persistence.BudgetDatabase;
+import com.robotnec.budget.core.persistence.dao.AccountDao;
+import com.robotnec.budget.core.persistence.dao.CategoryDao;
+import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
+import com.robotnec.budget.core.persistence.schema.MoneyOperationRecord;
 import com.robotnec.budget.app.util.Mapper;
-import com.robotnec.budget.core.dao.AccountDao;
-import com.robotnec.budget.core.dao.CategoryDao;
-import com.robotnec.budget.core.dao.MoneyOperationDao;
 import com.robotnec.budget.core.domain.operation.MoneyOperation;
 import com.yahoo.squidb.data.SquidCursor;
 import com.yahoo.squidb.sql.Property;

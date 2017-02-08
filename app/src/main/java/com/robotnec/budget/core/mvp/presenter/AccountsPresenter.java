@@ -2,7 +2,7 @@ package com.robotnec.budget.core.mvp.presenter;
 
 import javax.inject.Inject;
 
-import com.robotnec.budget.core.dao.AccountDao;
+import com.robotnec.budget.core.persistence.dao.AccountDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.mvp.view.AccountsView;
 import com.robotnec.budget.core.navigator.NavigationBundle;
