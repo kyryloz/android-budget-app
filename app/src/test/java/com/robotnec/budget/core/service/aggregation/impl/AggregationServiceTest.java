@@ -14,6 +14,7 @@ import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -44,7 +45,37 @@ public class AggregationServiceTest {
         TransactionAggregation aggregation =
                 aggregationService.aggregate(transactions, AggregationService.Resolution.DAY);
 
-        Assert.assertEquals(aggregation.getNodesCount(), 4);
+        Assert.assertEquals(aggregation.getSpansCount(), 3);
+
+        Map<TimeSpan, List<Transaction>> map = aggregation.getMap();
+
+        TimeSpan expectedFirstSpan = TimeSpan.of(LocalDateTime.of(2017, 1, 1, 0, 0),
+                LocalDateTime.of(2017, 1, 2, 0, 0));
+
+        // first span
+        List<Transaction> expectedFirstSpanTransactions = new ArrayList<>();
+        expectedFirstSpanTransactions.add(t1);
+        expectedFirstSpanTransactions.add(t2);
+
+        Assert.assertEquals(map.get(expectedFirstSpan), expectedFirstSpanTransactions);
+
+        TimeSpan expectedSecondSpan = TimeSpan.of(LocalDateTime.of(2017, 1, 3, 0, 0),
+                LocalDateTime.of(2017, 1, 4, 0, 0));
+
+        // second span
+        List<Transaction> expectedSecondSpanTransactions = new ArrayList<>();
+        expectedSecondSpanTransactions.add(t3);
+
+        Assert.assertEquals(map.get(expectedSecondSpan), expectedSecondSpanTransactions);
+
+        // third span
+        TimeSpan expectedThirdSpan = TimeSpan.of(LocalDateTime.of(2017, 1, 4, 0, 0),
+                LocalDateTime.of(2017, 1, 5, 0, 0));
+
+        List<Transaction> expectedThirdSpanTransactions = new ArrayList<>();
+        expectedThirdSpanTransactions.add(t4);
+
+        Assert.assertEquals(map.get(expectedThirdSpan), expectedThirdSpanTransactions);
     }
 
     @NonNull

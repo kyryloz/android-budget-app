@@ -38,16 +38,17 @@ public class AggregationServiceImpl implements AggregationService {
 
         Map<TimeSpan, List<Transaction>> aggregatedMap = new HashMap<>();
         for (TimeSpan timeSpan : timeSpans) {
-            aggregatedMap.put(timeSpan, new ArrayList<>());
+            ArrayList<Transaction> values = new ArrayList<>();
+            aggregatedMap.put(timeSpan, values);
             for (Transaction transaction : transactions) {
                 if (timeSpan.isInSpan(transaction.getDate())) {
-                    List<Transaction> values = aggregatedMap.get(timeSpan);
                     values.add(transaction);
                 }
             }
+            if (values.isEmpty()) {
+                aggregatedMap.remove(timeSpan);
+            }
         }
-
         return TransactionAggregationImpl.from(aggregatedMap);
     }
-
 }

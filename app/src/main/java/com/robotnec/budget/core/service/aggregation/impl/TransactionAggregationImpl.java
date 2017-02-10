@@ -21,7 +21,12 @@ public class TransactionAggregationImpl implements TransactionAggregation {
     }
 
     @Override
-    public int getNodesCount() {
+    public int getSpansCount() {
         return aggregation.size();
+    }
+
+    @Override
+    public Map<TimeSpan, List<Transaction>> getMap() {
+        return aggregation;
     }
 }
