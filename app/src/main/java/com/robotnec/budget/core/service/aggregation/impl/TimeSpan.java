@@ -5,7 +5,7 @@ import org.threeten.bp.LocalDateTime;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public final class TimeSpan {
+final class TimeSpan {
     private final LocalDateTime from;
     private final LocalDateTime to;
 
@@ -20,5 +20,13 @@ public final class TimeSpan {
 
     public boolean isInSpan(LocalDateTime date) {
         return (date.isEqual(from) || date.isAfter(from)) && date.isBefore(to);
+    }
+
+    LocalDateTime getStartDate() {
+        return from;
+    }
+
+    LocalDateTime getEndDate() {
+        return to;
     }
 }

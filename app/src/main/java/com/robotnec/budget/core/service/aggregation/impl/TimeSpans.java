@@ -33,4 +33,8 @@ class TimeSpans {
     public int size() {
         return spans.size();
     }
+
+    public TimeSpan get(int index) {
+        return spans.get(index);
+    }
 }
