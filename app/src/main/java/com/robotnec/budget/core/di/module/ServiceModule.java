@@ -5,6 +5,8 @@ import com.robotnec.budget.core.persistence.dao.AccountDao;
 import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
 import com.robotnec.budget.core.service.CurrencyExchangeService;
 import com.robotnec.budget.core.service.MoneyOperationBroker;
+import com.robotnec.budget.core.service.aggregation.AggregationService;
+import com.robotnec.budget.core.service.aggregation.impl.AggregationServiceImpl;
 import com.robotnec.budget.core.service.impl.MoneyOperationBrokerImpl;
 import com.robotnec.budget.core.service.impl.SimpleCurrencyExchangeService;
 
@@ -33,5 +35,11 @@ public class ServiceModule {
     @Provides
     public CurrencyExchangeService provideCurrencyExchangeService() {
         return new SimpleCurrencyExchangeService();
+    }
+
+    @Singleton
+    @Provides
+    public AggregationService provideAggregationService() {
+        return new AggregationServiceImpl();
     }
 }

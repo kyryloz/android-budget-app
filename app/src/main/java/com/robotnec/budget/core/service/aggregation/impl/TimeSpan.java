@@ -19,6 +19,6 @@ public final class TimeSpan {
     }
 
     public boolean isInSpan(LocalDateTime date) {
-        return true;
+        return (date.isEqual(from) || date.isAfter(from)) && date.isBefore(to);
     }
 }

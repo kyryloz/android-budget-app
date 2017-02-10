@@ -7,7 +7,7 @@ import com.robotnec.budget.core.service.aggregation.AggregationService;
 import com.robotnec.budget.core.service.aggregation.TransactionAggregation;
 
 import org.threeten.bp.Instant;
-import org.threeten.bp.LocalDate;
+import org.threeten.bp.LocalDateTime;
 
 import java.util.Comparator;
 import java.util.List;
@@ -30,8 +30,8 @@ public class AggregationServiceImpl implements AggregationService {
                 .map(date)
                 .get();
 
-        LocalDate minDate = LocalDate.from(Instant.ofEpochMilli(minTimestamp));
-        LocalDate maxDate = LocalDate.from(Instant.ofEpochMilli(maxTimestamp));
+        LocalDateTime minDate = LocalDateTime.from(Instant.ofEpochMilli(minTimestamp));
+        LocalDateTime maxDate = LocalDateTime.from(Instant.ofEpochMilli(maxTimestamp));
 
         TimeSpans timeSpans = TimeSpans.dyDays(minDate, maxDate);
 
