@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.robotnec.budget.R;
-import com.robotnec.budget.app.adapters.TransactionsAdapter;
+import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
 import com.robotnec.budget.app.util.Keys;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.operation.MoneyOperation;
@@ -71,7 +71,7 @@ public class CategoryOverviewFragment extends BasePresenterFragment<CategoryOver
 
     @Override
     public void displayCategoryTransactions(List<MoneyOperation> accounts) {
-        categoryTransactionsAdapter.update(accounts);
+//        categoryTransactionsAdapter.setItems(accounts);
     }
 
     private void initCategoryTransactionsList() {

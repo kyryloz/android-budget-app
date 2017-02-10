@@ -2,6 +2,7 @@ package com.robotnec.budget.app;
 
 import android.app.Application;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.robotnec.budget.app.navigator.AndroidNavigator;
 import com.robotnec.budget.core.di.ApplicationGraph;
 
@@ -15,6 +16,7 @@ public class BudgetApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        AndroidThreeTen.init(this);
         applicationGraph = new ApplicationGraph(
                 new AndroidNavigator(),
                 this);

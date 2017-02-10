@@ -1,7 +1,7 @@
-package com.robotnec.budget.app.adapters;
+package com.robotnec.budget.app.adapters.transaction;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -18,24 +18,29 @@ import butterknife.ButterKnife;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class TransactionsAdapter extends BaseAdapter<MoneyOperation, TransactionsAdapter.ViewHolder> {
+class TransactionItem implements TransactionListItem {
 
+    private final MoneyOperation moneyOperation;
     private final DateFormat dateFormat;
 
-    public TransactionsAdapter(Context context) {
-        super(context);
+    static RecyclerView.ViewHolder createViewHolder(LayoutInflater inflater, ViewGroup parent) {
+        View itemView = inflater.inflate(R.layout.item_transaction, parent, false);
+        return new TransactionViewHolder(itemView);
+    }
+
+    TransactionItem(MoneyOperation moneyOperation) {
+        this.moneyOperation = moneyOperation;
         dateFormat = DateFormat.getDateInstance();
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.inflate(R.layout.item_transaction, parent, false);
-        return new ViewHolder(itemView);
+    public int getViewType() {
+        return TransactionsAdapter.VIEW_TYPE_ITEM;
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        MoneyOperation moneyOperation = items.get(position);
+    public void bindViewHolder(RecyclerView.ViewHolder viewHolder) {
+        TransactionViewHolder holder = (TransactionViewHolder) viewHolder;
         String textAmount = moneyOperation.getAmount().toDisplayableString();
         String textFrom = moneyOperation.getAccount().getName();
         String textWhere = moneyOperation.getCategory().getName();
@@ -47,7 +52,7 @@ public class TransactionsAdapter extends BaseAdapter<MoneyOperation, Transaction
         holder.textDate.setText(textDate);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class TransactionViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_amount)
         TextView textAmount;
@@ -61,7 +66,7 @@ public class TransactionsAdapter extends BaseAdapter<MoneyOperation, Transaction
         @BindView(R.id.text_date)
         TextView textDate;
 
-        ViewHolder(View itemView) {
+        TransactionViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }

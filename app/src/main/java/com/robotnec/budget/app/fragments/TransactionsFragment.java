@@ -10,13 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.robotnec.budget.R;
-import com.robotnec.budget.app.adapters.TransactionsAdapter;
+import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
 import com.robotnec.budget.app.navigator.AndroidNavigationBundle;
-import com.robotnec.budget.core.domain.operation.MoneyOperation;
+import com.robotnec.budget.core.service.aggregation.TransactionAggregation;
 import com.robotnec.budget.core.mvp.presenter.TransactionsPresenter;
 import com.robotnec.budget.core.mvp.view.TransactionsView;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -61,8 +59,8 @@ public class TransactionsFragment extends BasePresenterFragment<TransactionsPres
     }
 
     @Override
-    public void displayTransactions(List<MoneyOperation> transactions) {
-        transactionsAdapter.update(transactions);
+    public void displayTransactions(TransactionAggregation aggregation) {
+        transactionsAdapter.setItems(aggregation);
     }
 
     private void initRecyclerView() {
