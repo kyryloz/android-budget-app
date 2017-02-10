@@ -4,12 +4,13 @@ import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.temporal.ChronoUnit;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-class TimeSpans {
+class TimeSpans implements Iterable<TimeSpan> {
 
     private final List<TimeSpan> spans;
 
@@ -36,5 +37,10 @@ class TimeSpans {
 
     public TimeSpan get(int index) {
         return spans.get(index);
+    }
+
+    @Override
+    public Iterator<TimeSpan> iterator() {
+        return spans.iterator();
     }
 }

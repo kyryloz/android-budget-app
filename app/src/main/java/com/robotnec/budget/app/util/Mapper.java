@@ -11,6 +11,10 @@ import com.robotnec.budget.core.persistence.schema.AccountRecord;
 import com.robotnec.budget.core.persistence.schema.CategoryRecord;
 import com.robotnec.budget.core.persistence.schema.TransactionRecord;
 
+import org.threeten.bp.Instant;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.ZoneOffset;
+
 import java.util.List;
 
 /**
@@ -76,7 +80,7 @@ public final class Mapper {
         transaction.setAccount(accountMapper.apply(record.getAccountId()));
         transaction.setCategory(categoryMapper.apply(record.getCategoryId()));
         transaction.setId(record.getId());
-        transaction.setDate(record.getDate());
+        transaction.setDate(LocalDateTime.from(Instant.ofEpochMilli(record.getDate())));
         return transaction;
     }
 
@@ -89,6 +93,6 @@ public final class Mapper {
                 .setAccountId(account != null ? account.getId() : 1)
                 .setCategoryId(category != null ? category.getId() : 1)
                 .setAmount(amount != null ? amount.toDbString() : "-1 UAH")
-                .setDate(operation.getDate());
+                .setDate(operation.getDate().toInstant(ZoneOffset.UTC).toEpochMilli());
     }
 }

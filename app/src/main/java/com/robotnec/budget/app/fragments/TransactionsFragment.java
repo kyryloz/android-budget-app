@@ -12,7 +12,7 @@ import android.view.View;
 import com.robotnec.budget.R;
 import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
 import com.robotnec.budget.app.navigator.AndroidNavigationBundle;
-import com.robotnec.budget.core.service.aggregation.TransactionAggregation;
+import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 import com.robotnec.budget.core.mvp.presenter.TransactionsPresenter;
 import com.robotnec.budget.core.mvp.view.TransactionsView;
 

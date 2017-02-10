@@ -53,7 +53,7 @@ public class OperationReceiverImpl implements OperationReceiver {
         account.setAmount(account.getAmount().add(bonus));
         accountDao.createOrUpdate(account);
         Transaction entity = new Transaction();
-        entity.setDate(income.getDate());
+//        entity.setDate(income.getDate());
         entity.setAccount(income.getAccount());
         entity.setAmount(bonus);
         return transactionDao.createOrUpdate(entity);

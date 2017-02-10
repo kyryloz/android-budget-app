@@ -44,7 +44,7 @@ class TransactionItem implements TransactionListItem {
         String textAmount = transaction.getAmount().toDisplayableString();
         String textFrom = transaction.getAccount().getName();
         String textWhere = transaction.getCategory().getName();
-        String textDate = dateFormat.format(new Date(transaction.getDate()));
+        String textDate = transaction.getDate().toString();
 
         holder.textAmount.setText(textAmount);
         holder.textFrom.setText(textFrom);

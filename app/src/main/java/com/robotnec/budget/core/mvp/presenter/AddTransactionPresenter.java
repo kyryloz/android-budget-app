@@ -11,6 +11,9 @@ import com.robotnec.budget.core.domain.operation.Expense;
 import com.robotnec.budget.core.mvp.view.AddTransactionView;
 import com.robotnec.budget.core.service.MoneyOperationBroker;
 
+import org.threeten.bp.Instant;
+import org.threeten.bp.LocalDateTime;
+
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -95,7 +98,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         Expense expense = new Expense();
         expense.setAccount(targetAccount);
         expense.setAmount(moneyAmount);
-        expense.setDate(resultDate.getTimeInMillis());
+        expense.setDate(LocalDateTime.from(Instant.ofEpochMilli(resultDate.getTimeInMillis())));
         expense.setCategory(targetCategory);
         moneyOperationBroker.execute(expense);
 

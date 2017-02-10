@@ -4,6 +4,8 @@ import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.MoneyAmount;
 
+import org.threeten.bp.LocalDateTime;
+
 import lombok.Data;
 
 /**
@@ -13,7 +15,7 @@ import lombok.Data;
 public class Expense implements Operation {
 
     private MoneyAmount amount;
-    private long date;
+    private LocalDateTime date;
     private Account account;
     private Category category;
 

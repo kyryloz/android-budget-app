@@ -1,7 +1,7 @@
 package com.robotnec.budget.core.mvp.presenter;
 
 import com.robotnec.budget.core.service.aggregation.AggregationService;
-import com.robotnec.budget.core.service.aggregation.TransactionAggregation;
+import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 import com.robotnec.budget.core.persistence.dao.TransactionDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.operation.Transaction;

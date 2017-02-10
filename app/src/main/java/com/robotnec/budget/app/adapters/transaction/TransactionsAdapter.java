@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.robotnec.budget.core.service.aggregation.TransactionAggregation;
+import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 
 import java.util.ArrayList;
 import java.util.List;

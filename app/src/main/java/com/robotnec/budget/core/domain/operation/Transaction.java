@@ -5,6 +5,8 @@ import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.Identifiable;
 import com.robotnec.budget.core.domain.MoneyAmount;
 
+import org.threeten.bp.LocalDateTime;
+
 import lombok.Data;
 
 /**
@@ -14,7 +16,7 @@ import lombok.Data;
 public class Transaction implements Identifiable {
     long id;
     MoneyAmount amount;
-    long date;
+    LocalDateTime date;
     Account account;
     Category category;
 }
