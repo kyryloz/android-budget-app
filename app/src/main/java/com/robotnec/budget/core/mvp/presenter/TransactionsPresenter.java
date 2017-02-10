@@ -2,9 +2,9 @@ package com.robotnec.budget.core.mvp.presenter;
 
 import com.robotnec.budget.core.service.aggregation.AggregationService;
 import com.robotnec.budget.core.service.aggregation.TransactionAggregation;
-import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
+import com.robotnec.budget.core.persistence.dao.TransactionDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
-import com.robotnec.budget.core.domain.operation.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.Transaction;
 import com.robotnec.budget.core.mvp.view.TransactionsView;
 import com.robotnec.budget.core.navigator.NavigationBundle;
 import com.robotnec.budget.core.navigator.Navigator;
@@ -22,7 +22,7 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
     Navigator navigator;
 
     @Inject
-    MoneyOperationDao moneyOperationDao;
+    TransactionDao transactionDao;
 
     @Inject
     AggregationService aggregator;
@@ -33,9 +33,9 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
 
     @Override
     public void onViewReady() {
-        List<MoneyOperation> moneyOperations = moneyOperationDao.getAll();
+        List<Transaction> transactions = transactionDao.getAll();
         TransactionAggregation aggregation =
-                aggregator.aggregate(moneyOperations, AggregationService.Resolution.DAY);
+                aggregator.aggregate(transactions, AggregationService.Resolution.DAY);
         view.displayTransactions(aggregation);
     }
 

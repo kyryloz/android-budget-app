@@ -3,13 +3,13 @@ package com.robotnec.budget.app.util;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Function;
-import com.robotnec.budget.core.persistence.schema.AccountRecord;
-import com.robotnec.budget.core.persistence.schema.CategoryRecord;
-import com.robotnec.budget.core.persistence.schema.MoneyOperationRecord;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.MoneyAmount;
-import com.robotnec.budget.core.domain.operation.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.Transaction;
+import com.robotnec.budget.core.persistence.schema.AccountRecord;
+import com.robotnec.budget.core.persistence.schema.CategoryRecord;
+import com.robotnec.budget.core.persistence.schema.TransactionRecord;
 
 import java.util.List;
 
@@ -60,31 +60,31 @@ public final class Mapper {
                 .setId(category.getId());
     }
 
-    public static List<MoneyOperation> fromTransactionRecords(List<MoneyOperationRecord> records,
-                                                             Function<Long, Account> accountMapper,
-                                                             Function<Long, Category> categoryMapper) {
+    public static List<Transaction> fromTransactionRecords(List<TransactionRecord> records,
+                                                           Function<Long, Account> accountMapper,
+                                                           Function<Long, Category> categoryMapper) {
         return Stream.of(records)
                 .map(record -> fromRecord(record, accountMapper, categoryMapper))
                 .collect(Collectors.toList());
     }
 
-    public static MoneyOperation fromRecord(MoneyOperationRecord record,
-                                            Function<Long, Account> accountMapper,
-                                            Function<Long, Category> categoryMapper) {
-        MoneyOperation moneyOperation = new MoneyOperation();
-        moneyOperation.setAmount(MoneyAmount.fromDbString(record.getAmount()));
-        moneyOperation.setAccount(accountMapper.apply(record.getAccountId()));
-        moneyOperation.setCategory(categoryMapper.apply(record.getCategoryId()));
-        moneyOperation.setId(record.getId());
-        moneyOperation.setDate(record.getDate());
-        return moneyOperation;
+    public static Transaction fromRecord(TransactionRecord record,
+                                         Function<Long, Account> accountMapper,
+                                         Function<Long, Category> categoryMapper) {
+        Transaction transaction = new Transaction();
+        transaction.setAmount(MoneyAmount.fromDbString(record.getAmount()));
+        transaction.setAccount(accountMapper.apply(record.getAccountId()));
+        transaction.setCategory(categoryMapper.apply(record.getCategoryId()));
+        transaction.setId(record.getId());
+        transaction.setDate(record.getDate());
+        return transaction;
     }
 
-    public static MoneyOperationRecord toRecord(MoneyOperation operation) {
+    public static TransactionRecord toRecord(Transaction operation) {
         Account account = operation.getAccount();
         Category category = operation.getCategory();
         MoneyAmount amount = operation.getAmount();
-        return new MoneyOperationRecord()
+        return new TransactionRecord()
                 .setId(operation.getId())
                 .setAccountId(account != null ? account.getId() : 1)
                 .setCategoryId(category != null ? category.getId() : 1)

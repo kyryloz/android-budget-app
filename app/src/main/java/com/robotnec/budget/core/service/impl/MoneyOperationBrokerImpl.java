@@ -2,7 +2,7 @@ package com.robotnec.budget.core.service.impl;
 
 import com.robotnec.budget.core.persistence.TransactionContext;
 import com.robotnec.budget.core.persistence.dao.AccountDao;
-import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
+import com.robotnec.budget.core.persistence.dao.TransactionDao;
 import com.robotnec.budget.core.domain.operation.Operation;
 import com.robotnec.budget.core.domain.operation.OperationReceiver;
 import com.robotnec.budget.core.domain.operation.OperationReceiverImpl;
@@ -16,11 +16,11 @@ public class MoneyOperationBrokerImpl implements MoneyOperationBroker {
 
     private final OperationReceiver operationReceiver;
 
-    public MoneyOperationBrokerImpl(MoneyOperationDao moneyOperationDao,
+    public MoneyOperationBrokerImpl(TransactionDao transactionDao,
                                     AccountDao accountDao,
                                     CurrencyExchangeService exchangeService,
                                     TransactionContext transactionContext) {
-        this.operationReceiver = new OperationReceiverImpl(moneyOperationDao,
+        this.operationReceiver = new OperationReceiverImpl(transactionDao,
                 accountDao, exchangeService, transactionContext);
     }
 

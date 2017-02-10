@@ -2,7 +2,7 @@ package com.robotnec.budget.core.di.module;
 
 import com.robotnec.budget.core.persistence.TransactionContext;
 import com.robotnec.budget.core.persistence.dao.AccountDao;
-import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
+import com.robotnec.budget.core.persistence.dao.TransactionDao;
 import com.robotnec.budget.core.service.CurrencyExchangeService;
 import com.robotnec.budget.core.service.MoneyOperationBroker;
 import com.robotnec.budget.core.service.aggregation.AggregationService;
@@ -23,11 +23,11 @@ public class ServiceModule {
 
     @Singleton
     @Provides
-    public MoneyOperationBroker provideMoneyOperationService(MoneyOperationDao moneyOperationDao,
+    public MoneyOperationBroker provideMoneyOperationService(TransactionDao transactionDao,
                                                              AccountDao accountDao,
                                                              CurrencyExchangeService exchangeService,
                                                              TransactionContext transactionContext) {
-        return new MoneyOperationBrokerImpl(moneyOperationDao,
+        return new MoneyOperationBrokerImpl(transactionDao,
                 accountDao, exchangeService, transactionContext);
     }
 

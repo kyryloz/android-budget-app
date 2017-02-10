@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.robotnec.budget.core.persistence.schema.AccountRecord;
 import com.robotnec.budget.core.persistence.schema.CategoryRecord;
-import com.robotnec.budget.core.persistence.schema.MoneyOperationRecord;
+import com.robotnec.budget.core.persistence.schema.TransactionRecord;
 import com.yahoo.squidb.android.AndroidOpenHelper;
 import com.yahoo.squidb.data.ISQLiteDatabase;
 import com.yahoo.squidb.data.ISQLiteOpenHelper;
@@ -42,7 +42,7 @@ public class BudgetDatabase extends SquidDatabase {
         return new Table[]{
                 AccountRecord.TABLE,
                 CategoryRecord.TABLE,
-                MoneyOperationRecord.TABLE
+                TransactionRecord.TABLE
         };
     }
 

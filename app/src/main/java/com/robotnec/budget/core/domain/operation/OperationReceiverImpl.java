@@ -5,7 +5,7 @@ import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.persistence.TransactionContext;
 import com.robotnec.budget.core.persistence.dao.AccountDao;
-import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
+import com.robotnec.budget.core.persistence.dao.TransactionDao;
 import com.robotnec.budget.core.service.CurrencyExchangeService;
 
 /**
@@ -13,16 +13,16 @@ import com.robotnec.budget.core.service.CurrencyExchangeService;
  */
 public class OperationReceiverImpl implements OperationReceiver {
 
-    private final MoneyOperationDao moneyOperationDao;
+    private final TransactionDao transactionDao;
     private final AccountDao accountDao;
     private final CurrencyExchangeService exchangeService;
     private final TransactionContext transactionContext;
 
-    public OperationReceiverImpl(MoneyOperationDao moneyOperationDao,
+    public OperationReceiverImpl(TransactionDao transactionDao,
                                  AccountDao accountDao,
                                  CurrencyExchangeService exchangeService,
                                  TransactionContext transactionContext) {
-        this.moneyOperationDao = moneyOperationDao;
+        this.transactionDao = transactionDao;
         this.accountDao = accountDao;
         this.exchangeService = exchangeService;
         this.transactionContext = transactionContext;
@@ -36,12 +36,12 @@ public class OperationReceiverImpl implements OperationReceiver {
             MoneyAmount exchanged = exchangeService.exchange(amount, targetAccount.getAmount().getCurrency());
             targetAccount.setAmount(targetAccount.getAmount().subtract(exchanged));
             boolean accountUpdated = accountDao.createOrUpdate(targetAccount);
-            MoneyOperation entity = new MoneyOperation();
+            Transaction entity = new Transaction();
             entity.setCategory(expense.getCategory());
             entity.setDate(expense.getDate());
             entity.setAccount(expense.getAccount());
             entity.setAmount(expense.getAmount());
-            boolean moneyOperationUpdated = moneyOperationDao.createOrUpdate(entity);
+            boolean moneyOperationUpdated = transactionDao.createOrUpdate(entity);
             return accountUpdated && moneyOperationUpdated;
         });
     }
@@ -52,10 +52,10 @@ public class OperationReceiverImpl implements OperationReceiver {
         MoneyAmount bonus = MoneyAmount.of(1000, Currency.UAH);
         account.setAmount(account.getAmount().add(bonus));
         accountDao.createOrUpdate(account);
-        MoneyOperation entity = new MoneyOperation();
+        Transaction entity = new Transaction();
         entity.setDate(income.getDate());
         entity.setAccount(income.getAccount());
         entity.setAmount(bonus);
-        return moneyOperationDao.createOrUpdate(entity);
+        return transactionDao.createOrUpdate(entity);
     }
 }

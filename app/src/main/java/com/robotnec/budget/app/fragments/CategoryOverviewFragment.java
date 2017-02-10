@@ -12,7 +12,7 @@ import com.robotnec.budget.R;
 import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
 import com.robotnec.budget.app.util.Keys;
 import com.robotnec.budget.core.domain.Category;
-import com.robotnec.budget.core.domain.operation.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.Transaction;
 import com.robotnec.budget.core.mvp.presenter.CategoryOverviewPresenter;
 import com.robotnec.budget.core.mvp.view.CategoryOverviewView;
 
@@ -70,7 +70,7 @@ public class CategoryOverviewFragment extends BasePresenterFragment<CategoryOver
     }
 
     @Override
-    public void displayCategoryTransactions(List<MoneyOperation> accounts) {
+    public void displayCategoryTransactions(List<Transaction> accounts) {
 //        categoryTransactionsAdapter.setItems(accounts);
     }
 

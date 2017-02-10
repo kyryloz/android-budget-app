@@ -1,6 +1,6 @@
 package com.robotnec.budget.core.service.aggregation;
 
-import com.robotnec.budget.core.domain.operation.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.Transaction;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface AggregationService {
 
-    TransactionAggregation aggregate(List<MoneyOperation> transactions, Resolution resolution);
+    TransactionAggregation aggregate(List<Transaction> transactions, Resolution resolution);
 
     enum Resolution {
         DAY

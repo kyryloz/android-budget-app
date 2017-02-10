@@ -1,9 +1,9 @@
 package com.robotnec.budget.core.mvp.presenter;
 
-import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
+import com.robotnec.budget.core.persistence.dao.TransactionDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Category;
-import com.robotnec.budget.core.domain.operation.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.Transaction;
 import com.robotnec.budget.core.mvp.view.CategoryOverviewView;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import javax.inject.Inject;
 public class CategoryOverviewPresenter extends Presenter<CategoryOverviewView> {
 
     @Inject
-    MoneyOperationDao moneyOperationDao;
+    TransactionDao transactionDao;
 
     private final Category category;
 
@@ -32,7 +32,7 @@ public class CategoryOverviewPresenter extends Presenter<CategoryOverviewView> {
 
     @Override
     public void onViewReady() {
-        List<MoneyOperation> categoryTransactions = moneyOperationDao.getTransactionsForCategory(category.getId());
+        List<Transaction> categoryTransactions = transactionDao.getTransactionsForCategory(category.getId());
         view.displayCategoryTransactions(categoryTransactions);
         view.displayCategoryTitle(category.getName());
     }

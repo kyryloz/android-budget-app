@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.robotnec.budget.R;
-import com.robotnec.budget.core.domain.operation.MoneyOperation;
+import com.robotnec.budget.core.domain.operation.Transaction;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
  */
 class TransactionItem implements TransactionListItem {
 
-    private final MoneyOperation moneyOperation;
+    private final Transaction transaction;
     private final DateFormat dateFormat;
 
     static RecyclerView.ViewHolder createViewHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -28,8 +28,8 @@ class TransactionItem implements TransactionListItem {
         return new TransactionViewHolder(itemView);
     }
 
-    TransactionItem(MoneyOperation moneyOperation) {
-        this.moneyOperation = moneyOperation;
+    TransactionItem(Transaction transaction) {
+        this.transaction = transaction;
         dateFormat = DateFormat.getDateInstance();
     }
 
@@ -41,10 +41,10 @@ class TransactionItem implements TransactionListItem {
     @Override
     public void bindViewHolder(RecyclerView.ViewHolder viewHolder) {
         TransactionViewHolder holder = (TransactionViewHolder) viewHolder;
-        String textAmount = moneyOperation.getAmount().toDisplayableString();
-        String textFrom = moneyOperation.getAccount().getName();
-        String textWhere = moneyOperation.getCategory().getName();
-        String textDate = dateFormat.format(new Date(moneyOperation.getDate()));
+        String textAmount = transaction.getAmount().toDisplayableString();
+        String textFrom = transaction.getAccount().getName();
+        String textWhere = transaction.getCategory().getName();
+        String textDate = dateFormat.format(new Date(transaction.getDate()));
 
         holder.textAmount.setText(textAmount);
         holder.textFrom.setText(textFrom);

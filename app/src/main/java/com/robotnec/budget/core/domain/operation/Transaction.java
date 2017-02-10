@@ -11,7 +11,7 @@ import lombok.Data;
  * @author zak <zak@swingpulse.com>
  */
 @Data
-public class MoneyOperation implements Identifiable {
+public class Transaction implements Identifiable {
     long id;
     MoneyAmount amount;
     long date;

@@ -4,13 +4,13 @@ import com.robotnec.budget.BaseRobolectricTest;
 import com.robotnec.budget.core.persistence.BudgetDatabase;
 import com.robotnec.budget.core.persistence.TransactionContext;
 import com.robotnec.budget.core.persistence.TransactionContextImpl;
-import com.robotnec.budget.core.persistence.dao.impl.MoneyOperationDaoImpl;
+import com.robotnec.budget.core.persistence.dao.TransactionDao;
+import com.robotnec.budget.core.persistence.dao.impl.TransactionDaoImpl;
 import com.robotnec.budget.core.persistence.dao.impl.AccountDaoImpl;
 import com.robotnec.budget.core.persistence.dao.impl.CategoryDaoImpl;
 import com.robotnec.budget.core.service.impl.SimpleCurrencyExchangeService;
 import com.robotnec.budget.core.persistence.dao.AccountDao;
 import com.robotnec.budget.core.persistence.dao.CategoryDao;
-import com.robotnec.budget.core.persistence.dao.MoneyOperationDao;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.Currency;
@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class OperationReceiverImplTest extends BaseRobolectricTest {
 
-    private MoneyOperationDao moneyOperationDao;
+    private TransactionDao transactionDao;
     private CurrencyExchangeService exchangeService;
     private TransactionContext transactionContext;
     private Account testAccount;
@@ -44,7 +44,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         CategoryDao categoryDao = new CategoryDaoImpl(database);
         exchangeService = new SimpleCurrencyExchangeService();
         transactionContext = new TransactionContextImpl(database);
-        moneyOperationDao = new MoneyOperationDaoImpl(database, accountDao, categoryDao);
+        transactionDao = new TransactionDaoImpl(database, accountDao, categoryDao);
 
         testAccount = new Account();
         testAccount.setAmount(MoneyAmount.of(100, Currency.UAH));
@@ -58,7 +58,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
 
     @Test
     public void shouldPerformExpenseOperation() throws Exception {
-        OperationReceiver operationReceiver = new OperationReceiverImpl(moneyOperationDao,
+        OperationReceiver operationReceiver = new OperationReceiverImpl(transactionDao,
                 accountDao,
                 exchangeService, transactionContext);
         Expense expense = new Expense();
@@ -73,10 +73,10 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         MoneyAmount ninety = MoneyAmount.of(90, Currency.UAH);
         Assert.assertEquals(ninety, actual);
 
-        List<MoneyOperation> actualOperations = moneyOperationDao.getAll();
+        List<Transaction> actualOperations = transactionDao.getAll();
         Assert.assertEquals(1, actualOperations.size());
 
-        MoneyOperation actualOperation = actualOperations.get(0);
+        Transaction actualOperation = actualOperations.get(0);
 
         MoneyAmount actualOperationAmount = actualOperation.getAmount();
         MoneyAmount ten = MoneyAmount.of(10, Currency.UAH);
@@ -85,9 +85,9 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
 
     @Test
     public void shouldRollbackAccountChangeIfFail() throws Exception {
-        MoneyOperationDao mockMoneyOperationDao = Mockito.mock(MoneyOperationDao.class);
-        Mockito.when(mockMoneyOperationDao.createOrUpdate(Mockito.any())).thenReturn(false);
-        OperationReceiver operationReceiver = new OperationReceiverImpl(mockMoneyOperationDao,
+        TransactionDao mockTransactionDao = Mockito.mock(TransactionDao.class);
+        Mockito.when(mockTransactionDao.createOrUpdate(Mockito.any())).thenReturn(false);
+        OperationReceiver operationReceiver = new OperationReceiverImpl(mockTransactionDao,
                 accountDao,
                 exchangeService, transactionContext);
 
@@ -103,7 +103,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         MoneyAmount ninety = MoneyAmount.of(90, Currency.UAH);
         Assert.assertNotEquals(ninety, actual);
 
-        List<MoneyOperation> actualOperations = moneyOperationDao.getAll();
+        List<Transaction> actualOperations = transactionDao.getAll();
         Assert.assertEquals(0, actualOperations.size());
     }
 }
