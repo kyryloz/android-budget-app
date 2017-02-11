@@ -33,6 +33,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void setItems(TransactionAggregation aggregation) {
         this.items.clear();
         this.items.addAll(toTransactionListItems(aggregation));
+        notifyDataSetChanged();
     }
 
     private List<TransactionListItem> toTransactionListItems(TransactionAggregation aggregation) {
@@ -48,6 +49,11 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
         }
         return items;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
     }
 
     @Override
