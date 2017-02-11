@@ -22,6 +22,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.robolectric.RuntimeEnvironment;
+import org.threeten.bp.LocalDateTime;
 
 import java.util.List;
 
@@ -64,6 +65,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         Expense expense = new Expense();
         expense.setAccount(testAccount);
         expense.setCategory(testCategory);
+        expense.setDate(LocalDateTime.now());
         expense.setAmount(MoneyAmount.of(10, Currency.UAH));
 
         boolean success = operationReceiver.receive(expense);

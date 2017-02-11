@@ -5,11 +5,14 @@ import org.threeten.bp.LocalDateTime;
 /**
  * @author zak <zak@swingpulse.com>
  */
-final class TimeSpan {
+public final class TimeSpan implements Comparable<TimeSpan> {
     private final LocalDateTime from;
     private final LocalDateTime to;
 
     public static TimeSpan of(LocalDateTime from, LocalDateTime to) {
+        if (to.isBefore(from) || to.isEqual(from)) {
+            throw new IllegalArgumentException("to >= from");
+        }
         return new TimeSpan(from, to);
     }
 
@@ -22,11 +25,11 @@ final class TimeSpan {
         return (date.isEqual(from) || date.isAfter(from)) && date.isBefore(to);
     }
 
-    LocalDateTime getStartDate() {
+    public LocalDateTime getStartDate() {
         return from;
     }
 
-    LocalDateTime getEndDate() {
+    public LocalDateTime getEndDate() {
         return to;
     }
 
@@ -46,5 +49,10 @@ final class TimeSpan {
         int result = from != null ? from.hashCode() : 0;
         result = 31 * result + (to != null ? to.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(TimeSpan o) {
+        return from.compareTo(o.from);
     }
 }

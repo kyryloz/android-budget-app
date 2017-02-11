@@ -1,7 +1,6 @@
 package com.robotnec.budget.core.mvp.presenter;
 
-import com.robotnec.budget.core.persistence.dao.AccountDao;
-import com.robotnec.budget.core.persistence.dao.CategoryDao;
+import com.robotnec.budget.app.util.DateUtils;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
@@ -9,10 +8,13 @@ import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.domain.operation.Expense;
 import com.robotnec.budget.core.mvp.view.AddTransactionView;
+import com.robotnec.budget.core.persistence.dao.AccountDao;
+import com.robotnec.budget.core.persistence.dao.CategoryDao;
 import com.robotnec.budget.core.service.MoneyOperationBroker;
 
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.ZoneId;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -98,7 +100,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         Expense expense = new Expense();
         expense.setAccount(targetAccount);
         expense.setAmount(moneyAmount);
-        expense.setDate(LocalDateTime.from(Instant.ofEpochMilli(resultDate.getTimeInMillis())));
+        expense.setDate(DateUtils.fromMillis(resultDate.getTimeInMillis()));
         expense.setCategory(targetCategory);
         moneyOperationBroker.execute(expense);
 

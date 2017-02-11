@@ -14,7 +14,7 @@ import org.threeten.bp.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.SortedMap;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -47,7 +47,8 @@ public class AggregationServiceTest {
 
         Assert.assertEquals(aggregation.getSpansCount(), 3);
 
-        Map<TimeSpan, List<Transaction>> map = aggregation.getMap();
+        SortedMap<TimeSpan, List<Transaction>> map =
+                aggregation.getMap(TransactionAggregation.Sorting.ASC);
 
         TimeSpan expectedFirstSpan = TimeSpan.of(LocalDateTime.of(2017, 1, 1, 0, 0),
                 LocalDateTime.of(2017, 1, 2, 0, 0));

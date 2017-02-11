@@ -3,7 +3,7 @@ package com.robotnec.budget.core.service.aggregation.impl;
 import com.robotnec.budget.core.domain.operation.Transaction;
 
 import java.util.List;
-import java.util.Map;
+import java.util.SortedMap;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -11,5 +11,9 @@ import java.util.Map;
 public interface TransactionAggregation {
     int getSpansCount();
 
-    Map<TimeSpan, List<Transaction>> getMap();
+    SortedMap<TimeSpan, List<Transaction>> getMap(Sorting sorting);
+
+    enum Sorting {
+        ASC, DESC
+    }
 }

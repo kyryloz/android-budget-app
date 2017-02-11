@@ -10,9 +10,9 @@ import org.threeten.bp.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -21,6 +21,11 @@ public class AggregationServiceImpl implements AggregationService {
 
     @Override
     public TransactionAggregation aggregate(List<Transaction> transactions, Resolution resolution) {
+        TreeMap<TimeSpan, List<Transaction>> aggregatedMap = new TreeMap<>();
+        if (transactions.isEmpty()) {
+            return TransactionAggregationImpl.from(aggregatedMap);
+        }
+
         Comparator<Transaction> comparator = (o1, o2) -> o1.getDate().compareTo(o2.getDate());
         Function<Transaction, LocalDateTime> date = Transaction::getDate;
         LocalDateTime minDate = Stream.of(transactions)
@@ -36,7 +41,6 @@ public class AggregationServiceImpl implements AggregationService {
 
         Collections.sort(transactions, comparator);
 
-        Map<TimeSpan, List<Transaction>> aggregatedMap = new HashMap<>();
         for (TimeSpan timeSpan : timeSpans) {
             ArrayList<Transaction> values = new ArrayList<>();
             aggregatedMap.put(timeSpan, values);

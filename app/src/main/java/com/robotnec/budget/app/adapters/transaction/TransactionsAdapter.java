@@ -5,12 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
+import com.robotnec.budget.core.domain.operation.Transaction;
+import com.robotnec.budget.core.service.aggregation.impl.TimeSpan;
 import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedMap;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -34,9 +36,18 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     private List<TransactionListItem> toTransactionListItems(TransactionAggregation aggregation) {
-        return Stream.of(aggregation)
-                .map(a -> new HeaderItem(null))
-                .collect(Collectors.toList());
+        List<TransactionListItem> items = new ArrayList<>();
+        SortedMap<TimeSpan, List<Transaction>> map =
+                aggregation.getMap(TransactionAggregation.Sorting.DESC);
+
+        for (Map.Entry<TimeSpan, List<Transaction>> entry : map.entrySet()) {
+            items.add(new HeaderItem(entry.getKey().getStartDate().toLocalDate()));
+            List<Transaction> transactions = entry.getValue();
+            for (Transaction transaction : transactions) {
+                items.add(new TransactionItem(transaction));
+            }
+        }
+        return items;
     }
 
     @Override

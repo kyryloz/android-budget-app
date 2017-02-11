@@ -11,8 +11,6 @@ import com.robotnec.budget.core.persistence.schema.AccountRecord;
 import com.robotnec.budget.core.persistence.schema.CategoryRecord;
 import com.robotnec.budget.core.persistence.schema.TransactionRecord;
 
-import org.threeten.bp.Instant;
-import org.threeten.bp.LocalDateTime;
 import org.threeten.bp.ZoneOffset;
 
 import java.util.List;
@@ -80,7 +78,7 @@ public final class Mapper {
         transaction.setAccount(accountMapper.apply(record.getAccountId()));
         transaction.setCategory(categoryMapper.apply(record.getCategoryId()));
         transaction.setId(record.getId());
-        transaction.setDate(LocalDateTime.from(Instant.ofEpochMilli(record.getDate())));
+        transaction.setDate(DateUtils.fromMillis(record.getDate()));
         return transaction;
     }
 
