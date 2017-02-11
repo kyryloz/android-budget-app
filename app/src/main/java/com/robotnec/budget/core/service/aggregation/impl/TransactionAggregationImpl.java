@@ -33,7 +33,7 @@ public class TransactionAggregationImpl implements TransactionAggregation {
     }
 
     @Override
-    public SortedMap<TimeSpan, List<Transaction>> getMap(Sorting sorting) {
+    public SortedMap<TimeSpan, List<Transaction>> get(Sorting sorting) {
         if (sorting == Sorting.ASC) {
             return Collections.unmodifiableSortedMap(aggregation);
         } else {

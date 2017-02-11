@@ -52,6 +52,11 @@ class TransactionItem implements TransactionListItem {
         holder.textDate.setText(textDate);
     }
 
+    @Override
+    public long getId() {
+        return transaction.getId();
+    }
+
     static class TransactionViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_amount)

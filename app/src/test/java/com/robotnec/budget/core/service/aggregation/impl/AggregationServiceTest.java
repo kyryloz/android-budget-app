@@ -48,7 +48,7 @@ public class AggregationServiceTest {
         Assert.assertEquals(aggregation.getSpansCount(), 3);
 
         SortedMap<TimeSpan, List<Transaction>> map =
-                aggregation.getMap(TransactionAggregation.Sorting.ASC);
+                aggregation.get(TransactionAggregation.Sorting.ASC);
 
         TimeSpan expectedFirstSpan = TimeSpan.of(LocalDateTime.of(2017, 1, 1, 0, 0),
                 LocalDateTime.of(2017, 1, 2, 0, 0));

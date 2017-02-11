@@ -40,6 +40,11 @@ class HeaderItem implements TransactionListItem {
         holder.textDate.setText(date.toString());
     }
 
+    @Override
+    public long getId() {
+        return -date.toEpochDay();
+    }
+
     static class HeaderViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_date)

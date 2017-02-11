@@ -5,14 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.robotnec.budget.core.domain.operation.Transaction;
-import com.robotnec.budget.core.service.aggregation.impl.TimeSpan;
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.SortedMap;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -28,6 +26,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public TransactionsAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
         items = new ArrayList<>();
+        setHasStableIds(true);
     }
 
     public void setItems(TransactionAggregation aggregation) {
@@ -38,22 +37,18 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private List<TransactionListItem> toTransactionListItems(TransactionAggregation aggregation) {
         List<TransactionListItem> items = new ArrayList<>();
-        SortedMap<TimeSpan, List<Transaction>> map =
-                aggregation.getMap(TransactionAggregation.Sorting.DESC);
-
-        for (Map.Entry<TimeSpan, List<Transaction>> entry : map.entrySet()) {
+        Stream.of(aggregation.get(TransactionAggregation.Sorting.DESC)).forEach(entry -> {
             items.add(new HeaderItem(entry.getKey().getStartDate().toLocalDate()));
-            List<Transaction> transactions = entry.getValue();
-            for (Transaction transaction : transactions) {
-                items.add(new TransactionItem(transaction));
-            }
-        }
+            items.addAll(Stream.of(entry.getValue())
+                    .map(TransactionItem::new)
+                    .collect(Collectors.toList()));
+        });
         return items;
     }
 
     @Override
     public long getItemId(int position) {
-        return super.getItemId(position);
+        return items.get(position).getId();
     }
 
     @Override

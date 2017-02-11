@@ -1,5 +1,6 @@
 package com.robotnec.budget.core.service.aggregation.impl;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Function;
 import com.robotnec.budget.core.domain.operation.Transaction;
@@ -7,11 +8,10 @@ import com.robotnec.budget.core.service.aggregation.AggregationService;
 
 import org.threeten.bp.LocalDateTime;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.NavigableMap;
+import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
@@ -21,7 +21,7 @@ public class AggregationServiceImpl implements AggregationService {
 
     @Override
     public TransactionAggregation aggregate(List<Transaction> transactions, Resolution resolution) {
-        TreeMap<TimeSpan, List<Transaction>> aggregatedMap = new TreeMap<>();
+        SortedMap<TimeSpan, List<Transaction>> aggregatedMap = new TreeMap<>();
         if (transactions.isEmpty()) {
             return TransactionAggregationImpl.from(aggregatedMap);
         }
@@ -42,15 +42,11 @@ public class AggregationServiceImpl implements AggregationService {
         Collections.sort(transactions, comparator);
 
         for (TimeSpan timeSpan : timeSpans) {
-            ArrayList<Transaction> values = new ArrayList<>();
-            aggregatedMap.put(timeSpan, values);
-            for (Transaction transaction : transactions) {
-                if (timeSpan.isInSpan(transaction.getDate())) {
-                    values.add(transaction);
-                }
-            }
-            if (values.isEmpty()) {
-                aggregatedMap.remove(timeSpan);
+            List<Transaction> values = Stream.of(transactions)
+                    .filter(t -> timeSpan.isInSpan(t.getDate()))
+                    .collect(Collectors.toList());
+            if (!values.isEmpty()) {
+                aggregatedMap.put(timeSpan, values);
             }
         }
         return TransactionAggregationImpl.from(aggregatedMap);

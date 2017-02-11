@@ -11,7 +11,7 @@ import java.util.SortedMap;
 public interface TransactionAggregation {
     int getSpansCount();
 
-    SortedMap<TimeSpan, List<Transaction>> getMap(Sorting sorting);
+    SortedMap<TimeSpan, List<Transaction>> get(Sorting sorting);
 
     enum Sorting {
         ASC, DESC
