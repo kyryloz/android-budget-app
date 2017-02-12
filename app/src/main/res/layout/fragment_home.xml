@@ -20,27 +20,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_merge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_accounts"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingTop="16dp"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_transactions"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:clipToPadding="false"
-            android:paddingTop="16dp"/>
-    </LinearLayout>
+        android:clipToPadding="false"
+        android:paddingTop="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -49,7 +35,7 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:src="@drawable/ic_add_white_24dp"
-        app:layout_anchor="@id/recycler_transactions"
+        app:layout_anchor="@id/recycler_merge"
         app:layout_anchorGravity="bottom|end"/>
 
 </android.support.design.widget.CoordinatorLayout>

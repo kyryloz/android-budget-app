@@ -60,7 +60,7 @@ public class TransactionsFragment extends BasePresenterFragment<TransactionsPres
 
     @Override
     public void displayTransactions(TransactionAggregation aggregation) {
-        transactionsAdapter.setItems(aggregation);
+        transactionsAdapter.update(aggregation);
     }
 
     private void initRecyclerView() {

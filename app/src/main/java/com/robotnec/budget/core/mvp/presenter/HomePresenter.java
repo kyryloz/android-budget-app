@@ -38,11 +38,10 @@ public class HomePresenter extends Presenter<HomeView> {
     @Override
     public void onViewReady() {
         List<Account> accounts = accountDao.getAll();
-        view.displayAccounts(accounts);
         TransactionAggregation aggregation =
                 aggregationService.aggregate(transactionDao.getAll(),
                         AggregationService.Resolution.DAY);
-        view.displayTransactions(aggregation);
+        view.displayAccountsWithTransactions(accounts, aggregation);
     }
 
     @Override

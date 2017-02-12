@@ -9,18 +9,20 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.robotnec.budget.R;
+import com.robotnec.budget.app.adapters.AccountsAdapter;
+import com.robotnec.budget.app.adapters.MergeAdapter;
+import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
+import com.robotnec.budget.app.navigator.AndroidNavigationBundle;
+import com.robotnec.budget.core.domain.Account;
+import com.robotnec.budget.core.mvp.presenter.HomePresenter;
+import com.robotnec.budget.core.mvp.view.HomeView;
+import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
+
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import com.robotnec.budget.R;
-import com.robotnec.budget.app.adapters.AccountsAdapter;
-import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
-import com.robotnec.budget.core.domain.Account;
-import com.robotnec.budget.core.mvp.presenter.HomePresenter;
-import com.robotnec.budget.core.mvp.view.HomeView;
-import com.robotnec.budget.app.navigator.AndroidNavigationBundle;
-import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -30,12 +32,10 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.recycler_accounts)
-    RecyclerView recyclerAccounts;
+    @BindView(R.id.recycler_merge)
+    RecyclerView recyclerMerge;
 
-    @BindView(R.id.recycler_transactions)
-    RecyclerView recyclerTransactions;
-
+    private MergeAdapter mergeAdapter;
     private AccountsAdapter accountsAdapter;
     private TransactionsAdapter transactionsAdapter;
 
@@ -57,8 +57,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initToolbarToggle(toolbar);
-        initAccountsList();
-        initTransactionsList();
+        initRecyclerView();
     }
 
     @OnClick(R.id.fab)
@@ -67,26 +66,19 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
     }
 
     @Override
-    public void displayAccounts(List<Account> accounts) {
+    public void displayAccountsWithTransactions(List<Account> accounts,
+                                                TransactionAggregation aggregation) {
         accountsAdapter.update(accounts);
+        transactionsAdapter.update(aggregation);
+        mergeAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void displayTransactions(TransactionAggregation aggregation) {
-        transactionsAdapter.setItems(aggregation);
-    }
-
-    private void initAccountsList() {
+    private void initRecyclerView() {
         accountsAdapter = new AccountsAdapter(getContext(), null);
-        recyclerAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerAccounts.setHasFixedSize(true);
-        recyclerAccounts.setAdapter(accountsAdapter);
-    }
-
-    private void initTransactionsList() {
         transactionsAdapter = new TransactionsAdapter(getContext());
-        recyclerTransactions.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerTransactions.setHasFixedSize(true);
-        recyclerTransactions.setAdapter(transactionsAdapter);
+        mergeAdapter = new MergeAdapter(accountsAdapter, transactionsAdapter);
+        recyclerMerge.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerMerge.setHasFixedSize(true);
+        recyclerMerge.setAdapter(mergeAdapter);
     }
 }

@@ -29,7 +29,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         setHasStableIds(true);
     }
 
-    public void setItems(TransactionAggregation aggregation) {
+    public void update(TransactionAggregation aggregation) {
         this.items.clear();
         this.items.addAll(toTransactionListItems(aggregation));
         notifyDataSetChanged();

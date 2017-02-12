@@ -69,7 +69,7 @@ public class CategoryOverviewFragment extends BasePresenterFragment<CategoryOver
 
     @Override
     public void displayCategoryTransactions(TransactionAggregation transactionAggregation) {
-        categoryTransactionsAdapter.setItems(transactionAggregation);
+        categoryTransactionsAdapter.update(transactionAggregation);
     }
 
     private void initCategoryTransactionsList() {
