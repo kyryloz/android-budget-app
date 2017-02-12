@@ -9,16 +9,16 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import butterknife.BindView;
-
 import com.robotnec.budget.R;
-import com.robotnec.budget.core.mvp.presenter.MainPresenter;
-import com.robotnec.budget.core.mvp.view.MainView;
 import com.robotnec.budget.app.fragments.AboutFragment;
 import com.robotnec.budget.app.fragments.AccountsFragment;
 import com.robotnec.budget.app.fragments.CategoriesFragment;
 import com.robotnec.budget.app.fragments.HomeFragment;
 import com.robotnec.budget.app.fragments.TransactionsFragment;
+import com.robotnec.budget.core.mvp.presenter.MainPresenter;
+import com.robotnec.budget.core.mvp.view.MainView;
+
+import butterknife.BindView;
 
 public class MainActivity extends BasePresenterActivity<MainPresenter>
         implements NavigationView.OnNavigationItemSelectedListener, MainView {

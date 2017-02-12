@@ -15,10 +15,12 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import com.robotnec.budget.R;
 import com.robotnec.budget.app.adapters.AccountsAdapter;
+import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.mvp.presenter.HomePresenter;
 import com.robotnec.budget.core.mvp.view.HomeView;
 import com.robotnec.budget.app.navigator.AndroidNavigationBundle;
+import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -31,7 +33,11 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
     @BindView(R.id.recycler_accounts)
     RecyclerView recyclerAccounts;
 
+    @BindView(R.id.recycler_transactions)
+    RecyclerView recyclerTransactions;
+
     private AccountsAdapter accountsAdapter;
+    private TransactionsAdapter transactionsAdapter;
 
     public static Fragment newInstance() {
         return new HomeFragment();
@@ -52,6 +58,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
         super.onViewCreated(view, savedInstanceState);
         initToolbarToggle(toolbar);
         initAccountsList();
+        initTransactionsList();
     }
 
     @OnClick(R.id.fab)
@@ -64,10 +71,22 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
         accountsAdapter.update(accounts);
     }
 
+    @Override
+    public void displayTransactions(TransactionAggregation aggregation) {
+        transactionsAdapter.setItems(aggregation);
+    }
+
     private void initAccountsList() {
         accountsAdapter = new AccountsAdapter(getContext(), null);
         recyclerAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerAccounts.setHasFixedSize(true);
         recyclerAccounts.setAdapter(accountsAdapter);
+    }
+
+    private void initTransactionsList() {
+        transactionsAdapter = new TransactionsAdapter(getContext());
+        recyclerTransactions.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerTransactions.setHasFixedSize(true);
+        recyclerTransactions.setAdapter(transactionsAdapter);
     }
 }

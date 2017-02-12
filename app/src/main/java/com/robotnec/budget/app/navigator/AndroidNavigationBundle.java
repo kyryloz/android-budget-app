@@ -9,6 +9,8 @@ import com.robotnec.budget.core.navigator.NavigationBundle;
 /**
  * @author zak <zak@swingpulse.com>
  */
+// TODO rewrite to command-visitor
+@Deprecated
 public class AndroidNavigationBundle implements NavigationBundle<AppCompatActivity> {
 
     private AppCompatActivity activity;
