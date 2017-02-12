@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author zak <zak@swingpulse.com>
  */
-
+// TODO use composition
 public interface BaseDao<T> {
 
     T findById(long id);

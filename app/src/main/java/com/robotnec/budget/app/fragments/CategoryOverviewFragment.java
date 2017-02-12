@@ -12,11 +12,9 @@ import com.robotnec.budget.R;
 import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
 import com.robotnec.budget.app.util.Keys;
 import com.robotnec.budget.core.domain.Category;
-import com.robotnec.budget.core.domain.operation.Transaction;
 import com.robotnec.budget.core.mvp.presenter.CategoryOverviewPresenter;
 import com.robotnec.budget.core.mvp.view.CategoryOverviewView;
-
-import java.util.List;
+import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 
 import butterknife.BindView;
 
@@ -70,8 +68,8 @@ public class CategoryOverviewFragment extends BasePresenterFragment<CategoryOver
     }
 
     @Override
-    public void displayCategoryTransactions(List<Transaction> accounts) {
-//        categoryTransactionsAdapter.setItems(accounts);
+    public void displayCategoryTransactions(TransactionAggregation transactionAggregation) {
+        categoryTransactionsAdapter.setItems(transactionAggregation);
     }
 
     private void initCategoryTransactionsList() {

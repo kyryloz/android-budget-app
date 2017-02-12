@@ -1,8 +1,6 @@
 package com.robotnec.budget.core.mvp.view;
 
-import com.robotnec.budget.core.domain.operation.Transaction;
-
-import java.util.List;
+import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -10,5 +8,5 @@ import java.util.List;
 public interface CategoryOverviewView extends View {
     void displayCategoryTitle(String title);
 
-    void displayCategoryTransactions(List<Transaction> accounts);
+    void displayCategoryTransactions(TransactionAggregation transactionAggregation);
 }
