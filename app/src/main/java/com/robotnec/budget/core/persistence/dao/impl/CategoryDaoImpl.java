@@ -1,13 +1,12 @@
 package com.robotnec.budget.core.persistence.dao.impl;
 
+import com.robotnec.budget.app.util.Mapper;
+import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.persistence.BudgetDatabase;
 import com.robotnec.budget.core.persistence.dao.CategoryDao;
 import com.robotnec.budget.core.persistence.schema.CategoryRecord;
-import com.robotnec.budget.app.util.Mapper;
-import com.robotnec.budget.core.domain.Category;
 import com.yahoo.squidb.data.SquidCursor;
 import com.yahoo.squidb.sql.Property;
-import com.yahoo.squidb.sql.Query;
 
 import java.util.List;
 
@@ -19,12 +18,6 @@ public class CategoryDaoImpl extends SquidbDaoTemplate<Category, CategoryRecord>
 
     public CategoryDaoImpl(BudgetDatabase database) {
         super(database);
-    }
-
-    @Override
-    public Category findById(long id) {
-        CategoryRecord record = database.fetchByQuery(CategoryRecord.class, Query.select());
-        return Mapper.fromRecord(record);
     }
 
     @Override

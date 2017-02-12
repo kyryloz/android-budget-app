@@ -90,7 +90,7 @@ public final class Mapper {
                 .setId(operation.getId())
                 .setAccountId(account != null ? account.getId() : 1)
                 .setCategoryId(category != null ? category.getId() : 1)
-                .setAmount(amount != null ? amount.toDbString() : "-1 UAH")
+                .setAmount(amount != null ? amount.toDbString() : "0 UAH")
                 .setDate(operation.getDate().toInstant(ZoneOffset.UTC).toEpochMilli());
     }
 }
