@@ -22,9 +22,11 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private final List<TransactionListItem> items;
     private LayoutInflater layoutInflater;
+    private Context context;
 
     public TransactionsAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
+        this.context = context;
         items = new ArrayList<>();
         setHasStableIds(true);
     }
@@ -38,7 +40,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<TransactionListItem> toTransactionListItems(TransactionAggregation aggregation) {
         List<TransactionListItem> items = new ArrayList<>();
         Stream.of(aggregation.get(TransactionAggregation.Sorting.DESC)).forEach(entry -> {
-            items.add(new HeaderItem(entry.getKey().getStartDate().toLocalDate()));
+            items.add(new HeaderItem(entry.getKey().getStartDate().toLocalDate(), context));
             items.addAll(Stream.of(entry.getValue())
                     .map(TransactionItem::new)
                     .collect(Collectors.toList()));
