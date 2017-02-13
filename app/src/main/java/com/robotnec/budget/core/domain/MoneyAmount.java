@@ -1,5 +1,6 @@
 package com.robotnec.budget.core.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -9,7 +10,7 @@ import java.util.Objects;
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class MoneyAmount {
+public class MoneyAmount implements Serializable {
 
     private final static NumberFormat numberFormat;
 

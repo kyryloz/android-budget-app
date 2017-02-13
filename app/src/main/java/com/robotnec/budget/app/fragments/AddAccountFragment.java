@@ -88,7 +88,7 @@ public class AddAccountFragment extends BasePresenterFragment<AddAccountPresente
         editAccountName.setText(account.getName());
         editAccountName.setSelection(editAccountName.length());
 
-        editAccountInitialAmount.setText(String.valueOf(account.getAmount()));
+        editAccountInitialAmount.setText(String.valueOf(account.getAmount().toDisplayableString()));
         editAccountInitialAmount.setSelection(editAccountInitialAmount.length());
 
         buttonDelete.setVisibility(View.VISIBLE);
