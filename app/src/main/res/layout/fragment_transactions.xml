@@ -47,7 +47,8 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:src="@drawable/ic_add_white_24dp"
+        app:layout_anchor="@id/recycler_transactions"
         app:layout_anchorGravity="bottom|end"
-        app:layout_anchor="@id/recycler_transactions"/>
+        app:layout_behavior="com.robotnec.budget.app.widget.ScrollingFabBehavior"/>
 
 </android.support.design.widget.CoordinatorLayout>

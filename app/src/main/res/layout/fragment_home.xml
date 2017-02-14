@@ -28,15 +28,15 @@
         android:clickable="true"
         android:src="@drawable/ic_add_white_24dp"
         app:layout_anchor="@+id/recycler_merge"
-        app:layout_anchorGravity="bottom|end|right"/>
+        app:layout_anchorGravity="bottom|end"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_merge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingTop="16dp"
         android:paddingBottom="16dp"
+        android:paddingTop="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>
