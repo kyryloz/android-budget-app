@@ -10,8 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.robotnec.budget.R;
-import com.robotnec.budget.app.adapters.AccountsAdapter;
-import com.robotnec.budget.app.adapters.MergeAdapter;
+import com.robotnec.budget.app.adapters.HeaderAdapter;
+import com.robotnec.budget.app.adapters.HomeHeader;
 import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
 import com.robotnec.budget.app.navigator.AndroidNavigationBundle;
 import com.robotnec.budget.core.domain.Account;
@@ -35,8 +35,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
     @BindView(R.id.recycler_merge)
     RecyclerView recyclerMerge;
 
-    private MergeAdapter mergeAdapter;
-    private AccountsAdapter accountsAdapter;
+    private HeaderAdapter headerAdapter;
     private TransactionsAdapter transactionsAdapter;
 
     public static Fragment newInstance() {
@@ -68,17 +67,15 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
     @Override
     public void displayAccountsWithTransactions(List<Account> accounts,
                                                 TransactionAggregation aggregation) {
-        accountsAdapter.update(accounts);
         transactionsAdapter.update(aggregation);
-        mergeAdapter.notifyDataSetChanged();
+        headerAdapter.notifyDataSetChanged();
     }
 
     private void initRecyclerView() {
-        accountsAdapter = new AccountsAdapter(getContext(), null);
         transactionsAdapter = new TransactionsAdapter(getContext());
-        mergeAdapter = new MergeAdapter(accountsAdapter, transactionsAdapter);
+        headerAdapter = new HeaderAdapter(transactionsAdapter, new HomeHeader());
         recyclerMerge.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerMerge.setHasFixedSize(true);
-        recyclerMerge.setAdapter(mergeAdapter);
+        recyclerMerge.setAdapter(headerAdapter);
     }
 }

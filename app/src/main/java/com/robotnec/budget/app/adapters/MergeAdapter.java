@@ -15,7 +15,6 @@ public class MergeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private final RecyclerView.Adapter second;
 
     public MergeAdapter(RecyclerView.Adapter first, RecyclerView.Adapter second) {
-
         this.first = first;
         this.second = second;
         setHasStableIds(true);
@@ -73,8 +72,8 @@ public class MergeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private static class ViewTypeHash {
-        static int hash(int adapterViewType, int itemviewType) {
-            return adapterViewType << 8 | itemviewType;
+        static int hash(int adapterViewType, int itemViewType) {
+            return adapterViewType << 8 | itemViewType;
         }
 
         static int getAdapterViewType(int hash) {
