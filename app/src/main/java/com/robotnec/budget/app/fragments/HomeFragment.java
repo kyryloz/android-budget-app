@@ -78,7 +78,6 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
         homeHeader = new HomeHeader();
         headerAdapter = new HeaderAdapter(transactionsAdapter, homeHeader);
         recyclerMerge.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerMerge.setHasFixedSize(true);
         recyclerMerge.setAdapter(headerAdapter);
     }
 }
