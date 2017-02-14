@@ -7,25 +7,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.robotnec.budget.R;
+import com.robotnec.budget.app.util.TextIconUtils;
+import com.robotnec.budget.core.domain.Category;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.robotnec.budget.R;
-import com.robotnec.budget.core.domain.Category;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.ViewHolder> {
 
-    private ColorGenerator colorGenerator;
     private CategoryClickListener categoryClickListener;
 
     public CategoriesAdapter(Context context, CategoryClickListener listener) {
         super(context);
-        colorGenerator = ColorGenerator.MATERIAL;
         categoryClickListener = listener;
     }
 
@@ -40,11 +37,9 @@ public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.V
         Category category = items.get(position);
         String name = category.getName();
 
-        holder.mTextName.setText(name);
+        holder.textName.setText(name);
 
-        int iconColor = colorGenerator.getColor(name);
-        TextDrawable iconDrawable = TextDrawable.builder().buildRound(name.substring(0, 1), iconColor);
-        holder.mImageIcon.setImageDrawable(iconDrawable);
+        holder.imageIcon.setImageDrawable(TextIconUtils.generate(name));
 
         holder.itemView.setOnClickListener(v -> {
             if (categoryClickListener != null) {
@@ -56,10 +51,10 @@ public class CategoriesAdapter extends BaseAdapter<Category, CategoriesAdapter.V
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.text_category_name)
-        TextView mTextName;
+        TextView textName;
 
         @BindView(R.id.image_icon)
-        ImageView mImageIcon;
+        ImageView imageIcon;
 
         ViewHolder(View itemView) {
             super(itemView);

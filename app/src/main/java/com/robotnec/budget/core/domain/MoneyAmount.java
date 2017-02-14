@@ -78,6 +78,10 @@ public class MoneyAmount implements Serializable {
         }
     }
 
+    public boolean isNegative() {
+        return amount.signum() < 0;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
