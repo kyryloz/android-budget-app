@@ -14,11 +14,18 @@ public class MergeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private final RecyclerView.Adapter first;
     private final RecyclerView.Adapter second;
 
-    public MergeAdapter(RecyclerView.Adapter first,
-                        RecyclerView.Adapter second) {
+    public MergeAdapter(RecyclerView.Adapter first, RecyclerView.Adapter second) {
 
         this.first = first;
         this.second = second;
+        setHasStableIds(true);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        RecyclerView.Adapter target = findTargetAdapter(position);
+        int normalPosition = normalizePosition(target, position);
+        return target.getItemId(normalPosition);
     }
 
     @Override
@@ -28,21 +35,6 @@ public class MergeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         int itemViewType = target.getItemViewType(normalPosition);
         int adapterViewType = target == first ? VIEW_TYPE_FIRST : VIEW_TYPE_SECOND;
         return ViewTypeHash.hash(adapterViewType, itemViewType);
-    }
-
-    private RecyclerView.Adapter findTargetAdapter(int position) {
-        RecyclerView.Adapter target = first;
-        if (position >= first.getItemCount()) {
-            target = second;
-        }
-        return target;
-    }
-
-    private int normalizePosition(RecyclerView.Adapter target, int position) {
-        if (target == first) {
-            return position;
-        }
-        return position - first.getItemCount();
     }
 
     @Override
@@ -63,6 +55,21 @@ public class MergeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public int getItemCount() {
         return first.getItemCount() + second.getItemCount();
+    }
+
+    private RecyclerView.Adapter findTargetAdapter(int position) {
+        RecyclerView.Adapter target = first;
+        if (position >= first.getItemCount()) {
+            target = second;
+        }
+        return target;
+    }
+
+    private int normalizePosition(RecyclerView.Adapter target, int position) {
+        if (target == first) {
+            return position;
+        }
+        return position - first.getItemCount();
     }
 
     private static class ViewTypeHash {
