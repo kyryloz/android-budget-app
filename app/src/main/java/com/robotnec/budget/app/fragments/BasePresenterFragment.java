@@ -43,7 +43,7 @@ public abstract class BasePresenterFragment<P extends Presenter> extends Fragmen
     @Override
     public void onResume() {
         super.onResume();
-        presenter.onViewReady();
+        presenter.onViewResume();
     }
 
     protected void initToolbarToggle(Toolbar toolbar) {

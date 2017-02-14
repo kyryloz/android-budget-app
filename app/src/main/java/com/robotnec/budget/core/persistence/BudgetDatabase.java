@@ -2,6 +2,8 @@ package com.robotnec.budget.core.persistence;
 
 import android.content.Context;
 
+import com.robotnec.budget.core.domain.Currency;
+import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.persistence.schema.AccountRecord;
 import com.robotnec.budget.core.persistence.schema.CategoryRecord;
 import com.robotnec.budget.core.persistence.schema.TransactionRecord;
@@ -49,6 +51,25 @@ public class BudgetDatabase extends SquidDatabase {
     @Override
     protected boolean onUpgrade(ISQLiteDatabase db, int oldVersion, int newVersion) {
         return false;
+    }
+
+    @Override
+    protected void onTablesCreated(ISQLiteDatabase db) {
+        super.onTablesCreated(db);
+        AccountRecord wallet = new AccountRecord()
+                .setName("Wallet")
+                .setAmount(MoneyAmount.of(10000, Currency.UAH).toDbString());
+        AccountRecord creditCard = new AccountRecord()
+                .setName("Credit Card")
+                .setAmount(MoneyAmount.of(10000, Currency.UAH).toDbString());
+        CategoryRecord food = new CategoryRecord()
+                .setName("Food");
+        CategoryRecord taxi = new CategoryRecord()
+                .setName("Taxi");
+        persist(wallet);
+        persist(creditCard);
+        persist(food);
+        persist(taxi);
     }
 
     @Override

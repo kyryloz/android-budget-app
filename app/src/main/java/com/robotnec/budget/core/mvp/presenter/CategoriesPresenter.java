@@ -32,7 +32,7 @@ public class CategoriesPresenter extends Presenter<CategoriesView> {
     }
 
     @Override
-    public void onViewReady() {
+    public void onViewResume() {
         view.displayCategories(categoryDao.getAll());
     }
 

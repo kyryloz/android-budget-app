@@ -30,7 +30,7 @@ public class AddCategoryPresenter extends Presenter<AddCategoryView> {
     }
 
     @Override
-    public void onViewReady() {
+    public void onViewResume() {
         if (editMode) {
             view.initEditMode(category);
         }

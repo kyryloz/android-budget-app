@@ -29,7 +29,7 @@ public class AccountsPresenter extends Presenter<AccountsView> {
     }
 
     @Override
-    public void onViewReady() {
+    public void onViewResume() {
         view.displayAccounts(accountDao.getAll());
     }
 

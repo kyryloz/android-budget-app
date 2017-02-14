@@ -32,7 +32,7 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
     }
 
     @Override
-    public void onViewReady() {
+    public void onViewResume() {
         List<Transaction> transactions = transactionDao.getAll();
         TransactionAggregation aggregation =
                 aggregator.aggregate(transactions, AggregationService.Resolution.DAY);

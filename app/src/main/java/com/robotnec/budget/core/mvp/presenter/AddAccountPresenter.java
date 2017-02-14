@@ -32,7 +32,7 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
     }
 
     @Override
-    public void onViewReady() {
+    public void onViewResume() {
         if (editMode) {
             view.initEditMode(account);
         }

@@ -36,7 +36,7 @@ public class CategoryOverviewPresenter extends Presenter<CategoryOverviewView> {
     }
 
     @Override
-    public void onViewReady() {
+    public void onViewResume() {
         List<Transaction> categoryTransactions = transactionDao.getTransactionsForCategory(category.getId());
         TransactionAggregation aggregation =
                 aggregationService.aggregate(categoryTransactions, AggregationService.Resolution.DAY);

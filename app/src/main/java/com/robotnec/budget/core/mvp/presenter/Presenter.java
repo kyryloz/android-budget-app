@@ -17,5 +17,5 @@ public abstract class Presenter<V extends View> {
 
     public abstract void injectComponent(ApplicationComponent applicationComponent);
 
-    public abstract void onViewReady();
+    public abstract void onViewResume();
 }

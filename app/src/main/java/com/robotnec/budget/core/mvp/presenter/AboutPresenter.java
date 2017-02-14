@@ -13,7 +13,7 @@ public class AboutPresenter extends Presenter<AboutView> {
     }
 
     @Override
-    public void onViewReady() {
+    public void onViewResume() {
 
     }
 

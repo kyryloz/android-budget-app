@@ -28,7 +28,7 @@ public abstract class BasePresenterActivity<P extends Presenter>
         ApplicationGraph applicationGraph = ((BudgetApplication) getApplication())
                 .getApplicationGraph();
         presenter.injectComponent(applicationGraph.getApplicationComponent());
-        presenter.onViewReady();
+        presenter.onViewResume();
     }
 
     protected abstract P createPresenter();
