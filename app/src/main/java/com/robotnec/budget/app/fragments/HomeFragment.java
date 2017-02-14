@@ -10,8 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.robotnec.budget.R;
-import com.robotnec.budget.app.adapters.support.HeaderAdapter;
 import com.robotnec.budget.app.adapters.HomeHeader;
+import com.robotnec.budget.app.adapters.support.HeaderAdapter;
 import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
 import com.robotnec.budget.app.navigator.AndroidNavigationBundle;
 import com.robotnec.budget.core.domain.Account;
@@ -37,6 +37,7 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
 
     private HeaderAdapter headerAdapter;
     private TransactionsAdapter transactionsAdapter;
+    private HomeHeader homeHeader;
 
     public static Fragment newInstance() {
         return new HomeFragment();
@@ -67,13 +68,15 @@ public class HomeFragment extends BasePresenterFragment<HomePresenter> implement
     @Override
     public void displayAccountsWithTransactions(List<Account> accounts,
                                                 TransactionAggregation aggregation) {
+        homeHeader.update(accounts);
         transactionsAdapter.update(aggregation);
         headerAdapter.notifyDataSetChanged();
     }
 
     private void initRecyclerView() {
         transactionsAdapter = new TransactionsAdapter(getContext());
-        headerAdapter = new HeaderAdapter(transactionsAdapter, new HomeHeader());
+        homeHeader = new HomeHeader();
+        headerAdapter = new HeaderAdapter(transactionsAdapter, homeHeader);
         recyclerMerge.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerMerge.setHasFixedSize(true);
         recyclerMerge.setAdapter(headerAdapter);
