@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.robotnec.budget.R;
+import com.robotnec.budget.app.adapters.support.ListHeader;
 
 /**
  * @author zak <zak@swingpulse.com>

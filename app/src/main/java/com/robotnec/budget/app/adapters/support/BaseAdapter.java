@@ -1,4 +1,4 @@
-package com.robotnec.budget.app.adapters;
+package com.robotnec.budget.app.adapters.support;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -12,11 +12,11 @@ import java.util.List;
  */
 public abstract class BaseAdapter<T, S extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<S> {
 
-    final Context context;
-    final List<T> items;
-    final LayoutInflater layoutInflater;
+    protected final Context context;
+    protected final List<T> items;
+    protected final LayoutInflater layoutInflater;
 
-    BaseAdapter(Context context) {
+    public BaseAdapter(Context context) {
         items = new ArrayList<>();
         this.context = context;
         layoutInflater = LayoutInflater.from(context);

@@ -1,4 +1,4 @@
-package com.robotnec.budget.app.adapters;
+package com.robotnec.budget.app.adapters.support;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;

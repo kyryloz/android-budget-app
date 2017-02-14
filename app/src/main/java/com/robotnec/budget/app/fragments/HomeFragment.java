@@ -10,7 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.robotnec.budget.R;
-import com.robotnec.budget.app.adapters.HeaderAdapter;
+import com.robotnec.budget.app.adapters.support.HeaderAdapter;
 import com.robotnec.budget.app.adapters.HomeHeader;
 import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter;
 import com.robotnec.budget.app.navigator.AndroidNavigationBundle;

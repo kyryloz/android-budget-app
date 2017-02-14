@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.robotnec.budget.R;
+import com.robotnec.budget.app.adapters.support.BaseAdapter;
 import com.robotnec.budget.app.util.TextIconUtils;
 import com.robotnec.budget.core.domain.Category;
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.robotnec.budget.R;
+import com.robotnec.budget.app.adapters.support.BaseAdapter;
 import com.robotnec.budget.core.domain.Account;
 
 import butterknife.BindView;
