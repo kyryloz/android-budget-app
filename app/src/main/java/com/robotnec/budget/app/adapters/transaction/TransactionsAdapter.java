@@ -23,11 +23,9 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private final List<TransactionListItem> items;
     private LayoutInflater layoutInflater;
-    private Context context;
 
     public TransactionsAdapter(Context context) {
         layoutInflater = LayoutInflater.from(context);
-        this.context = context;
         items = new ArrayList<>();
         setHasStableIds(true);
     }

@@ -6,4 +6,5 @@
     <color name="lightGrey">#b7b3b5</color>
     <color name="divider">#454545</color>
     <color name="right_arrow_color">#949494</color>
+    <color name="grey_text">#bdbdbd</color>
 </resources>
