@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.robotnec.budget.core.service.aggregation.impl.TimeSpan;
 import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation;
 
 import java.util.ArrayList;
@@ -40,7 +41,10 @@ public class TransactionsAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<TransactionListItem> toTransactionListItems(TransactionAggregation aggregation) {
         List<TransactionListItem> items = new ArrayList<>();
         Stream.of(aggregation.get(TransactionAggregation.Sorting.DESC)).forEach(entry -> {
-            items.add(new HeaderItem(entry.getKey().getStartDate().toLocalDate(), context));
+            TimeSpan span = entry.getKey();
+            items.add(new HeaderItem(
+                    span.getStartDate().toLocalDate(),
+                    aggregation.getSum(span)));
             items.addAll(Stream.of(entry.getValue())
                     .map(TransactionItem::new)
                     .collect(Collectors.toList()));

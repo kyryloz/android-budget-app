@@ -1,30 +1,36 @@
 package com.robotnec.budget.core.service.aggregation.impl;
 
+import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.domain.operation.Transaction;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
-public class TransactionAggregationImpl implements TransactionAggregation {
+class TransactionAggregationImpl implements TransactionAggregation {
 
     private final SortedMap<TimeSpan, List<Transaction>> aggregation;
+    private final Map<TimeSpan, MoneyAmount> sums;
 
-    public static TransactionAggregationImpl from(SortedMap<TimeSpan, List<Transaction>> aggregation) {
-        return new TransactionAggregationImpl(aggregation);
+    static TransactionAggregationImpl from(SortedMap<TimeSpan, List<Transaction>> aggregation,
+                                           Map<TimeSpan, MoneyAmount> sums) {
+        return new TransactionAggregationImpl(aggregation, sums);
     }
 
-    private TransactionAggregationImpl(SortedMap<TimeSpan, List<Transaction>> aggregation) {
+    private TransactionAggregationImpl(SortedMap<TimeSpan, List<Transaction>> aggregation,
+                                       Map<TimeSpan, MoneyAmount> sums) {
         this.aggregation = aggregation;
         for (TimeSpan timeSpan : this.aggregation.keySet()) {
             List<Transaction> unmodifiable = Collections.unmodifiableList(this.aggregation.get(timeSpan));
             this.aggregation.put(timeSpan, unmodifiable);
         }
+        this.sums = sums;
     }
 
     @Override
@@ -46,5 +52,10 @@ public class TransactionAggregationImpl implements TransactionAggregation {
             }
             return Collections.unmodifiableSortedMap(sortedMap);
         }
+    }
+
+    @Override
+    public MoneyAmount getSum(TimeSpan span) {
+        return sums.get(span);
     }
 }

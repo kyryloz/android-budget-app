@@ -1,6 +1,5 @@
 package com.robotnec.budget.app.adapters.transaction;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 
 import com.robotnec.budget.R;
 import com.robotnec.budget.app.util.DateUtil;
+import com.robotnec.budget.core.domain.MoneyAmount;
 
 import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDate;
@@ -27,12 +27,12 @@ import butterknife.ButterKnife;
  */
 class HeaderItem implements TransactionListItem {
 
-    private LocalDate date;
-    private Context context;
+    private final LocalDate date;
+    private final MoneyAmount sum;
 
-    HeaderItem(LocalDate date, Context context) {
+    HeaderItem(LocalDate date, MoneyAmount sum) {
         this.date = date;
-        this.context = context;
+        this.sum = sum;
     }
 
     static RecyclerView.ViewHolder createViewHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -51,6 +51,7 @@ class HeaderItem implements TransactionListItem {
         holder.textDayOfMonth.setText(getDayOfMonth());
         holder.textRelativeDate.setText(getRelativeDate());
         holder.textMonth.setText(getMonth());
+        holder.textSum.setText(getSum());
     }
 
     @NonNull
@@ -76,6 +77,10 @@ class HeaderItem implements TransactionListItem {
         return date.getMonth().getDisplayName(TextStyle.FULL, Locale.getDefault());
     }
 
+    private String getSum() {
+        return "-" + sum.toDisplayableString();
+    }
+
     @Override
     public long getId() {
         return -date.toEpochDay();
@@ -91,6 +96,9 @@ class HeaderItem implements TransactionListItem {
 
         @BindView(R.id.text_month)
         TextView textMonth;
+
+        @BindView(R.id.text_sum)
+        TextView textSum;
 
         HeaderViewHolder(View itemView) {
             super(itemView);

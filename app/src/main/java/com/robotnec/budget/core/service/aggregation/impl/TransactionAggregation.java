@@ -1,5 +1,6 @@
 package com.robotnec.budget.core.service.aggregation.impl;
 
+import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.domain.operation.Transaction;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public interface TransactionAggregation {
     int getSpansCount();
 
     SortedMap<TimeSpan, List<Transaction>> get(Sorting sorting);
+
+    MoneyAmount getSum(TimeSpan span);
 
     enum Sorting {
         ASC, DESC
