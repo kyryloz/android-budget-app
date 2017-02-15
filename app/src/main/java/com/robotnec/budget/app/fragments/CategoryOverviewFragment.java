@@ -75,7 +75,6 @@ public class CategoryOverviewFragment extends BasePresenterFragment<CategoryOver
     private void initCategoryTransactionsList() {
         categoryTransactionsAdapter = new TransactionsAdapter(getContext());
         recyclerCategoryTransactions.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerCategoryTransactions.setHasFixedSize(true);
         recyclerCategoryTransactions.setAdapter(categoryTransactionsAdapter);
     }
 }

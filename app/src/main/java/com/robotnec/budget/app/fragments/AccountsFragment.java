@@ -67,7 +67,6 @@ public class AccountsFragment extends BasePresenterFragment<AccountsPresenter> i
     private void initAccountsList() {
         accountsAdapter = new AccountsAdapter(getContext(), this);
         recyclerAccounts.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerAccounts.setHasFixedSize(true);
         recyclerAccounts.setAdapter(accountsAdapter);
     }
 

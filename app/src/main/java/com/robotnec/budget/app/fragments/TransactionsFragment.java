@@ -66,7 +66,6 @@ public class TransactionsFragment extends BasePresenterFragment<TransactionsPres
     private void initRecyclerView() {
         transactionsAdapter = new TransactionsAdapter(getContext());
         recyclerTransactions.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerTransactions.setHasFixedSize(true);
         recyclerTransactions.setAdapter(transactionsAdapter);
     }
 }

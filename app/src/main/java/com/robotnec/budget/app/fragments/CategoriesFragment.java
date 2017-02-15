@@ -76,7 +76,6 @@ public class CategoriesFragment extends BasePresenterFragment<CategoriesPresente
     private void initRecyclerView() {
         categoriesAdapter = new CategoriesAdapter(getContext(), this);
         recyclerCategories.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerCategories.setHasFixedSize(true);
         recyclerCategories.setAdapter(categoriesAdapter);
     }
 }
