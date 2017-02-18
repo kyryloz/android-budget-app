@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.robotnec.budget.R;
 import com.robotnec.budget.app.dialogs.AccountPickerDialogFragment;
+import com.robotnec.budget.app.dialogs.CalculatorFragment;
 import com.robotnec.budget.app.dialogs.CategoryPickerDialogFragment;
 import com.robotnec.budget.app.dialogs.DatePickerDialogFragment;
 import com.robotnec.budget.app.dialogs.PickerDialog;
@@ -52,6 +53,11 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     @Override
     protected AddTransactionPresenter createPresenter() {
         return new AddTransactionPresenter(this);
+    }
+
+    @OnClick(R.id.layout_amount)
+    void onAmountClicked() {
+        presenter.openCalculator();
     }
 
     @OnClick(R.id.layout_date)
@@ -122,6 +128,14 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     public void showDateChooserDialog(Calendar lastDate) {
         DatePickerDialogFragment datePicker = DatePickerDialogFragment.newInstance(lastDate, this);
         datePicker.show(getFragmentManager(), DatePickerDialogFragment.TAG);
+    }
+
+    @Override
+    public void showCalculator(MoneyAmount initialAmount) {
+        getFragmentManager().beginTransaction()
+                .add(R.id.frame_calculator, CalculatorFragment.newInstance(initialAmount))
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override

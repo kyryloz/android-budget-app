@@ -5,9 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".app.activity.AddTransactionActivity">
+
     <fragment
         android:id="@+id/fragment_add_transaction"
         android:name="com.robotnec.budget.app.fragments.AddTransactionFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:id="@+id/frame_calculator"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 </RelativeLayout>

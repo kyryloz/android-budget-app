@@ -36,6 +36,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     private Calendar resultDate;
     private Account targetAccount;
     private Category targetCategory;
+    private MoneyAmount resultAmount;
 
     public AddTransactionPresenter(AddTransactionView view) {
         super(view);
@@ -56,8 +57,8 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         targetCategory = allCategories.get(0);
         view.displayCategory(targetCategory);
 
-        MoneyAmount initialAmount = MoneyAmount.of(0, Currency.UAH);
-        view.displayInitialAmount(initialAmount);
+        resultAmount = MoneyAmount.of(0, Currency.UAH);
+        view.displayInitialAmount(resultAmount);
     }
 
     @Override
@@ -101,5 +102,9 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     public void pickCategory(Category category) {
         targetCategory = category;
         view.displayCategory(category);
+    }
+
+    public void openCalculator() {
+        view.showCalculator(resultAmount);
     }
 }

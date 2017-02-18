@@ -21,6 +21,8 @@ public interface AddTransactionView extends View {
 
     void showDateChooserDialog(Calendar lastDate);
 
+    void showCalculator(MoneyAmount initialAmount);
+
     void displayAccount(Account account);
 
     void displayCategory(Category category);
