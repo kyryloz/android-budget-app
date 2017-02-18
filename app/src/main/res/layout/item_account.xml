@@ -19,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        android:textColor="@android:color/white"
         tools:text="Bank Account"/>
 
     <TextView
@@ -28,6 +27,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        android:textColor="@android:color/white"
         tools:text="100 USD"/>
 </LinearLayout>

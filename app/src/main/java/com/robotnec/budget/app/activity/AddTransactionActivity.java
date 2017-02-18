@@ -5,8 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
-import butterknife.BindView;
 import com.robotnec.budget.R;
+
+import butterknife.BindView;
 
 public class AddTransactionActivity extends BaseActivity {
 

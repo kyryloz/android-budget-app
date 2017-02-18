@@ -1,6 +1,7 @@
 package com.robotnec.budget.app;
 
 import android.app.Application;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.robotnec.budget.app.navigator.AndroidNavigator;
@@ -17,6 +18,7 @@ public class BudgetApplication extends Application {
     public void onCreate() {
         super.onCreate();
         AndroidThreeTen.init(this);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         applicationGraph = new ApplicationGraph(
                 new AndroidNavigator(),
                 this);

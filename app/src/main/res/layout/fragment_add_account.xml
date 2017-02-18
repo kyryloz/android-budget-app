@@ -1,9 +1,9 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -20,14 +20,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentInsetStart="72dp"
-                app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel">
+                app:navigationIcon="@drawable/ic_vector_close">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="64dp"
-                    android:paddingBottom="16dp">
+                    android:paddingBottom="16dp"
+                    android:paddingTop="64dp">
 
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -37,8 +37,8 @@
                             android:id="@+id/edit_account_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="32sp"
-                            android:hint="@string/hint_account_name"/>
+                            android:hint="@string/hint_account_name"
+                            android:textSize="32sp"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -50,9 +50,9 @@
                             android:id="@+id/edit_account_initial_amount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
+                            android:hint="@string/hint_account_initial_amount"
                             android:inputType="number"
-                            android:hint="@string/hint_account_initial_amount"/>
+                            android:textSize="24sp"/>
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
@@ -62,8 +62,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <Spinner
                 android:id="@+id/spinner_currency"
@@ -83,23 +83,23 @@
 
                 <Button
                     android:id="@+id/button_delete"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:visibility="invisible"
-                    tools:visibility="visible"
                     android:text="@string/delete"
                     android:textColor="@android:color/holo_red_light"
-                    style="@style/Widget.AppCompat.Button.Borderless"/>
+                    android:visibility="invisible"
+                    tools:visibility="visible"/>
 
                 <Button
                     android:id="@+id/button_done"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_gravity="end"
-                    android:text="@string/done"
-                    style="@style/Widget.AppCompat.Button.Borderless"/>
+                    android:layout_weight="1"
+                    android:text="@string/done"/>
 
             </LinearLayout>
 
