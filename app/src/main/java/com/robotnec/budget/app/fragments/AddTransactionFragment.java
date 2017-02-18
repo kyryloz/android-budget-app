@@ -1,6 +1,7 @@
 package com.robotnec.budget.app.fragments;
 
 import android.support.v4.app.DialogFragment;
+import android.transition.Slide;
 import android.widget.TextView;
 
 import com.robotnec.budget.R;
@@ -132,8 +133,10 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
 
     @Override
     public void showCalculator(MoneyAmount initialAmount) {
+        CalculatorFragment fragment = CalculatorFragment.newInstance(initialAmount);
+        fragment.setEnterTransition(new Slide());
         getFragmentManager().beginTransaction()
-                .add(R.id.frame_calculator, CalculatorFragment.newInstance(initialAmount))
+                .replace(R.id.frame_calculator, fragment)
                 .addToBackStack(null)
                 .commit();
     }
