@@ -33,17 +33,13 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     MoneyOperationBroker moneyOperationBroker;
 
     private DateFormat dateFormat;
-    private Calendar nowDate;
     private Calendar resultDate;
-    private boolean yesterdayChose;
     private Account targetAccount;
     private Category targetCategory;
 
     public AddTransactionPresenter(AddTransactionView view) {
         super(view);
-        nowDate = Calendar.getInstance();
-        resultDate = nowDate;
-        yesterdayChose = false;
+        resultDate = Calendar.getInstance();
     }
 
     @Override
@@ -69,10 +65,6 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         applicationComponent.inject(this);
     }
 
-    public void setYesterdayChose(boolean chose) {
-        yesterdayChose = chose;
-    }
-
     public void changeAccount() {
         view.showAccountsChooserDialog(accountDao.getAll());
     }
@@ -90,19 +82,14 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         view.showDateChooserDialog(resultDate);
     }
 
-    public void submit(Long amount, String currencyCode) {
-        if (yesterdayChose) {
-            nowDate.add(Calendar.DAY_OF_YEAR, -1);
-            resultDate = nowDate;
-        }
-        MoneyAmount moneyAmount = MoneyAmount.of(amount, Currency.fromCode(currencyCode));
+    public void submit() {
+        MoneyAmount moneyAmount = MoneyAmount.of(100, Currency.UAH);
         Expense expense = new Expense();
         expense.setAccount(targetAccount);
         expense.setAmount(moneyAmount);
         expense.setDate(DateUtil.fromSeconds(resultDate.getTimeInMillis() / 1000));
         expense.setCategory(targetCategory);
         moneyOperationBroker.execute(expense);
-
         view.finish();
     }
 

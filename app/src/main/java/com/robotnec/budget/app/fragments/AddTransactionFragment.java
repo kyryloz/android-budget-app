@@ -1,7 +1,6 @@
 package com.robotnec.budget.app.fragments;
 
 import android.support.v4.app.DialogFragment;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.robotnec.budget.R;
@@ -55,24 +54,6 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
         return new AddTransactionPresenter(this);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_done:
-//                String value = editAmount.getText().toString();
-//                if (!TextUtils.isEmpty(value)) {
-//                    String currency = spinnerAccountCurrency.getSelectedItem().toString();
-//                    presenter.submit(Long.valueOf(value), currency);
-//                    getActivity().finish();
-//                    return true;
-//                } else {
-//                    return false;
-//                }
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @OnClick(R.id.layout_date)
     void onDatePickerClicked() {
         presenter.changeDate();
@@ -86,6 +67,12 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     @OnClick(R.id.layout_expense_category)
     void onCategoryChangeClicked() {
         presenter.changeCategory();
+    }
+
+    @OnClick(R.id.button_done)
+    void onDoneClicked() {
+        presenter.submit();
+        getActivity().finish();
     }
 
     @Override
