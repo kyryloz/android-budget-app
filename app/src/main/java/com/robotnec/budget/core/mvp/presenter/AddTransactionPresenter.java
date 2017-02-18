@@ -59,6 +59,9 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         List<Category> allCategories = categoryDao.getAll();
         targetCategory = allCategories.get(0);
         view.displayCategory(targetCategory);
+
+        MoneyAmount initialAmount = MoneyAmount.of(0, Currency.UAH);
+        view.displayInitialAmount(initialAmount);
     }
 
     @Override

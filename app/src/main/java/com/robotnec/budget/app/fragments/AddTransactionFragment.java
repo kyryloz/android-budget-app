@@ -3,14 +3,9 @@ package com.robotnec.budget.app.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.robotnec.budget.R;
@@ -20,7 +15,7 @@ import com.robotnec.budget.app.dialogs.DatePickerDialogFragment;
 import com.robotnec.budget.app.dialogs.PickerDialog;
 import com.robotnec.budget.core.domain.Account;
 import com.robotnec.budget.core.domain.Category;
-import com.robotnec.budget.core.domain.Currency;
+import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.mvp.presenter.AddTransactionPresenter;
 import com.robotnec.budget.core.mvp.view.AddTransactionView;
 
@@ -28,7 +23,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 /**
@@ -40,8 +34,8 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
         AccountPickerDialogFragment.Listener,
         CategoryPickerDialogFragment.Listener {
 
-    @BindView(R.id.layout_text_date)
-    View layoutTextDate;
+    @BindView(R.id.text_amount)
+    TextView textAmount;
 
     @BindView(R.id.text_account_name)
     TextView textAccountName;
@@ -55,12 +49,6 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     @BindView(R.id.text_date)
     TextView textDate;
 
-    @BindView(R.id.edit_amount)
-    EditText editAmount;
-
-    @BindView(R.id.spinner_currency)
-    Spinner spinnerAccountCurrency;
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_add_transaction;
@@ -69,15 +57,6 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     @Override
     protected AddTransactionPresenter createPresenter() {
         return new AddTransactionPresenter(this);
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                Currency.getAllCodes());
-        spinnerAccountCurrency.setAdapter(adapter);
     }
 
     @Override
@@ -96,29 +75,23 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_done:
-                String value = editAmount.getText().toString();
-                if (!TextUtils.isEmpty(value)) {
-                    String currency = spinnerAccountCurrency.getSelectedItem().toString();
-                    presenter.submit(Long.valueOf(value), currency);
-                    getActivity().finish();
-                    return true;
-                } else {
-                    return false;
-                }
+//                String value = editAmount.getText().toString();
+//                if (!TextUtils.isEmpty(value)) {
+//                    String currency = spinnerAccountCurrency.getSelectedItem().toString();
+//                    presenter.submit(Long.valueOf(value), currency);
+//                    getActivity().finish();
+//                    return true;
+//                } else {
+//                    return false;
+//                }
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick(R.id.layout_text_date)
+    @OnClick(R.id.layout_date)
     void onDatePickerClicked() {
         presenter.changeDate();
-    }
-
-    @OnCheckedChanged(R.id.switch_yesterday)
-    void onYesterdayCheckedChanged(boolean checked) {
-        presenter.setYesterdayChose(checked);
-        layoutTextDate.setVisibility(checked ? View.GONE : View.VISIBLE);
     }
 
     @OnClick(R.id.layout_account)
@@ -189,6 +162,11 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     @Override
     public void displayCategory(Category category) {
         textExpenseCategory.setText(category.getName());
+    }
+
+    @Override
+    public void displayInitialAmount(MoneyAmount initialAmount) {
+        textAmount.setText(initialAmount.toDisplayableString());
     }
 
     @Override
