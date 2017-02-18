@@ -98,7 +98,7 @@ public class MainActivity extends BasePresenterActivity<MainPresenter>
             case R.id.nav_transactions:
                 fragment = TransactionsFragment.newInstance();
                 break;
-            case R.id.nav_about:
+            case R.id.nav_settings:
                 fragment = AboutFragment.newInstance();
                 break;
             default:

@@ -4,25 +4,25 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_vector_home"
             android:title="@string/home"
             android:checked="true"/>
         <item
             android:id="@+id/nav_accounts"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_vector_account"
             android:title="@string/accounts"/>
         <item
             android:id="@+id/nav_categories"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_vector_category"
             android:title="@string/categories"/>
         <item
             android:id="@+id/nav_transactions"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_vector_transactions"
             android:title="@string/transactions"/>
         <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/ic_menu_share"
-            android:title="@string/about"/>
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_vector_settings"
+            android:title="@string/action_settings"/>
     </group>
 
 </menu>

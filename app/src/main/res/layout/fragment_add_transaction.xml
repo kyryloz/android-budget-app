@@ -68,7 +68,8 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_menu_manage"
+                    android:src="@drawable/ic_vector_account"
+                    android:tint="@color/icons"
                     tools:ignore="ContentDescription"/>
 
                 <LinearLayout
@@ -115,7 +116,8 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_menu_share"
+                    android:src="@drawable/ic_vector_category"
+                    android:tint="@color/icons"
                     tools:ignore="ContentDescription"/>
 
                 <LinearLayout
@@ -154,7 +156,8 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_menu_send"
+                    android:src="@drawable/ic_vector_date"
+                    android:tint="@color/icons"
                     tools:ignore="ContentDescription"/>
 
                 <LinearLayout
