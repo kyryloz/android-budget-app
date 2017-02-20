@@ -1,6 +1,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimary"
@@ -21,13 +22,174 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
     </android.support.design.widget.AppBarLayout>
 
-    <Button
-        android:id="@+id/button_done"
-        style="@style/Widget.AppCompat.Button.Colored"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="?attr/listPreferredItemHeight"
-        android:layout_gravity="bottom"
-        android:background="?attr/colorAccent"
-        android:text="@string/add_transaction_label"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spinner_currency"
+            android:layout_width="38dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/text_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Display1"
+            tools:text="24 + 10"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/dividerVertical"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:columnCount="4"
+        tools:ignore="HardcodedText">
+
+        <TextView
+            android:id="@+id/seven"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="7"/>
+
+        <TextView
+            android:id="@+id/eight"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:elevation="0dp"
+            android:text="8"/>
+
+        <TextView
+            android:id="@+id/nine"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="9"/>
+
+        <TextView
+            android:id="@+id/divide"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="&#247;"/>
+
+        <TextView
+            android:id="@+id/four"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="4"/>
+
+        <TextView
+            android:id="@+id/five"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="5"/>
+
+        <TextView
+            android:id="@+id/six"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="6"/>
+
+        <TextView
+            android:id="@+id/multiply"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="&#215;"/>
+
+        <TextView
+            android:id="@+id/one"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="1"/>
+
+        <TextView
+            android:id="@+id/two"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="2"/>
+
+        <TextView
+            android:id="@+id/three"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="3"/>
+
+        <TextView
+            android:id="@+id/minus"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="&#8722;"/>
+
+        <TextView
+            android:id="@+id/dot"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="."/>
+
+        <TextView
+            android:id="@+id/zero"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="0"/>
+
+        <TextView
+            android:id="@+id/result"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:background="?attr/colorAccent"
+            android:text="&#61;"/>
+
+        <TextView
+            android:id="@+id/plus"
+            style="@style/CalculatorButton"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+            android:layout_rowWeight="1"
+            android:text="&#43;"/>
+
+    </GridLayout>
 
 </LinearLayout>

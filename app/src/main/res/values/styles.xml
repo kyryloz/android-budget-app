@@ -1,8 +1,15 @@
 <resources>
 
-    <style name="Theme.Base.Budget" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="Theme.Base.Budget" parent="Theme.AppCompat">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="CalculatorButton">
+        <item name="android:textSize">24sp</item>
+        <item name="android:foreground">@drawable/ripple_circle</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
     </style>
 
 </resources>

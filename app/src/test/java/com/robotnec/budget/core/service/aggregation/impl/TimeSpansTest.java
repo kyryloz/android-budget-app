@@ -28,7 +28,7 @@ public class TimeSpansTest {
     }
 
     @Test
-    public void shouldGotYearTimeSpanIfDIffernceBetweenDatesMoreThanYear() {
+    public void shouldGotYearTimeSpanIfDifferenceBetweenDatesMoreThanYear() {
         LocalDateTime minDate = LocalDateTime.of(2015, 1, 10, 12, 45);
         LocalDateTime maxDate = LocalDateTime.of(2017, 1, 13, 18, 45);
         TimeSpans spans = TimeSpans.dyDays(minDate, maxDate);
