@@ -10,6 +10,7 @@
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
+        <item name="android:padding">8dp</item>
     </style>
 
 </resources>

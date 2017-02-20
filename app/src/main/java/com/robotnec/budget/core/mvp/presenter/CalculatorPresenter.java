@@ -21,4 +21,36 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     public void onViewResume() {
 
     }
+
+    public void digit(int digit) {
+
+    }
+
+    public void dot() {
+
+    }
+
+    public void calculate() {
+
+    }
+
+    public void divide() {
+
+    }
+
+    public void multiply() {
+
+    }
+
+    public void minus() {
+
+    }
+
+    public void plus() {
+
+    }
+
+    public void back() {
+
+    }
 }
