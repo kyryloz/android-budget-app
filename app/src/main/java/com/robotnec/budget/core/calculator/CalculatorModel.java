@@ -10,7 +10,7 @@ public interface CalculatorModel {
 
     String calculate();
 
-    String operation(Operation operation);
+    String operation(Op op);
 
     String back();
 }
