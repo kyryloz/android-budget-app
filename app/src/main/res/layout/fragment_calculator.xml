@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
+    android:background="@color/background_calculator"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -22,35 +22,40 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
     </android.support.design.widget.AppBarLayout>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/text_input"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="38dp"
-            android:layout_weight="1"
-            android:textAppearance="@android:style/TextAppearance.Material.Display1"
+            android:layout_marginStart="16dp"
+            android:fontFamily="sans-serif-thin"
+            android:textAppearance="@android:style/TextAppearance.Material.Display3"
             tools:text="24 + 10"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
 
         <Button
             android:id="@+id/back"
             style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="60dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="end"
             android:layout_marginEnd="16dp"
             android:text="Back"/>
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <View
         android:layout_width="match_parent"

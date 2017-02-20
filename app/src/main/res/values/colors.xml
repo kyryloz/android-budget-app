@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--use system colors as far as can-->
+    <color name="background_calculator">#212121</color>
 </resources>

@@ -2,11 +2,11 @@ package com.robotnec.budget.app.fragments;
 
 import android.support.v4.app.DialogFragment;
 import android.transition.Slide;
+import android.view.Gravity;
 import android.widget.TextView;
 
 import com.robotnec.budget.R;
 import com.robotnec.budget.app.dialogs.AccountPickerDialogFragment;
-import com.robotnec.budget.app.dialogs.CalculatorFragment;
 import com.robotnec.budget.app.dialogs.CategoryPickerDialogFragment;
 import com.robotnec.budget.app.dialogs.DatePickerDialogFragment;
 import com.robotnec.budget.app.dialogs.PickerDialog;
@@ -135,6 +135,7 @@ public class AddTransactionFragment extends BasePresenterFragment<AddTransaction
     public void showCalculator(MoneyAmount initialAmount) {
         CalculatorFragment fragment = CalculatorFragment.newInstance(initialAmount);
         fragment.setEnterTransition(new Slide());
+        fragment.setExitTransition(new Slide());
         getFragmentManager().beginTransaction()
                 .replace(R.id.frame_calculator, fragment)
                 .addToBackStack(null)
