@@ -1,5 +1,8 @@
 package com.robotnec.budget.core.mvp.presenter;
 
+import com.robotnec.budget.core.calculator.CalculatorModel;
+import com.robotnec.budget.core.calculator.CalculatorModelImpl;
+import com.robotnec.budget.core.calculator.Operation;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.mvp.view.CalculatorView;
 
@@ -8,11 +11,11 @@ import com.robotnec.budget.core.mvp.view.CalculatorView;
  */
 public class CalculatorPresenter extends Presenter<CalculatorView> {
 
-    private String current;
+    private CalculatorModel calculatorModel;
 
     public CalculatorPresenter(CalculatorView view) {
         super(view);
-        current = "0";
+        calculatorModel = new CalculatorModelImpl();
     }
 
     @Override
@@ -22,48 +25,42 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     @Override
     public void onViewResume() {
-        display();
+        display(calculatorModel.calculate());
     }
 
     public void digit(int digit) {
-        if (current.equals("0")) {
-            current = String.valueOf(digit);
-        } else {
-            current = current + digit;
-        }
-        display();
+        display(calculatorModel.digit(digit));
     }
 
     public void dot() {
-
+        display(calculatorModel.dot());
     }
 
     public void calculate() {
-
+        display(calculatorModel.calculate());
     }
 
     public void divide() {
-
+        display(calculatorModel.operation(Operation.DIVIDE));
     }
 
     public void multiply() {
-
+        display(calculatorModel.operation(Operation.MULTIPLY));
     }
 
     public void minus() {
-
+        display(calculatorModel.operation(Operation.MINUS));
     }
 
     public void plus() {
-
+        display(calculatorModel.operation(Operation.PLUS));
     }
 
     public void back() {
-        current = current.substring(0, current.length() - 1);
-        display();
+        display(calculatorModel.back());
     }
 
-    private void display() {
-        view.display(current);
+    private void display(String displayText) {
+        view.display(displayText);
     }
 }
