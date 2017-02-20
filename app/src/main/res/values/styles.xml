@@ -7,7 +7,7 @@
 
     <style name="CalculatorButton">
         <item name="android:textSize">24sp</item>
-        <item name="android:foreground">@drawable/ripple_circle</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
     </style>

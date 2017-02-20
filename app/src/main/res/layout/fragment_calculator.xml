@@ -56,7 +56,8 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="300dp"
+        android:clipChildren="false"
         android:columnCount="4"
         tools:ignore="HardcodedText">
 
@@ -180,6 +181,7 @@
             android:layout_gravity="fill_horizontal"
             android:layout_rowWeight="1"
             android:background="?attr/colorAccent"
+            android:foreground="?attr/selectableItemBackground"
             android:text="&#61;"/>
 
         <TextView
