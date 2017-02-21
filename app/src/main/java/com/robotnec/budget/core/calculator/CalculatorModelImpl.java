@@ -1,5 +1,7 @@
 package com.robotnec.budget.core.calculator;
 
+import android.text.TextUtils;
+
 /**
  * @author zak <zak@swingpulse.com>
  */
@@ -45,7 +47,9 @@ public class CalculatorModelImpl implements CalculatorModel {
 
     @Override
     public String calculate() {
-        return "90,000";
+        state = INIT_STATE;
+        displayText = "0";
+        return displayText;
     }
 
     @Override
@@ -55,7 +59,7 @@ public class CalculatorModelImpl implements CalculatorModel {
                 break;
             case DIGIT_STATE:
                 state = OPERATION_STATE;
-                displayText = displayText + " " + op.displayText();
+                displayText = displayText + op.displayText();
                 break;
             case OPERATION_STATE:
                 break;
@@ -69,9 +73,24 @@ public class CalculatorModelImpl implements CalculatorModel {
     public String back() {
         switch (state) {
             case INIT_STATE:
+                break;
             case DIGIT_STATE:
             case OPERATION_STATE:
-                displayText = displayText.substring(0, displayText.length() - 1);
+                if (displayText.length() == 1) {
+                    displayText = "0";
+                    state = INIT_STATE;
+                    break;
+                } else {
+                    displayText = displayText.substring(0, displayText.length() - 1);
+                    String last = displayText.substring(
+                            displayText.length() - 1,
+                            displayText.length());
+                    if (TextUtils.isDigitsOnly(last)) {
+                        state = DIGIT_STATE;
+                    } else {
+                        state = OPERATION_STATE;
+                    }
+                }
                 break;
             default:
                 throw new IllegalArgumentException();
