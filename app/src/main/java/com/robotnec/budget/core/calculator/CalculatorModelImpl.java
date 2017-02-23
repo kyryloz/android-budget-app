@@ -2,22 +2,28 @@ package com.robotnec.budget.core.calculator;
 
 import android.text.TextUtils;
 
+import com.robotnec.budget.core.calculator.eval.ArityEvaluator;
+import com.robotnec.budget.core.calculator.eval.Evaluator;
+
 /**
  * @author zak <zak@swingpulse.com>
  */
 public class CalculatorModelImpl implements CalculatorModel {
 
+    private static final String INIT_VALUE = "0";
+
     private final int INIT_STATE = 0;
     private final int DIGIT_STATE = 1;
-    private final int OPERATION_STATE = 2;
+    private final int OPERATION_STATE = 3;
 
     private int state;
-
     private String displayText;
+    private Evaluator evaluator;
 
     public CalculatorModelImpl() {
         state = INIT_STATE;
-        displayText = "0";
+        displayText = INIT_VALUE;
+        evaluator = new ArityEvaluator();
     }
 
     @Override
@@ -46,10 +52,11 @@ public class CalculatorModelImpl implements CalculatorModel {
     }
 
     @Override
-    public String calculate() {
+    public double calculate() {
+        double result = evaluator.eval(displayText);
         state = INIT_STATE;
-        displayText = "0";
-        return displayText;
+        displayText = String.valueOf(result);
+        return result;
     }
 
     @Override
@@ -77,7 +84,7 @@ public class CalculatorModelImpl implements CalculatorModel {
             case DIGIT_STATE:
             case OPERATION_STATE:
                 if (displayText.length() == 1) {
-                    displayText = "0";
+                    displayText = INIT_VALUE;
                     state = INIT_STATE;
                     break;
                 } else {
@@ -96,5 +103,26 @@ public class CalculatorModelImpl implements CalculatorModel {
                 throw new IllegalArgumentException();
         }
         return displayText;
+    }
+
+    private class Command implements Comparable<Command> {
+        private final double firstOperand;
+        private final double secondOperand;
+        private final Op op;
+
+        private Command(double firstOperand, double secondOperand, Op op) {
+            this.firstOperand = firstOperand;
+            this.secondOperand = secondOperand;
+            this.op = op;
+        }
+
+        double calculate() {
+            return op.calculate(firstOperand, secondOperand);
+        }
+
+        @Override
+        public int compareTo(Command o) {
+            return op.compareTo(o.op);
+        }
     }
 }

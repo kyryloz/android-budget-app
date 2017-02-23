@@ -8,7 +8,7 @@ public interface CalculatorModel {
 
     String dot();
 
-    String calculate();
+    double calculate();
 
     String operation(Op op);
 

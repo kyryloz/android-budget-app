@@ -2,7 +2,6 @@ package com.robotnec.budget.core.mvp.presenter;
 
 import com.robotnec.budget.core.calculator.CalculatorModel;
 import com.robotnec.budget.core.calculator.CalculatorModelImpl;
-import com.robotnec.budget.core.calculator.Operation;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.mvp.view.CalculatorView;
 
