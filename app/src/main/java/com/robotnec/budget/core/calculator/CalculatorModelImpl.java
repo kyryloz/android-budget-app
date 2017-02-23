@@ -2,7 +2,7 @@ package com.robotnec.budget.core.calculator;
 
 import android.text.TextUtils;
 
-import com.robotnec.budget.core.calculator.eval.ArityEvaluator;
+import com.robotnec.budget.core.calculator.eval.JEvalEvaluator;
 import com.robotnec.budget.core.calculator.eval.Evaluator;
 
 /**
@@ -23,7 +23,7 @@ public class CalculatorModelImpl implements CalculatorModel {
     public CalculatorModelImpl() {
         state = INIT_STATE;
         displayText = INIT_VALUE;
-        evaluator = new ArityEvaluator();
+        evaluator = new JEvalEvaluator();
     }
 
     @Override

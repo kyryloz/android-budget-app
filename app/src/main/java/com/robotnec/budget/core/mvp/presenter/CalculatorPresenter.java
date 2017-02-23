@@ -2,6 +2,7 @@ package com.robotnec.budget.core.mvp.presenter;
 
 import com.robotnec.budget.core.calculator.CalculatorModel;
 import com.robotnec.budget.core.calculator.CalculatorModelImpl;
+import com.robotnec.budget.core.calculator.Op;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.mvp.view.CalculatorView;
 
@@ -24,7 +25,7 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     @Override
     public void onViewResume() {
-        display(calculatorModel.calculate());
+        display(String.valueOf(calculatorModel.calculate()));
     }
 
     public void digit(int digit) {
@@ -36,23 +37,23 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     }
 
     public void calculate() {
-        display(calculatorModel.calculate());
+        display(String.valueOf(calculatorModel.calculate()));
     }
 
     public void divide() {
-        display(calculatorModel.operation(Operation.DIVIDE));
+        display(calculatorModel.operation(new Op.Divide()));
     }
 
     public void multiply() {
-        display(calculatorModel.operation(Operation.MULTIPLY));
+        display(calculatorModel.operation(new Op.Multiply()));
     }
 
     public void minus() {
-        display(calculatorModel.operation(Operation.MINUS));
+        display(calculatorModel.operation(new Op.Minus()));
     }
 
     public void plus() {
-        display(calculatorModel.operation(Operation.PLUS));
+        display(calculatorModel.operation(new Op.Plus()));
     }
 
     public void back() {

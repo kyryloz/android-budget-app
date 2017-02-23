@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 /**
  * @author zak <zak@swingpulse.com>
  */
-abstract class Op implements Comparable<Op> {
+public abstract class Op implements Comparable<Op> {
 
     abstract double calculate(double firstOperand, double secondOperand);
 
@@ -18,7 +18,7 @@ abstract class Op implements Comparable<Op> {
         return getOrder() - o.getOrder();
     }
 
-    class Divide extends Op {
+    public static final class Divide extends Op {
         @Override
         public double calculate(double firstOperand, double secondOperand) {
             return firstOperand / secondOperand;
@@ -35,7 +35,7 @@ abstract class Op implements Comparable<Op> {
         }
     }
 
-    class Multiply extends Op {
+    public static final class Multiply extends Op {
         @Override
         public double calculate(double firstOperand, double secondOperand) {
             return firstOperand * secondOperand;
@@ -52,7 +52,7 @@ abstract class Op implements Comparable<Op> {
         }
     }
 
-    class Minus extends Op {
+    public static final class Minus extends Op {
         @Override
         public double calculate(double firstOperand, double secondOperand) {
             return firstOperand - secondOperand;
@@ -69,7 +69,7 @@ abstract class Op implements Comparable<Op> {
         }
     }
 
-    class Plus extends Op {
+    public static final class Plus extends Op {
         @Override
         public double calculate(double firstOperand, double secondOperand) {
             return firstOperand + secondOperand;

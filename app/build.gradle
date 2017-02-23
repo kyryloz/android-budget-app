@@ -54,6 +54,8 @@ dependencies {
     annotationProcessor "org.projectlombok:lombok:1.12.6"
     debugCompile "im.dino:dbinspector:3.4.0@aar"
     compile "com.jakewharton.threetenabp:threetenabp:1.0.5"
+    compile "net.sourceforge.jeval:jeval:0.9.4"
+
 
     // views
     compile "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"
