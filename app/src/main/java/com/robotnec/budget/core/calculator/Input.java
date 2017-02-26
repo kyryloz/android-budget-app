@@ -5,16 +5,16 @@ import android.text.TextUtils;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Objects;
-import java.util.Queue;
 
 /**
  * @author zak <zak@swingpulse.com>
  */
 class Input {
 
-    private Queue<Entry> inputStack = new LinkedList<>();
+    private Deque<Entry> inputStack = new LinkedList<>();
 
     Input() {
         clear();
@@ -33,12 +33,12 @@ class Input {
         inputStack.add(new Entry(symbol, symbol, false));
     }
 
-    Queue<Entry> getInputStack() {
+    Deque<Entry> getInputStack() {
         return inputStack;
     }
 
     void delete() {
-        inputStack.remove();
+        inputStack.removeLast();
     }
 
     void clear() {

@@ -1,7 +1,5 @@
 package com.robotnec.budget.core.calculator;
 
-import android.text.TextUtils;
-
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 import com.robotnec.budget.core.calculator.eval.Evaluator;
@@ -9,6 +7,7 @@ import com.robotnec.budget.core.calculator.eval.JEvalEvaluator;
 import com.robotnec.budget.core.exception.InvalidExpressionException;
 
 import java.text.DecimalFormat;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -109,14 +108,18 @@ public class CalculatorModelImpl implements CalculatorModel {
                     state = ERROR_STATE;
                     throw e;
                 }
-                boolean isFinite = Math.abs(Double.parseDouble(resultStr)) <= Double.MAX_VALUE;
-                if (isFinite) {
+                double resultNumber = Double.parseDouble(resultStr);
+                if (Double.isInfinite(resultNumber) || Double.isNaN(resultNumber)) {
+                    state = ERROR_STATE;
+                    return String.valueOf(resultNumber);
+                } else {
+                    resultStr = displayFormat.format(resultNumber);
                     input.clear();
                     for (char c : String.valueOf(resultStr).toCharArray()) {
                         input.append(String.valueOf(c));
                     }
+                    state = DIGIT_STATE;
                 }
-                state = DIGIT_STATE;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -128,6 +131,7 @@ public class CalculatorModelImpl implements CalculatorModel {
     public String operation(Op op) {
         switch (state) {
             case ERROR_STATE:
+                input.clear();
                 state = INIT_STATE;
                 break;
             case INIT_STATE:
@@ -148,6 +152,7 @@ public class CalculatorModelImpl implements CalculatorModel {
     public String back() {
         switch (state) {
             case ERROR_STATE:
+                input.clear();
                 state = INIT_STATE;
                 break;
             case INIT_STATE:
@@ -155,10 +160,13 @@ public class CalculatorModelImpl implements CalculatorModel {
             case DIGIT_STATE:
             case OPERATION_STATE:
                 input.delete();
-                if (isDigit(input.getInputStack().peek())) {
-                    state = DIGIT_STATE;
-                } else {
+                Deque<Input.Entry> inputStack = input.getInputStack();
+                if (inputStack.isEmpty()) {
+                    state = INIT_STATE;
+                } else if (inputStack.peekLast().isOperation()) {
                     state = OPERATION_STATE;
+                } else {
+                    state = DIGIT_STATE;
                 }
                 break;
             default:
@@ -172,9 +180,5 @@ public class CalculatorModelImpl implements CalculatorModel {
         input.clear();
         state = INIT_STATE;
         return input.toDisplayText();
-    }
-
-    private boolean isDigit(Input.Entry entry) {
-        return entry == null || TextUtils.isDigitsOnly(entry.symbol());
     }
 }

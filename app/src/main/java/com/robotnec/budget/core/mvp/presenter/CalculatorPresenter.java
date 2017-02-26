@@ -7,20 +7,16 @@ import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.exception.InvalidExpressionException;
 import com.robotnec.budget.core.mvp.view.CalculatorView;
 
-import java.text.DecimalFormat;
-
 /**
  * @author zak <zak@swingpulse.com>
  */
 public class CalculatorPresenter extends Presenter<CalculatorView> {
 
-    private final DecimalFormat displayFormat;
     private final CalculatorModel calculatorModel;
 
     public CalculatorPresenter(CalculatorView view) {
         super(view);
         calculatorModel = new CalculatorModelImpl();
-        displayFormat = new DecimalFormat("#.##");
     }
 
     @Override
@@ -43,8 +39,13 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     public void calculate() {
         try {
-            double number = Double.parseDouble(calculatorModel.calculate());
-            display(displayFormat.format(number));
+            String displayText = calculatorModel.calculate();
+            display(displayText);
+            double number = Double.parseDouble(displayText);
+            if (Double.isInfinite(number) || Double.isNaN(number)) {
+                view.displayError();
+
+            }
         } catch (InvalidExpressionException e) {
             view.displayError();
         }
