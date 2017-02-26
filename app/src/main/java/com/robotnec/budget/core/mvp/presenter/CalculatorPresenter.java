@@ -13,10 +13,12 @@ import com.robotnec.budget.core.mvp.view.CalculatorView;
 public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     private final CalculatorModel calculatorModel;
+    private boolean done;
 
     public CalculatorPresenter(CalculatorView view) {
         super(view);
         calculatorModel = new CalculatorModelImpl();
+        done = false;
     }
 
     @Override
@@ -40,11 +42,18 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     public void calculate() {
         try {
             String displayText = calculatorModel.calculate();
-            display(displayText);
             double number = Double.parseDouble(displayText);
             if (Double.isInfinite(number) || Double.isNaN(number)) {
+                display(displayText);
                 view.displayError();
-
+            } else {
+                if (done) {
+                    view.done(Double.parseDouble(displayText));
+                } else {
+                    display(displayText);
+                    done = true;
+                    view.displayDone();
+                }
             }
         } catch (InvalidExpressionException e) {
             view.displayError();
@@ -77,5 +86,8 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     private void display(String displayText) {
         view.display(displayText);
+        view.clearError();
+        view.clearDone();
+        done = false;
     }
 }

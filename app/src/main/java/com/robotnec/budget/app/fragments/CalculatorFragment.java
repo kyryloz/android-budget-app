@@ -1,6 +1,7 @@
 package com.robotnec.budget.app.fragments;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -25,7 +26,11 @@ public class CalculatorFragment extends BasePresenterFragment<CalculatorPresente
     @BindView(R.id.text_input)
     TextView textInput;
 
-    private int originalTextColor;
+    @BindView(R.id.calculate)
+    TextView buttonCalculate;
+
+    private int originalTextInputColor;
+    private Drawable originalCalculateButtonBg;
 
     public static CalculatorFragment newInstance(MoneyAmount initialAmount) {
         Bundle args = new Bundle();
@@ -51,7 +56,8 @@ public class CalculatorFragment extends BasePresenterFragment<CalculatorPresente
         initToolbarBack(toolbar);
         toolbar.setTitle(null);
         toolbar.setNavigationOnClickListener(v -> close());
-        originalTextColor = textInput.getCurrentTextColor();
+        originalTextInputColor = textInput.getCurrentTextColor();
+        originalCalculateButtonBg = buttonCalculate.getBackground();
     }
 
     @OnClick({R.id.digit_0, R.id.digit_1, R.id.digit_2, R.id.digit_3, R.id.digit_4,
@@ -136,7 +142,6 @@ public class CalculatorFragment extends BasePresenterFragment<CalculatorPresente
 
     @Override
     public void display(String value) {
-        textInput.setTextColor(originalTextColor);
         textInput.setText(value);
     }
 
@@ -146,7 +151,31 @@ public class CalculatorFragment extends BasePresenterFragment<CalculatorPresente
     }
 
     @Override
+    public void displayDone() {
+//        buttonCalculate.setText(android.R.string.ok);
+//        buttonCalculate.setBackgroundColor(Color.BLUE);
+    }
+
+    @Override
     public void close() {
+        getFragmentManager().beginTransaction()
+                .remove(this)
+                .commit();
+    }
+
+    @Override
+    public void clearError() {
+        textInput.setTextColor(originalTextInputColor);
+    }
+
+    @Override
+    public void clearDone() {
+//        buttonCalculate.setBackground(originalCalculateButtonBg);
+//        buttonCalculate.setText("=");
+    }
+
+    @Override
+    public void done(double value) {
         getFragmentManager().beginTransaction()
                 .remove(this)
                 .commit();

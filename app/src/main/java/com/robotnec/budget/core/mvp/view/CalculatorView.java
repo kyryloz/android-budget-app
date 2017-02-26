@@ -8,5 +8,13 @@ public interface CalculatorView extends View {
 
     void displayError();
 
+    void displayDone();
+
     void close();
+
+    void clearError();
+
+    void clearDone();
+
+    void done(double value);
 }
