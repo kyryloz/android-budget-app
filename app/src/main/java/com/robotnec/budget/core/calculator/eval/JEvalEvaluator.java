@@ -1,5 +1,7 @@
 package com.robotnec.budget.core.calculator.eval;
 
+import com.robotnec.budget.core.exception.InvalidExpressionException;
+
 import net.sourceforge.jeval.EvaluationException;
 
 /**
@@ -11,12 +13,11 @@ public class JEvalEvaluator implements Evaluator {
 
     @Override
 
-    public double eval(String expression) {
+    public double eval(String expression) throws InvalidExpressionException {
         try {
             return Double.parseDouble(evaluator.evaluate(expression));
         } catch (EvaluationException e) {
-            e.printStackTrace();
+            throw new InvalidExpressionException(e);
         }
-        return -1;
     }
 }

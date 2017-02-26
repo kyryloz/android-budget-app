@@ -1,62 +1,52 @@
 package com.robotnec.budget.core.calculator;
 
-import android.support.annotation.NonNull;
-
 /**
  * @author zak <zak@swingpulse.com>
  */
-public abstract class Op implements Comparable<Op> {
+public interface Op {
 
-    abstract double calculate(double firstOperand, double secondOperand);
+    Op DIVIDE = new Divide();
+    Op MULTIPLY = new Multiply();
+    Op MINUS = new Minus();
+    Op PLUS = new Plus();
 
-    abstract String displayText();
+    String displayText();
 
-    abstract int getOrder();
+    String symbol();
 
-    @Override
-    public int compareTo(@NonNull Op o) {
-        return getOrder() - o.getOrder();
-    }
+    final class Divide implements Op {
 
-    public static final class Divide extends Op {
-        @Override
-        public double calculate(double firstOperand, double secondOperand) {
-            return firstOperand / secondOperand;
-        }
+        private Divide() {}
 
         @Override
         public String displayText() {
+            return "\u00f7";
+        }
+
+        @Override
+        public String symbol() {
             return "/";
         }
-
-        @Override
-        public int getOrder() {
-            return 0;
-        }
     }
 
-    public static final class Multiply extends Op {
-        @Override
-        public double calculate(double firstOperand, double secondOperand) {
-            return firstOperand * secondOperand;
-        }
+    final class Multiply implements Op {
+
+        private Multiply() {}
 
         @Override
         public String displayText() {
-            return "*";
+            return "×";
         }
 
         @Override
-        public int getOrder() {
-            return 0;
+        public String symbol() {
+            return "*";
         }
     }
 
-    public static final class Minus extends Op {
-        @Override
-        public double calculate(double firstOperand, double secondOperand) {
-            return firstOperand - secondOperand;
-        }
+    final class Minus implements Op {
+
+        private Minus() {}
 
         @Override
         public String displayText() {
@@ -64,16 +54,14 @@ public abstract class Op implements Comparable<Op> {
         }
 
         @Override
-        public int getOrder() {
-            return 1;
+        public String symbol() {
+            return "-";
         }
     }
 
-    public static final class Plus extends Op {
-        @Override
-        public double calculate(double firstOperand, double secondOperand) {
-            return firstOperand + secondOperand;
-        }
+    final class Plus implements Op {
+
+        private Plus() {}
 
         @Override
         public String displayText() {
@@ -81,8 +69,8 @@ public abstract class Op implements Comparable<Op> {
         }
 
         @Override
-        public int getOrder() {
-            return 1;
+        public String symbol() {
+            return "+";
         }
     }
 }

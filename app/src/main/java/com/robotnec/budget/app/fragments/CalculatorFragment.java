@@ -1,5 +1,6 @@
 package com.robotnec.budget.app.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +24,8 @@ public class CalculatorFragment extends BasePresenterFragment<CalculatorPresente
 
     @BindView(R.id.text_input)
     TextView textInput;
+
+    private int originalTextColor;
 
     public static CalculatorFragment newInstance(MoneyAmount initialAmount) {
         Bundle args = new Bundle();
@@ -48,6 +51,7 @@ public class CalculatorFragment extends BasePresenterFragment<CalculatorPresente
         initToolbarBack(toolbar);
         toolbar.setTitle(null);
         toolbar.setNavigationOnClickListener(v -> close());
+        originalTextColor = textInput.getCurrentTextColor();
     }
 
     @OnClick({R.id.digit_0, R.id.digit_1, R.id.digit_2, R.id.digit_3, R.id.digit_4,
@@ -125,9 +129,20 @@ public class CalculatorFragment extends BasePresenterFragment<CalculatorPresente
         presenter.back();
     }
 
+    @OnClick(R.id.clear)
+    void onClearClick() {
+        presenter.clear();
+    }
+
     @Override
     public void display(String value) {
+        textInput.setTextColor(originalTextColor);
         textInput.setText(value);
+    }
+
+    @Override
+    public void displayError() {
+        textInput.setTextColor(Color.RED);
     }
 
     @Override

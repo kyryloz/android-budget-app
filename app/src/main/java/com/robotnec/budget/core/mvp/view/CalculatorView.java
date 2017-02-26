@@ -6,5 +6,7 @@ package com.robotnec.budget.core.mvp.view;
 public interface CalculatorView extends View {
     void display(String value);
 
+    void displayError();
+
     void close();
 }

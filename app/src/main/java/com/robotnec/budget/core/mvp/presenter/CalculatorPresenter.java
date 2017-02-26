@@ -4,6 +4,7 @@ import com.robotnec.budget.core.calculator.CalculatorModel;
 import com.robotnec.budget.core.calculator.CalculatorModelImpl;
 import com.robotnec.budget.core.calculator.Op;
 import com.robotnec.budget.core.di.ApplicationComponent;
+import com.robotnec.budget.core.exception.InvalidExpressionException;
 import com.robotnec.budget.core.mvp.view.CalculatorView;
 
 /**
@@ -25,7 +26,7 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     @Override
     public void onViewResume() {
-        display(String.valueOf(calculatorModel.calculate()));
+        calculate();
     }
 
     public void digit(int digit) {
@@ -37,27 +38,35 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     }
 
     public void calculate() {
-        display(String.valueOf(calculatorModel.calculate()));
+        try {
+            display(String.valueOf(calculatorModel.calculate()));
+        } catch (InvalidExpressionException e) {
+            view.displayError();
+        }
     }
 
     public void divide() {
-        display(calculatorModel.operation(new Op.Divide()));
+        display(calculatorModel.operation(Op.DIVIDE));
     }
 
     public void multiply() {
-        display(calculatorModel.operation(new Op.Multiply()));
+        display(calculatorModel.operation(Op.MULTIPLY));
     }
 
     public void minus() {
-        display(calculatorModel.operation(new Op.Minus()));
+        display(calculatorModel.operation(Op.MINUS));
     }
 
     public void plus() {
-        display(calculatorModel.operation(new Op.Plus()));
+        display(calculatorModel.operation(Op.PLUS));
     }
 
     public void back() {
         display(calculatorModel.back());
+    }
+
+    public void clear() {
+        display(calculatorModel.clear());
     }
 
     private void display(String displayText) {
