@@ -1,8 +1,15 @@
 package com.robotnec.budget.core.calculator;
 
+import android.text.TextUtils;
+
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 import com.robotnec.budget.core.calculator.eval.Evaluator;
 import com.robotnec.budget.core.calculator.eval.JEvalEvaluator;
 import com.robotnec.budget.core.exception.InvalidExpressionException;
+
+import java.text.DecimalFormat;
+import java.util.List;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -14,6 +21,8 @@ public class CalculatorModelImpl implements CalculatorModel {
     private final int OPERATION_STATE = 2;
     private final int ERROR_STATE = 3;
 
+    private final DecimalFormat displayFormat;
+
     private int state;
     private Input input;
     private Evaluator evaluator;
@@ -22,6 +31,7 @@ public class CalculatorModelImpl implements CalculatorModel {
         state = INIT_STATE;
         input = new Input();
         evaluator = new JEvalEvaluator();
+        displayFormat = new DecimalFormat("#.##");
     }
 
     @Override
@@ -48,16 +58,34 @@ public class CalculatorModelImpl implements CalculatorModel {
 
     @Override
     public String dot() {
+        String dot = ".";
         switch (state) {
             case ERROR_STATE:
             case INIT_STATE:
+                input.replace(dot);
                 state = DIGIT_STATE;
-                input.dot();
                 break;
             case DIGIT_STATE:
-                input.dot();
+                Input.Entry dotEntry = new Input.Entry(dot, dot, false);
+                Input.Entry fakeOperationEntry = new Input.Entry("", "", true);
+                List<Input.Entry> entries = Stream.of(input.getInputStack())
+                        .map(entry -> {
+                            if (entry.isOperation()) {
+                                return fakeOperationEntry;
+                            } else {
+                                return entry;
+                            }
+                        })
+                        .collect(Collectors.toList());
+                int indexDotEntry = entries.lastIndexOf(dotEntry);
+                int indexOperationEntry = entries.lastIndexOf(fakeOperationEntry);
+                if (indexDotEntry <= indexOperationEntry) {
+                    input.append(dot);
+                }
                 break;
             case OPERATION_STATE:
+                input.append(dot);
+                state = DIGIT_STATE;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -66,26 +94,34 @@ public class CalculatorModelImpl implements CalculatorModel {
     }
 
     @Override
-    public double calculate() throws InvalidExpressionException {
+    public String calculate() throws InvalidExpressionException {
         switch (state) {
             case OPERATION_STATE:
             case ERROR_STATE:
                 throw new InvalidExpressionException();
             case INIT_STATE:
-                return 0d;
+                break;
             case DIGIT_STATE:
+                String resultStr;
                 try {
-                    double result = evaluator.eval(input.toExpression());
-                    state = INIT_STATE;
-                    input.clear();
-                    return result;
+                    resultStr = evaluator.eval(input.toExpression());
                 } catch (InvalidExpressionException e) {
                     state = ERROR_STATE;
                     throw e;
                 }
+                boolean isFinite = Math.abs(Double.parseDouble(resultStr)) <= Double.MAX_VALUE;
+                if (isFinite) {
+                    input.clear();
+                    for (char c : String.valueOf(resultStr).toCharArray()) {
+                        input.append(String.valueOf(c));
+                    }
+                }
+                state = DIGIT_STATE;
+                break;
             default:
                 throw new IllegalArgumentException();
         }
+        return input.toDisplayText();
     }
 
     @Override
@@ -118,15 +154,11 @@ public class CalculatorModelImpl implements CalculatorModel {
                 break;
             case DIGIT_STATE:
             case OPERATION_STATE:
-                boolean deletedLastSymbol = input.delete();
-                if (deletedLastSymbol) {
-                    state = INIT_STATE;
+                input.delete();
+                if (isDigit(input.getInputStack().peek())) {
+                    state = DIGIT_STATE;
                 } else {
-                    if (input.lastSymbolIsDigit()) {
-                        state = DIGIT_STATE;
-                    } else {
-                        state = OPERATION_STATE;
-                    }
+                    state = OPERATION_STATE;
                 }
                 break;
             default:
@@ -140,5 +172,9 @@ public class CalculatorModelImpl implements CalculatorModel {
         input.clear();
         state = INIT_STATE;
         return input.toDisplayText();
+    }
+
+    private boolean isDigit(Input.Entry entry) {
+        return entry == null || TextUtils.isDigitsOnly(entry.symbol());
     }
 }

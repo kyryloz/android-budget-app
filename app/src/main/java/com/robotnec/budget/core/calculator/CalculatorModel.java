@@ -10,7 +10,7 @@ public interface CalculatorModel {
 
     String dot();
 
-    double calculate() throws InvalidExpressionException;
+    String calculate() throws InvalidExpressionException;
 
     String operation(Op op);
 

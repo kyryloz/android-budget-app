@@ -43,7 +43,8 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
 
     public void calculate() {
         try {
-            display(displayFormat.format(calculatorModel.calculate()));
+            double number = Double.parseDouble(calculatorModel.calculate());
+            display(displayFormat.format(number));
         } catch (InvalidExpressionException e) {
             view.displayError();
         }

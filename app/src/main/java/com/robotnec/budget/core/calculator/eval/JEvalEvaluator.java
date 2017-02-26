@@ -13,9 +13,9 @@ public class JEvalEvaluator implements Evaluator {
 
     @Override
 
-    public double eval(String expression) throws InvalidExpressionException {
+    public String eval(String expression) throws InvalidExpressionException {
         try {
-            return Double.parseDouble(evaluator.evaluate(expression));
+            return evaluator.evaluate(expression);
         } catch (EvaluationException e) {
             throw new InvalidExpressionException(e);
         }

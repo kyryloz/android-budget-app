@@ -13,7 +13,6 @@ import java.util.Queue;
  * @author zak <zak@swingpulse.com>
  */
 class Input {
-    private static final Entry INIT_VALUE = new Entry("0", "0");
 
     private Queue<Entry> inputStack = new LinkedList<>();
 
@@ -22,50 +21,35 @@ class Input {
     }
 
     void append(String symbol) {
-        inputStack.add(new Entry(symbol, symbol));
+        inputStack.add(new Entry(symbol, symbol, false));
     }
 
     void append(Op op) {
-        inputStack.add(new Entry(op.displayText(), op.symbol()));
+        inputStack.add(new Entry(op.displayText(), op.symbol(), true));
     }
 
     void replace(String symbol) {
         inputStack.clear();
-        inputStack.add(new Entry(symbol, symbol));
+        inputStack.add(new Entry(symbol, symbol, false));
     }
 
-    void dot() {
-        String dot = ".";
-        if (!inputStack.contains(new Entry(".", "."))) {
-            append(dot);
-        }
+    Queue<Entry> getInputStack() {
+        return inputStack;
     }
 
-    boolean delete() {
-        boolean deletedLastSymbol;
-        if (inputStack.size() == 1) {
-            clear();
-            deletedLastSymbol = true;
-        } else {
-            inputStack.remove();
-            deletedLastSymbol = false;
-        }
-        return deletedLastSymbol;
-    }
-
-    boolean lastSymbolIsDigit() {
-        return TextUtils.isDigitsOnly(inputStack.element().symbol);
+    void delete() {
+        inputStack.remove();
     }
 
     void clear() {
         inputStack.clear();
-        inputStack.add(INIT_VALUE);
     }
 
     String toDisplayText() {
-        return TextUtils.join("", Stream.of(inputStack)
+        String text = TextUtils.join("", Stream.of(inputStack)
                 .map(Entry::displayText)
                 .collect(Collectors.toList()));
+        return TextUtils.isEmpty(text) ? "0" : text;
     }
 
     String toExpression() {
@@ -74,15 +58,17 @@ class Input {
                 .collect(Collectors.toList()));
     }
 
-    private static class Entry {
+    static class Entry {
         private final String displayText;
         private final String symbol;
+        private final boolean isOperation;
 
-        private Entry(String displayText, String symbol) {
+        Entry(String displayText, String symbol, boolean isOperation) {
             Objects.requireNonNull(displayText);
             Objects.requireNonNull(symbol);
             this.displayText = displayText;
             this.symbol = symbol;
+            this.isOperation = isOperation;
         }
 
         String displayText() {
@@ -93,6 +79,10 @@ class Input {
             return symbol;
         }
 
+        boolean isOperation() {
+            return isOperation;
+        }
+
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
@@ -100,6 +90,7 @@ class Input {
 
             Entry entry = (Entry) o;
 
+            if (isOperation != entry.isOperation) return false;
             if (!displayText.equals(entry.displayText)) return false;
             return symbol.equals(entry.symbol);
 
@@ -109,6 +100,7 @@ class Input {
         public int hashCode() {
             int result = displayText.hashCode();
             result = 31 * result + symbol.hashCode();
+            result = 31 * result + (isOperation ? 1 : 0);
             return result;
         }
     }
