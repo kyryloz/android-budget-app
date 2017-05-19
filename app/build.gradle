@@ -1,9 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '25.0.2'
 
     defaultConfig {
         applicationId "com.robotnec.budgetswing"
@@ -28,7 +27,7 @@ android {
 }
 
 ext {
-    supportLibVersion = "25.1.1"
+    supportLibVersion = "25.3.0"
     butterknifeVersion = "8.5.1"
     daggerVersion = "2.8"
     autoValueVersion = "1.2"
@@ -49,13 +48,12 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
     // utils
-    compile "com.annimon:stream:1.1.4"
-    provided "org.projectlombok:lombok:1.12.6"
-    annotationProcessor "org.projectlombok:lombok:1.12.6"
-    debugCompile "im.dino:dbinspector:3.4.0@aar"
+    compile "com.annimon:stream:1.1.6"
+    provided "org.projectlombok:lombok:1.16.10"
+    annotationProcessor "org.projectlombok:lombok:1.16.10"
+    debugCompile "im.dino:dbinspector:3.4.1@aar"
     compile "com.jakewharton.threetenabp:threetenabp:1.0.5"
     compile "net.sourceforge.jeval:jeval:0.9.4"
-
 
     // views
     compile "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"
