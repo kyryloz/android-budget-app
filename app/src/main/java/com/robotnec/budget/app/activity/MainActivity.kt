@@ -11,12 +11,9 @@ import com.robotnec.budget.R
 import com.robotnec.budget.app.fragments.*
 import com.robotnec.budget.core.mvp.presenter.MainPresenter
 import com.robotnec.budget.core.mvp.view.MainView
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNavigationItemSelectedListener, MainView {
-
-    internal lateinit var drawerLayout: DrawerLayout
-
-    internal lateinit var navigationView: NavigationView
 
     override val layoutId: Int
         get() = R.layout.activity_main
@@ -28,16 +25,13 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNa
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
-        navigationView = findViewById(R.id.nav_view) as NavigationView
-
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                     .replace(R.id.layout_fragment_container, HomeFragment.newInstance())
                     .commit()
         }
 
-        navigationView.setNavigationItemSelectedListener(this)
+        nav_view.setNavigationItemSelectedListener(this)
     }
 
     override fun onBackPressed() {
@@ -81,7 +75,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNa
                 .replace(R.id.layout_fragment_container, fragment)
                 .commit()
 
-        drawerLayout.closeDrawer(GravityCompat.START)
+        drawer_layout.closeDrawer(GravityCompat.START)
 
         title = item.title
 

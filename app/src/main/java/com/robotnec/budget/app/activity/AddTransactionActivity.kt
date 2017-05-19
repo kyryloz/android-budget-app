@@ -1,17 +1,10 @@
 package com.robotnec.budget.app.activity
 
 import android.os.Bundle
-import android.support.v7.app.ActionBar
-import android.support.v7.widget.Toolbar
-
 import com.robotnec.budget.R
-
-import butterknife.BindView
+import kotlinx.android.synthetic.main.fragment_add_transaction.*
 
 class AddTransactionActivity : BaseActivity() {
-
-    @BindView(R.id.toolbar)
-    internal var toolbar: Toolbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +18,7 @@ class AddTransactionActivity : BaseActivity() {
             supportActionBar.setDisplayShowHomeEnabled(true)
         }
 
-        toolbar!!.setNavigationOnClickListener { v -> finish() }
+        toolbar.setNavigationOnClickListener { v -> finish() }
     }
 
     override fun layoutId(): Int {
