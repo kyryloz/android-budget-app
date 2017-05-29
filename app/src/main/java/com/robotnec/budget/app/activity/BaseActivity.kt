@@ -13,7 +13,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId())
-        ButterKnife.bind(this)
     }
 
     protected abstract fun layoutId(): Int

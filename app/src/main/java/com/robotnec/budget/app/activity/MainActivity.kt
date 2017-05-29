@@ -15,8 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNavigationItemSelectedListener, MainView {
 
-    override val layoutId: Int
-        get() = R.layout.activity_main
+    override val layoutId = R.layout.activity_main
 
     override fun createPresenter(): MainPresenter {
         return MainPresenter(this)
@@ -59,16 +58,13 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNa
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val fragment: Fragment
-
-        val id = item.itemId
-        when (id) {
-            R.id.nav_home -> fragment = HomeFragment.newInstance()
-            R.id.nav_accounts -> fragment = AccountsFragment.newInstance()
-            R.id.nav_categories -> fragment = CategoriesFragment.newInstance()
-            R.id.nav_transactions -> fragment = TransactionsFragment.newInstance()
-            R.id.nav_settings -> fragment = AboutFragment.newInstance()
-            else -> throw IllegalArgumentException("Unknown menu: " + id)
+        val fragment: Fragment = when (item.itemId) {
+            R.id.nav_home -> HomeFragment.newInstance()
+            R.id.nav_accounts -> AccountsFragment.newInstance()
+            R.id.nav_categories -> CategoriesFragment.newInstance()
+            R.id.nav_transactions -> TransactionsFragment.newInstance()
+            R.id.nav_settings -> AboutFragment.newInstance()
+            else -> throw IllegalArgumentException("Unknown menu: " + item.itemId)
         }
 
         supportFragmentManager.beginTransaction()

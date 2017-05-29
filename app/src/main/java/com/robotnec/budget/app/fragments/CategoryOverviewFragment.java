@@ -28,7 +28,7 @@ public class CategoryOverviewFragment extends BasePresenterFragment<CategoryOver
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.collapsing_toolbar)
+    @BindView(R.id.collapsingToolbar)
     CollapsingToolbarLayout toolbarLayout;
 
     @BindView(R.id.recycler_category_transactions)

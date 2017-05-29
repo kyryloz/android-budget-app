@@ -17,7 +17,6 @@ abstract class BasePresenterActivity<P : Presenter<*>> : AppCompatActivity(), Vi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
-        ButterKnife.bind(this)
         presenter = createPresenter()
         val applicationGraph = (application as BudgetApplication)
                 .applicationGraph
