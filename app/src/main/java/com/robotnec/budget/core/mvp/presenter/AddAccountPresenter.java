@@ -34,7 +34,7 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
     @Override
     public void onViewResume() {
         if (editMode) {
-            view.initEditMode(account);
+            getView().initEditMode(account);
         }
     }
 
@@ -53,6 +53,6 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
 
     public void deleteAccount() {
         accountDao.remove(account.getId());
-        view.closeView();
+        getView().closeView();
     }
 }

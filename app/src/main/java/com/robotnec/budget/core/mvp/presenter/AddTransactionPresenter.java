@@ -47,18 +47,18 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     public void onViewResume() {
         dateFormat = DateFormat.getDateInstance();
         String format = dateFormat.format(Calendar.getInstance().getTime());
-        view.initDatePickerButton(format);
+        getView().initDatePickerButton(format);
 
         List<Account> allAccounts = accountDao.getAll();
         targetAccount = allAccounts.get(0);
-        view.displayAccount(targetAccount);
+        getView().displayAccount(targetAccount);
 
         List<Category> allCategories = categoryDao.getAll();
         targetCategory = allCategories.get(0);
-        view.displayCategory(targetCategory);
+        getView().displayCategory(targetCategory);
 
         resultAmount = MoneyAmount.of(0, Currency.UAH);
-        view.displayInitialAmount(resultAmount);
+        getView().displayInitialAmount(resultAmount);
     }
 
     @Override
@@ -67,20 +67,20 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     }
 
     public void changeAccount() {
-        view.showAccountsChooserDialog(accountDao.getAll());
+        getView().showAccountsChooserDialog(accountDao.getAll());
     }
 
     public void changeCategory() {
-        view.showCategoryChooserDialog(categoryDao.getAll());
+        getView().showCategoryChooserDialog(categoryDao.getAll());
     }
 
     public void setChosenDate(Calendar calendar) {
         resultDate = calendar;
-        view.showChosenDate(dateFormat.format(calendar.getTime()));
+        getView().showChosenDate(dateFormat.format(calendar.getTime()));
     }
 
     public void changeDate() {
-        view.showDateChooserDialog(resultDate);
+        getView().showDateChooserDialog(resultDate);
     }
 
     public void submit() {
@@ -91,20 +91,20 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
                 targetAccount,
                 targetCategory);
         moneyOperationBroker.execute(expense);
-        view.finish();
+        getView().finish();
     }
 
     public void pickAccount(Account account) {
         targetAccount = account;
-        view.displayAccount(targetAccount);
+        getView().displayAccount(targetAccount);
     }
 
     public void pickCategory(Category category) {
         targetCategory = category;
-        view.displayCategory(category);
+        getView().displayCategory(category);
     }
 
     public void openCalculator() {
-        view.showCalculator(resultAmount);
+        getView().showCalculator(resultAmount);
     }
 }

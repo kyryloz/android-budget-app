@@ -32,7 +32,7 @@ public class AddCategoryPresenter extends Presenter<AddCategoryView> {
     @Override
     public void onViewResume() {
         if (editMode) {
-            view.initEditMode(category);
+            getView().initEditMode(category);
         }
     }
 
@@ -48,6 +48,6 @@ public class AddCategoryPresenter extends Presenter<AddCategoryView> {
 
     public void deleteCategory() {
         categoryDao.remove(category.getId());
-        view.closeView();
+        getView().closeView();
     }
 }

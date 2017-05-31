@@ -45,18 +45,18 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
             double number = Double.parseDouble(displayText);
             if (Double.isInfinite(number) || Double.isNaN(number)) {
                 display(displayText);
-                view.displayError();
+                getView().displayError();
             } else {
                 if (done) {
-                    view.done(Double.parseDouble(displayText));
+                    getView().done(Double.parseDouble(displayText));
                 } else {
                     display(displayText);
                     done = true;
-                    view.displayDone();
+                    getView().displayDone();
                 }
             }
         } catch (InvalidExpressionException e) {
-            view.displayError();
+            getView().displayError();
         }
     }
 
@@ -85,9 +85,9 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     }
 
     private void display(String displayText) {
-        view.display(displayText);
-        view.clearError();
-        view.clearDone();
+        getView().display(displayText);
+        getView().clearError();
+        getView().clearDone();
         done = false;
     }
 }

@@ -47,13 +47,17 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         transactionContext = new TransactionContextImpl(database);
         transactionDao = new TransactionDaoImpl(database, accountDao, categoryDao);
 
-        testAccount = new Account();
-        testAccount.setAmount(MoneyAmount.of(100, Currency.UAH));
-        testAccount.setName("account");
+        testAccount = new Account(
+                -1,
+                "account",
+                MoneyAmount.of(100, Currency.UAH)
+        );
         accountDao.createOrUpdate(testAccount);
 
-        testCategory = new Category();
-        testCategory.setName("category");
+        testCategory = new Category(
+                -1,
+                "category"
+        );
         categoryDao.createOrUpdate(testCategory);
     }
 
@@ -62,11 +66,12 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         OperationReceiver operationReceiver = new OperationReceiverImpl(transactionDao,
                 accountDao,
                 exchangeService, transactionContext);
-        Expense expense = new Expense();
-        expense.setAccount(testAccount);
-        expense.setCategory(testCategory);
-        expense.setDate(LocalDateTime.now());
-        expense.setAmount(MoneyAmount.of(10, Currency.UAH));
+        Expense expense = new Expense(
+                MoneyAmount.of(10, Currency.UAH),
+                LocalDateTime.now(),
+                testAccount,
+                testCategory
+        );
 
         boolean success = operationReceiver.receive(expense);
         Assert.assertTrue(success);
@@ -93,10 +98,12 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
                 accountDao,
                 exchangeService, transactionContext);
 
-        Expense expense = new Expense();
-        expense.setAccount(testAccount);
-        expense.setCategory(testCategory);
-        expense.setAmount(MoneyAmount.of(10, Currency.UAH));
+        Expense expense = new Expense(
+                MoneyAmount.of(10, Currency.UAH),
+                LocalDateTime.now(),
+                testAccount,
+                testCategory
+        );
 
         boolean success = operationReceiver.receive(expense);
         Assert.assertFalse(success);

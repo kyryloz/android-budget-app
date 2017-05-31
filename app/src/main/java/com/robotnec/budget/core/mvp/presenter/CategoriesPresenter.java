@@ -33,7 +33,7 @@ public class CategoriesPresenter extends Presenter<CategoriesView> {
 
     @Override
     public void onViewResume() {
-        view.displayCategories(categoryDao.getAll());
+        getView().displayCategories(categoryDao.getAll());
     }
 
     public void addOrUpdateCategory(NavigationBundle navigationBundle) {

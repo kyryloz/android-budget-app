@@ -36,7 +36,7 @@ public class TransactionsPresenter extends Presenter<TransactionsView> {
         List<Transaction> transactions = transactionDao.getAll();
         TransactionAggregation aggregation =
                 aggregator.aggregate(transactions, AggregationService.Resolution.DAY);
-        view.displayTransactions(aggregation);
+        getView().displayTransactions(aggregation);
     }
 
     @Override

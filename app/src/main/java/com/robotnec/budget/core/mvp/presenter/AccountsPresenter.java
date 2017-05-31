@@ -30,7 +30,7 @@ public class AccountsPresenter extends Presenter<AccountsView> {
 
     @Override
     public void onViewResume() {
-        view.displayAccounts(accountDao.getAll());
+        getView().displayAccounts(accountDao.getAll());
     }
 
     public void addOrUpdateAccount(NavigationBundle navigationBundle) {

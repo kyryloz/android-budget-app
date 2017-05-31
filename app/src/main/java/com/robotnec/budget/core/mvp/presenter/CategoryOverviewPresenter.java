@@ -40,7 +40,7 @@ public class CategoryOverviewPresenter extends Presenter<CategoryOverviewView> {
         List<Transaction> categoryTransactions = transactionDao.getTransactionsForCategory(category.getId());
         TransactionAggregation aggregation =
                 aggregationService.aggregate(categoryTransactions, AggregationService.Resolution.DAY);
-        view.displayCategoryTransactions(aggregation);
-        view.displayCategoryTitle(category.getName());
+        getView().displayCategoryTransactions(aggregation);
+        getView().displayCategoryTitle(category.getName());
     }
 }
