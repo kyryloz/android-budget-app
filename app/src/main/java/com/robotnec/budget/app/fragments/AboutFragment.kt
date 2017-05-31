@@ -13,9 +13,8 @@ import kotlinx.android.synthetic.main.fragment_about.*
  */
 class AboutFragment : BasePresenterFragment<AboutPresenter>(), AboutView {
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_about
-    }
+    override val layoutId: Int
+        get() = R.layout.fragment_about
 
     override fun createPresenter(): AboutPresenter {
         return AboutPresenter(this)

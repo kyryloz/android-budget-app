@@ -19,11 +19,14 @@ import java.util.*
 /**
  * @author zak zak@swingpulse.com>
  */
-class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(), AddTransactionView, DatePickerDialogFragment.Listener, AccountPickerDialogFragment.Listener, CategoryPickerDialogFragment.Listener {
+class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
+        AddTransactionView,
+        DatePickerDialogFragment.Listener,
+        AccountPickerDialogFragment.Listener,
+        CategoryPickerDialogFragment.Listener {
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_add_transaction
-    }
+    override val layoutId: Int
+        get() = R.layout.fragment_add_transaction
 
     override fun createPresenter(): AddTransactionPresenter {
         return AddTransactionPresenter(this)

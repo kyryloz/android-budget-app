@@ -16,9 +16,8 @@ import kotlinx.android.synthetic.main.fragment_add_account.*
  */
 class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAccountView {
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_add_account
-    }
+    override val layoutId: Int
+        get() = R.layout.fragment_add_account
 
     override fun createPresenter(): AddAccountPresenter {
         val account = arguments.getSerializable(Keys.ACCOUNT) as Account

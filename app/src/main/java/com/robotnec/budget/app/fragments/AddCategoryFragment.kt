@@ -10,13 +10,12 @@ import com.robotnec.budget.core.mvp.view.AddCategoryView
 import kotlinx.android.synthetic.main.fragment_add_category.*
 
 /**
- * @author zak <zak></zak>@swingpulse.com>
+ * @author zak zak@swingpulse.com>
  */
 class AddCategoryFragment : BasePresenterFragment<AddCategoryPresenter>(), AddCategoryView {
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_add_category
-    }
+    override val layoutId: Int
+        get() = R.layout.fragment_add_category
 
     override fun createPresenter(): AddCategoryPresenter {
         val category = arguments.getSerializable(Keys.CATEGORY) as Category

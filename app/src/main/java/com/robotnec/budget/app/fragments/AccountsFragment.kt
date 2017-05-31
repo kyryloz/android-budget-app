@@ -20,9 +20,8 @@ class AccountsFragment : BasePresenterFragment<AccountsPresenter>(), AccountsVie
 
     lateinit var accountsAdapter: AccountsAdapter
 
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_accounts
-    }
+    override val layoutId: Int
+        get() = R.layout.fragment_accounts
 
     override fun createPresenter(): AccountsPresenter {
         return AccountsPresenter(this)

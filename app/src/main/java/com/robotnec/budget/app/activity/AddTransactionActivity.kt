@@ -18,7 +18,7 @@ class AddTransactionActivity : BaseActivity() {
             supportActionBar.setDisplayShowHomeEnabled(true)
         }
 
-        toolbar.setNavigationOnClickListener { v -> finish() }
+        toolbar.setNavigationOnClickListener { finish() }
     }
 
     override fun layoutId(): Int {
