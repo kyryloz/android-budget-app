@@ -46,9 +46,7 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
             account.setAmount(amount);
             accountDao.createOrUpdate(account);
         } else {
-            Account account = new Account();
-            account.setName(accountName);
-            account.setAmount(amount);
+            Account account = new Account(-1, accountName, amount);
             accountDao.createOrUpdate(account);
         }
     }

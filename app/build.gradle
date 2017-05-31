@@ -51,8 +51,6 @@ dependencies {
 
     // utils
     compile "com.annimon:stream:1.1.6"
-    provided "org.projectlombok:lombok:1.16.10"
-    annotationProcessor "org.projectlombok:lombok:1.16.10"
     debugCompile "im.dino:dbinspector:3.4.1@aar"
     compile "com.jakewharton.threetenabp:threetenabp:1.0.5"
     compile "net.sourceforge.jeval:jeval:0.9.4"

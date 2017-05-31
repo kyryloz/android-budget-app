@@ -49,7 +49,7 @@ public class AccountsAdapter extends BaseAdapter<Account, AccountsAdapter.ViewHo
         @BindView(R.id.text_name)
         TextView textName;
 
-        @BindView(R.id.text_amount)
+        @BindView(R.id.textAmount)
         TextView textAmount;
 
         ViewHolder(View itemView) {

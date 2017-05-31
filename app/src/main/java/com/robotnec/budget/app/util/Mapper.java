@@ -20,12 +20,11 @@ import java.util.List;
 public final class Mapper {
 
     public static Account fromRecord(AccountRecord record) {
-        Account account = new Account();
-        MoneyAmount amount = MoneyAmount.fromDbString(record.getAmount());
-        account.setAmount(amount);
-        account.setName(record.getName());
-        account.setId(record.getId());
-        return account;
+        return new Account(
+                record.getId(),
+                record.getName(),
+                MoneyAmount.fromDbString(record.getAmount())
+        );
     }
 
     public static List<Account> fromAccountRecords(List<AccountRecord> records) {
@@ -42,10 +41,7 @@ public final class Mapper {
     }
 
     public static Category fromRecord(CategoryRecord record) {
-        Category category = new Category();
-        category.setId(record.getId());
-        category.setName(record.getName());
-        return category;
+        return new Category(record.getId(), record.getName());
     }
 
     public static List<Category> fromCategoryRecords(List<CategoryRecord> records) {
@@ -71,13 +67,13 @@ public final class Mapper {
     public static Transaction fromRecord(TransactionRecord record,
                                          Function<Long, Account> accountMapper,
                                          Function<Long, Category> categoryMapper) {
-        Transaction transaction = new Transaction();
-        transaction.setAmount(MoneyAmount.fromDbString(record.getAmount()));
-        transaction.setAccount(accountMapper.apply(record.getAccountId()));
-        transaction.setCategory(categoryMapper.apply(record.getCategoryId()));
-        transaction.setId(record.getId());
-        transaction.setDate(DateUtil.fromSeconds(record.getDate()));
-        return transaction;
+        return new Transaction(
+                record.getId(),
+                MoneyAmount.fromDbString(record.getAmount()),
+                DateUtil.fromSeconds(record.getDate()),
+                accountMapper.apply(record.getAccountId()),
+                categoryMapper.apply(record.getCategoryId())
+        );
     }
 
     public static TransactionRecord toRecord(Transaction operation) {
@@ -86,9 +82,9 @@ public final class Mapper {
         MoneyAmount amount = operation.getAmount();
         return new TransactionRecord()
                 .setId(operation.getId())
-                .setAccountId(account != null ? account.getId() : 1)
-                .setCategoryId(category != null ? category.getId() : 1)
-                .setAmount(amount != null ? amount.toDbString() : "0 UAH")
+                .setAccountId(account.getId())
+                .setCategoryId(category.getId())
+                .setAmount(amount.toDbString())
                 .setDate(DateUtil.toSeconds(operation.getDate()));
     }
 }

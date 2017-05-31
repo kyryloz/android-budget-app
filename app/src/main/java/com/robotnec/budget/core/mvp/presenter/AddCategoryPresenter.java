@@ -1,11 +1,11 @@
 package com.robotnec.budget.core.mvp.presenter;
 
-import javax.inject.Inject;
-
-import com.robotnec.budget.core.persistence.dao.CategoryDao;
 import com.robotnec.budget.core.di.ApplicationComponent;
 import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.mvp.view.AddCategoryView;
+import com.robotnec.budget.core.persistence.dao.CategoryDao;
+
+import javax.inject.Inject;
 
 /**
  * @author zak <zak@swingpulse.com>
@@ -41,8 +41,7 @@ public class AddCategoryPresenter extends Presenter<AddCategoryView> {
             category.setName(categoryName);
             categoryDao.createOrUpdate(category);
         } else {
-            Category category = new Category();
-            category.setName(categoryName);
+            Category category = new Category(-1, categoryName);
             categoryDao.createOrUpdate(category);
         }
     }

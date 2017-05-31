@@ -85,11 +85,11 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
 
     public void submit() {
         MoneyAmount moneyAmount = MoneyAmount.of(100, Currency.UAH);
-        Expense expense = new Expense();
-        expense.setAccount(targetAccount);
-        expense.setAmount(moneyAmount);
-        expense.setDate(DateUtil.fromSeconds(resultDate.getTimeInMillis() / 1000));
-        expense.setCategory(targetCategory);
+        Expense expense = new Expense(
+                moneyAmount,
+                DateUtil.fromSeconds(resultDate.getTimeInMillis() / 1000),
+                targetAccount,
+                targetCategory);
         moneyOperationBroker.execute(expense);
         view.finish();
     }

@@ -56,7 +56,7 @@ public class HomeHeader implements ListHeader {
         @BindView(R.id.text_name)
         TextView textName;
 
-        @BindView(R.id.text_amount)
+        @BindView(R.id.textAmount)
         TextView textAmount;
 
         @BindView(R.id.text_name_second)

@@ -70,10 +70,10 @@ class TransactionItem implements TransactionListItem {
         @BindView(R.id.image_icon)
         ImageView imageIcon;
 
-        @BindView(R.id.text_amount)
+        @BindView(R.id.textAmount)
         TextView textAmount;
 
-        @BindView(R.id.text_account_name)
+        @BindView(R.id.textAccountName)
         TextView textAccountName;
 
         @BindView(R.id.text_category_name)

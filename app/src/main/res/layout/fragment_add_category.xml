@@ -34,7 +34,7 @@
                         android:layout_height="wrap_content">
 
                         <EditText
-                            android:id="@+id/edit_category_name"
+                            android:id="@+id/editCategoryName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/hint_category_name"
@@ -62,7 +62,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button_delete"
+                    android:id="@+id/buttonDelete"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -73,7 +73,7 @@
                     style="@style/Widget.AppCompat.Button.Borderless"/>
 
                 <Button
-                    android:id="@+id/button_done"
+                    android:id="@+id/buttonDone"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

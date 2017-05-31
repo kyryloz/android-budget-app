@@ -32,7 +32,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/layout_amount"
+                android:id="@+id/layoutAmount"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/listPreferredItemHeight"
                 android:clickable="true"
@@ -41,7 +41,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/text_amount"
+                    android:id="@+id/textAmount"
                     android:layout_width="match_parent"
                     android:layout_marginStart="72dp"
                     android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:background="?android:attr/dividerVertical"/>
 
             <LinearLayout
-                android:id="@+id/layout_account"
+                android:id="@+id/layoutAccount"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/listPreferredItemHeight"
                 android:clickable="true"
@@ -81,7 +81,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_account_name"
+                        android:id="@+id/textAccountName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@android:style/TextAppearance.Material.Body2"
@@ -89,7 +89,7 @@
                         tools:text="Cash"/>
 
                     <TextView
-                        android:id="@+id/text_account_amount"
+                        android:id="@+id/textAccountAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@android:style/TextAppearance.Material.Caption"
@@ -105,7 +105,7 @@
                 android:background="?android:attr/dividerVertical"/>
 
             <LinearLayout
-                android:id="@+id/layout_expense_category"
+                android:id="@+id/layoutExpenseCategory"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/listPreferredItemHeight"
                 android:clickable="true"
@@ -129,7 +129,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_expense_category"
+                        android:id="@+id/textExpenseCategory"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@android:style/TextAppearance.Material.Body2"
@@ -145,7 +145,7 @@
                 android:background="?android:attr/dividerVertical"/>
 
             <LinearLayout
-                android:id="@+id/layout_date"
+                android:id="@+id/layoutDate"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/listPreferredItemHeight"
                 android:clickable="true"
@@ -169,7 +169,7 @@
                     android:gravity="center_vertical">
 
                     <TextView
-                        android:id="@+id/text_date"
+                        android:id="@+id/textDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="@android:style/TextAppearance.Material.Body2"
@@ -190,7 +190,7 @@
     </android.support.v4.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/button_done"
+        android:id="@+id/buttonDone"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="?attr/listPreferredItemHeight"
