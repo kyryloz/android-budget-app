@@ -67,7 +67,7 @@ class TransactionItem implements TransactionListItem {
 
     static class TransactionViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.image_icon)
+        @BindView(R.id.imageIcon)
         ImageView imageIcon;
 
         @BindView(R.id.textAmount)
@@ -76,7 +76,7 @@ class TransactionItem implements TransactionListItem {
         @BindView(R.id.textAccountName)
         TextView textAccountName;
 
-        @BindView(R.id.text_category_name)
+        @BindView(R.id.textCategoryName)
         TextView textCategoryName;
 
         TransactionViewHolder(View itemView) {

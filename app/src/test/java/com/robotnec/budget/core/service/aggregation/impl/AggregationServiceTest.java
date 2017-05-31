@@ -2,6 +2,8 @@ package com.robotnec.budget.core.service.aggregation.impl;
 
 import android.support.annotation.NonNull;
 
+import com.robotnec.budget.core.domain.Account;
+import com.robotnec.budget.core.domain.Category;
 import com.robotnec.budget.core.domain.Currency;
 import com.robotnec.budget.core.domain.MoneyAmount;
 import com.robotnec.budget.core.domain.operation.Transaction;
@@ -81,9 +83,12 @@ public class AggregationServiceTest {
 
     @NonNull
     private Transaction createTransaction(int year, int month, int day, int hour, int minute) {
-        Transaction t = new Transaction();
-        t.setAmount(MoneyAmount.of(1, Currency.UAH));
-        t.setDate(LocalDateTime.of(year, month, day, hour, minute));
-        return t;
+        return new Transaction(
+                -1,
+                MoneyAmount.of(1, Currency.UAH),
+                LocalDateTime.of(year, month, day, hour, minute),
+                new Account(-1, "account", MoneyAmount.of(0, Currency.UAH)),
+                new Category(-1, "category")
+        );
     }
 }
