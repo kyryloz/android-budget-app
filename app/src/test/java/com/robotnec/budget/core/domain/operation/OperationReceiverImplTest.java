@@ -50,7 +50,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         testAccount = new Account(
                 -1,
                 "account",
-                MoneyAmount.of(100, Currency.UAH)
+                MoneyAmount.Companion.of(100, Currency.UAH)
         );
         accountDao.createOrUpdate(testAccount);
 
@@ -67,7 +67,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
                 accountDao,
                 exchangeService, transactionContext);
         Expense expense = new Expense(
-                MoneyAmount.of(10, Currency.UAH),
+                MoneyAmount.Companion.of(10, Currency.UAH),
                 LocalDateTime.now(),
                 testAccount,
                 testCategory
@@ -77,7 +77,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         Assert.assertTrue(success);
 
         MoneyAmount actual = accountDao.findById(testAccount.getId()).getAmount();
-        MoneyAmount ninety = MoneyAmount.of(90, Currency.UAH);
+        MoneyAmount ninety = MoneyAmount.Companion.of(90, Currency.UAH);
         Assert.assertEquals(ninety, actual);
 
         List<Transaction> actualOperations = transactionDao.getAll();
@@ -86,7 +86,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         Transaction actualOperation = actualOperations.get(0);
 
         MoneyAmount actualOperationAmount = actualOperation.getAmount();
-        MoneyAmount ten = MoneyAmount.of(10, Currency.UAH);
+        MoneyAmount ten = MoneyAmount.Companion.of(10, Currency.UAH);
         Assert.assertEquals(ten, actualOperationAmount);
     }
 
@@ -99,7 +99,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
                 exchangeService, transactionContext);
 
         Expense expense = new Expense(
-                MoneyAmount.of(10, Currency.UAH),
+                MoneyAmount.Companion.of(10, Currency.UAH),
                 LocalDateTime.now(),
                 testAccount,
                 testCategory
@@ -109,7 +109,7 @@ public class OperationReceiverImplTest extends BaseRobolectricTest {
         Assert.assertFalse(success);
 
         MoneyAmount actual = accountDao.findById(testAccount.getId()).getAmount();
-        MoneyAmount ninety = MoneyAmount.of(90, Currency.UAH);
+        MoneyAmount ninety = MoneyAmount.Companion.of(90, Currency.UAH);
         Assert.assertNotEquals(ninety, actual);
 
         List<Transaction> actualOperations = transactionDao.getAll();

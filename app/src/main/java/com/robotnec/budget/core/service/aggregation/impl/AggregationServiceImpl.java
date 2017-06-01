@@ -52,7 +52,7 @@ public class AggregationServiceImpl implements AggregationService {
                     .collect(Collectors.toList());
             MoneyAmount sum = Stream.of(transactions)
                     .map(Transaction::getAmount)
-                    .reduce(MoneyAmount.of(0, Currency.UAH), MoneyAmount::add);
+                    .reduce(MoneyAmount.Companion.of(0, Currency.UAH), MoneyAmount::add);
             if (!values.isEmpty()) {
                 aggregatedMap.put(timeSpan, values);
                 sums.put(timeSpan, sum);

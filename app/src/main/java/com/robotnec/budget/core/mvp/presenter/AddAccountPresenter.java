@@ -39,8 +39,8 @@ public class AddAccountPresenter extends Presenter<AddAccountView> {
     }
 
     public void addOrEditAccount(String accountName, String accountAmount, String accountCurrency) {
-        MoneyAmount amount = MoneyAmount.of(Double.parseDouble(accountAmount),
-                Currency.fromCode(accountCurrency));
+        MoneyAmount amount = MoneyAmount.Companion.of(Double.parseDouble(accountAmount),
+                Currency.Companion.fromCode(accountCurrency));
         if (editMode) {
             account.setName(accountName);
             account.setAmount(amount);

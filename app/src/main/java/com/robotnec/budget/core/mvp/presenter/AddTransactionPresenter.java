@@ -57,7 +57,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
         targetCategory = allCategories.get(0);
         getView().displayCategory(targetCategory);
 
-        resultAmount = MoneyAmount.of(0, Currency.UAH);
+        resultAmount = MoneyAmount.Companion.of(0, Currency.UAH);
         getView().displayInitialAmount(resultAmount);
     }
 
@@ -84,7 +84,7 @@ public class AddTransactionPresenter extends Presenter<AddTransactionView> {
     }
 
     public void submit() {
-        MoneyAmount moneyAmount = MoneyAmount.of(100, Currency.UAH);
+        MoneyAmount moneyAmount = MoneyAmount.Companion.of(100, Currency.UAH);
         Expense expense = new Expense(
                 moneyAmount,
                 DateUtil.INSTANCE.fromSeconds(resultDate.getTimeInMillis() / 1000),

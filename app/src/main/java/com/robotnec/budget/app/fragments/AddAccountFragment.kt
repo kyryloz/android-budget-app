@@ -29,7 +29,7 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
         initToolbarBack(toolbar)
         val adapter = ArrayAdapter(context,
                 android.R.layout.simple_spinner_dropdown_item,
-                Currency.getAllCodes())
+                Currency.allCodes)
         spinnerCurrency.adapter = adapter
 
         buttonDelete.setOnClickListener { presenter.deleteAccount() }

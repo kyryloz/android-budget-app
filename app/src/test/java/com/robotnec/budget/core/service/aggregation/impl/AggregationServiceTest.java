@@ -85,9 +85,9 @@ public class AggregationServiceTest {
     private Transaction createTransaction(int year, int month, int day, int hour, int minute) {
         return new Transaction(
                 -1,
-                MoneyAmount.of(1, Currency.UAH),
+                MoneyAmount.Companion.of(1, Currency.UAH),
                 LocalDateTime.of(year, month, day, hour, minute),
-                new Account(-1, "account", MoneyAmount.of(0, Currency.UAH)),
+                new Account(-1, "account", MoneyAmount.Companion.of(0, Currency.UAH)),
                 new Category(-1, "category")
         );
     }

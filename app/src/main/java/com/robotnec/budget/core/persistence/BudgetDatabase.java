@@ -58,10 +58,10 @@ public class BudgetDatabase extends SquidDatabase {
         super.onTablesCreated(db);
         AccountRecord wallet = new AccountRecord()
                 .setName("Wallet")
-                .setAmount(MoneyAmount.of(10000, Currency.UAH).toDbString());
+                .setAmount(MoneyAmount.Companion.of(10000, Currency.UAH).toDbString());
         AccountRecord creditCard = new AccountRecord()
                 .setName("Credit Card")
-                .setAmount(MoneyAmount.of(10000, Currency.UAH).toDbString());
+                .setAmount(MoneyAmount.Companion.of(10000, Currency.UAH).toDbString());
         CategoryRecord food = new CategoryRecord()
                 .setName("Food");
         CategoryRecord taxi = new CategoryRecord()

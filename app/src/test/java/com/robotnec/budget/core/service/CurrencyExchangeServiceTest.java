@@ -22,9 +22,9 @@ public class CurrencyExchangeServiceTest {
 
     @Test
     public void exchange() throws Exception {
-        MoneyAmount from = MoneyAmount.of(1, Currency.USD);
+        MoneyAmount from = MoneyAmount.Companion.of(1, Currency.USD);
         MoneyAmount actual = currencyExchangeService.exchange(from, Currency.UAH);
-        Assert.assertEquals(MoneyAmount.of(27.0, Currency.UAH), actual);
+        Assert.assertEquals(MoneyAmount.Companion.of(27.0, Currency.UAH), actual);
     }
 
 }
