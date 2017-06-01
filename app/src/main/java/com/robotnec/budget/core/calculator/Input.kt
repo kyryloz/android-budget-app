@@ -1,13 +1,7 @@
 package com.robotnec.budget.core.calculator
 
 import android.text.TextUtils
-
-import com.annimon.stream.Collectors
-import com.annimon.stream.Stream
-
-import java.util.Deque
-import java.util.LinkedList
-import java.util.Objects
+import java.util.*
 
 /**
  * @author zak zak@swingpulse.com>

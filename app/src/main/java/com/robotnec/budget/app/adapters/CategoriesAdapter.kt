@@ -4,16 +4,10 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-
 import com.robotnec.budget.R
 import com.robotnec.budget.app.adapters.support.BaseAdapter
 import com.robotnec.budget.app.util.TextIconUtils
 import com.robotnec.budget.core.domain.Category
-
-import butterknife.BindView
-import butterknife.ButterKnife
 import kotlinx.android.synthetic.main.item_category.view.*
 
 /**

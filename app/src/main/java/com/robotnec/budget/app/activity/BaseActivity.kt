@@ -3,7 +3,6 @@ package com.robotnec.budget.app.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 
-import butterknife.ButterKnife
 
 /**
  * @author zak zak@swingpulse.com>

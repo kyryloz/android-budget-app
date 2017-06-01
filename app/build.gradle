@@ -16,11 +16,6 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -35,9 +30,7 @@ kapt {
 
 ext {
     supportLibVersion = "25.3.0"
-    butterknifeVersion = "8.5.1"
     daggerVersion = "2.8"
-    autoValueVersion = "1.2"
     squidbVersion = "3.2.3"
 }
 
@@ -49,13 +42,10 @@ dependencies {
     compile "com.android.support:support-v4:$supportLibVersion"
 
     // injection
-    compile "com.jakewharton:butterknife:$butterknifeVersion"
-    kapt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
     compile "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
     // utils
-    compile "com.annimon:stream:1.1.6"
     debugCompile "im.dino:dbinspector:3.4.1@aar"
     compile "com.jakewharton.threetenabp:threetenabp:1.0.5"
     compile "net.sourceforge.jeval:jeval:0.9.4"

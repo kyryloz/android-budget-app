@@ -3,17 +3,13 @@ package com.robotnec.budget.app.fragments
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBar
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.ViewGroup
-
-import butterknife.ButterKnife
-import com.robotnec.budget.app.BudgetApplication
 import com.robotnec.budget.R
-import com.robotnec.budget.core.di.ApplicationGraph
+import com.robotnec.budget.app.BudgetApplication
 import com.robotnec.budget.core.mvp.presenter.Presenter
 import com.robotnec.budget.core.mvp.view.View
 
@@ -28,7 +24,6 @@ abstract class BasePresenterFragment<P : Presenter<*>> : Fragment(), View {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): android.view.View? {
         val root = inflater.inflate(layoutId, container, false)
-        ButterKnife.bind(this, root)
         presenter = createPresenter()
         val applicationGraph = (activity
                 .application as BudgetApplication)

@@ -4,9 +4,6 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import butterknife.BindView
-import butterknife.ButterKnife
 import com.robotnec.budget.R
 import com.robotnec.budget.app.adapters.support.BaseAdapter
 import com.robotnec.budget.core.domain.Account

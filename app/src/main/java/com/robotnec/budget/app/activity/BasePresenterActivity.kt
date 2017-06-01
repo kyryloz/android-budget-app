@@ -2,7 +2,6 @@ package com.robotnec.budget.app.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import butterknife.ButterKnife
 import com.robotnec.budget.app.BudgetApplication
 import com.robotnec.budget.core.mvp.presenter.Presenter
 import com.robotnec.budget.core.mvp.view.View
