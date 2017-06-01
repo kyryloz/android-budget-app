@@ -52,7 +52,7 @@ public class AggregationServiceTest {
         SortedMap<TimeSpan, List<Transaction>> map =
                 aggregation.get(TransactionAggregation.Sorting.ASC);
 
-        TimeSpan expectedFirstSpan = TimeSpan.of(LocalDateTime.of(2017, 1, 1, 0, 0),
+        TimeSpan expectedFirstSpan = TimeSpan.Companion.of(LocalDateTime.of(2017, 1, 1, 0, 0),
                 LocalDateTime.of(2017, 1, 2, 0, 0));
 
         // first span
@@ -62,7 +62,7 @@ public class AggregationServiceTest {
 
         Assert.assertEquals(map.get(expectedFirstSpan), expectedFirstSpanTransactions);
 
-        TimeSpan expectedSecondSpan = TimeSpan.of(LocalDateTime.of(2017, 1, 3, 0, 0),
+        TimeSpan expectedSecondSpan = TimeSpan.Companion.of(LocalDateTime.of(2017, 1, 3, 0, 0),
                 LocalDateTime.of(2017, 1, 4, 0, 0));
 
         // second span
@@ -72,7 +72,7 @@ public class AggregationServiceTest {
         Assert.assertEquals(map.get(expectedSecondSpan), expectedSecondSpanTransactions);
 
         // third span
-        TimeSpan expectedThirdSpan = TimeSpan.of(LocalDateTime.of(2017, 1, 4, 0, 0),
+        TimeSpan expectedThirdSpan = TimeSpan.Companion.of(LocalDateTime.of(2017, 1, 4, 0, 0),
                 LocalDateTime.of(2017, 1, 5, 0, 0));
 
         List<Transaction> expectedThirdSpanTransactions = new ArrayList<>();

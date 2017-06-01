@@ -2,7 +2,6 @@ package com.robotnec.budget.core.service.aggregation.impl;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.threeten.bp.Instant;
 import org.threeten.bp.LocalDateTime;
 
 /**
@@ -14,7 +13,7 @@ public class TimeSpansTest {
     public void shouldCalculateSpansByDays() {
         LocalDateTime minDate = LocalDateTime.of(2017, 1, 10, 12, 45);
         LocalDateTime maxDate = LocalDateTime.of(2017, 1, 13, 18, 45);
-        TimeSpans spans = TimeSpans.dyDays(minDate, maxDate);
+        TimeSpans spans = TimeSpans.Companion.byDays(minDate, maxDate);
         Assert.assertEquals(4, spans.size());
 
         TimeSpan first = spans.get(0);
@@ -31,7 +30,7 @@ public class TimeSpansTest {
     public void shouldGotYearTimeSpanIfDifferenceBetweenDatesMoreThanYear() {
         LocalDateTime minDate = LocalDateTime.of(2015, 1, 10, 12, 45);
         LocalDateTime maxDate = LocalDateTime.of(2017, 1, 13, 18, 45);
-        TimeSpans spans = TimeSpans.dyDays(minDate, maxDate);
+        TimeSpans spans = TimeSpans.Companion.byDays(minDate, maxDate);
 
         TimeSpan first = spans.get(0);
         TimeSpan last = spans.get(spans.size() - 1);
