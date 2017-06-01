@@ -1,6 +1,5 @@
 package com.robotnec.budget.app.util
 
-import com.annimon.stream.function.Function
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.domain.MoneyAmount
@@ -48,20 +47,20 @@ object Mapper {
     }
 
     fun fromTransactionRecords(records: List<TransactionRecord>,
-                               accountMapper: Function<Long, Account>,
-                               categoryMapper: Function<Long, Category>): List<Transaction> {
+                               accountMapper: (id: Long) -> Account,
+                               categoryMapper: (id: Long) -> Category): List<Transaction> {
         return records.map { fromRecord(it, accountMapper, categoryMapper) }.toList()
     }
 
     fun fromRecord(record: TransactionRecord,
-                   accountMapper: Function<Long, Account>,
-                   categoryMapper: Function<Long, Category>): Transaction {
+                   accountMapper: (id: Long) -> Account,
+                   categoryMapper: (id: Long) -> Category): Transaction {
         return Transaction(
                 record.id,
                 MoneyAmount.fromDbString(record.amount),
                 DateUtil.fromSeconds(record.date!!),
-                accountMapper.apply(record.accountId),
-                categoryMapper.apply(record.categoryId)
+                accountMapper(record.accountId),
+                categoryMapper(record.categoryId)
         )
     }
 
