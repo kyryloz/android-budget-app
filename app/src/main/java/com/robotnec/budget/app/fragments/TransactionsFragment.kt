@@ -32,7 +32,7 @@ class TransactionsFragment : BasePresenterFragment<TransactionsPresenter>(), Tra
         initToolbarToggle(toolbar!!)
         initRecyclerView()
         fab.setOnClickListener {
-            presenter.addNewTransaction(AndroidNavigationBundle(activity as AppCompatActivity))
+            presenter.addNewTransaction(AndroidNavigationBundle(activity as AppCompatActivity, null))
         }
     }
 

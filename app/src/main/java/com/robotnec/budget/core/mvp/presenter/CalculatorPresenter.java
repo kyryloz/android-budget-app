@@ -61,19 +61,19 @@ public class CalculatorPresenter extends Presenter<CalculatorView> {
     }
 
     public void divide() {
-        display(calculatorModel.operation(Op.DIVIDE));
+        display(calculatorModel.operation(Op.Companion.getDIVIDE()));
     }
 
     public void multiply() {
-        display(calculatorModel.operation(Op.MULTIPLY));
+        display(calculatorModel.operation(Op.Companion.getMULTIPLY()));
     }
 
     public void minus() {
-        display(calculatorModel.operation(Op.MINUS));
+        display(calculatorModel.operation(Op.Companion.getMINUS()));
     }
 
     public void plus() {
-        display(calculatorModel.operation(Op.PLUS));
+        display(calculatorModel.operation(Op.Companion.getPLUS()));
     }
 
     public void back() {

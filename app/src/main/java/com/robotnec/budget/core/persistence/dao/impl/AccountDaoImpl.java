@@ -33,17 +33,17 @@ public class AccountDaoImpl extends SquidbDaoTemplate<Account, AccountRecord> im
 
     @Override
     List<Account> map(List<AccountRecord> items) {
-        return Mapper.fromAccountRecords(items);
+        return Mapper.INSTANCE.fromAccountRecords(items);
     }
 
     @Override
     AccountRecord map(Account item) {
-        return Mapper.toRecord(item);
+        return Mapper.INSTANCE.toRecord(item);
     }
 
     @Override
     Account map(AccountRecord record) {
-        return Mapper.fromRecord(record);
+        return Mapper.INSTANCE.fromRecord(record);
     }
 
     @Override

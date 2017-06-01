@@ -32,7 +32,7 @@ class AccountsFragment : BasePresenterFragment<AccountsPresenter>(), AccountsVie
         initToolbarToggle(toolbar)
         initAccountsList()
         fab.setOnClickListener {
-            presenter.addOrUpdateAccount(AndroidNavigationBundle(activity as AppCompatActivity))
+            presenter.addOrUpdateAccount(AndroidNavigationBundle(activity as AppCompatActivity, null))
         }
     }
 
@@ -47,8 +47,7 @@ class AccountsFragment : BasePresenterFragment<AccountsPresenter>(), AccountsVie
     }
 
     override fun onAccountClick(account: Account) {
-        val navigationBundle = AndroidNavigationBundle(activity as AppCompatActivity)
-        navigationBundle.serializableExtra = account
+        val navigationBundle = AndroidNavigationBundle(activity as AppCompatActivity, account)
         presenter.addOrUpdateAccount(navigationBundle)
     }
 

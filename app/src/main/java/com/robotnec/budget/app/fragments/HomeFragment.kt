@@ -37,7 +37,7 @@ class HomeFragment : BasePresenterFragment<HomePresenter>(), HomeView {
         initToolbarToggle(toolbar)
         initRecyclerView()
         fab.setOnClickListener {
-            presenter.addTransaction(AndroidNavigationBundle(activity as AppCompatActivity))
+            presenter.addTransaction(AndroidNavigationBundle(activity as AppCompatActivity, null))
         }
     }
 

@@ -34,17 +34,17 @@ public class CategoryDaoImpl extends SquidbDaoTemplate<Category, CategoryRecord>
 
     @Override
     List<Category> map(List<CategoryRecord> tableModels) {
-        return Mapper.fromCategoryRecords(tableModels);
+        return Mapper.INSTANCE.fromCategoryRecords(tableModels);
     }
 
     @Override
     CategoryRecord map(Category item) {
-        return Mapper.toRecord(item);
+        return Mapper.INSTANCE.toRecord(item);
     }
 
     @Override
     Category map(CategoryRecord record) {
-        return Mapper.fromRecord(record);
+        return Mapper.INSTANCE.fromRecord(record);
     }
 
     @Override

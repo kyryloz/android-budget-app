@@ -32,7 +32,7 @@ class CategoriesFragment : BasePresenterFragment<CategoriesPresenter>(), Categor
         initToolbarToggle(toolbar)
         initRecyclerView()
         fab.setOnClickListener {
-            presenter.addOrUpdateCategory(AndroidNavigationBundle(activity as AppCompatActivity))
+            presenter.addOrUpdateCategory(AndroidNavigationBundle(activity as AppCompatActivity, null))
         }
     }
 

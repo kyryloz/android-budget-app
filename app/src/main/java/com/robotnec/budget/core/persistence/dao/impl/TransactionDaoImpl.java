@@ -64,19 +64,19 @@ public class TransactionDaoImpl extends SquidbDaoTemplate<Transaction, Transacti
 
     @Override
     List<Transaction> map(List<TransactionRecord> tableModels) {
-        return Mapper.fromTransactionRecords(tableModels,
+        return Mapper.INSTANCE.fromTransactionRecords(tableModels,
                 accountDao::findById,
                 categoryDao::findById);
     }
 
     @Override
     TransactionRecord map(Transaction item) {
-        return Mapper.toRecord(item);
+        return Mapper.INSTANCE.toRecord(item);
     }
 
     @Override
     Transaction map(TransactionRecord record) {
-        return Mapper.fromRecord(record,
+        return Mapper.INSTANCE.fromRecord(record,
                 accountDao::findById,
                 categoryDao::findById);
     }
