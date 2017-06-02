@@ -49,6 +49,7 @@ dependencies {
     debugCompile "im.dino:dbinspector:3.4.1@aar"
     compile "com.jakewharton.threetenabp:threetenabp:1.0.5"
     compile "net.sourceforge.jeval:jeval:0.9.4"
+    compile "org.jetbrains.anko:anko:0.10.1"
 
     // views
     compile "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"
@@ -65,6 +66,7 @@ dependencies {
     testCompile "org.mockito:mockito-core:2.2.22"
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
+
 repositories {
     mavenCentral()
 }

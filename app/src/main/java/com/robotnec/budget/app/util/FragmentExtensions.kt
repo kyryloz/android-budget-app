@@ -1,8 +1,7 @@
 package com.robotnec.budget.app.util
 
-import android.os.Bundle
 import android.support.v4.app.Fragment
-import java.io.Serializable
+import org.jetbrains.anko.bundleOf
 
 /**
  * Pass arguments to a Fragment without the hassle of
@@ -17,7 +16,5 @@ import java.io.Serializable
  */
 inline fun <reified T : Fragment> newFragment(vararg params: Pair<String, Any>)
         = T::class.java.newInstance().apply {
-    val bundle = Bundle()
-    params.forEach { (key, value) -> bundle.putSerializable(key, value as Serializable) }
-    arguments = bundle
+    arguments = bundleOf(*params)
 }!!
