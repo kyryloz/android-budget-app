@@ -24,11 +24,4 @@ class AboutFragment : BasePresenterFragment<AboutPresenter>(), AboutView {
         super.onViewCreated(view, savedInstanceState)
         initToolbarToggle(toolbar)
     }
-
-    companion object {
-
-        fun newInstance(): Fragment {
-            return AboutFragment()
-        }
-    }
 }

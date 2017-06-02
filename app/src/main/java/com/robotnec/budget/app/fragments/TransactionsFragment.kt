@@ -45,11 +45,4 @@ class TransactionsFragment : BasePresenterFragment<TransactionsPresenter>(), Tra
         recyclerTransactions.layoutManager = LinearLayoutManager(context)
         recyclerTransactions.adapter = transactionsAdapter
     }
-
-    companion object {
-
-        fun newInstance(): Fragment {
-            return TransactionsFragment()
-        }
-    }
 }

@@ -52,11 +52,4 @@ class CategoriesFragment : BasePresenterFragment<CategoriesPresenter>(), Categor
         recyclerCategories.layoutManager = LinearLayoutManager(context)
         recyclerCategories.adapter = categoriesAdapter
     }
-
-    companion object {
-
-        fun newInstance(): Fragment {
-            return CategoriesFragment()
-        }
-    }
 }

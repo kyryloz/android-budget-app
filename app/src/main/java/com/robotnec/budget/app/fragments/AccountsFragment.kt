@@ -50,11 +50,4 @@ class AccountsFragment : BasePresenterFragment<AccountsPresenter>(), AccountsVie
         val navigationBundle = AndroidNavigationBundle(activity as AppCompatActivity, account)
         presenter.addOrUpdateAccount(navigationBundle)
     }
-
-    companion object {
-
-        fun newInstance(): Fragment {
-            return AccountsFragment()
-        }
-    }
 }

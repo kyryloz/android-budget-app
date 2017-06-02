@@ -55,11 +55,4 @@ class HomeFragment : BasePresenterFragment<HomePresenter>(), HomeView {
         recyclerMerge.layoutManager = LinearLayoutManager(context)
         recyclerMerge.adapter = headerAdapter
     }
-
-    companion object {
-
-        fun newInstance(): Fragment {
-            return HomeFragment()
-        }
-    }
 }

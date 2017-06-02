@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.robotnec.budget.R
 import com.robotnec.budget.app.fragments.*
+import com.robotnec.budget.app.util.newFragment
 import com.robotnec.budget.core.mvp.presenter.MainPresenter
 import com.robotnec.budget.core.mvp.view.MainView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -26,7 +27,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNa
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.layout_fragment_container, HomeFragment.newInstance())
+                    .replace(R.id.layout_fragment_container, newFragment<HomeFragment>())
                     .commit()
         }
 
@@ -59,11 +60,11 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNa
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         val fragment: Fragment = when (item.itemId) {
-            R.id.nav_home -> HomeFragment.newInstance()
-            R.id.nav_accounts -> AccountsFragment.newInstance()
-            R.id.nav_categories -> CategoriesFragment.newInstance()
-            R.id.nav_transactions -> TransactionsFragment.newInstance()
-            R.id.nav_settings -> AboutFragment.newInstance()
+            R.id.nav_home -> newFragment<HomeFragment>()
+            R.id.nav_accounts -> newFragment<AccountsFragment>()
+            R.id.nav_categories -> newFragment<CategoriesFragment>()
+            R.id.nav_transactions -> newFragment<TransactionsFragment>()
+            R.id.nav_settings -> newFragment<AboutFragment>()
             else -> throw IllegalArgumentException("Unknown menu: " + item.itemId)
         }
 
