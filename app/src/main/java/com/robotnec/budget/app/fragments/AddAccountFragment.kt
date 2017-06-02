@@ -16,6 +16,10 @@ import kotlinx.android.synthetic.main.fragment_add_account.*
  */
 class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAccountView {
 
+    companion object {
+        const val ARG_ACCOUNT = "account"
+    }
+
     override val layoutId: Int
         get() = R.layout.fragment_add_account
 
@@ -44,9 +48,9 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
 
     override fun initEditMode(account: Account) {
         editAccountName.setText(account.name)
-        editAccountName.setSelection(editAccountName!!.length())
+        editAccountName.setSelection(editAccountName.length())
 
-        editAccountInitialAmount.setText(account.amount.toDisplayableString().toString())
+        editAccountInitialAmount.setText(account.amount.toDisplayableString())
         editAccountInitialAmount.setSelection(editAccountInitialAmount.length())
 
         buttonDelete.visibility = View.VISIBLE
@@ -56,16 +60,5 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
 
     override fun closeView() {
         activity.finish()
-    }
-
-    companion object {
-
-        fun newInstance(account: Account): AddAccountFragment {
-            val fragment = AddAccountFragment()
-            val args = Bundle()
-            args.putSerializable(Keys.ACCOUNT, account)
-            fragment.arguments = args
-            return fragment
-        }
     }
 }
