@@ -32,6 +32,7 @@ ext {
     supportLibVersion = "25.3.0"
     daggerVersion = "2.8"
     squidbVersion = "3.2.3"
+    ankoVersion = "0.10.1"
 }
 
 dependencies {
@@ -49,7 +50,8 @@ dependencies {
     debugCompile "im.dino:dbinspector:3.4.1@aar"
     compile "com.jakewharton.threetenabp:threetenabp:1.0.5"
     compile "net.sourceforge.jeval:jeval:0.9.4"
-    compile "org.jetbrains.anko:anko:0.10.1"
+    compile "org.jetbrains.anko:anko:$ankoVersion"
+    compile "org.jetbrains.anko:anko-commons:$ankoVersion"
 
     // views
     compile "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"

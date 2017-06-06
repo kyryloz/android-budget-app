@@ -4,16 +4,14 @@ import android.os.Bundle
 import android.transition.Slide
 import android.view.View
 import com.robotnec.budget.R
-import com.robotnec.budget.app.dialogs.AccountPickerDialogFragment
-import com.robotnec.budget.app.dialogs.CategoryPickerDialogFragment
 import com.robotnec.budget.app.dialogs.DatePickerDialogFragment
-import com.robotnec.budget.app.dialogs.PickerDialog
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.mvp.presenter.AddTransactionPresenter
 import com.robotnec.budget.core.mvp.view.AddTransactionView
 import kotlinx.android.synthetic.main.fragment_add_transaction.*
+import org.jetbrains.anko.support.v4.selector
 import java.util.*
 
 /**
@@ -21,9 +19,7 @@ import java.util.*
  */
 class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
         AddTransactionView,
-        DatePickerDialogFragment.Listener,
-        AccountPickerDialogFragment.Listener,
-        CategoryPickerDialogFragment.Listener {
+        DatePickerDialogFragment.Listener {
 
     override val layoutId: Int
         get() = R.layout.fragment_add_transaction
@@ -48,30 +44,22 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
         presenter.setChosenDate(calendar)
     }
 
-    override fun onPicked(account: Account) {
-        presenter.pickAccount(account)
-    }
-
-    override fun onPicked(category: Category) {
-        presenter.pickCategory(category)
-    }
-
     override fun initDatePickerButton(date: String) {
         textDate.text = date
     }
 
     override fun showAccountsChooserDialog(accounts: List<Account>) {
-        val dialog = AccountPickerDialogFragment.newInstance(
-                accounts,
-                this)
-        dialog.show(fragmentManager, PickerDialog.TAG)
+        selector(getString(R.string.make_transaction_select_account),
+                accounts.map { it.name }) { _, i ->
+            presenter.pickAccount(accounts[i])
+        }
     }
 
     override fun showCategoryChooserDialog(categories: List<Category>) {
-        val dialog = CategoryPickerDialogFragment.newInstance(
-                categories,
-                this)
-        dialog.show(fragmentManager, PickerDialog.TAG)
+        selector(getString(R.string.make_transaction_select_category),
+                categories.map { it.name }) { _, i ->
+            presenter.pickCategory(categories[i])
+        }
     }
 
     override fun showChosenDate(date: String) {
