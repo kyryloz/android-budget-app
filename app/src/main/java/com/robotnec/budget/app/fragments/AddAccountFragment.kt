@@ -1,15 +1,16 @@
 package com.robotnec.budget.app.fragments
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.View
 import android.widget.ArrayAdapter
 import com.robotnec.budget.R
-import com.robotnec.budget.app.util.Keys
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Currency
 import com.robotnec.budget.core.mvp.presenter.AddAccountPresenter
 import com.robotnec.budget.core.mvp.view.AddAccountView
 import kotlinx.android.synthetic.main.fragment_add_account.*
+import org.jetbrains.anko.support.v4.withArguments
 
 /**
  * @author zak zak@swingpulse.com>
@@ -18,13 +19,17 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
 
     companion object {
         const val ARG_ACCOUNT = "account"
+
+        fun newInstance(account: Account): Fragment {
+            return AddAccountFragment().withArguments(ARG_ACCOUNT to account)
+        }
     }
 
     override val layoutId: Int
         get() = R.layout.fragment_add_account
 
     override fun createPresenter(): AddAccountPresenter {
-        val account = arguments.getSerializable(Keys.ACCOUNT) as Account
+        val account = arguments.getSerializable(ARG_ACCOUNT) as Account
         return AddAccountPresenter(this, account)
     }
 

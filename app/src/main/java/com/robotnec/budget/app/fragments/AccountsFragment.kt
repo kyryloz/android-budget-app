@@ -18,6 +18,12 @@ import kotlinx.android.synthetic.main.fragment_accounts.*
  */
 class AccountsFragment : BasePresenterFragment<AccountsPresenter>(), AccountsView, AccountsAdapter.AccountClickListener {
 
+    companion object {
+        fun newInstance(): Fragment {
+            return AccountsFragment()
+        }
+    }
+
     lateinit var accountsAdapter: AccountsAdapter
 
     override val layoutId: Int

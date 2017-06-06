@@ -13,6 +13,12 @@ import kotlinx.android.synthetic.main.fragment_about.*
  */
 class AboutFragment : BasePresenterFragment<AboutPresenter>(), AboutView {
 
+    companion object {
+        fun newInstance(): Fragment {
+            return AboutFragment()
+        }
+    }
+
     override val layoutId: Int
         get() = R.layout.fragment_about
 

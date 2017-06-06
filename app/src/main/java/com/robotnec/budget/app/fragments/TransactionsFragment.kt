@@ -18,6 +18,12 @@ import kotlinx.android.synthetic.main.fragment_transactions.*
  */
 class TransactionsFragment : BasePresenterFragment<TransactionsPresenter>(), TransactionsView {
 
+    companion object {
+        fun newInstance(): Fragment {
+            return TransactionsFragment()
+        }
+    }
+
     private lateinit var transactionsAdapter: TransactionsAdapter
 
     override val layoutId: Int

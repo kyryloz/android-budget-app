@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.robotnec.budget.R
 import com.robotnec.budget.app.fragments.AddAccountFragment
 import com.robotnec.budget.app.util.Keys
-import com.robotnec.budget.app.util.newFragment
 import com.robotnec.budget.core.domain.Account
 
 /**
@@ -19,7 +18,7 @@ class AddAccountActivity : BaseActivity() {
             val args = intent.extras
             val account = args.getSerializable(Keys.ACCOUNT) as Account
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.frame_fragment, newFragment<AddAccountFragment>(AddAccountFragment.ARG_ACCOUNT to account))
+                    .replace(R.id.frame_fragment, AddAccountFragment.newInstance(account))
                     .commit()
         }
     }

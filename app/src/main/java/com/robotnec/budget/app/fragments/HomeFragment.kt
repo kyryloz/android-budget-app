@@ -21,6 +21,12 @@ import kotlinx.android.synthetic.main.fragment_home.*
  */
 class HomeFragment : BasePresenterFragment<HomePresenter>(), HomeView {
 
+    companion object {
+        fun newInstance(): Fragment {
+            return HomeFragment()
+        }
+    }
+
     private lateinit var headerAdapter: HeaderAdapter
     private lateinit var transactionsAdapter: TransactionsAdapter
     private lateinit var homeHeader: HomeHeader

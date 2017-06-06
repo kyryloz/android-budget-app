@@ -18,6 +18,12 @@ import kotlinx.android.synthetic.main.fragment_categories.*
  */
 class CategoriesFragment : BasePresenterFragment<CategoriesPresenter>(), CategoriesView, CategoriesAdapter.CategoryClickListener {
 
+    companion object {
+        fun newInstance(): Fragment {
+            return CategoriesFragment()
+        }
+    }
+
     private lateinit var categoriesAdapter: CategoriesAdapter
 
     override val layoutId: Int
