@@ -1,7 +1,5 @@
 package com.robotnec.budget.app.fragments
 
-import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import com.robotnec.budget.R
@@ -12,9 +10,6 @@ import com.robotnec.budget.core.mvp.view.CalculatorView
 import kotlinx.android.synthetic.main.fragment_calculator.*
 
 class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), CalculatorView {
-
-    private var originalTextInputColor: Int = 0
-    private var originalCalculateButtonBg: Drawable? = null
 
     override val layoutId: Int
         get() = R.layout.fragment_calculator
@@ -28,8 +23,6 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
         initToolbarBack(toolbar)
         toolbar.title = null
         toolbar.setNavigationOnClickListener { close() }
-        originalTextInputColor = textInput.currentTextColor
-        originalCalculateButtonBg = calculate.background
 
         initButtons()
     }
@@ -55,52 +48,18 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
                     }
                 }
 
-        listOf(operationDivide, operationMultiply,
-                operationMinus, operationPlus)
-                .forEach {
-                    it.setOnClickListener { view ->
-                        when (view.id) {
-                            R.id.operationDivide -> presenter.divide()
-                            R.id.operationMultiply -> presenter.multiply()
-                            R.id.operationMinus -> presenter.minus()
-                            R.id.operationPlus -> presenter.plus()
-                            else -> throw IllegalArgumentException()
-                        }
-                    }
-                }
-
-        dot.setOnClickListener { presenter.dot() }
-        calculate.setOnClickListener { presenter.calculate() }
         back.setOnClickListener { presenter.back() }
-        clear.setOnClickListener { presenter.clear() }
+        done.setOnClickListener { presenter.done() }
     }
 
     override fun display(value: String) {
         textInput.text = value
     }
 
-    override fun displayError() {
-        textInput.setTextColor(Color.RED)
-    }
-
-    override fun displayDone() {
-        //        buttonCalculate.setText(android.R.string.ok);
-        //        buttonCalculate.setBackgroundColor(Color.BLUE);
-    }
-
     override fun close() {
         fragmentManager.beginTransaction()
                 .remove(this)
                 .commit()
-    }
-
-    override fun clearError() {
-        textInput.setTextColor(originalTextInputColor)
-    }
-
-    override fun clearDone() {
-        //        buttonCalculate.setBackground(originalCalculateButtonBg);
-        //        buttonCalculate.setText("=");
     }
 
     override fun done(value: Double) {

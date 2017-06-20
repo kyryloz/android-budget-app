@@ -6,15 +6,7 @@ package com.robotnec.budget.core.mvp.view
 interface CalculatorView : View {
     fun display(value: String)
 
-    fun displayError()
-
-    fun displayDone()
-
     fun close()
-
-    fun clearError()
-
-    fun clearDone()
 
     fun done(value: Double)
 }

@@ -1,91 +1,55 @@
 package com.robotnec.budget.core.mvp.presenter
 
-import com.robotnec.budget.core.calculator.CalculatorModel
-import com.robotnec.budget.core.calculator.CalculatorModelImpl
-import com.robotnec.budget.core.calculator.Op
 import com.robotnec.budget.core.di.ApplicationComponent
-import com.robotnec.budget.core.exception.InvalidExpressionException
 import com.robotnec.budget.core.mvp.view.CalculatorView
+import org.jetbrains.anko.AnkoLogger
 
 /**
  * @author zak zak@swingpulse.com>
  */
-class CalculatorPresenter(view: CalculatorView) : Presenter<CalculatorView>(view) {
+class CalculatorPresenter(view: CalculatorView) : Presenter<CalculatorView>(view), AnkoLogger {
 
-    private val calculatorModel: CalculatorModel
-    private var done: Boolean = false
-
-    init {
-        calculatorModel = CalculatorModelImpl()
-        done = false
+    companion object {
+        const val MAX_NUMBERS_COUNT: Int = 16
     }
+
+    private val currentValue: MutableList<Int> = mutableListOf()
 
     override fun injectComponent(applicationComponent: ApplicationComponent) {
         applicationComponent.inject(this)
     }
 
     override fun onViewResume() {
-        calculate()
     }
 
     fun digit(digit: Int) {
-        display(calculatorModel.digit(digit))
-    }
-
-    fun dot() {
-        display(calculatorModel.dot())
-    }
-
-    fun calculate() {
-        try {
-            val displayText = calculatorModel.calculate()
-            val number = java.lang.Double.parseDouble(displayText)
-            if (java.lang.Double.isInfinite(number) || java.lang.Double.isNaN(number)) {
-                display(displayText)
-                view.displayError()
-            } else {
-                if (done) {
-                    view.done(java.lang.Double.parseDouble(displayText))
-                } else {
-                    display(displayText)
-                    done = true
-                    view.displayDone()
-                }
-            }
-        } catch (e: InvalidExpressionException) {
-            view.displayError()
+        if (currentValue.size < MAX_NUMBERS_COUNT) {
+            currentValue.add(digit)
+            view.display("%.2f".format(calculateValue()))
         }
-
     }
 
-    fun divide() {
-        display(calculatorModel.operation(Op.DIVIDE))
-    }
-
-    fun multiply() {
-        display(calculatorModel.operation(Op.MULTIPLY))
-    }
-
-    fun minus() {
-        display(calculatorModel.operation(Op.MINUS))
-    }
-
-    fun plus() {
-        display(calculatorModel.operation(Op.PLUS))
+    fun done() {
+        val value = currentValue
+                .joinToString(separator = "")
+                .toDouble() / 100
+        view.done(value)
     }
 
     fun back() {
-        display(calculatorModel.back())
+        if (currentValue.size > 0) {
+            currentValue.removeAt(currentValue.size - 1)
+            view.display("%.2f".format(calculateValue()))
+        }
     }
 
-    fun clear() {
-        display(calculatorModel.clear())
-    }
-
-    private fun display(displayText: String) {
-        view.display(displayText)
-        view.clearError()
-        view.clearDone()
-        done = false
+    private fun calculateValue(): Double {
+        var value = 0.0
+        if (currentValue.size > 0) {
+            value = currentValue
+                    .joinToString(separator = "")
+                    .toDouble() / 100
+        }
+        return value
     }
 }

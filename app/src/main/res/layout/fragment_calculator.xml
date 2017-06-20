@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_calculator"
     android:fitsSystemWindows="true"
+    android:clickable="true"
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
@@ -22,45 +23,20 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textInput"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:maxLines="1"
+        android:fontFamily="sans-serif-thin"
+        android:textAppearance="@android:style/TextAppearance.Material.Display3"
+        tools:text="24 + 10"/>
+
+    <Space
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:maxLines="1"
-            android:fontFamily="sans-serif-thin"
-            android:textAppearance="@android:style/TextAppearance.Material.Display3"
-            tools:text="24 + 10"/>
-
-        <android.support.v7.widget.ButtonBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end"
-            android:layout_marginEnd="16dp">
-
-            <Button
-                android:id="@+id/clear"
-                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Clear"/>
-
-            <Button
-                android:id="@+id/back"
-                style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Back"/>
-
-        </android.support.v7.widget.ButtonBarLayout>
-    </LinearLayout>
+        android:layout_weight="1"/>
 
     <View
         android:layout_width="match_parent"
@@ -72,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="360dp"
         android:clipChildren="false"
-        android:columnCount="4"
+        android:columnCount="3"
         tools:ignore="HardcodedText">
 
         <TextView
@@ -101,14 +77,6 @@
             android:text="9"/>
 
         <TextView
-            android:id="@+id/operationDivide"
-            style="@style/CalculatorButton"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:layout_rowWeight="1"
-            android:text="&#247;"/>
-
-        <TextView
             android:id="@+id/digit4"
             style="@style/CalculatorButton"
             android:layout_columnWeight="1"
@@ -131,14 +99,6 @@
             android:layout_gravity="fill_horizontal"
             android:layout_rowWeight="1"
             android:text="6"/>
-
-        <TextView
-            android:id="@+id/operationMultiply"
-            style="@style/CalculatorButton"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:layout_rowWeight="1"
-            android:text="&#215;"/>
 
         <TextView
             android:id="@+id/digit1"
@@ -165,20 +125,13 @@
             android:text="3"/>
 
         <TextView
-            android:id="@+id/operationMinus"
+            android:id="@+id/back"
             style="@style/CalculatorButton"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:layout_rowWeight="1"
-            android:text="&#8722;"/>
-
-        <TextView
-            android:id="@+id/dot"
-            style="@style/CalculatorButton"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:layout_rowWeight="1"
-            android:text="."/>
+            android:textAllCaps="true"
+            android:text="@string/back"/>
 
         <TextView
             android:id="@+id/digit0"
@@ -189,22 +142,15 @@
             android:text="0"/>
 
         <TextView
-            android:id="@+id/calculate"
+            android:id="@+id/done"
             style="@style/CalculatorButton"
             android:layout_columnWeight="1"
             android:layout_gravity="fill_horizontal"
             android:layout_rowWeight="1"
             android:background="?attr/colorAccent"
             android:foreground="?attr/selectableItemBackground"
-            android:text="&#61;"/>
-
-        <TextView
-            android:id="@+id/operationPlus"
-            style="@style/CalculatorButton"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill_horizontal"
-            android:layout_rowWeight="1"
-            android:text="&#43;"/>
+            android:textAllCaps="true"
+            android:text="@string/done"/>
 
     </GridLayout>
 
