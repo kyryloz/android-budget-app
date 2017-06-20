@@ -55,6 +55,7 @@ dependencies {
 
     // views
     compile "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"
+    compile 'me.grantland:autofittextview:0.2.1'
 
     // persistence
     compile "com.yahoo.squidb:squidb:$squidbVersion"

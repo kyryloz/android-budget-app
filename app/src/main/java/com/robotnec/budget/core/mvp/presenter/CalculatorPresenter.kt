@@ -30,10 +30,7 @@ class CalculatorPresenter(view: CalculatorView) : Presenter<CalculatorView>(view
     }
 
     fun done() {
-        val value = currentValue
-                .joinToString(separator = "")
-                .toDouble() / 100
-        view.done(value)
+        view.done(calculateValue())
     }
 
     fun back() {
