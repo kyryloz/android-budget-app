@@ -8,8 +8,20 @@ import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.mvp.presenter.CalculatorPresenter
 import com.robotnec.budget.core.mvp.view.CalculatorView
 import kotlinx.android.synthetic.main.fragment_calculator.*
+import org.jetbrains.anko.support.v4.toast
 
 class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), CalculatorView {
+
+    companion object {
+
+        fun newInstance(initialAmount: MoneyAmount): CalculatorFragment {
+            val args = Bundle()
+            args.putSerializable(Keys.AMOUNT, initialAmount)
+            val fragment = CalculatorFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
 
     override val layoutId: Int
         get() = R.layout.fragment_calculator
@@ -68,14 +80,7 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
                 .commit()
     }
 
-    companion object {
-
-        fun newInstance(initialAmount: MoneyAmount): CalculatorFragment {
-            val args = Bundle()
-            args.putSerializable(Keys.AMOUNT, initialAmount)
-            val fragment = CalculatorFragment()
-            fragment.arguments = args
-            return fragment
-        }
+    override fun showMaxCountReached() {
+        toast(R.string.max_count_reached)
     }
 }

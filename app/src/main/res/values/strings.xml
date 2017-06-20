@@ -27,4 +27,5 @@
     <string name="category_overview">Category overview</string>
     <string name="overview">Overview</string>
     <string name="back">Back</string>
+    <string name="max_count_reached">Max count reached</string>
 </resources>

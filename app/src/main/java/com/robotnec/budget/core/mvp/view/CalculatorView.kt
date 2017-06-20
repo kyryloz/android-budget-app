@@ -9,4 +9,6 @@ interface CalculatorView : View {
     fun close()
 
     fun done(value: Double)
+
+    fun showMaxCountReached()
 }

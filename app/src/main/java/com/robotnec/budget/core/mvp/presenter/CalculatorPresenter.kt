@@ -20,12 +20,15 @@ class CalculatorPresenter(view: CalculatorView) : Presenter<CalculatorView>(view
     }
 
     override fun onViewResume() {
+        view.display(format(calculateValue()))
     }
 
     fun digit(digit: Int) {
         if (currentValue.size < MAX_NUMBERS_COUNT) {
             currentValue.add(digit)
-            view.display("%.2f".format(calculateValue()))
+            view.display(format(calculateValue()))
+        } else {
+            view.showMaxCountReached()
         }
     }
 
@@ -36,7 +39,7 @@ class CalculatorPresenter(view: CalculatorView) : Presenter<CalculatorView>(view
     fun back() {
         if (currentValue.size > 0) {
             currentValue.removeAt(currentValue.size - 1)
-            view.display("%.2f".format(calculateValue()))
+            view.display(format(calculateValue()))
         }
     }
 
@@ -48,5 +51,9 @@ class CalculatorPresenter(view: CalculatorView) : Presenter<CalculatorView>(view
                     .toDouble() / 100
         }
         return value
+    }
+
+    private fun format(value: Double): String {
+        return "%.2f".format(value)
     }
 }
