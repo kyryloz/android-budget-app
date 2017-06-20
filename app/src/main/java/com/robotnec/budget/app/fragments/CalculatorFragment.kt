@@ -1,5 +1,6 @@
 package com.robotnec.budget.app.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.robotnec.budget.R
@@ -13,7 +14,6 @@ import org.jetbrains.anko.support.v4.toast
 class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), CalculatorView {
 
     companion object {
-
         fun newInstance(initialAmount: MoneyAmount): CalculatorFragment {
             val args = Bundle()
             args.putSerializable(Keys.AMOUNT, initialAmount)
@@ -23,6 +23,8 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
         }
     }
 
+    private var listener: Listener? = null
+
     override val layoutId: Int
         get() = R.layout.fragment_calculator
 
@@ -30,12 +32,23 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
         return CalculatorPresenter(this)
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is Listener) {
+            listener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbarBack(toolbar)
         toolbar.title = null
         toolbar.setNavigationOnClickListener { close() }
-
         initButtons()
     }
 
@@ -75,6 +88,7 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
     }
 
     override fun done(value: Double) {
+        listener?.onInputAmount(value)
         fragmentManager.beginTransaction()
                 .remove(this)
                 .commit()
@@ -82,5 +96,9 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
 
     override fun showMaxCountReached() {
         toast(R.string.max_count_reached)
+    }
+
+    interface Listener {
+        fun onInputAmount(value: Double)
     }
 }

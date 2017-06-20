@@ -97,4 +97,8 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
     override fun finish() {
         activity.finish()
     }
+
+    fun onInputAmount(value: Double) {
+        textAmount.text = value.toString()
+    }
 }
