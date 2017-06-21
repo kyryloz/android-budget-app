@@ -16,7 +16,7 @@ import java.util.*
 import javax.inject.Inject
 
 /**
- * @author zak <zak></zak>@swingpulse.com>
+ * @author zak zak@swingpulse.com>
  */
 class AddTransactionPresenter(view: AddTransactionView) : Presenter<AddTransactionView>(view) {
 
@@ -49,7 +49,7 @@ class AddTransactionPresenter(view: AddTransactionView) : Presenter<AddTransacti
         view.displayCategory(targetCategory)
 
         resultAmount = MoneyAmount.of(0.0, Currency.UAH)
-        view.displayInitialAmount(resultAmount)
+        view.displayAmount(resultAmount)
     }
 
     override fun injectComponent(applicationComponent: ApplicationComponent) {
@@ -96,5 +96,10 @@ class AddTransactionPresenter(view: AddTransactionView) : Presenter<AddTransacti
 
     fun openCalculator() {
         view.showCalculator(resultAmount)
+    }
+
+    fun setAmount(value: Double) {
+        resultAmount = MoneyAmount.of(value, Currency.UAH)
+        view.displayAmount(resultAmount)
     }
 }

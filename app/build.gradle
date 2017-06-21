@@ -52,6 +52,7 @@ dependencies {
     compile "net.sourceforge.jeval:jeval:0.9.4"
     compile "org.jetbrains.anko:anko:$ankoVersion"
     compile "org.jetbrains.anko:anko-commons:$ankoVersion"
+    compile "javax.money:money-api:1.0.1"
 
     // views
     compile "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"

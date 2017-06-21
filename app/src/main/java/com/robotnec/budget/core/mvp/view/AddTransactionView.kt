@@ -16,9 +16,9 @@ interface AddTransactionView : View {
 
     fun showCategoryChooserDialog(categories: List<Category>)
 
-    fun showChosenDate(date: String)
-
     fun showDateChooserDialog(lastDate: Calendar)
+
+    fun showChosenDate(date: String)
 
     fun showCalculator(initialAmount: MoneyAmount)
 
@@ -26,7 +26,7 @@ interface AddTransactionView : View {
 
     fun displayCategory(category: Category)
 
-    fun displayInitialAmount(initialAmount: MoneyAmount)
+    fun displayAmount(initialAmount: MoneyAmount)
 
     fun finish()
 }

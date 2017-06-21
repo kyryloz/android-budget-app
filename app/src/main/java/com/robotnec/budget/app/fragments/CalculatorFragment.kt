@@ -2,24 +2,23 @@ package com.robotnec.budget.app.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.View
 import com.robotnec.budget.R
-import com.robotnec.budget.app.util.Keys
 import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.mvp.presenter.CalculatorPresenter
 import com.robotnec.budget.core.mvp.view.CalculatorView
 import kotlinx.android.synthetic.main.fragment_calculator.*
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.support.v4.withArguments
 
 class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), CalculatorView {
 
     companion object {
-        fun newInstance(initialAmount: MoneyAmount): CalculatorFragment {
-            val args = Bundle()
-            args.putSerializable(Keys.AMOUNT, initialAmount)
-            val fragment = CalculatorFragment()
-            fragment.arguments = args
-            return fragment
+        const val ARG_AMOUNT = "amount"
+
+        fun newInstance(amount: MoneyAmount): Fragment {
+            return CalculatorFragment().withArguments(ARG_AMOUNT to amount)
         }
     }
 
@@ -29,7 +28,8 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
         get() = R.layout.fragment_calculator
 
     override fun createPresenter(): CalculatorPresenter {
-        return CalculatorPresenter(this)
+        val amount = arguments[ARG_AMOUNT] as MoneyAmount
+        return CalculatorPresenter(this, amount)
     }
 
     override fun onAttach(context: Context?) {

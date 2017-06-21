@@ -1,19 +1,28 @@
 package com.robotnec.budget.core.mvp.presenter
 
+import android.util.Log
 import com.robotnec.budget.core.di.ApplicationComponent
+import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.mvp.view.CalculatorView
 import org.jetbrains.anko.AnkoLogger
 
 /**
  * @author zak zak@swingpulse.com>
  */
-class CalculatorPresenter(view: CalculatorView) : Presenter<CalculatorView>(view), AnkoLogger {
+class CalculatorPresenter(view: CalculatorView, amount: MoneyAmount?)
+    : Presenter<CalculatorView>(view), AnkoLogger {
 
     companion object {
         const val MAX_NUMBERS_COUNT: Int = 16
     }
 
     private val currentValue: MutableList<Int> = mutableListOf()
+
+    init {
+        if (amount != null) {
+            // TODO
+        }
+    }
 
     override fun injectComponent(applicationComponent: ApplicationComponent) {
         applicationComponent.inject(this)

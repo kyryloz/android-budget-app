@@ -62,13 +62,13 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
         }
     }
 
-    override fun showChosenDate(date: String) {
-        textDate.text = date
-    }
-
     override fun showDateChooserDialog(lastDate: Calendar) {
         val datePicker = DatePickerDialogFragment.newInstance(lastDate, this)
         datePicker.show(fragmentManager, DatePickerDialogFragment.TAG)
+    }
+
+    override fun showChosenDate(date: String) {
+        textDate.text = date
     }
 
     override fun showCalculator(initialAmount: MoneyAmount) {
@@ -90,7 +90,7 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
         textExpenseCategory.text = category.name
     }
 
-    override fun displayInitialAmount(initialAmount: MoneyAmount) {
+    override fun displayAmount(initialAmount: MoneyAmount) {
         textAmount.text = initialAmount.toDisplayableString()
     }
 
@@ -99,6 +99,6 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
     }
 
     fun onInputAmount(value: Double) {
-        textAmount.text = value.toString()
+        presenter.setAmount(value)
     }
 }

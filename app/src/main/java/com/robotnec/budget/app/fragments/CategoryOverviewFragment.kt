@@ -13,7 +13,7 @@ import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation
 import kotlinx.android.synthetic.main.fragment_category_overview.*
 
 /**
- * @author zak <zak></zak>@swingpulse.com>
+ * @author zak zak@swingpulse.com>
  */
 
 class CategoryOverviewFragment : BasePresenterFragment<CategoryOverviewPresenter>(), CategoryOverviewView {
