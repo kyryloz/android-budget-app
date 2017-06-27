@@ -1,5 +1,7 @@
 package com.robotnec.budget.core.mvp.view
 
+import org.joda.money.Money
+
 /**
  * @author zak zak@swingpulse.com>
  */
@@ -8,7 +10,7 @@ interface CalculatorView : View {
 
     fun close()
 
-    fun done(value: Double)
+    fun done(money: Money)
 
     fun showMaxCountReached()
 }

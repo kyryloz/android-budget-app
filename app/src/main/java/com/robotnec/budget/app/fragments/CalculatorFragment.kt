@@ -5,19 +5,19 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.robotnec.budget.R
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.mvp.presenter.CalculatorPresenter
 import com.robotnec.budget.core.mvp.view.CalculatorView
 import kotlinx.android.synthetic.main.fragment_calculator.*
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.support.v4.withArguments
+import org.joda.money.Money
 
 class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), CalculatorView {
 
     companion object {
         const val ARG_AMOUNT = "amount"
 
-        fun newInstance(amount: MoneyAmount): Fragment {
+        fun newInstance(amount: Money): Fragment {
             return CalculatorFragment().withArguments(ARG_AMOUNT to amount)
         }
     }
@@ -28,7 +28,7 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
         get() = R.layout.fragment_calculator
 
     override fun createPresenter(): CalculatorPresenter {
-        val amount = arguments[ARG_AMOUNT] as MoneyAmount
+        val amount = arguments[ARG_AMOUNT] as Money
         return CalculatorPresenter(this, amount)
     }
 
@@ -87,8 +87,8 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
                 .commit()
     }
 
-    override fun done(value: Double) {
-        listener?.onInputAmount(value)
+    override fun done(money: Money) {
+        listener?.onMoneyEdited(money)
         fragmentManager.beginTransaction()
                 .remove(this)
                 .commit()
@@ -99,6 +99,6 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
     }
 
     interface Listener {
-        fun onInputAmount(value: Double)
+        fun onMoneyEdited(money: Money)
     }
 }

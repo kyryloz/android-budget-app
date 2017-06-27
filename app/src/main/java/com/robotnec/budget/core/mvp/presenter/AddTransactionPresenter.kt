@@ -11,6 +11,8 @@ import com.robotnec.budget.core.mvp.view.AddTransactionView
 import com.robotnec.budget.core.persistence.dao.AccountDao
 import com.robotnec.budget.core.persistence.dao.CategoryDao
 import com.robotnec.budget.core.service.MoneyOperationBroker
+import org.joda.money.CurrencyUnit
+import org.joda.money.Money
 import java.text.DateFormat
 import java.util.*
 import javax.inject.Inject
@@ -33,7 +35,7 @@ class AddTransactionPresenter(view: AddTransactionView) : Presenter<AddTransacti
     private lateinit var dateFormat: DateFormat
     private lateinit var targetAccount: Account
     private lateinit var targetCategory: Category
-    private lateinit var resultAmount: MoneyAmount
+    private lateinit var resultMoney: Money
 
     override fun onViewResume() {
         dateFormat = DateFormat.getDateInstance()
@@ -48,8 +50,8 @@ class AddTransactionPresenter(view: AddTransactionView) : Presenter<AddTransacti
         targetCategory = allCategories[0]
         view.displayCategory(targetCategory)
 
-        resultAmount = MoneyAmount.of(0.0, Currency.UAH)
-        view.displayAmount(resultAmount)
+        resultMoney = Money.of(CurrencyUnit.USD, 0.0)
+        view.displayAmount(resultMoney)
     }
 
     override fun injectComponent(applicationComponent: ApplicationComponent) {
@@ -95,11 +97,11 @@ class AddTransactionPresenter(view: AddTransactionView) : Presenter<AddTransacti
     }
 
     fun openCalculator() {
-        view.showCalculator(resultAmount)
+        view.showCalculator(resultMoney)
     }
 
-    fun setAmount(value: Double) {
-        resultAmount = MoneyAmount.of(value, Currency.UAH)
-        view.displayAmount(resultAmount)
+    fun setMoney(money: Money) {
+        resultMoney = money
+        view.displayAmount(resultMoney)
     }
 }

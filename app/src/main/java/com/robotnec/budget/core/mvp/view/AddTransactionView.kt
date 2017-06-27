@@ -5,6 +5,7 @@ import java.util.Calendar
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.domain.MoneyAmount
+import org.joda.money.Money
 
 /**
  * @author zak zak@swingpulse.com>
@@ -20,13 +21,13 @@ interface AddTransactionView : View {
 
     fun showChosenDate(date: String)
 
-    fun showCalculator(initialAmount: MoneyAmount)
+    fun showCalculator(initialAmount: Money)
 
     fun displayAccount(account: Account)
 
     fun displayCategory(category: Category)
 
-    fun displayAmount(initialAmount: MoneyAmount)
+    fun displayAmount(initialAmount: Money)
 
     fun finish()
 }

@@ -7,11 +7,11 @@ import com.robotnec.budget.R
 import com.robotnec.budget.app.dialogs.DatePickerDialogFragment
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.mvp.presenter.AddTransactionPresenter
 import com.robotnec.budget.core.mvp.view.AddTransactionView
 import kotlinx.android.synthetic.main.fragment_add_transaction.*
 import org.jetbrains.anko.support.v4.selector
+import org.joda.money.Money
 import java.util.*
 
 /**
@@ -71,7 +71,7 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
         textDate.text = date
     }
 
-    override fun showCalculator(initialAmount: MoneyAmount) {
+    override fun showCalculator(initialAmount: Money) {
         val fragment = CalculatorFragment.newInstance(initialAmount)
         fragment.enterTransition = Slide()
         fragment.exitTransition = Slide()
@@ -90,15 +90,15 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
         textExpenseCategory.text = category.name
     }
 
-    override fun displayAmount(initialAmount: MoneyAmount) {
-        textAmount.text = initialAmount.toDisplayableString()
+    override fun displayAmount(initialAmount: Money) {
+        textAmount.text = initialAmount.toString()
     }
 
     override fun finish() {
         activity.finish()
     }
 
-    fun onInputAmount(value: Double) {
-        presenter.setAmount(value)
+    fun onMoneyEdited(money: Money) {
+        presenter.setMoney(money)
     }
 }

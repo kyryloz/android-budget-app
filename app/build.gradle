@@ -14,6 +14,7 @@ android {
         versionCode 1
         versionName "0.1"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -36,6 +37,8 @@ ext {
 }
 
 dependencies {
+    compile 'com.android.support:multidex:1.0.1'
+
     // android support
     compile "com.android.support:appcompat-v7:$supportLibVersion"
     compile "com.android.support:design:$supportLibVersion"
@@ -52,7 +55,7 @@ dependencies {
     compile "net.sourceforge.jeval:jeval:0.9.4"
     compile "org.jetbrains.anko:anko:$ankoVersion"
     compile "org.jetbrains.anko:anko-commons:$ankoVersion"
-    compile "javax.money:money-api:1.0.1"
+    compile "org.joda:joda-money:0.12"
 
     // views
     compile "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"

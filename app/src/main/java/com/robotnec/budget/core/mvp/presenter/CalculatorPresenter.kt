@@ -1,68 +1,62 @@
 package com.robotnec.budget.core.mvp.presenter
 
-import android.util.Log
 import com.robotnec.budget.core.di.ApplicationComponent
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.mvp.view.CalculatorView
 import org.jetbrains.anko.AnkoLogger
+import org.joda.money.CurrencyUnit
+import org.joda.money.Money
 
 /**
  * @author zak zak@swingpulse.com>
  */
-class CalculatorPresenter(view: CalculatorView, amount: MoneyAmount?)
+class CalculatorPresenter(view: CalculatorView, var amount: Money?)
     : Presenter<CalculatorView>(view), AnkoLogger {
 
     companion object {
         const val MAX_NUMBERS_COUNT: Int = 16
     }
 
-    private val currentValue: MutableList<Int> = mutableListOf()
-
-    init {
-        if (amount != null) {
-            // TODO
-        }
-    }
+    private val input: MutableList<Int> = mutableListOf()
 
     override fun injectComponent(applicationComponent: ApplicationComponent) {
         applicationComponent.inject(this)
     }
 
     override fun onViewResume() {
-        view.display(format(calculateValue()))
+        view.display(amount.toString())
     }
 
     fun digit(digit: Int) {
-        if (currentValue.size < MAX_NUMBERS_COUNT) {
-            currentValue.add(digit)
-            view.display(format(calculateValue()))
+        if (input.size < MAX_NUMBERS_COUNT) {
+            input.add(digit)
+            view.display(createMoney(input)
+                    .also { amount = it }
+                    .toString())
         } else {
             view.showMaxCountReached()
         }
     }
 
     fun done() {
-        view.done(calculateValue())
+        view.done(createMoney(input))
     }
 
     fun back() {
-        if (currentValue.size > 0) {
-            currentValue.removeAt(currentValue.size - 1)
-            view.display(format(calculateValue()))
+        if (input.size > 0) {
+            input.removeAt(input.size - 1)
+            view.display(createMoney(input)
+                    .also { amount = it }
+                    .toString())
         }
     }
 
-    private fun calculateValue(): Double {
+    private fun createMoney(input: MutableList<Int>): Money {
         var value = 0.0
-        if (currentValue.size > 0) {
-            value = currentValue
+        if (input.size > 0) {
+            value = input
                     .joinToString(separator = "")
                     .toDouble() / 100
         }
-        return value
-    }
-
-    private fun format(value: Double): String {
-        return "%.2f".format(value)
+        return Money.of(CurrencyUnit.USD, value)
     }
 }
