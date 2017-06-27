@@ -47,6 +47,9 @@ class CalculatorPresenter(view: CalculatorView, var amount: Money?)
             view.display(createMoney(input)
                     .also { amount = it }
                     .toString())
+        } else {
+            amount = Money.of(CurrencyUnit.USD, 0.0)
+            view.display(amount.toString())
         }
     }
 
