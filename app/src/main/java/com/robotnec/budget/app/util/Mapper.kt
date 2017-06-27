@@ -29,7 +29,7 @@ object Mapper {
         return AccountRecord()
                 .setAmount(account.amount.toString())
                 .setName(account.name)
-                .setId(account.id)
+                .setRowId(account.id)
     }
 
     fun fromRecord(record: CategoryRecord): Category {
@@ -43,7 +43,7 @@ object Mapper {
     fun toRecord(category: Category): CategoryRecord {
         return CategoryRecord()
                 .setName(category.name)
-                .setId(category.id)
+                .setRowId(category.id)
     }
 
     fun fromTransactionRecords(records: List<TransactionRecord>,
@@ -69,7 +69,6 @@ object Mapper {
         val category = operation.category
         val amount = operation.amount
         return TransactionRecord()
-                .setId(operation.id)
                 .setAccountId(account.id)
                 .setCategoryId(category.id)
                 .setAmount(amount.toString())

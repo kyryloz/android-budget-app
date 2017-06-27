@@ -7,6 +7,7 @@ import com.yahoo.squidb.data.SquidCursor
 import com.yahoo.squidb.data.TableModel
 import com.yahoo.squidb.sql.Property
 import com.yahoo.squidb.sql.Query
+import com.yahoo.squidb.sql.TableStatement
 
 import java.util.ArrayList
 import java.util.Collections
