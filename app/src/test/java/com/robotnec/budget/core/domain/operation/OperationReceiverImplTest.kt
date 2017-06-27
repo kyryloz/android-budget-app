@@ -10,11 +10,8 @@ import com.robotnec.budget.core.persistence.dao.impl.AccountDaoImpl
 import com.robotnec.budget.core.persistence.dao.impl.CategoryDaoImpl
 import com.robotnec.budget.core.service.impl.SimpleCurrencyExchangeService
 import com.robotnec.budget.core.persistence.dao.AccountDao
-import com.robotnec.budget.core.persistence.dao.CategoryDao
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
-import com.robotnec.budget.core.domain.Currency
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.service.CurrencyExchangeService
 
 import org.junit.Assert

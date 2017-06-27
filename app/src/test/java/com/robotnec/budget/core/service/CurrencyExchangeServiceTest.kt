@@ -1,7 +1,5 @@
 package com.robotnec.budget.core.service
 
-import com.robotnec.budget.core.domain.Currency
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.service.impl.SimpleCurrencyExchangeService
 
 import org.junit.Assert

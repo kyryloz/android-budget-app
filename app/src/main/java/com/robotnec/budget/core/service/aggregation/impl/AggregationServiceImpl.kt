@@ -1,9 +1,9 @@
 package com.robotnec.budget.core.service.aggregation.impl
 
-import com.robotnec.budget.core.domain.Currency
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.domain.operation.Transaction
 import com.robotnec.budget.core.service.aggregation.AggregationService
+import org.joda.money.CurrencyUnit
+import org.joda.money.Money
 import java.util.*
 
 /**
@@ -13,7 +13,7 @@ class AggregationServiceImpl : AggregationService {
 
     override fun aggregate(transactions: List<Transaction>, resolution: AggregationService.Resolution): TransactionAggregation {
         val aggregatedMap = TreeMap<TimeSpan, List<Transaction>>()
-        val sums = HashMap<TimeSpan, MoneyAmount>()
+        val sums = HashMap<TimeSpan, Money>()
         if (transactions.isEmpty()) {
             return TransactionAggregationImpl.from(aggregatedMap, sums)
         }
@@ -32,7 +32,7 @@ class AggregationServiceImpl : AggregationService {
                         .toList()
                 val sum = transactions
                         .map { it.amount }
-                        .fold(MoneyAmount.of(0.0, Currency.UAH), { obj, other -> obj.add(other) })
+                        .fold(Money.of(CurrencyUnit.USD, 0.0), { obj, other -> obj.plus(other) })
                 if (!values.isEmpty()) {
                     aggregatedMap.put(timeSpan, values)
                     sums.put(timeSpan, sum)

@@ -6,11 +6,11 @@ import android.view.View
 import android.widget.ArrayAdapter
 import com.robotnec.budget.R
 import com.robotnec.budget.core.domain.Account
-import com.robotnec.budget.core.domain.Currency
 import com.robotnec.budget.core.mvp.presenter.AddAccountPresenter
 import com.robotnec.budget.core.mvp.view.AddAccountView
 import kotlinx.android.synthetic.main.fragment_add_account.*
 import org.jetbrains.anko.support.v4.withArguments
+import org.joda.money.CurrencyUnit
 
 /**
  * @author zak zak@swingpulse.com>
@@ -38,7 +38,7 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
         initToolbarBack(toolbar)
         val adapter = ArrayAdapter(context,
                 android.R.layout.simple_spinner_dropdown_item,
-                Currency.allCodes)
+                CurrencyUnit.registeredCurrencies())
         spinnerCurrency.adapter = adapter
 
         buttonDelete.setOnClickListener { presenter.deleteAccount() }
@@ -55,7 +55,7 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
         editAccountName.setText(account.name)
         editAccountName.setSelection(editAccountName.length())
 
-        editAccountInitialAmount.setText(account.amount.toDisplayableString())
+        editAccountInitialAmount.setText(account.amount.toString())
         editAccountInitialAmount.setSelection(editAccountInitialAmount.length())
 
         buttonDelete.visibility = View.VISIBLE

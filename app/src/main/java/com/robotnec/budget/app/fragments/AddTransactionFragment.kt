@@ -83,7 +83,7 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
 
     override fun displayAccount(account: Account) {
         textAccountName.text = account.name
-        textAccountAmount.text = account.amount.toDisplayableString()
+        textAccountAmount.text = account.amount.toString()
     }
 
     override fun displayCategory(category: Category) {

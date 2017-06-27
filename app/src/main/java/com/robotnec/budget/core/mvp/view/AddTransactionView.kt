@@ -4,7 +4,6 @@ import java.util.Calendar
 
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
-import com.robotnec.budget.core.domain.MoneyAmount
 import org.joda.money.Money
 
 /**

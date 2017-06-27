@@ -2,11 +2,11 @@ package com.robotnec.budget.app.util
 
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.domain.operation.Transaction
 import com.robotnec.budget.core.persistence.schema.AccountRecord
 import com.robotnec.budget.core.persistence.schema.CategoryRecord
 import com.robotnec.budget.core.persistence.schema.TransactionRecord
+import org.joda.money.Money
 
 /**
  * @author zak zak@swingpulse.com>
@@ -17,7 +17,7 @@ object Mapper {
         return Account(
                 record.id,
                 record.name,
-                MoneyAmount.fromDbString(record.amount)
+                Money.parse(record.amount)
         )
     }
 
@@ -27,7 +27,7 @@ object Mapper {
 
     fun toRecord(account: Account): AccountRecord {
         return AccountRecord()
-                .setAmount(account.amount.toDbString())
+                .setAmount(account.amount.toString())
                 .setName(account.name)
                 .setId(account.id)
     }
@@ -57,7 +57,7 @@ object Mapper {
                    categoryMapper: (id: Long) -> Category): Transaction {
         return Transaction(
                 record.id,
-                MoneyAmount.fromDbString(record.amount),
+                Money.parse(record.amount),
                 DateUtil.fromSeconds(record.date!!),
                 accountMapper(record.accountId),
                 categoryMapper(record.categoryId)
@@ -72,7 +72,7 @@ object Mapper {
                 .setId(operation.id)
                 .setAccountId(account.id)
                 .setCategoryId(category.id)
-                .setAmount(amount.toDbString())
+                .setAmount(amount.toString())
                 .setDate(DateUtil.toSeconds(operation.date))
     }
 }

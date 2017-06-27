@@ -2,7 +2,7 @@ package com.robotnec.budget.core.domain.operation
 
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
-import com.robotnec.budget.core.domain.MoneyAmount
+import org.joda.money.Money
 
 import org.threeten.bp.LocalDateTime
 
@@ -10,7 +10,7 @@ import org.threeten.bp.LocalDateTime
 /**
  * @author zak zak@swingpulse.com>
  */
-class Expense(val amount: MoneyAmount,
+class Expense(val amount: Money,
               val date: LocalDateTime,
               val account: Account,
               val category: Category) : Operation {

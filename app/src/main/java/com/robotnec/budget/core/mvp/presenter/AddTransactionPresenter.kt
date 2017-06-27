@@ -4,8 +4,6 @@ import com.robotnec.budget.app.util.DateUtil
 import com.robotnec.budget.core.di.ApplicationComponent
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
-import com.robotnec.budget.core.domain.Currency
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.domain.operation.Expense
 import com.robotnec.budget.core.mvp.view.AddTransactionView
 import com.robotnec.budget.core.persistence.dao.AccountDao
@@ -76,7 +74,7 @@ class AddTransactionPresenter(view: AddTransactionView) : Presenter<AddTransacti
     }
 
     fun submit() {
-        val moneyAmount = MoneyAmount.of(100.0, Currency.UAH)
+        val moneyAmount = Money.of(resultMoney)
         val expense = Expense(
                 moneyAmount,
                 DateUtil.fromSeconds(resultDate.timeInMillis / 1000),

@@ -24,7 +24,7 @@ class AccountsAdapter(context: Context,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val (_, name, amount) = items[position]
         holder.itemView.textName.text = name
-        holder.itemView.textAmount.text = amount.toDisplayableString()
+        holder.itemView.textAmount.text = amount.toString()
         holder.itemView.setOnClickListener {
             accountClickListener.onAccountClick(items[holder.adapterPosition])
         }

@@ -2,8 +2,6 @@ package com.robotnec.budget.core.service.aggregation.impl
 
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
-import com.robotnec.budget.core.domain.Currency
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.domain.operation.Transaction
 import com.robotnec.budget.core.service.aggregation.AggregationService
 
@@ -13,7 +11,6 @@ import org.junit.Test
 import org.threeten.bp.LocalDateTime
 
 import java.util.ArrayList
-import java.util.SortedMap
 
 /**
  * @author zak zak@swingpulse.com>

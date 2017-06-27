@@ -2,10 +2,10 @@ package com.robotnec.budget.core.mvp.presenter
 
 import com.robotnec.budget.core.di.ApplicationComponent
 import com.robotnec.budget.core.domain.Account
-import com.robotnec.budget.core.domain.Currency
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.mvp.view.AddAccountView
 import com.robotnec.budget.core.persistence.dao.AccountDao
+import org.joda.money.CurrencyUnit
+import org.joda.money.Money
 import javax.inject.Inject
 
 /**
@@ -28,8 +28,7 @@ class AddAccountPresenter(view: AddAccountView, private val account: Account?) :
     }
 
     fun addOrEditAccount(accountName: String, accountAmount: String, accountCurrency: String) {
-        val amount = MoneyAmount.of(java.lang.Double.parseDouble(accountAmount),
-                Currency.fromCode(accountCurrency))
+        val amount = Money.of(CurrencyUnit.of(accountCurrency), accountAmount.toDouble())
         if (editMode) {
             account!!.name = accountName
             account.amount = amount

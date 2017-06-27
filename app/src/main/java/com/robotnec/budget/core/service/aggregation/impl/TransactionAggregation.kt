@@ -1,7 +1,7 @@
 package com.robotnec.budget.core.service.aggregation.impl
 
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.domain.operation.Transaction
+import org.joda.money.Money
 import java.util.SortedMap
 
 /**
@@ -12,7 +12,7 @@ interface TransactionAggregation {
 
     operator fun get(sorting: Sorting): SortedMap<TimeSpan, List<Transaction>>
 
-    fun getSum(span: TimeSpan): MoneyAmount
+    fun getSum(span: TimeSpan): Money
 
     enum class Sorting {
         ASC, DESC

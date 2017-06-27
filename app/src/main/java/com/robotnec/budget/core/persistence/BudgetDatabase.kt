@@ -2,8 +2,6 @@ package com.robotnec.budget.core.persistence
 
 import android.content.Context
 
-import com.robotnec.budget.core.domain.Currency
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.persistence.schema.AccountRecord
 import com.robotnec.budget.core.persistence.schema.CategoryRecord
 import com.robotnec.budget.core.persistence.schema.TransactionRecord
@@ -12,6 +10,8 @@ import com.yahoo.squidb.data.ISQLiteDatabase
 import com.yahoo.squidb.data.ISQLiteOpenHelper
 import com.yahoo.squidb.data.SquidDatabase
 import com.yahoo.squidb.sql.Table
+import org.joda.money.CurrencyUnit
+import org.joda.money.Money
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -39,10 +39,10 @@ class BudgetDatabase @Inject constructor(private val context: Context) : SquidDa
         super.onTablesCreated(db)
         val wallet = AccountRecord()
                 .setName("Wallet")
-                .setAmount(MoneyAmount.of(10000.0, Currency.UAH).toDbString())
+                .setAmount(Money.of(CurrencyUnit.USD, 10000.0).toString())
         val creditCard = AccountRecord()
                 .setName("Credit Card")
-                .setAmount(MoneyAmount.of(10000.0, Currency.UAH).toDbString())
+                .setAmount(Money.of(CurrencyUnit.USD, 10000.0).toString())
         val food = CategoryRecord()
                 .setName("Food")
         val taxi = CategoryRecord()

@@ -1,12 +1,12 @@
 package com.robotnec.budget.core.domain.operation
 
 import com.robotnec.budget.core.domain.Category
-import com.robotnec.budget.core.domain.Currency
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.persistence.TransactionContext
 import com.robotnec.budget.core.persistence.dao.AccountDao
 import com.robotnec.budget.core.persistence.dao.TransactionDao
 import com.robotnec.budget.core.service.CurrencyExchangeService
+import org.joda.money.CurrencyUnit
+import org.joda.money.Money
 import org.threeten.bp.LocalDateTime
 
 /**
@@ -21,8 +21,8 @@ class OperationReceiverImpl(private val transactionDao: TransactionDao,
         return transactionContext.doInTransaction {
             val amount = expense.amount
             val targetAccount = expense.account
-            val exchanged = exchangeService.exchange(amount, targetAccount.amount.currency)
-            targetAccount.amount = targetAccount.amount.subtract(exchanged)
+            val exchanged = exchangeService.exchange(amount, targetAccount.amount.currencyUnit)
+            targetAccount.amount = targetAccount.amount.minus(exchanged)
             val accountUpdated = accountDao.createOrUpdate(targetAccount)
             val entity = Transaction(
                     amount = expense.amount,
@@ -37,8 +37,8 @@ class OperationReceiverImpl(private val transactionDao: TransactionDao,
 
     override fun receive(income: Income): Boolean {
         val account = income.account
-        val bonus = MoneyAmount.of(1000.0, Currency.UAH)
-        account.amount = account.amount.add(bonus)
+        val bonus = Money.of(CurrencyUnit.USD, 100.0)
+        account.amount = account.amount.plus(bonus)
         accountDao.createOrUpdate(account)
         val entity = Transaction(
                 amount = bonus,

@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.robotnec.budget.R
 import com.robotnec.budget.app.util.DateUtil
-import com.robotnec.budget.core.domain.MoneyAmount
 import kotlinx.android.synthetic.main.item_transaction_header.view.*
+import org.joda.money.Money
 import org.threeten.bp.Instant
 import org.threeten.bp.LocalDate
 import org.threeten.bp.ZoneOffset
@@ -18,7 +18,7 @@ import java.util.*
 /**
  * @author zak zak@swingpulse.com>
  */
-internal class HeaderItem(private val date: LocalDate, private val sum: MoneyAmount) : TransactionListItem {
+internal class HeaderItem(private val date: LocalDate, private val sum: Money) : TransactionListItem {
 
     override val viewType: Int = TransactionsAdapter.VIEW_TYPE_HEADER
 
@@ -53,7 +53,7 @@ internal class HeaderItem(private val date: LocalDate, private val sum: MoneyAmo
         get() = date.month.getDisplayName(TextStyle.FULL, Locale.getDefault())
 
     private fun getSum(): String {
-        return "-" + sum.toDisplayableString()
+        return "-" + sum.toString()
     }
 
     internal class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

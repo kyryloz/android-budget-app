@@ -43,8 +43,8 @@ class HomeHeader : ListHeader {
     internal class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(accounts: List<Account>) {
-            itemView.textAmount.text = accounts[0].amount.toDisplayableString()
-            itemView.textAmountSecond.text = accounts[1].amount.toDisplayableString()
+            itemView.textAmount.text = accounts[0].amount.toString()
+            itemView.textAmountSecond.text = accounts[1].amount.toString()
             itemView.textName.text = accounts[0].name
             itemView.textNameSecond.text = accounts[1].name
         }

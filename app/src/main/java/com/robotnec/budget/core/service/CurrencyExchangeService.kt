@@ -1,11 +1,11 @@
 package com.robotnec.budget.core.service
 
-import com.robotnec.budget.core.domain.Currency
-import com.robotnec.budget.core.domain.MoneyAmount
+import org.joda.money.CurrencyUnit
+import org.joda.money.Money
 
 /**
  * @author zak zak@swingpulse.com>
  */
 interface CurrencyExchangeService {
-    fun exchange(from: MoneyAmount, to: Currency): MoneyAmount
+    fun exchange(from: Money, to: CurrencyUnit): Money
 }

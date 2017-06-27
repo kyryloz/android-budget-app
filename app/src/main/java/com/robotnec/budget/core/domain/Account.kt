@@ -1,5 +1,6 @@
 package com.robotnec.budget.core.domain
 
+import org.joda.money.Money
 import java.io.Serializable
 
 /**
@@ -7,4 +8,4 @@ import java.io.Serializable
  */
 data class Account(override var id: Long,
                    override var name: String,
-                   var amount: MoneyAmount) : Serializable, Entity
+                   var amount: Money) : Serializable, Entity

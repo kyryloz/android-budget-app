@@ -1,7 +1,7 @@
 package com.robotnec.budget.core.service.aggregation.impl
 
-import com.robotnec.budget.core.domain.MoneyAmount
 import com.robotnec.budget.core.domain.operation.Transaction
+import org.joda.money.Money
 import java.util.*
 
 /**
@@ -9,7 +9,7 @@ import java.util.*
  */
 internal class TransactionAggregationImpl private constructor(
         private val aggregation: SortedMap<TimeSpan, List<Transaction>>,
-        private val sums: Map<TimeSpan, MoneyAmount>) : TransactionAggregation {
+        private val sums: Map<TimeSpan, Money>) : TransactionAggregation {
 
     init {
         for (timeSpan in this.aggregation.keys) {
@@ -36,14 +36,14 @@ internal class TransactionAggregationImpl private constructor(
         }
     }
 
-    override fun getSum(span: TimeSpan): MoneyAmount {
+    override fun getSum(span: TimeSpan): Money {
         return sums[span]!!
     }
 
     companion object {
 
         fun from(aggregation: SortedMap<TimeSpan, List<Transaction>>,
-                 sums: Map<TimeSpan, MoneyAmount>): TransactionAggregationImpl {
+                 sums: Map<TimeSpan, Money>): TransactionAggregationImpl {
             return TransactionAggregationImpl(aggregation, sums)
         }
     }

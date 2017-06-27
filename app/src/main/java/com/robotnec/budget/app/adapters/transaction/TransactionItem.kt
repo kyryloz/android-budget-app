@@ -24,7 +24,7 @@ internal class TransactionItem(private val transaction: Transaction) : Transacti
 
         with(holder.itemView) {
             imageIcon.setImageDrawable(TextIconUtils.generate(transaction.category.name))
-            textAmount.text = "-" + transaction.amount.toDisplayableString()
+            textAmount.text = "-${transaction.amount}"
             textAccountName.text = transaction.account.name
             textCategoryName.text = transaction.category.name
             textAmount.setTextColor(ContextCompat.getColor(context, android.R.color.holo_red_dark))
