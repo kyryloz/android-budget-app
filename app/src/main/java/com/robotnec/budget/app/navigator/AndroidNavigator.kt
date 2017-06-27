@@ -33,7 +33,7 @@ class AndroidNavigator : Navigator {
         val androidNavigationBundle = navigationBundle as AndroidNavigationBundle
         val activity = androidNavigationBundle.navigationContext
 
-        val category = androidNavigationBundle.serializableExtra as Category
+        val category = androidNavigationBundle.serializableExtra as? Category
 
         val intent = Intent(activity, AddCategoryActivity::class.java)
         intent.putExtra(Keys.CATEGORY, category)
@@ -47,7 +47,7 @@ class AndroidNavigator : Navigator {
         val androidNavigationBundle = navigationBundle as AndroidNavigationBundle
         val activity = androidNavigationBundle.navigationContext
 
-        val account = androidNavigationBundle.serializableExtra as Account
+        val account = androidNavigationBundle.serializableExtra as? Account
 
         val intent = Intent(activity, AddAccountActivity::class.java)
         intent.putExtra(Keys.ACCOUNT, account)

@@ -20,8 +20,12 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
     companion object {
         const val ARG_ACCOUNT = "account"
 
-        fun newInstance(account: Account): Fragment {
-            return AddAccountFragment().withArguments(ARG_ACCOUNT to account)
+        fun newInstance(account: Account?): Fragment {
+            if (account != null) {
+                return AddAccountFragment().withArguments(ARG_ACCOUNT to account)
+            } else {
+                return AddAccountFragment().withArguments()
+            }
         }
     }
 
@@ -29,7 +33,7 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
         get() = R.layout.fragment_add_account
 
     override fun createPresenter(): AddAccountPresenter {
-        val account = arguments.getSerializable(ARG_ACCOUNT) as Account
+        val account = arguments[ARG_ACCOUNT] as? Account
         return AddAccountPresenter(this, account)
     }
 

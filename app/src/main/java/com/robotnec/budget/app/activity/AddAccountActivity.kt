@@ -16,7 +16,7 @@ class AddAccountActivity : BaseActivity() {
 
         if (savedInstanceState == null) {
             val args = intent.extras
-            val account = args.getSerializable(Keys.ACCOUNT) as Account
+            val account = args.getSerializable(Keys.ACCOUNT) as? Account
             supportFragmentManager.beginTransaction()
                     .replace(R.id.frame_fragment, AddAccountFragment.newInstance(account))
                     .commit()

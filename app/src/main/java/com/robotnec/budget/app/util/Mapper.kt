@@ -29,7 +29,11 @@ object Mapper {
         return AccountRecord()
                 .setAmount(account.amount.toString())
                 .setName(account.name)
-                .setRowId(account.id)
+                .also {
+                    if (account.id != -1L) {
+                        it.rowId = account.id
+                    }
+                }
     }
 
     fun fromRecord(record: CategoryRecord): Category {
