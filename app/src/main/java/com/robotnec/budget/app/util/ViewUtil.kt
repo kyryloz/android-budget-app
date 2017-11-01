@@ -1,8 +1,6 @@
 package com.robotnec.budget.app.util
 
 import android.content.Context
-import android.content.res.TypedArray
-
 import com.robotnec.budget.R
 
 /**

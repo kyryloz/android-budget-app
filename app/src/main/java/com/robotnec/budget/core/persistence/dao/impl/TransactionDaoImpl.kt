@@ -1,8 +1,6 @@
 package com.robotnec.budget.core.persistence.dao.impl
 
 import com.robotnec.budget.app.util.Mapper
-import com.robotnec.budget.core.domain.Account
-import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.domain.operation.Transaction
 import com.robotnec.budget.core.persistence.BudgetDatabase
 import com.robotnec.budget.core.persistence.dao.AccountDao
@@ -12,7 +10,7 @@ import com.robotnec.budget.core.persistence.schema.TransactionRecord
 import com.yahoo.squidb.data.SquidCursor
 import com.yahoo.squidb.sql.Property
 import com.yahoo.squidb.sql.Query
-import java.util.*
+import java.util.ArrayList
 
 /**
  * @author zak zak@swingpulse.com>

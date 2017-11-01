@@ -8,7 +8,8 @@ import com.robotnec.budget.R
 import com.robotnec.budget.app.adapters.support.BaseAdapter
 import com.robotnec.budget.app.util.TextIconUtils
 import com.robotnec.budget.core.domain.Category
-import kotlinx.android.synthetic.main.item_category.view.*
+import kotlinx.android.synthetic.main.item_category.view.imageIcon
+import kotlinx.android.synthetic.main.item_category.view.textCategoryName
 
 /**
  * @author zak zak@swingpulse.com>

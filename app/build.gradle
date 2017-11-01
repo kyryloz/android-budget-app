@@ -4,13 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    compileSdkVersion 26
 
     defaultConfig {
         applicationId "com.robotnec.budgetswing"
         minSdkVersion 21
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "0.1"
         vectorDrawables.useSupportLibrary = true
@@ -29,49 +28,42 @@ kapt {
     generateStubs = true
 }
 
-ext {
-    supportLibVersion = "25.3.0"
-    daggerVersion = "2.8"
-    squidbVersion = "3.2.3"
-    ankoVersion = "0.10.1"
-}
-
 dependencies {
-    compile 'com.android.support:multidex:1.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:${versions.kotlin}"
 
     // android support
-    compile "com.android.support:appcompat-v7:$supportLibVersion"
-    compile "com.android.support:design:$supportLibVersion"
-    compile "com.android.support:cardview-v7:$supportLibVersion"
-    compile "com.android.support:support-v4:$supportLibVersion"
+    implementation "com.android.support:multidex:${versions.multidex}"
+    implementation "com.android.support:appcompat-v7:${versions.support_library}"
+    implementation "com.android.support:design:${versions.support_library}"
+    implementation "com.android.support:cardview-v7:${versions.support_library}"
+    implementation "com.android.support:support-v4:${versions.support_library}"
 
     // injection
-    compile "com.google.dagger:dagger:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
 
     // utils
-    debugCompile "im.dino:dbinspector:3.4.1@aar"
-    compile "com.jakewharton.threetenabp:threetenabp:1.0.5"
-    compile "net.sourceforge.jeval:jeval:0.9.4"
-    compile "org.jetbrains.anko:anko:$ankoVersion"
-    compile "org.jetbrains.anko:anko-commons:$ankoVersion"
-    compile "org.joda:joda-money:0.12"
+    debugImplementation "im.dino:dbinspector:${versions.dbinspector}"
+    implementation "com.jakewharton.threetenabp:threetenabp:${versions.threetenabp}"
+    implementation "net.sourceforge.jeval:jeval:${versions.jeval}"
+    implementation "org.jetbrains.anko:anko:${versions.anko}"
+    implementation "org.jetbrains.anko:anko-commons:${versions.anko}"
+    implementation "org.joda:joda-money:${versions.joda_money}"
 
-    // views
-    compile "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1"
-    compile 'me.grantland:autofittextview:0.2.1'
+    // ui
+    implementation "com.amulyakhare:com.amulyakhare.textdrawable:${versions.textdrawable}"
+    implementation "me.grantland:autofittextview:${versions.autofittextview}"
 
     // persistence
-    compile "com.yahoo.squidb:squidb:$squidbVersion"
-    compile "com.yahoo.squidb:squidb-annotations:$squidbVersion"
-    compile "com.yahoo.squidb:squidb-android:$squidbVersion"
-    kapt "com.yahoo.squidb:squidb-processor:$squidbVersion"
+    implementation "com.yahoo.squidb:squidb:${versions.squidb}"
+    implementation "com.yahoo.squidb:squidb-annotations:${versions.squidb}"
+    implementation "com.yahoo.squidb:squidb-android:${versions.squidb}"
+    kapt "com.yahoo.squidb:squidb-processor:${versions.squidb}"
 
     // test
-    testCompile "junit:junit:4.12"
-    testCompile "org.robolectric:robolectric:3.2.2"
-    testCompile "org.mockito:mockito-core:2.2.22"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.robolectric:robolectric:${versions.robolectric}"
+    testImplementation "org.mockito:mockito-core:${versions.mockito}"
 }
 
 repositories {

@@ -1,11 +1,10 @@
 package com.robotnec.budget.app.activity
 
 import android.os.Bundle
-
 import com.robotnec.budget.R
-import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.app.fragments.AddCategoryFragment
 import com.robotnec.budget.app.util.Keys
+import com.robotnec.budget.core.domain.Category
 
 /**
  * @author zak zak@swingpulse.com>

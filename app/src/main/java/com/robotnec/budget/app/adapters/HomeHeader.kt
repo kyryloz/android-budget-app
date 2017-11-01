@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import com.robotnec.budget.R
 import com.robotnec.budget.app.adapters.support.ListHeader
 import com.robotnec.budget.core.domain.Account
-import kotlinx.android.synthetic.main.view_home_header.view.*
-import java.util.*
+import kotlinx.android.synthetic.main.view_home_header.view.textAmount
+import kotlinx.android.synthetic.main.view_home_header.view.textAmountSecond
+import kotlinx.android.synthetic.main.view_home_header.view.textName
+import kotlinx.android.synthetic.main.view_home_header.view.textNameSecond
+import java.util.ArrayList
 
 /**
  * @author zak zak@swingpulse.com>

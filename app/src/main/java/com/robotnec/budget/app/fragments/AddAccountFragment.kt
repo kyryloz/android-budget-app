@@ -8,7 +8,12 @@ import com.robotnec.budget.R
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.mvp.presenter.AddAccountPresenter
 import com.robotnec.budget.core.mvp.view.AddAccountView
-import kotlinx.android.synthetic.main.fragment_add_account.*
+import kotlinx.android.synthetic.main.fragment_add_account.buttonDelete
+import kotlinx.android.synthetic.main.fragment_add_account.buttonDone
+import kotlinx.android.synthetic.main.fragment_add_account.editAccountInitialAmount
+import kotlinx.android.synthetic.main.fragment_add_account.editAccountName
+import kotlinx.android.synthetic.main.fragment_add_account.spinnerCurrency
+import kotlinx.android.synthetic.main.fragment_add_account.toolbar
 import org.jetbrains.anko.support.v4.withArguments
 import org.joda.money.CurrencyUnit
 

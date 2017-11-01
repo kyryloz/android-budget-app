@@ -3,11 +3,9 @@ package com.robotnec.budget.core.di.module
 import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
-
-import javax.inject.Singleton
-
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class AndroidModule(private val context: Context) {

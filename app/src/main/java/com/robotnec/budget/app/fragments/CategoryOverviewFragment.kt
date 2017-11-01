@@ -10,7 +10,9 @@ import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.mvp.presenter.CategoryOverviewPresenter
 import com.robotnec.budget.core.mvp.view.CategoryOverviewView
 import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation
-import kotlinx.android.synthetic.main.fragment_category_overview.*
+import kotlinx.android.synthetic.main.fragment_category_overview.collapsingToolbar
+import kotlinx.android.synthetic.main.fragment_category_overview.recyclerCategoryTransactions
+import kotlinx.android.synthetic.main.fragment_category_overview.toolbar
 
 /**
  * @author zak zak@swingpulse.com>

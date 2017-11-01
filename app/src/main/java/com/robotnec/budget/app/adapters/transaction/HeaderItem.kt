@@ -7,13 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import com.robotnec.budget.R
 import com.robotnec.budget.app.util.DateUtil
-import kotlinx.android.synthetic.main.item_transaction_header.view.*
+import kotlinx.android.synthetic.main.item_transaction_header.view.textDayOfMonth
+import kotlinx.android.synthetic.main.item_transaction_header.view.textMonth
+import kotlinx.android.synthetic.main.item_transaction_header.view.textRelativeDay
+import kotlinx.android.synthetic.main.item_transaction_header.view.textSum
 import org.joda.money.Money
 import org.threeten.bp.Instant
 import org.threeten.bp.LocalDate
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.format.TextStyle
-import java.util.*
+import java.util.Locale
 
 /**
  * @author zak zak@swingpulse.com>

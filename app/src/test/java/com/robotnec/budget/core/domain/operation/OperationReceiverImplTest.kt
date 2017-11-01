@@ -1,19 +1,18 @@
 package com.robotnec.budget.core.domain.operation
 
 import com.robotnec.budget.BaseRobolectricTest
+import com.robotnec.budget.core.domain.Account
+import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.persistence.BudgetDatabase
 import com.robotnec.budget.core.persistence.TransactionContext
 import com.robotnec.budget.core.persistence.TransactionContextImpl
+import com.robotnec.budget.core.persistence.dao.AccountDao
 import com.robotnec.budget.core.persistence.dao.TransactionDao
-import com.robotnec.budget.core.persistence.dao.impl.TransactionDaoImpl
 import com.robotnec.budget.core.persistence.dao.impl.AccountDaoImpl
 import com.robotnec.budget.core.persistence.dao.impl.CategoryDaoImpl
-import com.robotnec.budget.core.service.impl.SimpleCurrencyExchangeService
-import com.robotnec.budget.core.persistence.dao.AccountDao
-import com.robotnec.budget.core.domain.Account
-import com.robotnec.budget.core.domain.Category
+import com.robotnec.budget.core.persistence.dao.impl.TransactionDaoImpl
 import com.robotnec.budget.core.service.CurrencyExchangeService
-
+import com.robotnec.budget.core.service.impl.SimpleCurrencyExchangeService
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

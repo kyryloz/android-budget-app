@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation
-import java.util.*
+import java.util.ArrayList
 
 /**
  * @author zak zak@swingpulse.com>

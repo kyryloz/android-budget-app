@@ -9,11 +9,9 @@ import com.robotnec.budget.core.service.aggregation.AggregationService
 import com.robotnec.budget.core.service.aggregation.impl.AggregationServiceImpl
 import com.robotnec.budget.core.service.impl.MoneyOperationBrokerImpl
 import com.robotnec.budget.core.service.impl.SimpleCurrencyExchangeService
-
-import javax.inject.Singleton
-
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 /**
  * @author zak zak@swingpulse.com>

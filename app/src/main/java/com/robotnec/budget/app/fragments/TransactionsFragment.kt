@@ -11,7 +11,9 @@ import com.robotnec.budget.app.navigator.AndroidNavigationBundle
 import com.robotnec.budget.core.mvp.presenter.TransactionsPresenter
 import com.robotnec.budget.core.mvp.view.TransactionsView
 import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation
-import kotlinx.android.synthetic.main.fragment_transactions.*
+import kotlinx.android.synthetic.main.fragment_transactions.fab
+import kotlinx.android.synthetic.main.fragment_transactions.recyclerTransactions
+import kotlinx.android.synthetic.main.fragment_transactions.toolbar
 
 /**
  * @author zak zak@swingpulse.com>

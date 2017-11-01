@@ -7,7 +7,10 @@ import com.robotnec.budget.app.util.Keys
 import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.mvp.presenter.AddCategoryPresenter
 import com.robotnec.budget.core.mvp.view.AddCategoryView
-import kotlinx.android.synthetic.main.fragment_add_category.*
+import kotlinx.android.synthetic.main.fragment_add_category.buttonDelete
+import kotlinx.android.synthetic.main.fragment_add_category.buttonDone
+import kotlinx.android.synthetic.main.fragment_add_category.editCategoryName
+import kotlinx.android.synthetic.main.fragment_add_category.toolbar
 
 /**
  * @author zak zak@swingpulse.com>

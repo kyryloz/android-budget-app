@@ -2,7 +2,7 @@ package com.robotnec.budget.core.service.aggregation.impl
 
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.temporal.ChronoUnit
-import java.util.*
+import java.util.ArrayList
 
 /**
  * @author zak zak@swingpulse.com>

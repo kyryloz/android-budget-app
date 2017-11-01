@@ -11,7 +11,9 @@ import com.robotnec.budget.app.navigator.AndroidNavigationBundle
 import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.mvp.presenter.CategoriesPresenter
 import com.robotnec.budget.core.mvp.view.CategoriesView
-import kotlinx.android.synthetic.main.fragment_categories.*
+import kotlinx.android.synthetic.main.fragment_categories.fab
+import kotlinx.android.synthetic.main.fragment_categories.recyclerCategories
+import kotlinx.android.synthetic.main.fragment_categories.toolbar
 
 /**
  * @author zak zak@swingpulse.com>

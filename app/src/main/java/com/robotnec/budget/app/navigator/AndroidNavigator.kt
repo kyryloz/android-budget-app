@@ -3,17 +3,15 @@ package com.robotnec.budget.app.navigator
 import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
-
 import com.robotnec.budget.app.activity.AddAccountActivity
 import com.robotnec.budget.app.activity.AddCategoryActivity
 import com.robotnec.budget.app.activity.AddTransactionActivity
 import com.robotnec.budget.app.activity.CategoryOverviewActivity
+import com.robotnec.budget.app.util.Keys
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.navigator.NavigationBundle
 import com.robotnec.budget.core.navigator.Navigator
-import com.robotnec.budget.app.util.Keys
 
 /**
  * @author zak zak@swingpulse.com>

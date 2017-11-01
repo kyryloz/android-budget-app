@@ -7,7 +7,8 @@ import android.view.ViewGroup
 import com.robotnec.budget.R
 import com.robotnec.budget.app.adapters.support.BaseAdapter
 import com.robotnec.budget.core.domain.Account
-import kotlinx.android.synthetic.main.item_account.view.*
+import kotlinx.android.synthetic.main.item_account.view.textAmount
+import kotlinx.android.synthetic.main.item_account.view.textName
 
 /**
  * @author zak zak@swingpulse.com>

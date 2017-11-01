@@ -1,15 +1,12 @@
 package com.robotnec.budget.core.mvp.presenter
 
 import com.robotnec.budget.core.di.ApplicationComponent
-import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.mvp.view.HomeView
 import com.robotnec.budget.core.navigator.NavigationBundle
 import com.robotnec.budget.core.navigator.Navigator
 import com.robotnec.budget.core.persistence.dao.AccountDao
 import com.robotnec.budget.core.persistence.dao.TransactionDao
 import com.robotnec.budget.core.service.aggregation.AggregationService
-import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation
-
 import javax.inject.Inject
 
 /**

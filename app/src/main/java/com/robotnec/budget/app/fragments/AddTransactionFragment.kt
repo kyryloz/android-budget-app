@@ -9,10 +9,19 @@ import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.mvp.presenter.AddTransactionPresenter
 import com.robotnec.budget.core.mvp.view.AddTransactionView
-import kotlinx.android.synthetic.main.fragment_add_transaction.*
+import kotlinx.android.synthetic.main.fragment_add_transaction.buttonDone
+import kotlinx.android.synthetic.main.fragment_add_transaction.layoutAccount
+import kotlinx.android.synthetic.main.fragment_add_transaction.layoutAmount
+import kotlinx.android.synthetic.main.fragment_add_transaction.layoutDate
+import kotlinx.android.synthetic.main.fragment_add_transaction.layoutExpenseCategory
+import kotlinx.android.synthetic.main.fragment_add_transaction.textAccountAmount
+import kotlinx.android.synthetic.main.fragment_add_transaction.textAccountName
+import kotlinx.android.synthetic.main.fragment_add_transaction.textAmount
+import kotlinx.android.synthetic.main.fragment_add_transaction.textDate
+import kotlinx.android.synthetic.main.fragment_add_transaction.textExpenseCategory
 import org.jetbrains.anko.support.v4.selector
 import org.joda.money.Money
-import java.util.*
+import java.util.Calendar
 
 /**
  * @author zak zak@swingpulse.com>

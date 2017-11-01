@@ -1,10 +1,9 @@
 package com.robotnec.budget.core.di.module
 
-import javax.inject.Singleton
-
+import com.robotnec.budget.core.navigator.Navigator
 import dagger.Module
 import dagger.Provides
-import com.robotnec.budget.core.navigator.Navigator
+import javax.inject.Singleton
 
 /**
  * @author zak zak@swingpulse.com>

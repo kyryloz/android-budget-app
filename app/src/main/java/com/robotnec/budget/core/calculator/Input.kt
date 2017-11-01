@@ -1,7 +1,8 @@
 package com.robotnec.budget.core.calculator
 
 import android.text.TextUtils
-import java.util.*
+import java.util.Deque
+import java.util.LinkedList
 
 /**
  * @author zak zak@swingpulse.com>

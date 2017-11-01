@@ -1,10 +1,9 @@
 package com.robotnec.budget.core.mvp.view
 
-import java.util.Calendar
-
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.domain.Category
 import org.joda.money.Money
+import java.util.Calendar
 
 /**
  * @author zak zak@swingpulse.com>

@@ -11,7 +11,9 @@ import com.robotnec.budget.app.navigator.AndroidNavigationBundle
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.mvp.presenter.AccountsPresenter
 import com.robotnec.budget.core.mvp.view.AccountsView
-import kotlinx.android.synthetic.main.fragment_accounts.*
+import kotlinx.android.synthetic.main.fragment_accounts.fab
+import kotlinx.android.synthetic.main.fragment_accounts.recyclerAccounts
+import kotlinx.android.synthetic.main.fragment_accounts.toolbar
 
 /**
  * @author zak zak@swingpulse.com>

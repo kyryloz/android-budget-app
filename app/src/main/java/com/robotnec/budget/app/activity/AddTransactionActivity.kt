@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.robotnec.budget.R
 import com.robotnec.budget.app.fragments.AddTransactionFragment
 import com.robotnec.budget.app.fragments.CalculatorFragment
-import kotlinx.android.synthetic.main.fragment_add_transaction.*
+import kotlinx.android.synthetic.main.fragment_add_transaction.toolbar
 import org.joda.money.Money
 
 class AddTransactionActivity : BaseActivity(), CalculatorFragment.Listener {

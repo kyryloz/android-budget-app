@@ -14,7 +14,9 @@ import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.mvp.presenter.HomePresenter
 import com.robotnec.budget.core.mvp.view.HomeView
 import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.fab
+import kotlinx.android.synthetic.main.fragment_home.recyclerMerge
+import kotlinx.android.synthetic.main.fragment_home.toolbar
 
 /**
  * @author zak zak@swingpulse.com>

@@ -4,14 +4,18 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
 import android.view.Menu
 import android.view.MenuItem
 import com.robotnec.budget.R
-import com.robotnec.budget.app.fragments.*
+import com.robotnec.budget.app.fragments.AboutFragment
+import com.robotnec.budget.app.fragments.AccountsFragment
+import com.robotnec.budget.app.fragments.CategoriesFragment
+import com.robotnec.budget.app.fragments.HomeFragment
+import com.robotnec.budget.app.fragments.TransactionsFragment
 import com.robotnec.budget.core.mvp.presenter.MainPresenter
 import com.robotnec.budget.core.mvp.view.MainView
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.drawer
+import kotlinx.android.synthetic.main.activity_main.nav_view
 
 class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNavigationItemSelectedListener, MainView {
 
@@ -34,7 +38,6 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNa
     }
 
     override fun onBackPressed() {
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
         } else {
@@ -71,7 +74,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNa
                 .replace(R.id.layout_fragment_container, fragment)
                 .commit()
 
-        drawer_layout.closeDrawer(GravityCompat.START)
+        drawer.closeDrawer(GravityCompat.START)
 
         title = item.title
 

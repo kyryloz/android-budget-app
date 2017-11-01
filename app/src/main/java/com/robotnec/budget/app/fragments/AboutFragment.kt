@@ -6,7 +6,7 @@ import android.view.View
 import com.robotnec.budget.R
 import com.robotnec.budget.core.mvp.presenter.AboutPresenter
 import com.robotnec.budget.core.mvp.view.AboutView
-import kotlinx.android.synthetic.main.fragment_about.*
+import kotlinx.android.synthetic.main.fragment_about.toolbar
 
 /**
  * @author zak zak@swingpulse.com>

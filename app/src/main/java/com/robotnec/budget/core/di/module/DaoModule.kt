@@ -3,17 +3,15 @@ package com.robotnec.budget.core.di.module
 import com.robotnec.budget.core.persistence.BudgetDatabase
 import com.robotnec.budget.core.persistence.TransactionContext
 import com.robotnec.budget.core.persistence.TransactionContextImpl
+import com.robotnec.budget.core.persistence.dao.AccountDao
+import com.robotnec.budget.core.persistence.dao.CategoryDao
 import com.robotnec.budget.core.persistence.dao.TransactionDao
 import com.robotnec.budget.core.persistence.dao.impl.AccountDaoImpl
 import com.robotnec.budget.core.persistence.dao.impl.CategoryDaoImpl
 import com.robotnec.budget.core.persistence.dao.impl.TransactionDaoImpl
-import com.robotnec.budget.core.persistence.dao.AccountDao
-import com.robotnec.budget.core.persistence.dao.CategoryDao
-
-import javax.inject.Singleton
-
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 /**
  * @author zak zak@swingpulse.com>

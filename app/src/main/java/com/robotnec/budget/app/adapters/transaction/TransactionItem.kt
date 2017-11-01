@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import com.robotnec.budget.R
 import com.robotnec.budget.app.util.TextIconUtils
 import com.robotnec.budget.core.domain.operation.Transaction
-import kotlinx.android.synthetic.main.item_transaction.view.*
+import kotlinx.android.synthetic.main.item_transaction.view.imageIcon
+import kotlinx.android.synthetic.main.item_transaction.view.textAccountName
+import kotlinx.android.synthetic.main.item_transaction.view.textAmount
+import kotlinx.android.synthetic.main.item_transaction.view.textCategoryName
 
 /**
  * @author zak zak@swingpulse.com>

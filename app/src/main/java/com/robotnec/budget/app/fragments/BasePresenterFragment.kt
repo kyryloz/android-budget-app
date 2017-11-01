@@ -2,7 +2,6 @@ package com.robotnec.budget.app.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -12,6 +11,7 @@ import com.robotnec.budget.R
 import com.robotnec.budget.app.BudgetApplication
 import com.robotnec.budget.core.mvp.presenter.Presenter
 import com.robotnec.budget.core.mvp.view.View
+import kotlinx.android.synthetic.main.activity_main.drawer
 
 /**
  * @author zak zak@swingpulse.com>
@@ -38,7 +38,7 @@ abstract class BasePresenterFragment<P : Presenter<*>> : Fragment(), View {
     }
 
     protected fun initToolbarToggle(toolbar: Toolbar) {
-        val drawer = activity.findViewById(R.id.drawer_layout) as DrawerLayout
+        val drawer = activity.drawer
         val toggle = ActionBarDrawerToggle(
                 activity, drawer, toolbar,
                 R.string.navigation_drawer_open,
