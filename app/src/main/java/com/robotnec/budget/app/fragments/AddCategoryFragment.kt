@@ -21,18 +21,18 @@ class AddCategoryFragment : BasePresenterFragment<AddCategoryPresenter>(), AddCa
         get() = R.layout.fragment_add_category
 
     override fun createPresenter(): AddCategoryPresenter {
-        val category = arguments.getSerializable(Keys.CATEGORY) as Category
+        val category = arguments?.getSerializable(Keys.CATEGORY) as Category
         return AddCategoryPresenter(this, category)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbarBack(toolbar)
 
         buttonDelete.setOnClickListener { presenter.deleteCategory() }
         buttonDone.setOnClickListener {
             presenter.addOrEditCategory(editCategoryName.text.toString())
-            activity.finish()
+            activity?.finish()
         }
     }
 
@@ -43,7 +43,7 @@ class AddCategoryFragment : BasePresenterFragment<AddCategoryPresenter>(), AddCa
     }
 
     override fun closeView() {
-        activity.finish()
+        activity?.finish()
     }
 
     companion object {

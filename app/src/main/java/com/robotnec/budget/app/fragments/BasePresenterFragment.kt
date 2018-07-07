@@ -26,7 +26,7 @@ abstract class BasePresenterFragment<P : Presenter<*>> : Fragment(), View {
         val root = inflater.inflate(layoutId, container, false)
         presenter = createPresenter()
         val applicationGraph = (activity
-                .application as BudgetApplication)
+                ?.application as BudgetApplication)
                 .applicationGraph
         presenter.injectComponent(applicationGraph.applicationComponent)
         return root
@@ -38,13 +38,15 @@ abstract class BasePresenterFragment<P : Presenter<*>> : Fragment(), View {
     }
 
     protected fun initToolbarToggle(toolbar: Toolbar) {
-        val drawer = activity.drawer
-        val toggle = ActionBarDrawerToggle(
-                activity, drawer, toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close)
-        drawer.addDrawerListener(toggle)
-        toggle.syncState()
+        activity?.let {
+            val drawer = it.drawer
+            val toggle = ActionBarDrawerToggle(
+                    it, drawer, toolbar,
+                    R.string.navigation_drawer_open,
+                    R.string.navigation_drawer_close)
+            drawer.addDrawerListener(toggle)
+            toggle.syncState()
+        }
     }
 
     protected fun initToolbarBack(toolbar: Toolbar) {

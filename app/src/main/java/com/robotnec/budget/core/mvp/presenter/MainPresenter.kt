@@ -2,7 +2,6 @@ package com.robotnec.budget.core.mvp.presenter
 
 import com.robotnec.budget.core.di.ApplicationComponent
 import com.robotnec.budget.core.mvp.view.MainView
-import com.robotnec.budget.core.navigator.NavigationBundle
 import com.robotnec.budget.core.navigator.Navigator
 import javax.inject.Inject
 
@@ -22,7 +21,4 @@ class MainPresenter(view: MainView) : Presenter<MainView>(view) {
         applicationComponent.inject(this)
     }
 
-    fun openMakeTransactionScreen(navigationBundle: NavigationBundle<*>) {
-        navigator.openAddTransactionScreen(navigationBundle)
-    }
 }

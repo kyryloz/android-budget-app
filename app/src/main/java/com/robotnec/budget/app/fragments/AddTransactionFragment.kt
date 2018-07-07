@@ -37,7 +37,7 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
         return AddTransactionPresenter(this)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         layoutAmount.setOnClickListener { presenter.openCalculator() }
         layoutDate.setOnClickListener { presenter.changeDate() }
@@ -45,7 +45,7 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
         layoutExpenseCategory.setOnClickListener { presenter.changeCategory() }
         buttonDone.setOnClickListener {
             presenter.submit()
-            activity.finish()
+            activity?.finish()
         }
     }
 
@@ -84,10 +84,10 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
         val fragment = CalculatorFragment.newInstance(initialAmount)
         fragment.enterTransition = Slide()
         fragment.exitTransition = Slide()
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_calculator, fragment)
-                .addToBackStack(null)
-                .commit()
+        fragmentManager?.beginTransaction()
+                ?.replace(R.id.frame_calculator, fragment)
+                ?.addToBackStack(null)
+                ?.commit()
     }
 
     override fun displayAccount(account: Account) {
@@ -104,7 +104,7 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
     }
 
     override fun finish() {
-        activity.finish()
+        activity?.finish()
     }
 
     fun onMoneyEdited(money: Money) {

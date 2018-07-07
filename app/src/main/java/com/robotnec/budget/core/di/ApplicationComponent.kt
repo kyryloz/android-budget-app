@@ -22,12 +22,12 @@ import javax.inject.Singleton
  * @author zak zak@swingpulse.com>
  */
 @Singleton
-@Component(modules = arrayOf(
-        DaoModule::class,
-        NavigationModule::class,
-        AndroidModule::class,
-        ServiceModule::class)
-)
+@Component(modules = [
+    DaoModule::class,
+    NavigationModule::class,
+    AndroidModule::class,
+    ServiceModule::class
+])
 interface ApplicationComponent {
     fun inject(presenter: AccountsPresenter)
 

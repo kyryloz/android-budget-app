@@ -11,19 +11,19 @@ import java.util.Calendar
 class DatePickerDialogFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val calendar = arguments.getSerializable(BUNDLE_CALENDAR) as Calendar
-        val year = calendar.get(Calendar.YEAR);
-        val month = calendar.get(Calendar.MONTH);
-        val day = calendar.get(Calendar.DAY_OF_MONTH);
+        val calendar = arguments?.getSerializable(BUNDLE_CALENDAR) as Calendar
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         return DatePickerDialog(activity, this, year, month, day)
     }
 
     override fun onDateSet(view: DatePicker, year: Int, month: Int, day: Int) {
         val result = Calendar.getInstance()
-        result.set(Calendar.YEAR, year);
-        result.set(Calendar.MONTH, month);
-        result.set(Calendar.DAY_OF_MONTH, day);
+        result.set(Calendar.YEAR, year)
+        result.set(Calendar.MONTH, month)
+        result.set(Calendar.DAY_OF_MONTH, day)
 
         val listener = targetFragment as Listener
         listener.onDatePicked(result)
@@ -35,11 +35,11 @@ class DatePickerDialogFragment : DialogFragment(), DatePickerDialog.OnDateSetLis
 
     companion object {
 
-        val TAG = DatePickerDialogFragment::class.java.simpleName
-        private val BUNDLE_CALENDAR = "BundleCalendar"
+        val TAG: String = DatePickerDialogFragment::class.java.simpleName
+        private const val BUNDLE_CALENDAR = "BundleCalendar"
 
-        fun <T> newInstance(
-                currentDate: Calendar, listener: T): DatePickerDialogFragment where T : Fragment, T : Listener {
+        fun <T> newInstance(currentDate: Calendar, listener: T)
+                : DatePickerDialogFragment where T : Fragment, T : Listener {
             val fragment = DatePickerDialogFragment()
             fragment.setTargetFragment(listener, 0)
             val args = Bundle()

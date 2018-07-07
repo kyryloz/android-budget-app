@@ -35,7 +35,7 @@ class TransactionsFragment : BasePresenterFragment<TransactionsPresenter>(), Tra
         return TransactionsPresenter(this)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbarToggle(toolbar!!)
         initRecyclerView()
@@ -49,8 +49,10 @@ class TransactionsFragment : BasePresenterFragment<TransactionsPresenter>(), Tra
     }
 
     private fun initRecyclerView() {
-        transactionsAdapter = TransactionsAdapter(context)
-        recyclerTransactions.layoutManager = LinearLayoutManager(context)
-        recyclerTransactions.adapter = transactionsAdapter
+        context?.let {
+            transactionsAdapter = TransactionsAdapter(it)
+            recyclerTransactions.layoutManager = LinearLayoutManager(context)
+            recyclerTransactions.adapter = transactionsAdapter
+        }
     }
 }

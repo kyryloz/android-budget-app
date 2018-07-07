@@ -15,7 +15,7 @@ abstract class BaseAdapter<T, S : RecyclerView.ViewHolder>(
     protected val layoutInflater: LayoutInflater
 
     init {
-        items = ArrayList<T>()
+        items = ArrayList()
         layoutInflater = LayoutInflater.from(context)
     }
 

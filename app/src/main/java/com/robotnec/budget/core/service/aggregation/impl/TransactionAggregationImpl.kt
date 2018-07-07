@@ -17,7 +17,7 @@ internal class TransactionAggregationImpl private constructor(
     init {
         for (timeSpan in this.aggregation.keys) {
             val unmodifiable = Collections.unmodifiableList(this.aggregation[timeSpan])
-            this.aggregation.put(timeSpan, unmodifiable)
+            this.aggregation[timeSpan] = unmodifiable
         }
     }
 
@@ -25,17 +25,17 @@ internal class TransactionAggregationImpl private constructor(
         get() = aggregation.size
 
     override fun get(sorting: TransactionAggregation.Sorting): SortedMap<TimeSpan, List<Transaction>> {
-        if (sorting === TransactionAggregation.Sorting.ASC) {
-            return Collections.unmodifiableSortedMap(aggregation)
+        return if (sorting === TransactionAggregation.Sorting.ASC) {
+            Collections.unmodifiableSortedMap(aggregation)
         } else {
             val sortedMap = TreeMap<TimeSpan, List<Transaction>> { o1, o2 -> o2.compareTo(o1) }
             sortedMap.putAll(aggregation)
             for (timeSpan in sortedMap.keys) {
                 val sortedTransactions = ArrayList(sortedMap[timeSpan])
                 sortedTransactions.sortedBy { it.date }
-                sortedMap.put(timeSpan, sortedTransactions)
+                sortedMap[timeSpan] = sortedTransactions
             }
-            return Collections.unmodifiableSortedMap(sortedMap)
+            Collections.unmodifiableSortedMap(sortedMap)
         }
     }
 

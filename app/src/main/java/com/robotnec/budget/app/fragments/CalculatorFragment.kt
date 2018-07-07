@@ -41,7 +41,7 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
         get() = R.layout.fragment_calculator
 
     override fun createPresenter(): CalculatorPresenter {
-        val amount = arguments[ARG_AMOUNT] as Money
+        val amount = arguments?.get(ARG_AMOUNT) as Money
         return CalculatorPresenter(this, amount)
     }
 
@@ -57,7 +57,7 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
         listener = null
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbarBack(toolbar)
         toolbar.title = null
@@ -95,16 +95,16 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
     }
 
     override fun close() {
-        fragmentManager.beginTransaction()
-                .remove(this)
-                .commit()
+        fragmentManager?.beginTransaction()
+                ?.remove(this)
+                ?.commit()
     }
 
     override fun done(money: Money) {
         listener?.onMoneyEdited(money)
-        fragmentManager.beginTransaction()
-                .remove(this)
-                .commit()
+        fragmentManager?.beginTransaction()
+                ?.remove(this)
+                ?.commit()
     }
 
     override fun showMaxCountReached() {

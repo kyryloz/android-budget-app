@@ -26,11 +26,11 @@ class CategoryOverviewFragment : BasePresenterFragment<CategoryOverviewPresenter
         get() = R.layout.fragment_category_overview
 
     override fun createPresenter(): CategoryOverviewPresenter {
-        val category = arguments.getSerializable(Keys.CATEGORY) as Category
+        val category = arguments?.getSerializable(Keys.CATEGORY) as Category
         return CategoryOverviewPresenter(this, category)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbarBack(toolbar)
         initCategoryTransactionsList()
@@ -45,9 +45,12 @@ class CategoryOverviewFragment : BasePresenterFragment<CategoryOverviewPresenter
     }
 
     private fun initCategoryTransactionsList() {
-        categoryTransactionsAdapter = TransactionsAdapter(context)
-        recyclerCategoryTransactions.layoutManager = LinearLayoutManager(context)
-        recyclerCategoryTransactions.adapter = categoryTransactionsAdapter
+        context?.let {
+            categoryTransactionsAdapter = TransactionsAdapter(it)
+            recyclerCategoryTransactions.layoutManager = LinearLayoutManager(context)
+            recyclerCategoryTransactions.adapter = categoryTransactionsAdapter
+        }
+
     }
 
     companion object {

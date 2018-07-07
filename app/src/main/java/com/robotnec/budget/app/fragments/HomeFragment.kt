@@ -40,7 +40,7 @@ class HomeFragment : BasePresenterFragment<HomePresenter>(), HomeView {
         return HomePresenter(this)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbarToggle(toolbar)
         initRecyclerView()
@@ -57,10 +57,12 @@ class HomeFragment : BasePresenterFragment<HomePresenter>(), HomeView {
     }
 
     private fun initRecyclerView() {
-        transactionsAdapter = TransactionsAdapter(context)
-        homeHeader = HomeHeader()
-        headerAdapter = HeaderAdapter(transactionsAdapter, homeHeader)
-        recyclerMerge.layoutManager = LinearLayoutManager(context)
-        recyclerMerge.adapter = headerAdapter
+        context?.let {
+            transactionsAdapter = TransactionsAdapter(it)
+            homeHeader = HomeHeader()
+            headerAdapter = HeaderAdapter(transactionsAdapter, homeHeader)
+            recyclerMerge.layoutManager = LinearLayoutManager(context)
+            recyclerMerge.adapter = headerAdapter
+        }
     }
 }

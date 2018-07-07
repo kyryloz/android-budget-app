@@ -26,10 +26,10 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
         const val ARG_ACCOUNT = "account"
 
         fun newInstance(account: Account?): Fragment {
-            if (account != null) {
-                return AddAccountFragment().withArguments(ARG_ACCOUNT to account)
+            return if (account != null) {
+                AddAccountFragment().withArguments(ARG_ACCOUNT to account)
             } else {
-                return AddAccountFragment().withArguments()
+                AddAccountFragment().withArguments()
             }
         }
     }
@@ -38,11 +38,11 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
         get() = R.layout.fragment_add_account
 
     override fun createPresenter(): AddAccountPresenter {
-        val account = arguments[ARG_ACCOUNT] as? Account
+        val account = arguments?.get(ARG_ACCOUNT) as? Account
         return AddAccountPresenter(this, account)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbarBack(toolbar)
         val adapter = ArrayAdapter(context,
@@ -56,7 +56,7 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
             val accountInitialAmount = editAccountInitialAmount.text.toString()
             val accountCurrency = spinnerCurrency.selectedItem.toString()
             presenter.addOrEditAccount(accountName, accountInitialAmount, accountCurrency)
-            activity.finish()
+            activity?.finish()
         }
     }
 
@@ -73,6 +73,6 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
     }
 
     override fun closeView() {
-        activity.finish()
+        activity?.finish()
     }
 }

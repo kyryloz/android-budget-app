@@ -21,7 +21,7 @@ class HomeHeader : ListHeader {
     private val accounts: MutableList<Account>
 
     init {
-        accounts = ArrayList<Account>()
+        accounts = ArrayList()
     }
 
     fun update(accounts: List<Account>) {

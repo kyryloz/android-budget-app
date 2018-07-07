@@ -26,7 +26,7 @@ class AccountsFragment : BasePresenterFragment<AccountsPresenter>(), AccountsVie
         }
     }
 
-    lateinit var accountsAdapter: AccountsAdapter
+    private lateinit var accountsAdapter: AccountsAdapter
 
     override val layoutId: Int
         get() = R.layout.fragment_accounts
@@ -35,7 +35,7 @@ class AccountsFragment : BasePresenterFragment<AccountsPresenter>(), AccountsVie
         return AccountsPresenter(this)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbarToggle(toolbar)
         initAccountsList()
@@ -49,9 +49,11 @@ class AccountsFragment : BasePresenterFragment<AccountsPresenter>(), AccountsVie
     }
 
     private fun initAccountsList() {
-        accountsAdapter = AccountsAdapter(context, this)
-        recyclerAccounts.layoutManager = LinearLayoutManager(context)
-        recyclerAccounts.adapter = accountsAdapter
+        context?.let {
+            accountsAdapter = AccountsAdapter(it, this)
+            recyclerAccounts.layoutManager = LinearLayoutManager(context)
+            recyclerAccounts.adapter = accountsAdapter
+        }
     }
 
     override fun onAccountClick(account: Account) {

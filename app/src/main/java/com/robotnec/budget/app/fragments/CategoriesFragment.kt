@@ -35,7 +35,7 @@ class CategoriesFragment : BasePresenterFragment<CategoriesPresenter>(), Categor
         return CategoriesPresenter(this)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initToolbarToggle(toolbar)
         initRecyclerView()
@@ -52,12 +52,16 @@ class CategoriesFragment : BasePresenterFragment<CategoriesPresenter>(), Categor
         //        AndroidNavigationBundle navigationBundle = new AndroidNavigationBundle((AppCompatActivity) getActivity());
         //        navigationBundle.setSerializableExtra(category);
         //        presenter.addOrUpdateCategory(navigationBundle);
-        presenter.showCategory(activity, category)
+        activity?.let {
+            presenter.showCategory(it, category)
+        }
     }
 
     private fun initRecyclerView() {
-        categoriesAdapter = CategoriesAdapter(context, this)
-        recyclerCategories.layoutManager = LinearLayoutManager(context)
-        recyclerCategories.adapter = categoriesAdapter
+        context?.let {
+            categoriesAdapter = CategoriesAdapter(it, this)
+            recyclerCategories.layoutManager = LinearLayoutManager(context)
+            recyclerCategories.adapter = categoriesAdapter
+        }
     }
 }

@@ -35,8 +35,8 @@ class AggregationServiceImpl : AggregationService {
                         .map { it.amount }
                         .fold(Money.of(CurrencyUnit.USD, 0.0), { obj, other -> obj.plus(other) })
                 if (!values.isEmpty()) {
-                    aggregatedMap.put(timeSpan, values)
-                    sums.put(timeSpan, sum)
+                    aggregatedMap[timeSpan] = values
+                    sums[timeSpan] = sum
                 }
             }
         }

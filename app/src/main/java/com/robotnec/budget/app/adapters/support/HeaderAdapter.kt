@@ -13,26 +13,26 @@ class HeaderAdapter(private val body: RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     override fun getItemId(position: Int): Long {
-        if (position == 0) {
-            return -1
+        return if (position == 0) {
+            -1
         } else {
-            return body.getItemId(position - 1)
+            body.getItemId(position - 1)
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0) {
-            return ViewTypeHash.hash(VIEW_TYPE_HEADER, 0)
+        return if (position == 0) {
+            ViewTypeHash.hash(VIEW_TYPE_HEADER, 0)
         } else {
-            return ViewTypeHash.hash(VIEW_TYPE_BODY, body.getItemViewType(position - 1))
+            ViewTypeHash.hash(VIEW_TYPE_BODY, body.getItemViewType(position - 1))
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewTypeHash: Int): RecyclerView.ViewHolder {
-        if (ViewTypeHash.getAdapterViewType(viewTypeHash) == VIEW_TYPE_HEADER) {
-            return listHeader.onCreateViewHolder(parent)
+        return if (ViewTypeHash.getAdapterViewType(viewTypeHash) == VIEW_TYPE_HEADER) {
+            listHeader.onCreateViewHolder(parent)
         } else {
-            return body.onCreateViewHolder(parent, ViewTypeHash.getItemViewType(viewTypeHash))
+            body.onCreateViewHolder(parent, ViewTypeHash.getItemViewType(viewTypeHash))
         }
     }
 
@@ -63,7 +63,7 @@ class HeaderAdapter(private val body: RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     companion object {
-        private val VIEW_TYPE_HEADER = 1
-        private val VIEW_TYPE_BODY = 2
+        private const val VIEW_TYPE_HEADER = 1
+        private const val VIEW_TYPE_BODY = 2
     }
 }

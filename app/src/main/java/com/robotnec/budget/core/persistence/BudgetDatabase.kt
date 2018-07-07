@@ -64,6 +64,6 @@ class BudgetDatabase @Inject constructor(private val context: Context) : SquidDa
 
     companion object {
 
-        private val VERSION = 1
+        private const val VERSION = 1
     }
 }

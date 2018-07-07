@@ -16,7 +16,7 @@ class TransactionsAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
     init {
-        items = ArrayList<TransactionListItem>()
+        items = ArrayList()
         setHasStableIds(true)
     }
 
@@ -29,7 +29,7 @@ class TransactionsAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.
     private fun toTransactionListItems(aggregation: TransactionAggregation): List<TransactionListItem> {
         val items = mutableListOf<TransactionListItem>()
 
-        aggregation.get(TransactionAggregation.Sorting.DESC)
+        aggregation[TransactionAggregation.Sorting.DESC]
                 .forEach { (span, transactions) ->
                     items.add(HeaderItem(span.startDate.toLocalDate(), aggregation.getSum(span)))
                     items.addAll(transactions
@@ -48,10 +48,10 @@ class TransactionsAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == VIEW_TYPE_HEADER) {
-            return HeaderItem.createViewHolder(layoutInflater, parent)
+        return if (viewType == VIEW_TYPE_HEADER) {
+            HeaderItem.createViewHolder(layoutInflater, parent)
         } else {
-            return TransactionItem.createViewHolder(layoutInflater, parent)
+            TransactionItem.createViewHolder(layoutInflater, parent)
         }
     }
 
@@ -64,7 +64,7 @@ class TransactionsAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.
     }
 
     companion object {
-        internal val VIEW_TYPE_HEADER = 1
-        internal val VIEW_TYPE_ITEM = 2
+        internal const val VIEW_TYPE_HEADER = 1
+        internal const val VIEW_TYPE_ITEM = 2
     }
 }

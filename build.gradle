@@ -1,11 +1,11 @@
 buildscript {
     ext.versions = [
-            'gradle'           : '3.0.0',
-            'kotlin'           : '1.1.51',
+            'gradle'           : '3.1.3',
+            'kotlin'           : '1.2.30',
 
             // android support
-            'support_library'  : '26.1.0',
-            'multidex'         : '1.0.2',
+            'support_library'  : '27.1.1',
+            'multidex'         : '1.0.3',
 
             // injection
             'dagger'           : '2.11',

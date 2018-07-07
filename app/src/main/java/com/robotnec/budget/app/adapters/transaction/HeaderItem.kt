@@ -39,13 +39,13 @@ internal class HeaderItem(private val date: LocalDate, private val sum: Money) :
     private val relativeDate: String
         get() {
             val twoDaysAgo = Instant.now().atOffset(ZoneOffset.UTC).minusDays(2).toLocalDate()
-            if (date.isAfter(twoDaysAgo)) {
+            return if (date.isAfter(twoDaysAgo)) {
                 val time = DateUtil.toSeconds(date.atStartOfDay()) * 1000
-                return DateUtils.getRelativeTimeSpanString(time,
+                DateUtils.getRelativeTimeSpanString(time,
                         Instant.now().toEpochMilli(),
                         DateUtils.DAY_IN_MILLIS).toString()
             } else {
-                return date.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
+                date.dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault())
             }
         }
 
