@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.robotnec.budget.app.fragments.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/accountsFragment"
+        android:name="com.robotnec.budget.app.fragments.AccountsFragment"
+        android:label="AccountsFragment" />
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.robotnec.budget.app.fragments.CategoriesFragment"
+        android:label="CategoriesFragment" />
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.robotnec.budget.app.fragments.TransactionsFragment"
+        android:label="TransactionsFragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.robotnec.budget.app.fragments.AboutFragment"
+        android:label="AboutFragment" />
+</navigation>

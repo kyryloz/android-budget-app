@@ -36,32 +36,6 @@ abstract class BasePresenterFragment<P : Presenter<*>> : Fragment(), View {
         presenter.onViewResume()
     }
 
-    protected fun initToolbarToggle(toolbar: Toolbar) {
-        activity?.let {
-            val drawer = it.drawer
-            val toggle = ActionBarDrawerToggle(
-                    it, drawer, toolbar,
-                    R.string.navigation_drawer_open,
-                    R.string.navigation_drawer_close)
-            drawer.addDrawerListener(toggle)
-            toggle.syncState()
-        }
-    }
-
-    protected fun initToolbarBack(toolbar: Toolbar) {
-        val activity = activity as AppCompatActivity
-        activity.setSupportActionBar(toolbar)
-
-        val supportActionBar = activity.supportActionBar
-
-        if (supportActionBar != null) {
-            supportActionBar.setDisplayHomeAsUpEnabled(true)
-            supportActionBar.setDisplayShowHomeEnabled(true)
-        }
-
-        toolbar.setNavigationOnClickListener { activity.finish() }
-    }
-
     protected abstract val layoutId: Int
 
     protected abstract fun createPresenter(): P

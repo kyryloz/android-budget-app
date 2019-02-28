@@ -1,10 +1,9 @@
 package com.robotnec.budget.app.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.view.View
 import com.robotnec.budget.R
 import com.robotnec.budget.app.adapters.HomeHeader
 import com.robotnec.budget.app.adapters.support.HeaderAdapter
@@ -14,20 +13,12 @@ import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.mvp.presenter.HomePresenter
 import com.robotnec.budget.core.mvp.view.HomeView
 import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation
-import kotlinx.android.synthetic.main.fragment_home.fab
-import kotlinx.android.synthetic.main.fragment_home.recyclerMerge
-import kotlinx.android.synthetic.main.fragment_home.toolbar
+import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
  * @author zak zak@swingpulse.com>
  */
 class HomeFragment : BasePresenterFragment<HomePresenter>(), HomeView {
-
-    companion object {
-        fun newInstance(): Fragment {
-            return HomeFragment()
-        }
-    }
 
     private lateinit var headerAdapter: HeaderAdapter
     private lateinit var transactionsAdapter: TransactionsAdapter
@@ -42,7 +33,6 @@ class HomeFragment : BasePresenterFragment<HomePresenter>(), HomeView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbarToggle(toolbar)
         initRecyclerView()
         fab.setOnClickListener {
             presenter.addTransaction(AndroidNavigationBundle(activity as AppCompatActivity, null))

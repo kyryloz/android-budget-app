@@ -44,7 +44,6 @@ class AddAccountFragment : BasePresenterFragment<AddAccountPresenter>(), AddAcco
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbarBack(toolbar)
         val adapter = ArrayAdapter(context,
                 android.R.layout.simple_spinner_dropdown_item,
                 CurrencyUnit.registeredCurrencies())

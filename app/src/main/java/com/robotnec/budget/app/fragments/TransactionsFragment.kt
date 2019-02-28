@@ -37,7 +37,6 @@ class TransactionsFragment : BasePresenterFragment<TransactionsPresenter>(), Tra
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbarToggle(toolbar!!)
         initRecyclerView()
         fab.setOnClickListener {
             presenter.addNewTransaction(AndroidNavigationBundle(activity as AppCompatActivity, null))

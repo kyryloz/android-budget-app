@@ -27,7 +27,6 @@ class AddCategoryFragment : BasePresenterFragment<AddCategoryPresenter>(), AddCa
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbarBack(toolbar)
 
         buttonDelete.setOnClickListener { presenter.deleteCategory() }
         buttonDone.setOnClickListener {

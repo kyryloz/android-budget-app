@@ -32,7 +32,6 @@ class CategoryOverviewFragment : BasePresenterFragment<CategoryOverviewPresenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbarBack(toolbar)
         initCategoryTransactionsList()
     }
 

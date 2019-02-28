@@ -41,8 +41,7 @@
         android:src="@drawable/ic_vector_add"
         android:tint="@android:color/white"
         app:layout_anchor="@+id/recyclerTransactions"
-        app:layout_anchorGravity="bottom|end"
-        app:layout_behavior="com.robotnec.budget.app.widget.ScrollingFabBehavior"/>
+        app:layout_anchorGravity="bottom|end"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerTransactions"

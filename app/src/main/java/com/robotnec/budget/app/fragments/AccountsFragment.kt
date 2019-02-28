@@ -37,7 +37,6 @@ class AccountsFragment : BasePresenterFragment<AccountsPresenter>(), AccountsVie
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbarToggle(toolbar)
         initAccountsList()
         fab.setOnClickListener {
             presenter.addOrUpdateAccount(AndroidNavigationBundle(activity as AppCompatActivity, null))

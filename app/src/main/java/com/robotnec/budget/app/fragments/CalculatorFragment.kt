@@ -59,9 +59,6 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbarBack(toolbar)
-        toolbar.title = null
-        toolbar.setNavigationOnClickListener { close() }
         initButtons()
     }
 

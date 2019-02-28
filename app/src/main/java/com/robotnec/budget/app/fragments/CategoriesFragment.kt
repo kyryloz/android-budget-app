@@ -37,7 +37,6 @@ class CategoriesFragment : BasePresenterFragment<CategoriesPresenter>(), Categor
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initToolbarToggle(toolbar)
         initRecyclerView()
         fab.setOnClickListener {
             presenter.addOrUpdateCategory(AndroidNavigationBundle(activity as AppCompatActivity, null))

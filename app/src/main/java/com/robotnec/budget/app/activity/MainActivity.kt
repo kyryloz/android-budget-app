@@ -1,23 +1,18 @@
 package com.robotnec.budget.app.activity
 
 import android.os.Bundle
-import com.google.android.material.navigation.NavigationView
-import androidx.fragment.app.Fragment
-import androidx.core.view.GravityCompat
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.view.GravityCompat
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import com.robotnec.budget.R
-import com.robotnec.budget.app.fragments.AboutFragment
-import com.robotnec.budget.app.fragments.AccountsFragment
-import com.robotnec.budget.app.fragments.CategoriesFragment
-import com.robotnec.budget.app.fragments.HomeFragment
-import com.robotnec.budget.app.fragments.TransactionsFragment
 import com.robotnec.budget.core.mvp.presenter.MainPresenter
 import com.robotnec.budget.core.mvp.view.MainView
-import kotlinx.android.synthetic.main.activity_main.drawer
-import kotlinx.android.synthetic.main.activity_main.nav_view
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNavigationItemSelectedListener, MainView {
+class MainActivity : BasePresenterActivity<MainPresenter>(), MainView {
 
     override val layoutId = R.layout.activity_main
 
@@ -28,13 +23,20 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNa
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.layout_fragment_container, HomeFragment.newInstance())
-                    .commit()
-        }
+        setSupportActionBar(toolbar)
 
-        nav_view.setNavigationItemSelectedListener(this)
+        val navController = navigationHostFragment.findNavController()
+
+        val appBarConfiguration = AppBarConfiguration(setOf(
+                R.id.homeFragment,
+                R.id.categoriesFragment,
+                R.id.transactionsFragment,
+                R.id.aboutFragment,
+                R.id.accountsFragment
+        ), drawer)
+
+        NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration)
+        NavigationUI.setupWithNavController(toolbar, navController, drawer)
     }
 
     override fun onBackPressed() {
@@ -58,28 +60,5 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), NavigationView.OnNa
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val fragment: Fragment = when (item.itemId) {
-            R.id.nav_home -> HomeFragment.newInstance()
-            R.id.nav_accounts -> AccountsFragment.newInstance()
-            R.id.nav_categories -> CategoriesFragment.newInstance()
-            R.id.nav_transactions -> TransactionsFragment.newInstance()
-            R.id.nav_settings -> AboutFragment.newInstance()
-            else -> throw IllegalArgumentException("Unknown menu: " + item.itemId)
-        }
-
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.layout_fragment_container, fragment)
-                .commit()
-
-        drawer.closeDrawer(GravityCompat.START)
-
-        title = item.title
-
-        item.isChecked = true
-
-        return true
     }
 }
