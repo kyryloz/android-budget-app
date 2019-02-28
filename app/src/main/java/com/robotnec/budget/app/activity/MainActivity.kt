@@ -1,9 +1,9 @@
 package com.robotnec.budget.app.activity
 
 import android.os.Bundle
-import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
+import androidx.fragment.app.Fragment
+import androidx.core.view.GravityCompat
 import android.view.Menu
 import android.view.MenuItem
 import com.robotnec.budget.R

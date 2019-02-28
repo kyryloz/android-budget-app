@@ -73,7 +73,7 @@ class AddTransactionFragment : BasePresenterFragment<AddTransactionPresenter>(),
 
     override fun showDateChooserDialog(lastDate: Calendar) {
         val datePicker = DatePickerDialogFragment.newInstance(lastDate, this)
-        datePicker.show(fragmentManager, DatePickerDialogFragment.TAG)
+        datePicker.show(requireFragmentManager(), DatePickerDialogFragment.TAG)
     }
 
     override fun showChosenDate(date: String) {

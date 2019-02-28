@@ -1,6 +1,6 @@
 package com.robotnec.budget.app.adapters.transaction
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * @author zak zak@swingpulse.com>

@@ -1,9 +1,9 @@
 package com.robotnec.budget.app.fragments
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.robotnec.budget.R
 import com.robotnec.budget.app.adapters.CategoriesAdapter

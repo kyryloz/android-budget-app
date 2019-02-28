@@ -1,7 +1,7 @@
 package com.robotnec.budget.app.adapters.transaction
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.robotnec.budget.core.service.aggregation.impl.TransactionAggregation

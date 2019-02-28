@@ -1,6 +1,6 @@
 package com.robotnec.budget.app.navigator
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.robotnec.budget.core.navigator.NavigationBundle
 import java.io.Serializable
 

@@ -9,19 +9,19 @@
     android:clickable="true"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:contentInsetStart="72dp"
             app:layout_collapseMode="none"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <me.grantland.widget.AutofitTextView
         android:id="@+id/textInput"

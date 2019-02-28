@@ -1,8 +1,7 @@
 package com.robotnec.budget.app.fragments
 
-import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.View
 import com.robotnec.budget.R
 import com.robotnec.budget.core.mvp.presenter.CalculatorPresenter
@@ -45,10 +44,11 @@ class CalculatorFragment : BasePresenterFragment<CalculatorPresenter>(), Calcula
         return CalculatorPresenter(this, amount)
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
         if (context is Listener) {
-            listener = context
+            listener = context as Listener
         }
     }
 

@@ -1,7 +1,7 @@
 package com.robotnec.budget.app.fragments
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.robotnec.budget.R
 import com.robotnec.budget.app.adapters.transaction.TransactionsAdapter
