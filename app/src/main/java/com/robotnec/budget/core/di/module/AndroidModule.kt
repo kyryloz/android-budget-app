@@ -1,6 +1,6 @@
 package com.robotnec.budget.core.di.module
 
-import android.content.Context
+import android.app.Application
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import dagger.Module
@@ -8,17 +8,11 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class AndroidModule(private val context: Context) {
+class AndroidModule {
 
     @Singleton
     @Provides
-    fun provideApplicationContext(): Context {
-        return context
-    }
-
-    @Singleton
-    @Provides
-    fun provideSharedPreferences(): SharedPreferences {
-        return PreferenceManager.getDefaultSharedPreferences(context)
+    fun provideSharedPreferences(application: Application): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
     }
 }

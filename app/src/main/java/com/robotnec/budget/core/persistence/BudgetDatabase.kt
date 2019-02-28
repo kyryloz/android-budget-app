@@ -13,11 +13,7 @@ import com.yahoo.squidb.sql.Table
 import org.joda.money.CurrencyUnit
 import org.joda.money.Money
 
-import javax.inject.Inject
-import javax.inject.Singleton
-
-@Singleton
-class BudgetDatabase @Inject constructor(private val context: Context) : SquidDatabase() {
+class BudgetDatabase constructor(private val context: Context) : SquidDatabase() {
 
     override fun createOpenHelper(databaseName: String, delegate: SquidDatabase.OpenHelperDelegate, version: Int): ISQLiteOpenHelper {
         return AndroidOpenHelper(context, databaseName, delegate, version)

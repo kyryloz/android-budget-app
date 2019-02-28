@@ -2,7 +2,6 @@ package com.robotnec.budget.core.mvp.presenter
 
 import com.robotnec.budget.core.di.ApplicationComponent
 import com.robotnec.budget.core.mvp.view.CalculatorView
-import org.jetbrains.anko.AnkoLogger
 import org.joda.money.CurrencyUnit
 import org.joda.money.Money
 
@@ -10,7 +9,7 @@ import org.joda.money.Money
  * @author zak zak@swingpulse.com>
  */
 class CalculatorPresenter(view: CalculatorView, var amount: Money?)
-    : Presenter<CalculatorView>(view), AnkoLogger {
+    : Presenter<CalculatorView>(view) {
 
     companion object {
         const val MAX_NUMBERS_COUNT: Int = 16

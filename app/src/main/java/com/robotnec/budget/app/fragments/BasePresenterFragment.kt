@@ -25,10 +25,9 @@ abstract class BasePresenterFragment<P : Presenter<*>> : Fragment(), View {
                               savedInstanceState: Bundle?): android.view.View? {
         val root = inflater.inflate(layoutId, container, false)
         presenter = createPresenter()
-        val applicationGraph = (activity
+        val application = (activity
                 ?.application as BudgetApplication)
-                .applicationGraph
-        presenter.injectComponent(applicationGraph.applicationComponent)
+        presenter.injectComponent(application.applicationInjector())
         return root
     }
 

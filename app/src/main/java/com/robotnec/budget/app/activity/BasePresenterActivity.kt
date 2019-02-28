@@ -17,9 +17,8 @@ abstract class BasePresenterActivity<P : Presenter<*>> : AppCompatActivity(), Vi
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
         presenter = createPresenter()
-        val applicationGraph = (application as BudgetApplication)
-                .applicationGraph
-        presenter.injectComponent(applicationGraph.applicationComponent)
+        val application = (application as BudgetApplication)
+        presenter.injectComponent(application.applicationInjector())
         presenter.onViewResume()
     }
 
