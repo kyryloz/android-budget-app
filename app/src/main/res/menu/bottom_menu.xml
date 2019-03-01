@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_vector_home"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/accountsFragment"
+        android:icon="@drawable/ic_vector_account"
+        android:title="@string/accounts" />
+    <item
+        android:id="@+id/categoriesFragment"
+        android:icon="@drawable/ic_vector_category"
+        android:title="@string/categories" />
+    <item
+        android:id="@+id/transactionsFragment"
+        android:icon="@drawable/ic_vector_transactions"
+        android:title="@string/transactions" />
+
+</menu>
