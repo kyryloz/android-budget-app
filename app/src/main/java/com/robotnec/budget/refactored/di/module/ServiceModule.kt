@@ -1,4 +1,4 @@
-package com.robotnec.budget.core.di.module
+package com.robotnec.budget.refactored.di.module
 
 import com.robotnec.budget.core.persistence.TransactionContext
 import com.robotnec.budget.core.persistence.dao.AccountDao

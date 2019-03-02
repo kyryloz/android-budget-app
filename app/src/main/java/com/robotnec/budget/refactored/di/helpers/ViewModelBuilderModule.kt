@@ -1,7 +1,6 @@
-package com.robotnec.budget.core.di.helpers
+package com.robotnec.budget.refactored.di.helpers
 
 import androidx.lifecycle.ViewModelProvider
-import com.robotnec.budget.core.di.helpers.DaggerViewModelFactory
 import dagger.Binds
 import dagger.Module
 

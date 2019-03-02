@@ -1,4 +1,4 @@
-package com.robotnec.budget.core.di.helpers
+package com.robotnec.budget.refactored.di.helpers
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

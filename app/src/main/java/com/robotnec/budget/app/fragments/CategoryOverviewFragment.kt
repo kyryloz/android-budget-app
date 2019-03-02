@@ -45,7 +45,7 @@ class CategoryOverviewFragment : BasePresenterFragment<CategoryOverviewPresenter
 
     private fun initCategoryTransactionsList() {
         context?.let {
-            categoryTransactionsAdapter = TransactionsAdapter(it)
+            categoryTransactionsAdapter = TransactionsAdapter()
             recyclerCategoryTransactions.layoutManager = LinearLayoutManager(context)
             recyclerCategoryTransactions.adapter = categoryTransactionsAdapter
         }

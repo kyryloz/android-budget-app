@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.robotnec.budget.app.fragments.HomeFragment"
+        android:name="com.robotnec.budget.refactored.screens.home.HomeFragment"
         android:label="HomeFragment" />
     <fragment
         android:id="@+id/accountsFragment"
@@ -25,4 +25,16 @@
         android:id="@+id/aboutFragment"
         android:name="com.robotnec.budget.app.fragments.AboutFragment"
         android:label="AboutFragment" />
+    <activity
+        android:id="@+id/addTransactionActivity"
+        android:name="com.robotnec.budget.app.activity.AddTransactionActivity"
+        android:label="activity_add_transaction"
+        tools:layout="@layout/activity_add_transaction" />
+    <action
+        android:id="@+id/actionAddTransactionScreen"
+        app:destination="@id/addTransactionActivity"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 </navigation>

@@ -1,6 +1,6 @@
 package com.robotnec.budget.core.mvp.presenter
 
-import com.robotnec.budget.core.di.ApplicationComponent
+import com.robotnec.budget.refactored.di.ApplicationComponent
 import com.robotnec.budget.core.mvp.view.TransactionsView
 import com.robotnec.budget.core.navigator.NavigationBundle
 import com.robotnec.budget.core.navigator.Navigator
@@ -33,6 +33,6 @@ class TransactionsPresenter(view: TransactionsView) : Presenter<TransactionsView
     }
 
     fun addNewTransaction(navigationBundle: NavigationBundle<*>) {
-        navigator.openAddTransactionScreen(navigationBundle)
+//        navigator.openAddTransactionScreen()
     }
 }

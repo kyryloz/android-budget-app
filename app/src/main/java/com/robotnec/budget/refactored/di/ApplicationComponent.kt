@@ -1,11 +1,10 @@
-package com.robotnec.budget.core.di
+package com.robotnec.budget.refactored.di
 
 import android.app.Application
-import com.robotnec.budget.app.BudgetApplication
+import com.robotnec.budget.refactored.BudgetApplication
 import com.robotnec.budget.core.mvp.presenter.*
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
@@ -33,8 +32,6 @@ interface ApplicationComponent : AndroidInjector<BudgetApplication> {
     fun inject(presenter: AddTransactionPresenter)
 
     fun inject(presenter: MainPresenter)
-
-    fun inject(presenter: HomePresenter)
 
     fun inject(presenter: CategoriesPresenter)
 

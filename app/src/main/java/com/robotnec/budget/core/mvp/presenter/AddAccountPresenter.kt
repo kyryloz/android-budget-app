@@ -1,6 +1,6 @@
 package com.robotnec.budget.core.mvp.presenter
 
-import com.robotnec.budget.core.di.ApplicationComponent
+import com.robotnec.budget.refactored.di.ApplicationComponent
 import com.robotnec.budget.core.domain.Account
 import com.robotnec.budget.core.mvp.view.AddAccountView
 import com.robotnec.budget.core.persistence.dao.AccountDao

@@ -10,10 +10,9 @@ import java.util.ArrayList
 /**
  * @author zak zak@swingpulse.com>
  */
-class TransactionsAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TransactionsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items: MutableList<TransactionListItem>
-    private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
     init {
         items = ArrayList()
@@ -48,10 +47,12 @@ class TransactionsAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+
         return if (viewType == VIEW_TYPE_HEADER) {
-            HeaderItem.createViewHolder(layoutInflater, parent)
+            HeaderItem.createViewHolder(inflater, parent)
         } else {
-            TransactionItem.createViewHolder(layoutInflater, parent)
+            TransactionItem.createViewHolder(inflater, parent)
         }
     }
 

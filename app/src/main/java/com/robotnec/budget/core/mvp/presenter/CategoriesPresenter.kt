@@ -1,7 +1,7 @@
 package com.robotnec.budget.core.mvp.presenter
 
 import android.app.Activity
-import com.robotnec.budget.core.di.ApplicationComponent
+import com.robotnec.budget.refactored.di.ApplicationComponent
 import com.robotnec.budget.core.domain.Category
 import com.robotnec.budget.core.mvp.view.CategoriesView
 import com.robotnec.budget.core.navigator.NavigationBundle

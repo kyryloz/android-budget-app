@@ -2,16 +2,11 @@ package com.robotnec.budget.app.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.robotnec.budget.R
-import com.robotnec.budget.app.BudgetApplication
+import com.robotnec.budget.refactored.BudgetApplication
 import com.robotnec.budget.core.mvp.presenter.Presenter
 import com.robotnec.budget.core.mvp.view.View
-import kotlinx.android.synthetic.main.activity_main.drawer
 
 /**
  * @author zak zak@swingpulse.com>

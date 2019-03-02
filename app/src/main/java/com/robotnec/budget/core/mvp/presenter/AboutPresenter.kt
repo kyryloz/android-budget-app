@@ -1,6 +1,6 @@
 package com.robotnec.budget.core.mvp.presenter
 
-import com.robotnec.budget.core.di.ApplicationComponent
+import com.robotnec.budget.refactored.di.ApplicationComponent
 import com.robotnec.budget.core.mvp.view.AboutView
 
 /**

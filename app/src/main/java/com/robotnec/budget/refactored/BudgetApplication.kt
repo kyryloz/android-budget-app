@@ -1,8 +1,8 @@
-package com.robotnec.budget.app
+package com.robotnec.budget.refactored
 
 import androidx.appcompat.app.AppCompatDelegate
 import com.jakewharton.threetenabp.AndroidThreeTen
-import com.robotnec.budget.core.di.DaggerApplicationComponent
+import com.robotnec.budget.refactored.di.DaggerApplicationComponent
 import dagger.android.support.DaggerApplication
 
 /**

@@ -1,4 +1,4 @@
-package com.robotnec.budget.core.di.module
+package com.robotnec.budget.refactored.di.module
 
 import android.app.Application
 import android.content.SharedPreferences

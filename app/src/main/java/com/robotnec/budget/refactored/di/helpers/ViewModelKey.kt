@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.robotnec.budget.core.di.helpers
+package com.robotnec.budget.refactored.di.helpers
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

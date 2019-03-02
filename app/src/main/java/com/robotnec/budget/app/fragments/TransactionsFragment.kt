@@ -49,7 +49,7 @@ class TransactionsFragment : BasePresenterFragment<TransactionsPresenter>(), Tra
 
     private fun initRecyclerView() {
         context?.let {
-            transactionsAdapter = TransactionsAdapter(it)
+            transactionsAdapter = TransactionsAdapter()
             recyclerTransactions.layoutManager = LinearLayoutManager(context)
             recyclerTransactions.adapter = transactionsAdapter
         }
